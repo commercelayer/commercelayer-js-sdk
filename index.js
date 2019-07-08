@@ -1,8 +1,8 @@
-import { Sku } from './src/resources'
+import { Order } from './src/resources'
 
 async function f() {
-  let skus = await Sku.all()
-  console.log(skus);
+  let order = await Order.where({q:{status_eq: 'pending'}}).includes('lineItems').first()
+  console.log(order.lineItems().toArray());
 }
 
 f();
