@@ -1,8 +1,11 @@
-import { Order } from './src/resources'
+import { Sku } from './src/resources'
 
 async function f() {
-  let order = await Order.where({q:{status_eq: 'pending'}}).includes('lineItems').first()
-  console.log(order.lineItems().toArray());
+
+  let sku = await Sku.includes("prices").select('code,name', {prices: 'formatted_amount'}).find("AZbpjSkARB")
+  console.log(sku);
+  console.log(sku.prices().toArray());
+
 }
 
 f();
