@@ -1,6 +1,6 @@
-import { library } from './Initialize'
-console.log('library.headers :', library.headers)
-class SkuClass {
+import library from './library'
+
+class Sku extends library.Base {
   static define() {
     this.attributes(
       'code',
@@ -28,4 +28,4 @@ class SkuClass {
   }
 }
 
-export default library.createResource(SkuClass)
+export default library.createResource(Sku)

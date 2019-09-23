@@ -2,7 +2,8 @@ interface HeadersParams {
   Authorization: string
 }
 interface ParamsActiveResorce {
-  headers: HeadersParams
+  headers?: HeadersParams
+  immutable?: boolean
 }
 
 declare module 'active-resource' {

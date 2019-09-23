@@ -1,5 +1,4 @@
 import library from './library'
-console.log('library.headers :', library.headers)
 class Order extends library.Base {
   static define() {
     this.attributes(

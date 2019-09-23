@@ -5,8 +5,8 @@
     "noImplicitAny": true,
     "module": "esnext",
     "target": "es5",
-    "allowJs": true
-    // "esModuleInterop": true
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules"]
