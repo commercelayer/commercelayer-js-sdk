@@ -31,6 +31,7 @@ import StockLevel from './StockLevel'
 import StockLocation from './StockLocation'
 import Webhook from './Webhook'
 import WireTransfer from './WireTransfer'
+import initialize from './Initialize'
 
 export {
   Address,
@@ -65,5 +66,7 @@ export {
   StockLevel,
   StockLocation,
   Webhook,
-  WireTransfer,
+  WireTransfer
 }
+
+export default initialize

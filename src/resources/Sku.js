@@ -1,6 +1,6 @@
-import library from './library';
-
-class Sku extends library.Base {
+import { library } from './Initialize'
+console.log('library.headers :', library.headers)
+class SkuClass {
   static define() {
     this.attributes(
       'code',
@@ -16,7 +16,7 @@ class Sku extends library.Base {
       'created_at',
       'updated_at',
       'reference',
-      'metadata',
+      'metadata'
     )
 
     this.belongsTo('shippingCategory', { className: 'ShippingCategory' })
@@ -24,8 +24,8 @@ class Sku extends library.Base {
     this.hasMany('prices', { className: 'Price' })
     this.hasMany('stockItems', { className: 'StockItem' })
     this.hasMany('deliveryLeadTimes', { className: 'DeliveryLeadTime' })
-    this.hasMany('skuOptions', {  })
+    this.hasMany('skuOptions', {})
   }
 }
 
-export default library.createResource(Sku);
+export default library.createResource(SkuClass)

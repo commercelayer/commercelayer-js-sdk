@@ -1,5 +1,5 @@
-import library from './library';
-
+import library from './library'
+console.log('library.headers :', library.headers)
 class Order extends library.Base {
   static define() {
     this.attributes(
@@ -105,7 +105,7 @@ class Order extends library.Base {
       'created_at',
       'updated_at',
       'reference',
-      'metadata',
+      'metadata'
     )
 
     this.belongsTo('market', { className: 'Market' })
@@ -121,4 +121,4 @@ class Order extends library.Base {
   }
 }
 
-export default library.createResource(Order);
+export default library.createResource(Order)
