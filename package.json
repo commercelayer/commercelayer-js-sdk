@@ -1,29 +1,60 @@
 {
-  "name": "commercelayer-js-sdk",
-  "version": "1.0.0",
-  "description": "Commerce Layer Javascript SDK",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --progress --mode=production",
-    "watch": "webpack --progress --watch",
-    "server": "webpack-dev-server --open"
-  },
-  "author": "Filippo Conforti",
-  "license": "ISC",
-  "dependencies": {
-    "@babel/polyfill": "^7.6.0",
-    "active-resource": "^1.0.0-beta.7",
-    "client-oauth2": "^4.2.5"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.6.0",
-    "@babel/preset-env": "^7.6.0",
-    "babel-loader": "^8.0.6",
-    "ts-loader": "^6.1.1",
-    "typescript": "^3.6.3",
-    "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.8.1"
-  }
+	"name": "commercelayer-js-sdk",
+	"version": "1.0.0",
+	"description": "Commerce Layer Javascript SDK",
+	"main": "index.js",
+	"scripts": {
+		"test": "jest",
+		"test:watch": "jest --watch",
+		"test:record": "RECORD=true jest",
+		"build": "webpack --progress --mode=production",
+		"watch": "webpack --progress --watch",
+		"start": "webpack-dev-server --open"
+	},
+	"contributors": [
+		"Filippo Conforti",
+		"Alessandro Casazza"
+	],
+	"license": "ISC",
+	"jest": {
+		"testEnvironment": "node",
+		"setupFiles": [
+			"dotenv/config"
+		],
+		"moduleFileExtensions": [
+			"ts",
+			"js"
+		],
+		"transform": {
+			"\\.(ts|js|snap)$": "ts-jest"
+		}
+	},
+	"dependencies": {
+		"@babel/polyfill": "^7.6.0",
+		"@types/axios": "^0.14.0",
+		"@types/jest": "^24.0.19",
+		"@types/lodash": "^4.14.144",
+		"@types/mocha": "^5.2.7",
+		"active-resource": "^1.0.0-beta.7",
+		"axios": "^0.19.0",
+		"client-oauth2": "^4.2.5",
+		"dotenv": "^8.2.0",
+		"dotenv-webpack": "^1.7.0",
+		"jest-snapshot-parser": "^1.0.0",
+		"lodash": "^4.17.15"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.6.4",
+		"@babel/preset-env": "^7.6.3",
+		"babel-loader": "^8.0.6",
+		"fs": "0.0.2",
+		"jest": "^24.9.0",
+		"path": "^0.12.7",
+		"ts-jest": "^24.1.0",
+		"ts-loader": "^6.2.1",
+		"typescript": "^3.6.4",
+		"webpack": "^4.41.2",
+		"webpack-cli": "^3.3.9",
+		"webpack-dev-server": "^3.9.0"
+	}
 }

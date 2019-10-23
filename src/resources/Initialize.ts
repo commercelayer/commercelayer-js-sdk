@@ -1,10 +1,10 @@
 import library from './library'
 
-const initialize = (subdomain: string, accessToken: string): void => {
-  library.baseUrl = `https://${subdomain}.commercelayer.io/api/`
+const init = (accessToken: string, host: string): void => {
+  library.baseUrl = `https://${host}/api/`
   library.headers = {
     Authorization: `Bearer ${accessToken}`
   }
 }
 
-export default initialize
+export default init
