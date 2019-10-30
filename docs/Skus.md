@@ -1,4 +1,4 @@
-### Select All Skus
+## Select All Skus
 ```ts
 const skus = await CLayer.Sku.all()
 
@@ -6,7 +6,7 @@ const skus = await CLayer.Sku.all()
 const skus = await CLayer.Sku.select('name', 'id').first(5)
 ```
 
-### Create Sku
+## Create Sku
 
 ```ts
 
@@ -28,10 +28,12 @@ const attributes = {
 }
 
 // Create Sku collection
+
 // you can create on the server immediately (return new Sku collection)
-const newSku = await CLayer.Sku.create(attributes)
+const newSku = await Sku.create(attributes)
+
 // or only locally
-const newSku = CLayer.Sku.build(attributes)
+const newSku = Sku.build(attributes)
 
 // Save the new sku if you used the build method
 newSku.save()
@@ -45,11 +47,11 @@ newSku.save()
 // })
 ```
 
-### Update Sku
+## Update Sku
 
 ```ts
 	// Get by ID
-	const sku = await CLayer.Sku.find('VWGDMSlYJB')
+	const sku = await Sku.find('VWGDMSlYJB')
 
 	const attributes = {
 		description: 'Test description'
@@ -63,11 +65,11 @@ newSku.save()
   // })
 ```
 
-### Delete Sku
+## Delete Sku
 
 ```ts
   // Get by ID
-  const sku = await CLayer.Sku.find('VWGDMSlYJB')
+  const sku = await Sku.find('VWGDMSlYJB')
 
 	//  Delete your Sku on the server and local
 	sku.destroy()

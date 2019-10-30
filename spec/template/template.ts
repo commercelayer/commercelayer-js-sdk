@@ -149,9 +149,10 @@ export default [
 		]
 	},
 	{
-		testName: 'Prices',
-		className: 'Price',
-		associations: ['priceList', 'sku'],
+		testName: 'Delivery lead time',
+		belongsToClass: ['StockLocation', 'ShippingMethod'],
+		className: 'DeliveryLeadTime',
+		associations: ['stockLocation', 'shippingMethod'],
 		tests: [
 			{
 				type: 'toArray'
@@ -161,6 +162,90 @@ export default [
 			},
 			{
 				type: 'associations'
+			}
+		]
+	},
+	{
+		testName: 'Inventory Models',
+		belongsToClass: 'StockLevel',
+		className: 'InventoryModel',
+		associations: ['stockLevels'],
+		tests: [
+			{
+				type: 'toArray'
+			},
+			{
+				type: 'size'
+			},
+			{
+				type: 'associations'
+			}
+		]
+	},
+	{
+		testName: 'Line Items',
+		belongsToClass: 'Order',
+		className: 'LineItem',
+		associations: ['order'],
+		tests: [
+			{
+				type: 'toArray'
+			},
+			{
+				type: 'size'
+			},
+			{
+				type: 'associations'
+			},
+			{
+				type: 'create',
+				relationship: ['order'],
+				data: {
+					quantity: '1',
+					sku_code: 'TSHIRTMM000000FFFFFFXLXX'
+				}
+			},
+			{
+				type: 'update',
+				data: {
+					sku_code: 'HATBSBMU000000E63E74XXXX'
+				}
+			},
+			{
+				type: 'delete'
+			}
+		]
+	},
+	{
+		testName: 'Market',
+		belongsToClass: ['Merchant', 'PriceList', 'InventoryModel'],
+		className: 'Market',
+		associations: ['merchant', 'priceList', 'inventoryModel'],
+		tests: [
+			{
+				type: 'toArray'
+			},
+			{
+				type: 'size'
+			},
+			{
+				type: 'associations'
+			},
+			{
+				type: 'create',
+				relationship: ['merchant', 'priceList', 'inventoryModel'],
+				data: {
+					name: 'Market UNIT TEST'
+				}
+			},
+			{
+				type: 'update',
+				data: {
+					reference: 'UNIT TEST REFERENCE'
+				}
+			},
+			{
+				type: 'delete'
 			}
 		]
 	}

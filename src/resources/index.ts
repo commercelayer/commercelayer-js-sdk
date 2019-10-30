@@ -34,11 +34,14 @@ import WireTransfer from './WireTransfer'
 import init from './Initialize'
 import Geocoder from './Geocoder'
 import PaymentSource from './PaymentSource'
+import Item from './Item'
+import Attachable from './Attachable'
 
 const CLayer: any = {
 	init,
 	Address,
 	Attachment,
+	Attachable,
 	CreditCard,
 	CustomerAddress,
 	CustomerGroup,
@@ -50,6 +53,48 @@ const CLayer: any = {
 	Geocoder,
 	Import,
 	InventoryModel,
+	Item,
+	LineItemOption,
+	LineItem,
+	Market,
+	Merchant,
+	Order,
+	Parcel,
+	PaymentMethod,
+	PaypalPayment,
+	PaymentSource,
+	PriceList,
+	Price,
+	Shipment,
+	ShippingCategory,
+	ShippingMethod,
+	ShippingZone,
+	SkuOption,
+	Sku,
+	StockItem,
+	StockLevel,
+	StockLocation,
+	Webhook,
+	WireTransfer
+}
+
+export {
+	init,
+	Address,
+	Attachment,
+	Attachable,
+	CreditCard,
+	CustomerAddress,
+	CustomerGroup,
+	CustomerPasswordReset,
+	CustomerPaymentSource,
+	CustomerSubscription,
+	Customer,
+	DeliveryLeadTime,
+	Geocoder,
+	Import,
+	InventoryModel,
+	Item,
 	LineItemOption,
 	LineItem,
 	Market,

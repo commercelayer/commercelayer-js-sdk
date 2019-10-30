@@ -13,7 +13,7 @@ class Attachment extends library.Base {
 			'metadata'
 		)
 
-		this.hasOne('attachable', { polymorphic: true })
+		this.hasOne('attachable', { className: 'Attachable', polymorphic: true })
 	}
 }
 

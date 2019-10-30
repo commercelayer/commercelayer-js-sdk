@@ -1,4 +1,4 @@
-import CLayer from './src/resources'
+import { init, Order, Sku } from './src/resources'
 import { getToken } from './helpers'
 import * as _ from 'lodash'
 
@@ -6,26 +6,32 @@ const host = 'the-blue-brand-2.commercelayer.co'
 
 async function f() {
 	const { data: { access_token: token } } = await getToken()
-
-	// Init commercelayer
-	CLayer.init(token, host)
-
-	const customer = await CLayer.Customer.first()
-	const address = await CLayer.Address.first()
-
-	const attr = {
-		customer,
-		address
-	}
-
-	const creditCard = await CLayer.CreditCard
-		.select('first_name', 'last_name', 'id')
+	// console.log('CLayer :', CLayer) Init commercelayer
+	init(token, host)
+	// const shippingMethod = await CLayer.ShippingMethod.first() const
+	// stockLocation = await CLayer.StockLocation.first()
+	const order = await Order.first(3)
+	const orders = await Order.all()
+	const skus = await Sku.where({
+		code: 'TOTEXXAUFFFFFFE63E74XXXX'
+	})
+		.includes('prices')
 		.first(5)
-	// const customerAddress = await CLayer.CustomerAddress.create(attr)
+	const skusF = await Sku.findBy({
+		code: 'TOTEXXAUFFFFFFE63E74XXXX'
+	})
 
-	// const newCreditCard = await CLayer.CreditCard.create(attrCreditCard)
+	// customerPaymentSource = await CLayer.CustomerPaymentSource.all() const attr = // console.log('nextPage :', await orders.nextPage()) const
+	// { 	quantity: '2', 	sku_code: 'TSHIRTMM000000FFFFFFXLXX', 	order } const
+	// creditCard = await CLayer.CreditCard 	.select('first_name', 'last_name',
+	// 'id') 	.first(5) const customerAddress = await
+	// CLayer.CustomerAddress.create(attr) const deliveryLeadTimer = await
+	// CLayer.DeliveryLeadTime.create(attr) const lineItem = await
+	// LineItem.create(attr) const newCreditCard = await
+	// CLayer.CreditCard.create(attrCreditCard)
 
-	console.log('vars :', creditCard, customer, address)
+	console.log('vars :', order, orders, skus)
+	debugger
 }
 
 f()

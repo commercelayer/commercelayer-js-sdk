@@ -1,5 +1,6 @@
 import library from './library'
 class Order extends library.Base {
+	number: number
 	static define() {
 		this.attributes(
 			'number',
