@@ -1,9 +1,9 @@
 ### Select All Orders
 ```ts
-const orders = await CLayer.Order.all()
+const orders = await Order.all()
 
-// Select fields and filter by first 5 results TODO: Check it!
-const orders = await CLayer.Order.select('name', 'id').first(5)
+// Select fields and filter by first 5 results
+const orders = await Order.select('name', 'id').first(5)
 ```
 
 ### Create an Order
@@ -13,18 +13,18 @@ const orders = await CLayer.Order.select('name', 'id').first(5)
 const { data: { access_token: token } } = await getToken()
 
 // Init commercelayer
-CLayer.init(token, host)
+init(token, host)
 
 // Get Market collection (required)
-const market = await CLayer.Market.first()
+const market = await Market.first()
 // or
-// const market = await CLayer.Market.all()
+// const market = await Market.all()
 // or by id
-// const market = await CLayer.Market.find('QWERtyUpBa')
+// const market = await Market.find('QWERtyUpBa')
 
 
 // Create Order collection
-const newOrder = CLayer.Order.build({
+const newOrder = Order.build({
   shipping_country_code_lock: 'US',
   language_code: 'en',
   market // assigning releationship
@@ -46,7 +46,7 @@ newOrder.save()
 
 ```ts
   // Get Order by ID
-  const order = await CLayer.Order.find('eqkykhKKwO')
+  const order = await Order.find('eqkykhKKwO')
 
 	const attributes = {
 		description: 'Test description'
@@ -64,7 +64,7 @@ newOrder.save()
 
 ```ts
   // Get specific Order
-  const order = await CLayer.Order.find('eqkykhKKwO')
+  const order = await Order.find('eqkykhKKwO')
 
 	//  Delete your order on the server and locally
 	order.destroy()

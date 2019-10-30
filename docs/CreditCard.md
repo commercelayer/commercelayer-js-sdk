@@ -3,12 +3,12 @@
 const { data: { access_token: token } } = await getToken()
 
 // Init commercelayer
-CLayer.init(token, host)
+init(token, host)
 
-const creditCards = await CLayer.CreditCard.all()
+const creditCards = await CreditCard.all()
 
 // Or select fields and filter by first 5 results
-const creditCards = await CLayer.CreditCard.select('first_name', 'last_name', 'id').first(5)
+const creditCards = await CreditCard.select('first_name', 'last_name', 'id').first(5)
 ```
 
 ### Create a Credit Card
@@ -25,10 +25,10 @@ const fields = {
 }
 
 // Get Order
-const order = await CLayer.Order.find('QWERtyUpBa')
+const order = await Order.find('QWERtyUpBa')
 
 // Create new Credit Card collection
-const newCreditCard = CLayer.CreditCard.build({
+const newCreditCard = CreditCard.build({
   order, // assigning releationship
   ...fields
 })
@@ -48,7 +48,7 @@ newCreditCard.save()
 
 ```ts
   // Get Credit Card by ID
-  const creditCard = await CLayer.CreditCard.find('LMOaQFNLoV')
+  const creditCard = await CreditCard.find('LMOaQFNLoV')
 
 	const attributes = {
 		first_name: 'Alessandro'

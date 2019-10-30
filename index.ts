@@ -12,25 +12,20 @@ async function f() {
 	// stockLocation = await CLayer.StockLocation.first()
 	const order = await Order.first(3)
 	const orders = await Order.all()
-	const skus = await Sku.where({
-		code: 'TOTEXXAUFFFFFFE63E74XXXX'
-	})
+	const skus = await Sku.where({ code: 'TOTEXXAUFFFFFFE63E74XXXX' })
 		.includes('prices')
 		.first(5)
-	const skusF = await Sku.findBy({
-		code: 'TOTEXXAUFFFFFFE63E74XXXX'
-	})
-
-	// customerPaymentSource = await CLayer.CustomerPaymentSource.all() const attr = // console.log('nextPage :', await orders.nextPage()) const
-	// { 	quantity: '2', 	sku_code: 'TSHIRTMM000000FFFFFFXLXX', 	order } const
-	// creditCard = await CLayer.CreditCard 	.select('first_name', 'last_name',
-	// 'id') 	.first(5) const customerAddress = await
-	// CLayer.CustomerAddress.create(attr) const deliveryLeadTimer = await
-	// CLayer.DeliveryLeadTime.create(attr) const lineItem = await
-	// LineItem.create(attr) const newCreditCard = await
+	const skusF = await Sku.findBy({ code: 'TOTEXXAUFFFFFFE63E74XXXX' })
+	// customerPaymentSource = await CLayer.CustomerPaymentSource.all() const attr =
+	// // console.log('nextPage :', await orders.nextPage()) const { 	quantity: '2',
+	// 	sku_code: 'TSHIRTMM000000FFFFFFXLXX', 	order } const creditCard = await
+	// CLayer.CreditCard 	.select('first_name', 'last_name', 'id') 	.first(5) const
+	// customerAddress = await CLayer.CustomerAddress.create(attr) const
+	// deliveryLeadTimer = await CLayer.DeliveryLeadTime.create(attr) const lineItem
+	// = await LineItem.create(attr) const newCreditCard = await
 	// CLayer.CreditCard.create(attrCreditCard)
 
-	console.log('vars :', order, orders, skus)
+	console.log('vars :', order, orders, skus, skusF)
 	debugger
 }
 

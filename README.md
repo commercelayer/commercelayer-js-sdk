@@ -1,5 +1,7 @@
 # Commerce Layer JS SDK
 
+A JavaScript Library wrapper that helps you to use the [Commerce Layer API](https://docs.commercelayer.io/api/)
+
 ### What is Commerce Layer?
 
 [Commerce Layer](https://commercelayer.io/) is a headless platform that makes it easy to build enterprise-grade ecommerce into any website, by using the language, CMS, and tools you already master and love.
@@ -26,7 +28,7 @@ CLayer.init('AUTHORIZATION_CODE', 'https://your-brand.commercelayer.io')
 
 // or
 
-import { init } from '@commercelayer/js-sdk'
+import { init, Order, Market } from '@commercelayer/js-sdk'
 
 init('AUTHORIZATION_CODE', 'https://your-brand.commercelayer.io')
 ```
@@ -88,7 +90,7 @@ init('AUTHORIZATION_CODE', 'https://your-brand.commercelayer.io')
       description: 'Test description'
     }
     
-    //  Update your Sku on the server and local
+    //  Update your Sku on the server
     sku.update(attributes)
     ```
 
@@ -102,7 +104,104 @@ init('AUTHORIZATION_CODE', 'https://your-brand.commercelayer.io')
     sku.destroy()
     ```
 
-    [more info](./docs/Skus.md)
+  - ### Orders
+    > #### How to fetch a collection of orders:
+    ```ts
+    const orders = await Order.all()
+
+    // Select fields and filter by first 5 results
+    const orders = await Order.select('name', 'id').first(5)
+    ```
+    
+    > #### How to create an order:
+
+    ```ts
+    // Get Market collection
+    const market = await Market.first()
+
+    const attributes = {
+      shipping_country_code_lock: 'US',
+      language_code: 'en',
+      market // assigning releationship
+    }
+
+    const newOrder = await Order.create(attributes)
+    ```
+
+    > #### How to update an existing order:
+
+    ```ts
+    // Get by ID
+    const order = await Order.find('eqkykhKKwO')
+
+    const attributes = {
+      description: 'My description'
+    }
+    
+    //  Update your Order on the server
+    order.update(attributes)
+    ```
+
+    > #### How to delete an existing order:
+
+    ```ts
+    // Get by ID
+    const order = await Order.find('eqkykhKKwO')
+
+    // Persisted delete
+    order.destroy()
+    ```
+  - ### Credit Cards
+    > #### How to fetch a collection of credit cards:
+    ```ts
+    const creditCards = await CreditCard.all()
+
+    // Or select fields and filter by first 5 results
+    const creditCards = await CreditCard.select('first_name', 'last_name', 'id').first(5)
+    ```
+    
+    > #### How to create an credit card:
+
+    ```ts
+    // Get Market collection
+    const order = await Order.find('QWERtyUpBa')
+
+    const attributes = {
+      first_name: 'John',
+      last_name: 'Smith',
+      number: '4111111111111111',
+      month: '10',
+      year: '2023',
+      verification_value: '123',
+      order
+    }
+
+    const newCreditCard = CreditCard.create(attributes)
+    ```
+
+    > #### How to update an existing credit card:
+
+    ```ts
+    // Get by ID
+    const creditCard = await CreditCard.find('LMOaQFNLoV')
+
+    const attributes = {
+      first_name: 'Alessandro'
+    }
+  
+    //  Update your Credit Card on the server and locally
+    creditCard.update(attributes)
+    ```
+
+    > #### How to delete an existing credit card:
+
+    ```ts
+    // Get by ID
+    const creditCard = await CreditCard.find('LMOaQFNLoV')
+
+    // Persisted delete
+    creditCard.destroy()
+    ```
 
 ## License
 
