@@ -5,8 +5,8 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "target": "es5",
-    "allowJs": true,
     "allowSyntheticDefaultImports": true,
+    "declaration": true,
     "lib": ["esnext", "dom.iterable", "dom"],
     "resolveJsonModule": true
   },
