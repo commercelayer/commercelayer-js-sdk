@@ -48,11 +48,9 @@ init('AUTHORIZATION_CODE', 'https://your-brand.commercelayer.io')
     const skus = await Sku.select('name', 'id').includes('prices').first(5)
 
     // Filtering by code
-    const skus = await Sku.where({
-		  code: 'TOTEXXAUFFFFFFE63E74XXXX'
-	  })
-		.includes('prices')
-		.first(5)
+    const skus = await Sku.where({ code: 'TOTEXXAUFFFFFFE63E74XXXX' })
+      .includes('prices')
+      .first(5)
     ```
 
     > #### How to fetch a specific sku:
