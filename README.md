@@ -21,16 +21,16 @@ yarn add @commercelayer/js-sdk
 ## Getting started
 
 ```ts
-import CLayer, { Sku, ShippingCategory } from '@commercelayer/js-sdk'
+import CLayer from '@commercelayer/js-sdk'
 
 
 CLayer.init('AUTHORIZATION_CODE', 'https://your-brand.commercelayer.io')
 
 // or
 
-import { init, Order, Market } from '@commercelayer/js-sdk'
+import { initCLayer, Order, Market } from '@commercelayer/js-sdk'
 
-init('AUTHORIZATION_CODE', 'https://your-brand.commercelayer.io')
+initCLayer('AUTHORIZATION_CODE', 'https://your-brand.commercelayer.io')
 ```
 
 ## Use cases
