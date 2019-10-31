@@ -78,8 +78,10 @@ const CLayer: any = {
 	WireTransfer
 }
 
+const initCLayer = init
+
 export {
-	init,
+	initCLayer,
 	Address,
 	Attachment,
 	Attachable,
