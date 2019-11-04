@@ -21,7 +21,7 @@
 		"start": "webpack-dev-server --open --config webpack.dev.js"
 	},
 	"contributors": ["Filippo Conforti", "Alessandro Casazza"],
-	"license": "ISC",
+	"license": "MIT",
 	"jest": {
 		"testEnvironment": "node",
 		"setupFiles": ["dotenv/config"],
