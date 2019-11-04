@@ -1,4 +1,4 @@
-interface BaseConfig {
+export interface BaseConfig {
 	className?: string
 	polymorphic?: boolean
 	as?: string
@@ -6,7 +6,7 @@ interface BaseConfig {
 	autosave?: boolean
 }
 
-interface Base {
+export interface Base {
 	new (): Base
 	attributes(...attribute: string[]): void
 	hasOne(queryName: string, config: BaseConfig): void
@@ -17,7 +17,7 @@ interface Base {
 	queryName: string
 }
 
-interface BaseResource extends Base {
+export interface BaseResource extends Base {
 	all(): Promise<CollectionResponse>
 	// where(): Collection | Collection[]
 	afterBuild(): number
@@ -56,7 +56,7 @@ interface BaseResource extends Base {
 	where(options?: object): BaseResource
 }
 
-interface Relation extends Collection {
+export interface Relation extends Collection {
 	base: Base
 	define(): any
 	queryName: string
@@ -65,13 +65,13 @@ interface Relation extends Collection {
 	}
 }
 
-interface LinksRelationships {
+export interface LinksRelationships {
 	first: string
 	next: string
 	last: string
 }
 
-interface CollectionResponse {
+export interface CollectionResponse {
 	__collection: Collection[]
 	__links: LinksRelationships
 	hasNextPage: boolean
@@ -107,7 +107,7 @@ interface CollectionResponse {
 	unshift(): any
 }
 
-interface Collection {
+export interface Collection {
 	association(name: string): any // TODO: Add interface HasOneAssociation
 	attributes(): object
 	changed(): boolean
@@ -133,7 +133,7 @@ interface Collection {
 	valide(): boolean
 }
 
-export interface Library {
+export default interface Library {
 	baseUrl: string
 	headers: HeaderParams
 	Base: Base

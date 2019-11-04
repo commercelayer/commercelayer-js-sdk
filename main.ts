@@ -1,13 +1,15 @@
-import { init, Order, Sku } from './src/resources'
+import { initCLayer, Order, Sku } from './src/resources'
 import { getToken } from './helpers'
 import * as _ from 'lodash'
 
 const host = 'the-blue-brand-2.commercelayer.co'
 
+console.log('Sku :', Sku)
+
 async function f() {
 	const { data: { access_token: token } } = await getToken()
 	// console.log('CLayer :', CLayer) Init commercelayer
-	init(token, host)
+	initCLayer(token, host)
 	// const shippingMethod = await CLayer.ShippingMethod.first() const
 	// stockLocation = await CLayer.StockLocation.first()
 	const order = await Order.first(3)

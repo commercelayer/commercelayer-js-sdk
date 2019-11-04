@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "baseUrl": "./src/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "target": "es5",
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "lib": ["esnext", "dom.iterable", "dom"],
+    "resolveJsonModule": true,
+    "types": ["axios", "node"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts", "helpers"]
+}

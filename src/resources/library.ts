@@ -1,5 +1,5 @@
 import { createResourceLibrary } from 'active-resource'
-import { Library } from '../@types/Library/index'
+import Library from '../@types/Library'
 
 const subdomain = 'static-commerce'
 
