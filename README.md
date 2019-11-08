@@ -24,13 +24,13 @@ yarn add @commercelayer/js-sdk
 import CLayer from '@commercelayer/js-sdk'
 
 
-CLayer.init('AUTHORIZATION_CODE', 'https://your-brand.commercelayer.io')
+CLayer.init('ACCESS_TOKEN', 'https://your-brand.commercelayer.io')
 
 // or
 
 import { initCLayer, Order, Market } from '@commercelayer/js-sdk'
 
-initCLayer('AUTHORIZATION_CODE', 'https://your-brand.commercelayer.io')
+initCLayer('ACCESS_TOKEN', 'https://your-brand.commercelayer.io')
 ```
 
 ## Use cases
