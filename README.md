@@ -24,13 +24,19 @@ yarn add @commercelayer/js-sdk
 import CLayer from '@commercelayer/js-sdk'
 
 
-CLayer.init('ACCESS_TOKEN', 'https://your-brand.commercelayer.io')
+CLayer.init({
+  accessToken: 'ACCESS_TOKEN',
+  host: 'https://yourdomain.commercelayer.io'
+})
 
 // or
 
 import { initCLayer, Order, Market } from '@commercelayer/js-sdk'
 
-initCLayer('ACCESS_TOKEN', 'https://your-brand.commercelayer.io')
+initCLayer({
+  accessToken: 'ACCESS_TOKEN',
+  host: 'https://yourdomain.commercelayer.io'
+})
 ```
 
 ## Use cases
@@ -186,7 +192,7 @@ initCLayer('ACCESS_TOKEN', 'https://your-brand.commercelayer.io')
     const attributes = {
       first_name: 'Alessandro'
     }
-  
+    
     //  Update your Credit Card on the server and locally
     creditCard.update(attributes)
     ```
