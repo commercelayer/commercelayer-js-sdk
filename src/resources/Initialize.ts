@@ -1,6 +1,11 @@
 import library from './library'
 
-const init = (accessToken: string, host: string): void => {
+export interface InitConfig {
+  accessToken: string
+  host: string
+}
+
+const init = ({ accessToken, host }: InitConfig): void => {
   library.baseUrl = `https://${host}/api/`
   library.headers = {
     Authorization: `Bearer ${accessToken}`
