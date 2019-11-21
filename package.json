@@ -1,72 +1,62 @@
 {
-	"name": "@commercelayer/js-sdk",
-	"version": "1.0.0",
-	"description": "Commerce Layer Javascript SDK",
-	"repository": {
-		"url": "https://github.com/commercelayer/commercelayer-js-sdk.git"
-	},
-	"author": {
-		"name": "Alessandro Casazza",
-		"email": "alessandro@commercelayer.io"
-	},
-	"main": "./dist/resources/index.js",
-	"types": "./dist/resources/index.d.ts",
-	"files": [
-		"dist"
-	],
-	"scripts": {
-		"test": "jest",
-		"test:watch": "jest --watch",
-		"test:record": "RECORD=true jest",
-		"build": "rm -rf ./dist && tsc -p ./tsconfig.prod.json",
-		"watch": "webpack --progress --watch",
-		"start": "webpack-dev-server --open --config webpack.dev.js"
-	},
-	"contributors": [
-		"Filippo Conforti",
-		"Alessandro Casazza"
-	],
-	"license": "MIT",
-	"jest": {
-		"testEnvironment": "node",
-		"setupFiles": [
-			"dotenv/config"
-		],
-		"moduleFileExtensions": [
-			"ts",
-			"js"
-		],
-		"transform": {
-			"\\.(ts|js|snap)$": "ts-jest"
-		}
-	},
-	"dependencies": {
-		"@babel/polyfill": "^7.7.0",
-		"@types/axios": "^0.14.0",
-		"@types/jest": "^24.0.22",
-		"@types/lodash": "^4.14.146",
-		"@types/mocha": "^5.2.7",
-		"active-resource": "^1.0.0-beta.7",
-		"axios": "^0.19.0",
-		"client-oauth2": "^4.2.5",
-		"dotenv": "^8.2.0",
-		"dotenv-webpack": "^1.7.0",
-		"jest-snapshot-parser": "^1.0.0",
-		"lodash": "^4.17.15"
-	},
-	"devDependencies": {
-		"@babel/core": "^7.7.2",
-		"@babel/preset-env": "^7.7.1",
-		"babel-loader": "^8.0.6",
-		"fs": "0.0.2",
-		"jest": "^24.9.0",
-		"path": "^0.12.7",
-		"ts-jest": "^24.1.0",
-		"ts-loader": "^6.2.1",
-		"typescript": "^3.7.2",
-		"webpack": "^4.41.2",
-		"webpack-cli": "^3.3.10",
-		"webpack-dev-server": "^3.9.0",
-		"webpack-merge": "^4.2.2"
-	}
+  "name": "@commercelayer/js-sdk",
+  "version": "1.0.0",
+  "description": "Commerce Layer Javascript SDK",
+  "repository": {
+    "url": "https://github.com/commercelayer/commercelayer-js-sdk.git"
+  },
+  "author": {
+    "name": "Alessandro Casazza",
+    "email": "alessandro@commercelayer.io"
+  },
+  "main": "./dist/resources/index.js",
+  "types": "./dist/resources/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:record": "RECORD=true jest",
+    "build": "rm -rf ./dist && tsc -p ./tsconfig.prod.json",
+    "watch": "webpack --progress --watch",
+    "start": "webpack-dev-server --open --config webpack.dev.js"
+  },
+  "contributors": ["Filippo Conforti", "Alessandro Casazza"],
+  "license": "MIT",
+  "jest": {
+    "testEnvironment": "node",
+    "setupFiles": ["dotenv/config"],
+    "moduleFileExtensions": ["ts", "js"],
+    "transform": {
+      "\\.(ts|js|snap)$": "ts-jest"
+    }
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.7.0",
+    "@types/axios": "^0.14.0",
+    "@types/jest": "^24.0.22",
+    "@types/lodash": "^4.14.146",
+    "@types/mocha": "^5.2.7",
+    "active-resource": "^1.0.0-beta.7",
+    "axios": "^0.19.0",
+    "client-oauth2": "^4.2.5",
+    "dotenv": "^8.2.0",
+    "dotenv-webpack": "^1.7.0",
+    "jest-snapshot-parser": "^1.0.0",
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "babel-loader": "^8.0.6",
+    "fs": "0.0.2",
+    "jest": "^24.9.0",
+    "path": "^0.12.7",
+    "ts-jest": "^24.1.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.2",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0",
+    "webpack-merge": "^4.2.2"
+  }
 }

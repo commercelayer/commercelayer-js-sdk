@@ -1,5 +1,3 @@
-export type PromiseType = () => Promise<void>
-
 export interface BaseConfig {
   className?: string
   polymorphic?: boolean
@@ -19,8 +17,8 @@ export interface Base {
   queryName: string
 }
 
-export interface BaseResource<T> extends Base {
-  (): T
+export interface BaseResource<T = any> extends Base {
+  (): BaseResource
   all(): Promise<CollectionResponse>
   // where(): Collection | Collection[]
   afterBuild(): number
@@ -37,12 +35,12 @@ export interface BaseResource<T> extends Base {
   create(attributes: object): Collection
   each(iteratee: any): any
   fields(): Collection
-  find(primaryKey: any): Promise<Collection>
-  findBy(conditions: object): Promise<Collection> | Promise<CollectionResponse>
+  find(primaryKey: any): Promise<T>
+  findBy(conditions: object): Promise<T> | Promise<CollectionResponse>
   first(n?: number): Promise<Collection> | Promise<Collection[]>
-  includes(...attribute: string[]): BaseResource<PromiseType>
-  isA(klass: BaseResource<PromiseType>): boolean
-  klass(): BaseResource<PromiseType>
+  includes(...attribute: string[]): BaseResource<T>
+  isA(klass: BaseResource<T>): boolean
+  klass(): BaseResource<T>
   last(n?: number): Promise<Collection> | Promise<CollectionResponse>
   limit(n?: number): Promise<Collection> | Promise<CollectionResponse>
   links(): {
@@ -51,12 +49,12 @@ export interface BaseResource<T> extends Base {
   offset(n?: number): Promise<Collection> | Promise<CollectionResponse>
   order(args: object): Promise<Collection> | Promise<CollectionResponse>
   page(n?: number): Promise<Collection> | Promise<CollectionResponse>
-  perPage(n?: number): BaseResource<PromiseType>
+  perPage(n?: number): BaseResource<T>
   primaryKey: string
   queryParams(): object
   resetQueryParams(): object
-  select(...params: string[]): BaseResource<PromiseType>
-  where(options?: object): BaseResource<PromiseType>
+  select(...params: string[]): BaseResource<T>
+  where(options?: object): BaseResource<T>
 }
 
 export interface Relation extends Collection {
@@ -74,14 +72,14 @@ export interface LinksRelationships {
   last: string
 }
 
-export interface CollectionResponse {
+export interface CollectionResponse<T = any> {
   __collection: Collection[]
   __links: LinksRelationships
   hasNextPage: () => boolean
   hasPrevPage: () => boolean
   links(): LinksRelationships | null
-  nextPage(): Promise<CollectionResponse>
-  prevPage(): Promise<CollectionResponse>
+  nextPage(): Promise<CollectionResponse<T>>
+  prevPage(): Promise<CollectionResponse<T>>
   toCollection(): Collection | Collection[]
   all(): Collection[]
   clear(): []
@@ -99,18 +97,19 @@ export interface CollectionResponse {
   inject(memo: object, interatee: any): any
   join(): string
   last(n: number): Collection | Collection[]
-  map(iteratee: any): any
+  map(iteratee: (param: Collection) => any): void
   pop(): Collection
   push(): number
   replace(original: any, next: any): any
-  select(predicate?: any): CollectionResponse
-  set(index: number, item: BaseResource<PromiseType>): Collection
+  select(predicate?: any): CollectionResponse<T>
+  set(index: number, item: BaseResource): Collection
   shift(): any
-  toArray(): Collection[]
+  toArray(): T[]
   unshift(): any
+  size(): number
 }
 
-export interface Collection {
+export interface Collection<R = any> {
   association(name: string): any // TODO: Add interface HasOneAssociation
   attributes(): object
   changed(): boolean
@@ -119,14 +118,14 @@ export interface Collection {
   destroy(): any
   errors(): any
   hasAttribute(attribute: string): boolean
-  isA(klass: BaseResource<PromiseType>): boolean
-  klass(): BaseResource<PromiseType>
+  isA(klass: BaseResource): boolean
+  klass(): BaseResource
   links(): {
     related: string
     self: string
   }
   newResource(): boolean
-  map(iteratee: any): any
+  map(iteratee: (param: Collection) => any): void
   persisted(): any
   queryParams(): object
   queryParamsForReflection(): any
@@ -136,11 +135,14 @@ export interface Collection {
   valide(): boolean
 }
 
-export default interface Library {
+export interface CreateResource<R = any> {
+  createResource<R>(resource: Base): BaseResource<R>
+}
+
+export default interface Library extends CreateResource {
   baseUrl: string
   headers: {
     Authorization: string
   }
   Base: Base
-  createResource: (resource: Base) => BaseResource<PromiseType>
 }
