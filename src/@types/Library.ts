@@ -13,8 +13,12 @@ export interface Base {
   hasMany(queryName: string, config: BaseConfig): void
   belongsTo(queryName: string, config: BaseConfig): void
   define(): void
+  // where(): any
   className: string
   queryName: string
+  __queryParams: object
+  __newRelation(r: any): any
+  __extendObjectParam(type: string, options: object): any
 }
 
 export interface BaseResource<T = any> extends Base {
@@ -31,13 +35,13 @@ export interface BaseResource<T = any> extends Base {
     read: any // TODO: Add collection type?
     readWrite: any // TODO: Add collection type?
   }
-  build(): Collection | Collection[]
-  create(attributes: object): Collection
+  build(): Collection<T> | CollectionResponse<T>
+  create(attributes: object): Promise<T>
   each(iteratee: any): any
   fields(): Collection
   find(primaryKey: any): Promise<T>
   findBy(conditions: object): Promise<T> | Promise<CollectionResponse>
-  first(n?: number): Promise<Collection> | Promise<Collection[]>
+  first(n?: number): Promise<T> | Promise<T[]>
   includes(...attribute: string[]): BaseResource<T>
   isA(klass: BaseResource<T>): boolean
   klass(): BaseResource<T>
