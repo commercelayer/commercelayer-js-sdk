@@ -1,3 +1,7 @@
+export interface GeneralObject {
+  [index: string]: string
+}
+
 export interface BaseConfig {
   className?: string
   polymorphic?: boolean
@@ -35,7 +39,7 @@ export interface BaseResource<T = any> extends Base {
     read: any // TODO: Add collection type?
     readWrite: any // TODO: Add collection type?
   }
-  build(): Collection<T> | CollectionResponse<T>
+  build(params?: object): Collection<T> | CollectionResponse<T>
   create(attributes: object): Promise<T>
   each(iteratee: any): any
   fields(): Collection
@@ -59,6 +63,7 @@ export interface BaseResource<T = any> extends Base {
   resetQueryParams(): object
   select(...params: string[]): BaseResource<T>
   where(options?: object): BaseResource<T>
+  update(attrs: object, callback?: any): Promise<T>
 }
 
 export interface Relation extends Collection {

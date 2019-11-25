@@ -30,7 +30,7 @@ export class LineItem extends library.Base {
     )
 
     this.hasOne('order', { className: 'Order' })
-    this.hasOne('item', { className: 'Item', polymorphic: true })
+    this.hasOne('item', { className: 'Item' })
 
     this.hasMany('lineItemOptions', { className: 'LineItemOption' })
   }

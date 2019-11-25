@@ -1,4 +1,4 @@
-import { initCLayer, Order, Sku } from './src/resources'
+import { initCLayer, Order, Sku, LineItem, Item } from './src/resources'
 import { getToken } from './helpers'
 import * as _ from 'lodash'
 
@@ -19,6 +19,15 @@ async function f() {
   // const skus = await Sku.where({ code: 'TOTEXXAUFFFFFFE63E74XXXX' })
   //   .includes('prices')
   //   .first(5)
+  const newSku = Sku.build({ id: 'GBwpOSPKAn' })
+  const newItem = Item.build({ skus: newSku })
+  const newOrder = Order.build({ id: 'awjobhxYPX' })
+  const newLineItem = LineItem.build({
+    quantity: 1,
+    order: newOrder,
+    item: newItem
+  })
+  console.log('newSku :', newSku, newOrder, newLineItem, newItem)
   const skus = await Sku.where({ codeStart: 'TSHIRT' })
     .includes('prices')
     .first(5)

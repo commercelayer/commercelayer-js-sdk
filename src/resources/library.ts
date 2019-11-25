@@ -1,5 +1,5 @@
 import { createResourceLibrary } from 'active-resource'
-import Library from '../@types/Library'
+import Library, { GeneralObject } from '../@types/Library'
 
 const subdomain = 'static-commerce'
 
@@ -14,6 +14,14 @@ class ExtendLibrary extends library.Base {
         q: { ...options }
       })
     )
+  }
+  static findBy(options: GeneralObject): any {
+    const eqOptions: GeneralObject = {}
+    Object.keys(options).map((v: string) => {
+      eqOptions[`${v}_eq`] = options[v]
+    })
+    console.log('eqOptions :', eqOptions)
+    return this.where(eqOptions).first()
   }
 }
 
