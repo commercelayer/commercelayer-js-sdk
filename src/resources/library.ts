@@ -20,7 +20,6 @@ class ExtendLibrary extends library.Base {
     Object.keys(options).map((v: string) => {
       eqOptions[`${v}_eq`] = options[v]
     })
-    console.log('eqOptions :', eqOptions)
     return this.where(eqOptions).first()
   }
 }
