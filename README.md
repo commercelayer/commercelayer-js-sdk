@@ -4,11 +4,11 @@ A JavaScript Library wrapper that makes it quick and easy to interact with the [
 
 ### What is Commerce Layer?
 
-[Commerce Layer](https://commercelayer.io/) is a headless platform that makes it easy to build enterprise-grade ecommerce into any website, by using the language, CMS, and tools you already master and love.
+[Commerce Layer](https://commercelayer.io/) is a headless platform that lets you easily build enterprise-grade ecommerce into any website, by using the language, CMS, and tools you already master and love.
 
 # Getting started
 
-To get started with the Commerce Layer JS SDK you need to install it and then get the credentials that will allow you to perform your API calls.
+To get started with Commerce Layer JS SDK you need to install it and then get the credentials that will allow you to perform your API calls.
 
 - [Installation](##-installation)
 - [Authentication](##-authentication)
@@ -28,7 +28,7 @@ yarn add @commercelayer/js-sdk
 
 ## Authentication
 
-All requests to Commerce Layer API must be authenticated with an OAuth bearer token. Hence, before starting to use this SDK you need to get a valid access token. Check [our documentation](https://docs.commercelayer.io/api/authentication) for more information about the available authorization flows.
+All requests to Commerce Layer API must be authenticated with an [OAuth2](https://oauth.net/2/) bearer token. Hence, before starting to use this SDK you need to get a valid access token. Check [our documentation](https://docs.commercelayer.io/api/authentication) for more information about the available authorization flows.
 
 > Feel free to use [Commerce Layer JS Auth](https://github.com/commercelayer/commercelayer-js-auth), a JavaScript library that helps you wrap our authentication API. 
 
@@ -54,19 +54,19 @@ initCLayer({
 })
 ```
 
-> In the following examples we will use the latter solution (named import) with reference to the functions associated with the specific resources we're going to access (SKUs and shipping categories). Check our [API reference](https://docs.commercelayer.io/api/) for the complete list of available resources and their attributes.
+> In the following examples, we will use the latter solution (named import) and define only the functions associated with the specific resources we're going to access (SKUs and shipping categories). Check our [API reference](https://docs.commercelayer.io/api/) for the complete list of available resources and their attributes.
 
 # Use cases
 
-The following code snippets shows how to use the Commerce Layer JS SDK when performing the standard CRUD operations provided by our REST API on the SKU resource. 
+The code snippets below show how to use the Commerce Layer JS SDK when performing the standard CRUD operations provided by our REST API on the SKU resource. 
 
 - ### Create
-  - [How to create a SKU](###-how-to-create-a-sku)
+  - [How to create an SKU](###-how-to-create-an-sku)
 - ### Retrieve
   - [How to fetch a single SKU](###-how-to-fetch-a-single-sku)
   - [How to fetch a collection of SKUs](###-how-to-fetch-a-collection-of-skus)
-  - [Pagination](###-pagination)
-  - [Chained methods](###-chained-methods)
+  - [How to paginate a collection of SKUs](###-how-to-paginate-a-collection-of-skus)
+  - [How to build complex queries](###-how-to-build-complex-queries)
 - ### Update
   - [How to update an existing SKU](###-how-to-update-an-existing-sku)
 - ### Delete
@@ -74,13 +74,13 @@ The following code snippets shows how to use the Commerce Layer JS SDK when perf
 
 ## Create
 
-### How to create a SKU
+### How to create an SKU
 
 ```
   const name = 'Black Men T-shirt with White Logo (XL)'
   const code = 'TSHIRTMM000000FFFFFFXL'
 
-  const shippingCategory = await ShippingCategory.first() // gets the shipping category (it's a required relationship for the SKU resource)
+  const shippingCategory = await ShippingCategory.findBy({ name: 'Merchandising'}) // selects the shipping category (it's a required relationship for the SKU resource)
 
   const attributes = {
     code,
@@ -91,7 +91,7 @@ The following code snippets shows how to use the Commerce Layer JS SDK when perf
   const newSku = await Sku.create(attributes)
 ```
 
-Check our API reference for more information on how to [create a SKU](https://docs.commercelayer.io/api/resources/skus/create_sku).
+Check our API reference for more information on how to [create an SKU](https://docs.commercelayer.io/api/resources/skus/create_sku).
 
 ## Retrieve
 
@@ -111,19 +111,15 @@ Check our API reference for more information on how to [create a SKU](https://do
   const sku = await Sku.last()
 ```
 
-Check our API reference for more information on how to [retrieve a SKU](https://docs.commercelayer.io/api/resources/skus/retrieve_sku).
+Check our API reference for more information on how to [retrieve an SKU](https://docs.commercelayer.io/api/resources/skus/retrieve_sku).
 
 ### How to fetch a collection of SKUs
 
 ```
+  // LISTING RESULTS
+  
   // Fetches all the SKUs
   const skus = await Sku.all()
-
-  // Sort the results by creation date in ascending order (default)
-  const skus = await Sku.order({ createdAt: 'asc' }).all()
-
-  // Sort the results by creation date in descending order
-  const skus = await Sku.order({ createdAt: 'desc' }).all()
 
   // Fetches the first 5 SKUs of the list
   const skus = await Sku.first(5)
@@ -131,19 +127,64 @@ Check our API reference for more information on how to [retrieve a SKU](https://
   // Fetches the last 5 SKUs of the list
   const skus = await Sku.last(5)
 
-  // Request the API to return only specific fields
+  // SORTING RESULTS
+
+  // Sorts the results by creation date in ascending order (default)
+  const skus = await Sku.order({ createdAt: 'asc' }).all()
+
+  // Sorts the results by creation date in descending order
+  const skus = await Sku.order({ createdAt: 'desc' }).all()
+
+  // SPARSE FIELDSETS
+
+  // Requests the API to return only specific fields
   const skus = await Sku.select('name', 'metadata').all()
   
-  // Includes prices an association (prices)
+  // INCLUDING ASSOCIATIONS
+
+  // Includes an association (prices)
   const skus = await Sku.includes('prices').all()
 
-  // Filters all the SKUs fetching only the ones whose code start with the string "TSHIRT"
-  const skus = await Sku.where({ q: { code_start: 'TSHIRT'} }).all();
+  // Includes an association (prices) and fetches the realted currently loaded collection
+  const sku = await Sku.includes('prices').first()
+  const prices = sku.prices().target()
+
+  // Includes an association (prices) and fetches the realted currently loaded collection as an array
+  const sku = await Sku.includes('prices').first()
+  const prices = sku.prices().toArray()
+
+  // Includes an association (prices) and checks if the related currently loaded collection is empty or not
+  const sku = await Sku.includes('prices').first()
+  const isPricesEmpty = sku.prices().empty() // boolean
+
+  // Includes an association (prices) and calculates the size of the related currently loaded collection
+  const sku = await Sku.includes('prices').first()
+  const pricesSize = sku.prices().size()
+
+  // FILTERING DATA
+
+  // Filters all the SKUs fetching only the ones whose code starts with the string "TSHIRT"
+  const skus = await Sku.where({ codeStart: 'TSHIRT'}).all()
+
+  // Filters all the SKUs fetching only the ones whose code ends with the string "XLXX"
+  const skus = await Sku.where({ codeEnd: 'XLXX'}).all()
+
+  // Filters all the SKUs fetching only the ones whose name contains the string "White Logo"
+  const skus = await Sku.where({ nameCont: 'White Logo'}).all()
+
+  // Filters all the SKUs fetching only the ones created between two specific dates
+  const skus = await Sku.where({ createdAtGt: '2018-01-01', createdAtLt: '2018-01-31'}).all() // filters combined according to an AND logic
+
+  // Filters all the SKUs fetching only the ones created or updated after a specific date
+  const skus = await Sku.where({ updatedAtOrCreatedAtGt: '2019-10-10' }).all() // attributes combined according to an OR logic
+
+  // Filters all the SKUs fetching only the ones whose name contains the string "Black" and whose shipping category name starts with the string "MERCH"
+  const skus = await Sku.where({ nameCont: 'Black', shippingCategoryNameStart: 'MERCH'}).all()
 ```
 
 Check our API reference for more information on how to [list all SKUs](https://docs.commercelayer.io/api/resources/skus/list_skus), [sort the results](https://docs.commercelayer.io/api/sorting-results), use [sparse fieldsets](https://docs.commercelayer.io/api/sparse-fieldsets), [include associations](https://docs.commercelayer.io/api/including-associations),  and [filter data](https://docs.commercelayer.io/api/filtering-data).
 
-### Pagination
+### How to paginate a collection of SKUs
 
 When you fetch a collection of resources, you get paginated results:
 
@@ -153,13 +194,13 @@ const skus = await Sku.perPage(5).page(3).all()
 
 // Checks next page
   if(skus.hasNextPage()) {
-    const nextSkus = await skus.nextPage();
+    const nextSkus = await skus.nextPage()
     // ...
   }
 
 // Checks previous page
   if(skus.hasPrevPage()) {
-    const prevSkus = await skus.prevPage();
+    const prevSkus = await skus.prevPage()
     // ...
   }
 ```
@@ -168,16 +209,16 @@ const skus = await Sku.perPage(5).page(3).all()
 
 Check our API reference for more information on how [pagination](https://docs.commercelayer.io/api/pagination) works.
 
-### Chained methods
+### How to build complex queries
 
-All these methods can be combined. That means that API request can be constructed through simple to use chained relation methods:
+Commerce Layer SDK lets you construct API requests through simple to use chained relation methods. This means that all the methods above can be combined to create queries of greater complexity:
 
 ```
-  // Request the API to return only specific fields of the first 15 SKUs of the list (5 per page)
+  // Requests the API to return only specific fields of the first 15 SKUs of the list (5 per page)
   const skus = await Sku.select('name', 'metadata').perPage(5).first(15)
 
   // Fetches the last 20 SKUs whose code start with the string "TSHIRT" (5 per page), including an association (prices)
-  const skus = await Sku.where({ q: { code_start: 'TSHIRT'} }).includes('prices').perPage(5).last(20)
+  const skus = await Sku.where({ codeStart: 'TSHIRT'}).includes('prices').perPage(5).last(20)
 
 ```
 
@@ -196,7 +237,7 @@ All these methods can be combined. That means that API request can be constructe
   sku.update(attributes) // updates the SKU on the server
 ```
 
-Check our API reference for more information on how to [update a SKU](https://docs.commercelayer.io/api/resources/skus/update_sku).
+Check our API reference for more information on how to [update an SKU](https://docs.commercelayer.io/api/resources/skus/update_sku).
 
 ## Delete
 
@@ -205,10 +246,10 @@ Check our API reference for more information on how to [update a SKU](https://do
 ```
   const sku = await Sku.find('xYZkjABcde') // fetches the SKU by ID
   
-  sku.destroy() // persisted delete
+  sku.destroy() // persisted deletion
 ```
 
-Check our API reference for more information on how to [delete a SKU](https://docs.commercelayer.io/api/resources/skus/delete_sku).
+Check our API reference for more information on how to [delete an SKU](https://docs.commercelayer.io/api/resources/skus/delete_sku).
 
 ---
 
