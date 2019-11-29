@@ -3,3 +3,4 @@ dist
 .vscode
 .env
 spec/fixtures/*.json
+*.tgz

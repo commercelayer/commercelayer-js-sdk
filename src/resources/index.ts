@@ -36,6 +36,13 @@ import Geocoder from './Geocoder'
 import PaymentSource from './PaymentSource'
 import Item from './Item'
 import Attachable from './Attachable'
+import Library, {
+  Collection,
+  CollectionResponse,
+  BaseResource
+} from '../@types/Library'
+
+export { Library, Collection, CollectionResponse, BaseResource }
 
 const CLayer: any = {
   init,
