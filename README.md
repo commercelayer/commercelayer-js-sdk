@@ -41,7 +41,7 @@ import CLayer from '@commercelayer/js-sdk'
 
 CLayer.init({
   accessToken: 'your-access-token',
-  host: 'https://yourdomain.commercelayer.io'
+  host: 'yourdomain.commercelayer.io'
 })
 
 // or
@@ -50,7 +50,7 @@ import { initCLayer, Sku, ShippingCategory } from '@commercelayer/js-sdk'
 
 initCLayer({
   accessToken: 'your-access-token',
-  host: 'https://yourdomain.commercelayer.io'
+  host: 'yourdomain.commercelayer.io'
 })
 ```
 
