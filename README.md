@@ -10,9 +10,9 @@ A JavaScript Library wrapper that makes it quick and easy to interact with the [
 
 To get started with Commerce Layer JS SDK you need to install it and then get the credentials that will allow you to perform your API calls.
 
-- [Installation](##-installation)
-- [Authentication](##-authentication)
-- [Using ES6 import](##-using-es6-import)
+- [Installation](#installation)
+- [Authentication](#authentication)
+- [Using ES6 import](#using-es6-import)
 
 ## Installation
 
@@ -61,16 +61,16 @@ initCLayer({
 The code snippets below show how to use the Commerce Layer JS SDK when performing the standard CRUD operations provided by our REST API on the SKU resource.
 
 - ### Create
-  - [How to create an SKU](###-how-to-create-an-sku)
+  - [How to create an SKU](#how-to-create-an-sku)
 - ### Retrieve
-  - [How to fetch a single SKU](###-how-to-fetch-a-single-sku)
-  - [How to fetch a collection of SKUs](###-how-to-fetch-a-collection-of-skus)
-  - [How to paginate a collection of SKUs](###-how-to-paginate-a-collection-of-skus)
-  - [How to build complex queries](###-how-to-build-complex-queries)
+  - [How to fetch a single SKU](#how-to-fetch-a-single-sku)
+  - [How to fetch a collection of SKUs](#how-to-fetch-a-collection-of-skus)
+  - [How to paginate a collection of SKUs](#how-to-paginate-a-collection-of-skus)
+  - [How to build complex queries](#how-to-build-complex-queries)
 - ### Update
-  - [How to update an existing SKU](###-how-to-update-an-existing-sku)
+  - [How to update an existing SKU](#how-to-update-an-existing-sku)
 - ### Delete
-  - [How to delete an existing SKU](###-how-to-delete-an-existing-sku)
+  - [How to delete an existing SKU](#how-to-delete-an-existing-sku)
 
 ## Create
 
