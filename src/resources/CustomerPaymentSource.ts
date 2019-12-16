@@ -1,22 +1,33 @@
 import library from './library'
 
-class CustomerPaymentSource extends library.Base {
-	static define() {
-		this.attributes(
-			'name',
-			'id',
-			'created_at',
-			'updated_at',
-			'reference',
-			'metadata'
-		)
+export class CustomerPaymentSourceCollection extends library.Base {
+  static className = 'CustomerPaymentSource'
+  name: string
+  id: string
+  createdAt: Date
+  updatedAt: Date
+  reference: string
+  metadata: object
+  static define() {
+    this.attributes(
+      'name',
+      'id',
+      'created_at',
+      'updated_at',
+      'reference',
+      'metadata'
+    )
 
-		this.hasOne('customer', { className: 'Customer' })
-		this.hasOne('paymentSource', {
-			className: 'PaymentSource',
-			polymorphic: true
-		})
-	}
+    this.hasOne('customer', { className: 'Customer' })
+    this.hasOne('paymentSource', {
+      className: 'PaymentSource',
+      polymorphic: true
+    })
+  }
 }
 
-export default library.createResource(CustomerPaymentSource)
+const CustomerPaymentSource = library.createResource<
+  CustomerPaymentSourceCollection
+>(CustomerPaymentSourceCollection)
+
+export default CustomerPaymentSource

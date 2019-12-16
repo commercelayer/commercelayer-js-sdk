@@ -1,6 +1,7 @@
 import library from './library'
 
-export class Price extends library.Base {
+export class PriceCollection extends library.Base {
+  static className = 'Price'
   currencyCode: string
   skuCode: string
   amountCents: number
@@ -36,4 +37,6 @@ export class Price extends library.Base {
   }
 }
 
-export default library.createResource(Price)
+const Price = library.createResource<PriceCollection>(PriceCollection)
+
+export default Price

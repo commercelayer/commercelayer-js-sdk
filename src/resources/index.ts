@@ -14,7 +14,7 @@ import LineItemOption from './LineItemOption'
 import LineItem from './LineItem'
 import Market from './Market'
 import Merchant from './Merchant'
-import Order from './Order'
+import Order, { OrderCollection } from './Order'
 import Parcel from './Parcel'
 import PaymentMethod from './PaymentMethod'
 import PaypalPayment from './PaypalPayment'
@@ -25,7 +25,7 @@ import ShippingCategory from './ShippingCategory'
 import ShippingMethod from './ShippingMethod'
 import ShippingZone from './ShippingZone'
 import SkuOption from './SkuOption'
-import Sku from './Sku'
+import Sku, { SkuCollection } from './Sku'
 import StockItem from './StockItem'
 import StockLevel from './StockLevel'
 import StockLocation from './StockLocation'
@@ -40,9 +40,17 @@ import Library, {
   Collection,
   CollectionResponse,
   BaseResource
-} from '../@types/Library'
+} from './@types/Library'
 
-export { Library, Collection, CollectionResponse, BaseResource }
+// TYPES
+export {
+  Library,
+  Collection,
+  CollectionResponse,
+  BaseResource,
+  SkuCollection,
+  OrderCollection
+}
 
 const CLayer: any = {
   init,

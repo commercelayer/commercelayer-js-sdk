@@ -1,11 +1,20 @@
 import library from './library'
 
-class WireTransfer extends library.Base {
+export class WireTransferCollection extends library.Base {
+  static className = 'WireTransfer'
+  id: string
+  createdAt: Date
+  updatedAt: Date
+  reference: string
+  metadata: object
   static define() {
     this.attributes('id', 'created_at', 'updated_at', 'reference', 'metadata')
-
-    this.hasOne('order', {className: 'Order'})
+    this.hasOne('order', { className: 'Order' })
   }
 }
 
-export default library.createResource(WireTransfer)
+const WireTransfer = library.createResource<WireTransferCollection>(
+  WireTransferCollection
+)
+
+export default WireTransfer

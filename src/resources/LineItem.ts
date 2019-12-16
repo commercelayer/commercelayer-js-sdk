@@ -1,7 +1,34 @@
 import library from './library'
+import { CollectionResponse } from './@types/Library'
+import { LineItemOptionCollection } from './LineItemOption'
 
-export class LineItem extends library.Base {
+export class LineItemCollection extends library.Base {
+  static className = 'LineItem'
+  quantity: number
+  itemType: string
+  imageUrl: string
+  id: string
+  formattedUnitAmount: string
+  formattedTotalAmount: string
+  reference: string
+  skuCode: string
+  _updateQuantity: string
+  currencyCode: string
+  unitAmountCents: number
+  unitAmountFloat: number
+  optionsAmountCents: number
+  optionsAmountFloat: number
+  formattedOptionsAmount: string
+  totalAmountCents: number
+  totalAmountFloat: number
+  name: string
+  taxRate: number
+  taxBreakdown: object
+  createdAt: Date
+  updatedAt: Date
+  metadata: object
   destroy: () => Promise<any>
+  lineItemOptions: () => CollectionResponse<LineItemOptionCollection>
   static define() {
     this.attributes(
       'sku_code',
@@ -36,4 +63,6 @@ export class LineItem extends library.Base {
   }
 }
 
-export default library.createResource<LineItem>(LineItem)
+const LineItem = library.createResource<LineItemCollection>(LineItemCollection)
+
+export default LineItem

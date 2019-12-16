@@ -1,6 +1,19 @@
-import library from './library';
+import library from './library'
 
-class ShippingZone extends library.Base {
+export class ShippingZoneCollection extends library.Base {
+  static className = 'ShippingZone'
+  name: string
+  countryCodeRegex: string
+  notCountryCodeRegex: string
+  stateCodeRegex: string
+  notStateCodeRegex: string
+  zipCodeRegex: string
+  notZipCodeRegex: string
+  id: string
+  createdAt: Date
+  updatedAt: Date
+  reference: string
+  metadata: object
   static define() {
     this.attributes(
       'name',
@@ -14,11 +27,13 @@ class ShippingZone extends library.Base {
       'created_at',
       'updated_at',
       'reference',
-      'metadata',
+      'metadata'
     )
-
-
   }
 }
 
-export default library.createResource(ShippingZone);
+const ShippingZone = library.createResource<ShippingZoneCollection>(
+  ShippingZoneCollection
+)
+
+export default ShippingZone

@@ -1,6 +1,24 @@
-import library from './library';
+import library from './library'
 
-class Import extends library.Base {
+export class ImportCollection extends library.Base {
+  static className = 'Import'
+  resourceType: string
+  parentResourceId: number
+  status: string
+  startedAt: Date
+  completedAt: Date
+  inputs: object
+  errorsCount: number
+  warningsCount: number
+  destroyedCount: number
+  errorsLog: object
+  warningsLog: object
+  cleanupRecords: boolean
+  id: string
+  createdAt: Date
+  updatedAt: Date
+  reference: string
+  metadata: object
   static define() {
     this.attributes(
       'resource_type',
@@ -19,11 +37,11 @@ class Import extends library.Base {
       'created_at',
       'updated_at',
       'reference',
-      'metadata',
+      'metadata'
     )
-
-
   }
 }
 
-export default library.createResource(Import);
+const Import = library.createResource<ImportCollection>(ImportCollection)
+
+export default Import

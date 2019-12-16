@@ -1,7 +1,12 @@
 import library from './library'
 
-class PaymentSource extends library.Base {
-	static define() {}
+export class PaymentSourceCollection extends library.Base {
+  static className = 'PaymentSource'
+  static define() {}
 }
 
-export default library.createResource(PaymentSource)
+const PaymentSource = library.createResource<PaymentSourceCollection>(
+  PaymentSourceCollection
+)
+
+export default PaymentSource

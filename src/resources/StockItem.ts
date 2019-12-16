@@ -1,12 +1,32 @@
 import library from './library'
 
-class StockItem extends library.Base {
+export class StockItemCollection extends library.Base {
+  static className = 'StockItem'
+  skuCode: string
+  quantity: number
+  id: string
+  createdAt: Date
+  updatedAt: Date
+  reference: string
+  metadata: object
   static define() {
-    this.attributes('sku_code', 'quantity', 'id', 'created_at', 'updated_at', 'reference', 'metadata')
+    this.attributes(
+      'sku_code',
+      'quantity',
+      'id',
+      'created_at',
+      'updated_at',
+      'reference',
+      'metadata'
+    )
 
-    this.hasOne('stockLocation', {className: 'StockLocation'})
-    this.hasOne('sku', {className: 'Sku'})
+    this.hasOne('stockLocation', { className: 'StockLocation' })
+    this.hasOne('sku', { className: 'Sku' })
   }
 }
 
-export default library.createResource(StockItem)
+const StockItem = library.createResource<StockItemCollection>(
+  StockItemCollection
+)
+
+export default StockItem

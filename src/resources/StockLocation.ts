@@ -1,14 +1,40 @@
 import library from './library'
+import { CollectionResponse } from './@types/Library'
+import { StockLevelCollection } from './StockLevel'
+import { StockItemCollection } from './StockItem'
 
-class StockLocation extends library.Base {
+export class StockLocationCollection extends library.Base {
+  static className = 'StockLocation'
+  name: string
+  labelFormat: string
+  id: string
+  createdAt: string
+  updatedAt: string
+  reference: string
+  metadata: object
+  stockLevels: () => CollectionResponse<StockLevelCollection>
+  stockItems: () => CollectionResponse<StockItemCollection>
+
   static define() {
-    this.attributes('name', 'label_format', 'id', 'created_at', 'updated_at', 'reference', 'metadata')
+    this.attributes(
+      'name',
+      'label_format',
+      'id',
+      'created_at',
+      'updated_at',
+      'reference',
+      'metadata'
+    )
 
-    this.hasOne('address', {className: 'Address'})
+    this.hasOne('address', { className: 'Address' })
 
-    this.hasMany('stockLevels', {className: 'StockLevel'})
-    this.hasMany('stockItems', {className: 'StockItem'})
+    this.hasMany('stockLevels', { className: 'StockLevel' })
+    this.hasMany('stockItems', { className: 'StockItem' })
   }
 }
 
-export default library.createResource(StockLocation)
+const StockLocation = library.createResource<StockLocationCollection>(
+  StockLocationCollection
+)
+
+export default StockLocation

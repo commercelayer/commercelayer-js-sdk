@@ -1,6 +1,9 @@
 import library from './library'
-import { CollectionResponse } from '../@types/Library'
-import { Price } from './Price'
+import { CollectionResponse } from './@types/Library'
+import { PriceCollection } from './Price'
+import { SkuOptionCollection } from './SkuOption'
+import { DeliveryLeadTimeCollection } from './DeliveryLeadTime'
+import { StockItemCollection } from './StockItem'
 
 export interface Inventory {
   available: boolean
@@ -28,8 +31,12 @@ export interface Inventory {
   }[]
 }
 
-export class Sku extends library.Base {
-  prices: () => CollectionResponse<Price>
+export class SkuCollection extends library.Base {
+  static className = 'Sku'
+  prices: () => CollectionResponse<PriceCollection>
+  stockItems: () => CollectionResponse<StockItemCollection>
+  deliveryLeadTimes: () => CollectionResponse<DeliveryLeadTimeCollection>
+  skuOptions: () => CollectionResponse<SkuOptionCollection>
   code: string
   name: string
   description: string
@@ -71,4 +78,5 @@ export class Sku extends library.Base {
   }
 }
 
-export default library.createResource<Sku>(Sku)
+const Sku = library.createResource<SkuCollection>(SkuCollection)
+export default Sku

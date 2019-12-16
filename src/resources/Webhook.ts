@@ -1,6 +1,15 @@
-import library from './library';
+import library from './library'
 
-class Webhook extends library.Base {
+export class WebhookCollection extends library.Base {
+  static className = 'Webhook'
+  topic: string
+  callbackUrl: string
+  includeResources: string[]
+  id: string
+  createdAt: Date
+  updatedAt: Date
+  reference: string
+  metadata: object
   static define() {
     this.attributes(
       'topic',
@@ -10,11 +19,11 @@ class Webhook extends library.Base {
       'created_at',
       'updated_at',
       'reference',
-      'metadata',
+      'metadata'
     )
-
-
   }
 }
 
-export default library.createResource(Webhook);
+const Webhook = library.createResource<WebhookCollection>(WebhookCollection)
+
+export default Webhook

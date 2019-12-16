@@ -1,6 +1,18 @@
-import library from './library';
+import library from './library'
+import { CollectionResponse } from './@types/Library'
+import { PriceCollection } from './Price'
 
-class PriceList extends library.Base {
+export class PriceListCollection extends library.Base {
+  static className = 'PriceList'
+  name: string
+  currencyCode: string
+  taxIncluded: boolean
+  id: string
+  createdAt: Date
+  updatedAt: Date
+  reference: string
+  metadata: object
+  prices: () => CollectionResponse<PriceCollection>
   static define() {
     this.attributes(
       'name',
@@ -10,12 +22,15 @@ class PriceList extends library.Base {
       'created_at',
       'updated_at',
       'reference',
-      'metadata',
+      'metadata'
     )
-
 
     this.hasMany('prices', { className: 'Price' })
   }
 }
 
-export default library.createResource(PriceList);
+const PriceList = library.createResource<PriceListCollection>(
+  PriceListCollection
+)
+
+export default PriceList

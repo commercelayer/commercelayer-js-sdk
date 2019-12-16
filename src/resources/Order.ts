@@ -1,9 +1,117 @@
 import library from './library'
-export class Order extends library.Base {
-  id: string
+import { LineItemCollection } from './LineItem'
+import { CollectionResponse } from './@types/Library'
+import { ShipmentCollection } from './Shipment'
+import { PaymentMethodCollection } from './PaymentMethod'
+
+export class OrderCollection extends library.Base {
+  static className = 'Order'
   number: number
-  skusCount: number
   status: string
+  payment_status: string
+  fulfillment_status: string
+  guest: boolean
+  editable: boolean
+  placeable: boolean
+  customerEmail: string
+  customerPassword: string
+  languageCode: string
+  currencyCode: string
+  taxIncluded: boolean
+  taxRate: number
+  freightTaxable: boolean
+  countryCode: string
+  shippingCountryCodeLock: string
+  couponCode: string
+  subtotalAmountCents: number
+  subtotalAmountFloat: number
+  formattedSubtotalAmount: string
+  shippingAmountCents: number
+  shippingAmountFloat: number
+  formattedShippingAmount: string
+  paymentMethodAmount_cents: number
+  paymentMethodAmountFloat: number
+  formattedPaymentMethodAmount: string
+  discountAmountCents: number
+  discountAmountFloat: number
+  formattedDiscountAmount: string
+  totalTaxAmountCents: number
+  totalTaxAmountFloat: number
+  formattedTotalTaxAmount: string
+  subtotalTaxAmountCents: number
+  subtotalTaxAmountFloat: number
+  formattedSubtotalTaxAmount: string
+  shippingTaxAmountCents: number
+  shippingTaxAmountFloat: number
+  formattedShippingTaxAmount: string
+  paymentMethodTaxAmountCents: number
+  paymentMethodTaxAmountFloat: number
+  formattedPaymentMethodTaxAmount: string
+  discountTaxAmountCents: number
+  discountTaxAmountFloat: number
+  formattedDiscountTaxAmount: string
+  totalAmountCents: number
+  totalAmountFloat: number
+  formattedTotalAmount: string
+  totalTaxableAmountCents: number
+  totalTaxableAmountFloat: number
+  formattedTotalTaxableAmount: string
+  subtotalTaxableAmountCents: number
+  subtotalTaxableAmountFloat: number
+  formattedSubtotalTaxableAmount: string
+  shippingTaxableAmountCents: number
+  shippingTaxableAmount_float: number
+  formattedShippingTaxableAmount: string
+  paymentMethodTaxableAmountCents: number
+  paymentMethodTaxableAmountFloat: number
+  formattedPaymentMethodTaxableAmount: string
+  discountTaxableAmountCents: number
+  discountTaxableAmountFloat: number
+  formattedDiscountTaxableAmount: string
+  totalAmountWithTaxesCents: number
+  totalAmountWithTaxesFloat: number
+  formattedTotalAmountWithTaxes: string
+  feesAmountCents: number
+  feesAmountFloat: number
+  formattedFeesAmount: string
+  skusCount: string
+  lineItem_optionsCount: number
+  shipmentsCount: number
+  paymentSourceDetails: object
+  token: string
+  cartUrl: string
+  returnUrl: string
+  termsUrl: string
+  privacyUrl: string
+  checkoutUrl: string
+  _place: number
+  _cancel: number
+  _approve: number
+  _capture: number
+  _refund: number
+  _updateTaxes: number
+  _billingAddressCloneId: number
+  _shippingAddressCloneId: number
+  _customerPaymentSourceId: number
+  _shippingAddressSameAsBilling: number
+  _billingAddressSameAsShipping: number
+  _savePaymentSourceToCustomer_wallet: number
+  _saveShippingAddressToCustomerAddress_book: number
+  _saveBillingAddressToCustomerAddress_book: number
+  _refresh: number
+  placedAt: Date
+  approvedAt: Date
+  cancelledAt: Date
+  paymentUpdatedAt: Date
+  fulfillmentUpdatedAt: Date
+  id: string
+  createdAt: Date
+  updatedAt: Date
+  reference: string
+  metadata: object
+  lineItems: () => CollectionResponse<LineItemCollection>
+  availablePaymentMethods: () => CollectionResponse<PaymentMethodCollection>
+  shipments: () => CollectionResponse<ShipmentCollection>
   static define() {
     this.attributes(
       'number',
@@ -126,5 +234,5 @@ export class Order extends library.Base {
     this.hasMany('shipments', { className: 'Shipment' })
   }
 }
-
-export default library.createResource<Order>(Order)
+const Order = library.createResource<OrderCollection>(OrderCollection)
+export default Order

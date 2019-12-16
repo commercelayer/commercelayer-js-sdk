@@ -1,9 +1,12 @@
 import library from './library'
 
-class Geocoder extends library.Base {
-	static define() {
-		this.attributes()
-	}
+export class GeocoderCollection extends library.Base {
+  static className = 'Geocoder'
+  static define() {
+    this.attributes()
+  }
 }
 
-export default library.createResource(Geocoder)
+const Geocoder = library.createResource<GeocoderCollection>(GeocoderCollection)
+
+export default Geocoder

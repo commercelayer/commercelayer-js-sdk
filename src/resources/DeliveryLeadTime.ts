@@ -1,6 +1,16 @@
 import library from './library'
 
-class DeliveryLeadTime extends library.Base {
+export class DeliveryLeadTimeCollection extends library.Base {
+  static className = 'DeliveryLeadTime'
+  minHours: number
+  maxHours: number
+  minDays: number
+  maxDays: number
+  id: string
+  createdAt: Date
+  updatedAt: Date
+  reference: string
+  metadata: object
   static define() {
     this.attributes(
       'min_hours',
@@ -13,10 +23,13 @@ class DeliveryLeadTime extends library.Base {
       'reference',
       'metadata'
     )
-
     this.hasOne('stockLocation', { className: 'StockLocation' })
     this.hasOne('shippingMethod', { className: 'ShippingMethod' })
   }
 }
 
-export default library.createResource(DeliveryLeadTime)
+const DeliveryLeadTime = library.createResource<DeliveryLeadTimeCollection>(
+  DeliveryLeadTimeCollection
+)
+
+export default DeliveryLeadTime

@@ -1,9 +1,14 @@
 import library from './library'
 
-class Attachable extends library.Base {
-	static define() {
-		this.attributes()
-	}
+export class AttachableCollection extends library.Base {
+  static className = 'Attachable'
+  static define() {
+    this.attributes()
+  }
 }
 
-export default library.createResource(Attachable)
+const Attachable = library.createResource<AttachableCollection>(
+  AttachableCollection
+)
+
+export default Attachable

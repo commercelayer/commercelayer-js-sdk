@@ -1,6 +1,9 @@
 import library from './library'
+import { CollectionResponse } from './@types/Library'
+import { OrderCollection } from './Order'
 
-export class Market extends library.Base {
+export class MarketCollection extends library.Base {
+  static className = 'Market'
   number: number
   name: string
   facebookPixelId: string
@@ -9,6 +12,7 @@ export class Market extends library.Base {
   updatedAt: Date
   reference: string
   metadata: object
+  orders: () => CollectionResponse<OrderCollection>
   static define() {
     this.attributes(
       'number',
@@ -29,4 +33,6 @@ export class Market extends library.Base {
   }
 }
 
-export default library.createResource<Market>(Market)
+const Market = library.createResource<MarketCollection>(MarketCollection)
+
+export default Market

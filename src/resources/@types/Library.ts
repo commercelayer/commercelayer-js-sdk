@@ -2,6 +2,10 @@ export interface GeneralObject {
   [index: string]: string
 }
 
+export interface HeaderParams {
+  Authorization: string
+}
+
 export interface BaseConfig {
   className?: string
   polymorphic?: boolean
@@ -11,6 +15,7 @@ export interface BaseConfig {
 }
 
 export interface Base {
+  __links: object
   new (): Base
   attributes(...attribute: string[]): void
   hasOne(queryName: string, config: BaseConfig): void
@@ -27,7 +32,7 @@ export interface Base {
 
 export interface BaseResource<T = any> extends Base {
   (): BaseResource
-  all(): Promise<CollectionResponse>
+  all(): Promise<CollectionResponse<T>>
   // where(): Collection | Collection[]
   afterBuild(): number
   afterCreate(): number

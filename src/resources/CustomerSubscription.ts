@@ -1,11 +1,30 @@
 import library from './library'
 
-class CustomerSubscription extends library.Base {
-  static define() {
-    this.attributes('customer_email', 'id', 'created_at', 'updated_at', 'reference', 'metadata')
+export class CustomerSubscriptionCollection extends library.Base {
+  static className = 'CustomerSubscription'
+  customerEmail: string
+  id: string
+  createdAt: Date
+  updatedAt: Date
+  reference: string
+  metadata: object
 
-    this.hasOne('customer', {className: 'Customer'})
+  static define() {
+    this.attributes(
+      'customer_email',
+      'id',
+      'created_at',
+      'updated_at',
+      'reference',
+      'metadata'
+    )
+
+    this.hasOne('customer', { className: 'Customer' })
   }
 }
 
-export default library.createResource(CustomerSubscription)
+const CustomerSubscription = library.createResource<
+  CustomerSubscriptionCollection
+>(CustomerSubscriptionCollection)
+
+export default CustomerSubscription

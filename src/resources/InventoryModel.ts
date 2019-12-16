@@ -1,6 +1,16 @@
-import library from './library';
+import library from './library'
+import { CollectionResponse } from './@types/Library'
+import { StockLevelCollection } from './StockLevel'
 
-class InventoryModel extends library.Base {
+export class InventoryModelCollection extends library.Base {
+  static className = 'InventoryModel'
+  name: string
+  id: string
+  createdAt: Date
+  updatedAt: Date
+  reference: string
+  metadata: object
+  stockLevels: () => CollectionResponse<StockLevelCollection>
   static define() {
     this.attributes(
       'name',
@@ -8,12 +18,14 @@ class InventoryModel extends library.Base {
       'created_at',
       'updated_at',
       'reference',
-      'metadata',
+      'metadata'
     )
-
-
     this.hasMany('stockLevels', { className: 'StockLevel' })
   }
 }
 
-export default library.createResource(InventoryModel);
+const InventoryModel = library.createResource<InventoryModelCollection>(
+  InventoryModelCollection
+)
+
+export default InventoryModel
