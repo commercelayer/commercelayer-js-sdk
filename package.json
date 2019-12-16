@@ -13,8 +13,8 @@
     "name": "Alessandro Casazza",
     "email": "alessandro@commercelayer.io"
   },
-  "main": "./dist/resources/index.js",
-  "types": "./dist/resources/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "package.json",
@@ -24,9 +24,11 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:record": "RECORD=true jest",
-    "build": "rm -rf ./dist && tsc -p ./tsconfig.prod.json",
+    "build": "tsdx build --tsconfig ./tsconfig.prod.json --entry ./src/resources/index.ts",
+    "build:types": "dts-bundle-generator -o ./dist/types.d.ts ./src/resources/index.ts --project tsconfig.prod.json",
     "watch": "webpack --progress --watch",
-    "start": "webpack-dev-server --open --config webpack.dev.js"
+    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "build:webpack": "rm -rf ./dist && webpack --config webpack.prod.js"
   },
   "contributors": [
     "Filippo Conforti",
@@ -41,7 +43,6 @@
     "api"
   ],
   "jest": {
-    "testEnvironment": "node",
     "setupFiles": [
       "dotenv/config"
     ],
@@ -54,30 +55,30 @@
     }
   },
   "dependencies": {
+    "active-resource": "^1.0.0-beta.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.5",
     "@babel/polyfill": "^7.7.0",
+    "@babel/preset-env": "^7.7.6",
+    "@commercelayer/js-auth": "^2.0.1",
     "@types/axios": "^0.14.0",
     "@types/jest": "^24.0.23",
     "@types/lodash": "^4.14.149",
     "@types/mocha": "^5.2.7",
-    "active-resource": "^1.0.0-beta.7",
-    "axios": "^0.19.0",
-    "client-oauth2": "^4.2.5",
+    "babel-loader": "^8.0.6",
     "dotenv": "^8.2.0",
     "dotenv-webpack": "^1.7.0",
-    "jest-snapshot-parser": "^1.0.0",
-    "lodash": "^4.17.15"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.7.4",
-    "@babel/preset-env": "^7.7.4",
-    "babel-loader": "^8.0.6",
     "fs": "0.0.2",
     "jest": "^24.9.0",
+    "jest-snapshot-parser": "^1.0.0",
+    "lodash": "^4.17.15",
     "path": "^0.12.7",
+    "rollup-plugin-babel": "^4.3.3",
     "ts-jest": "^24.2.0",
     "ts-loader": "^6.2.1",
-    "typescript": "^3.7.2",
-    "webpack": "^4.41.2",
+    "typescript": "^3.7.3",
+    "webpack": "^4.41.3",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0",
     "webpack-merge": "^4.2.2"

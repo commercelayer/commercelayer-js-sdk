@@ -30,7 +30,7 @@ yarn add @commercelayer/js-sdk
 
 All requests to Commerce Layer API must be authenticated with an [OAuth2](https://oauth.net/2/) bearer token. Hence, before starting to use this SDK you need to get a valid access token. Check [our documentation](https://docs.commercelayer.io/api/authentication) for more information about the available authorization flows.
 
-> Feel free to use [Commerce Layer JS Auth](https://github.com/commercelayer/commercelayer-js-auth), a JavaScript library that helps you wrap our authentication API. 
+> Feel free to use [Commerce Layer JS Auth](https://github.com/commercelayer/commercelayer-js-auth), a JavaScript library that helps you wrap our authentication API.
 
 ## Using ES6 import
 
@@ -41,7 +41,7 @@ import CLayer from '@commercelayer/js-sdk'
 
 CLayer.init({
   accessToken: 'your-access-token',
-  host: 'https://yourdomain.commercelayer.io'
+  endpoint: 'https://yourdomain.commercelayer.io'
 })
 
 // or
@@ -50,7 +50,7 @@ import { initCLayer, Sku, ShippingCategory } from '@commercelayer/js-sdk'
 
 initCLayer({
   accessToken: 'your-access-token',
-  host: 'https://yourdomain.commercelayer.io'
+  endpoint: 'https://yourdomain.commercelayer.io'
 })
 ```
 
@@ -58,7 +58,7 @@ initCLayer({
 
 # Use cases
 
-The code snippets below show how to use the Commerce Layer JS SDK when performing the standard CRUD operations provided by our REST API on the SKU resource. 
+The code snippets below show how to use the Commerce Layer JS SDK when performing the standard CRUD operations provided by our REST API on the SKU resource.
 
 - ### Create
   - [How to create an SKU](###-how-to-create-an-sku)
@@ -117,7 +117,7 @@ Check our API reference for more information on how to [retrieve an SKU](https:/
 
 ```
   // LISTING RESULTS
-  
+
   // Fetches all the SKUs
   const skus = await Sku.all()
 
@@ -139,7 +139,7 @@ Check our API reference for more information on how to [retrieve an SKU](https:/
 
   // Requests the API to return only specific fields
   const skus = await Sku.select('name', 'metadata').all()
-  
+
   // INCLUDING ASSOCIATIONS
 
   // Includes an association (prices)
@@ -182,7 +182,7 @@ Check our API reference for more information on how to [retrieve an SKU](https:/
   const skus = await Sku.where({ nameCont: 'Black', shippingCategoryNameStart: 'MERCH'}).all()
 ```
 
-Check our API reference for more information on how to [list all SKUs](https://docs.commercelayer.io/api/resources/skus/list_skus), [sort the results](https://docs.commercelayer.io/api/sorting-results), use [sparse fieldsets](https://docs.commercelayer.io/api/sparse-fieldsets), [include associations](https://docs.commercelayer.io/api/including-associations),  and [filter data](https://docs.commercelayer.io/api/filtering-data).
+Check our API reference for more information on how to [list all SKUs](https://docs.commercelayer.io/api/resources/skus/list_skus), [sort the results](https://docs.commercelayer.io/api/sorting-results), use [sparse fieldsets](https://docs.commercelayer.io/api/sparse-fieldsets), [include associations](https://docs.commercelayer.io/api/including-associations), and [filter data](https://docs.commercelayer.io/api/filtering-data).
 
 ### How to paginate a collection of SKUs
 
@@ -222,7 +222,6 @@ Commerce Layer SDK lets you construct API requests through simple to use chained
 
 ```
 
-
 ## Update
 
 ### How to update an existing SKU
@@ -233,7 +232,7 @@ Commerce Layer SDK lets you construct API requests through simple to use chained
   const attributes = {
     description: 'Updated description.'
   }
-  
+
   sku.update(attributes) // updates the SKU on the server
 ```
 
@@ -245,7 +244,7 @@ Check our API reference for more information on how to [update an SKU](https://d
 
 ```
   const sku = await Sku.find('xYZkjABcde') // fetches the SKU by ID
-  
+
   sku.destroy() // persisted deletion
 ```
 

@@ -4,3 +4,4 @@ dist
 .env
 spec/fixtures/*.json
 *.tgz
+.rts*

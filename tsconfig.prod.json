@@ -3,14 +3,18 @@
     "outDir": "./dist/",
     "baseUrl": "./src/",
     "sourceMap": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "target": "es5",
     "allowSyntheticDefaultImports": true,
     "declaration": true,
+    "module": "esnext",
+    "moduleResolution": "node",
     "lib": ["esnext", "dom.iterable", "dom"],
     "resolveJsonModule": true,
-    "types": ["axios", "node"]
+    "importHelpers": true,
+    "typeRoots": ["node_modules/@types", "src/@types"],
+    "types": ["node"]
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts", "helpers"]
+  "exclude": ["node_modules", "**/*.spec.ts", "helpers"],
 }
