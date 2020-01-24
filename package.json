@@ -1,6 +1,6 @@
 {
   "name": "@commercelayer/js-sdk",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Commerce Layer Javascript SDK",
   "repository": {
     "url": "https://github.com/commercelayer/commercelayer-js-sdk.git"
