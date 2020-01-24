@@ -1,8 +1,11 @@
 import library from './library'
 import { LineItemCollection } from './LineItem'
-import { CollectionResponse } from './@types/Library'
+import { CollectionResponse, Collection } from './@types/Library'
 import { ShipmentCollection } from './Shipment'
 import { PaymentMethodCollection } from './PaymentMethod'
+import { MarketCollection } from './Market'
+import { CustomerCollection } from './Customer'
+import { AddressCollection } from './Address'
 
 export class OrderCollection extends library.Base {
   static className = 'Order'
@@ -112,6 +115,11 @@ export class OrderCollection extends library.Base {
   lineItems: () => CollectionResponse<LineItemCollection>
   availablePaymentMethods: () => CollectionResponse<PaymentMethodCollection>
   shipments: () => CollectionResponse<ShipmentCollection>
+  buildMarket: () => Collection<MarketCollection>
+  buildCustomer: () => Collection<CustomerCollection>
+  buildShippingAddress: () => Collection<AddressCollection>
+  buildBillingAddress: () => Collection<AddressCollection>
+  buildPaymentMethod: () => Collection<PaymentMethodCollection>
   static define() {
     this.attributes(
       'number',
@@ -224,15 +232,17 @@ export class OrderCollection extends library.Base {
     this.hasOne('shippingAddress', { className: 'Address' })
     this.hasOne('billingAddress', { className: 'Address' })
     this.hasOne('paymentMethod', { className: 'PaymentMethod' })
-    this.hasOne('paymentSource', {
-      className: 'PaymentSource',
-      polymorphic: true
-    })
-
     this.hasMany('availablePaymentMethods', { className: 'PaymentMethod' })
     this.hasMany('lineItems', { className: 'LineItem' })
     this.hasMany('shipments', { className: 'Shipment' })
+    this.belongsTo('paymentSource', { polymorphic: true })
   }
 }
 const Order = library.createResource<OrderCollection>(OrderCollection)
+
+Order.afterBuild(function() {
+  if (this.paymentSourceId) delete this.paymentSourceId
+  if (this.paymentSourceType) delete this.paymentSourceType
+})
+
 export default Order

@@ -5,7 +5,7 @@ import { SkuOptionCollection } from './SkuOption'
 import { DeliveryLeadTimeCollection } from './DeliveryLeadTime'
 import { StockItemCollection } from './StockItem'
 
-export interface Inventory {
+export interface InventoryCollection {
   available: boolean
   quantity: number
   levels: {
@@ -45,7 +45,7 @@ export class SkuCollection extends library.Base {
   piecesPerPack: number
   weight: number
   unitOfWeight: string
-  inventory: Inventory
+  inventory: InventoryCollection
   id: string
   createdAt: Date
   updatedAt: Date

@@ -21,13 +21,17 @@ export class AttachmentCollection extends library.Base {
       'reference',
       'metadata'
     )
-
-    this.hasOne('attachable', { className: 'Attachable', polymorphic: true })
+    this.belongsTo('attachable', { polymorphic: true })
   }
 }
 
 const Attachment = library.createResource<AttachmentCollection>(
   AttachmentCollection
 )
+
+Attachment.afterBuild(function() {
+  if (this.attachableId) delete this.attachableId
+  if (this.attachableType) delete this.attachableType
+})
 
 export default Attachment

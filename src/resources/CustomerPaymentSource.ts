@@ -19,15 +19,17 @@ export class CustomerPaymentSourceCollection extends library.Base {
     )
 
     this.hasOne('customer', { className: 'Customer' })
-    this.hasOne('paymentSource', {
-      className: 'PaymentSource',
-      polymorphic: true
-    })
+    this.belongsTo('paymentSource', { polymorphic: true })
   }
 }
 
 const CustomerPaymentSource = library.createResource<
   CustomerPaymentSourceCollection
 >(CustomerPaymentSourceCollection)
+
+CustomerPaymentSource.afterBuild(function() {
+  if (this.paymentSourceId) delete this.paymentSourceId
+  if (this.paymentSourceType) delete this.paymentSourceType
+})
 
 export default CustomerPaymentSource

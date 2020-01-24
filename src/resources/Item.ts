@@ -4,7 +4,6 @@ export class ItemCollection extends library.Base {
   static className = 'Item'
   static define() {
     this.attributes()
-    this.hasOne('skus', { className: 'Sku' })
   }
 }
 

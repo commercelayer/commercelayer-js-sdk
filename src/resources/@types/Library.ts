@@ -34,7 +34,7 @@ export interface BaseResource<T = any> extends Base {
   (): BaseResource
   all(): Promise<CollectionResponse<T>>
   // where(): Collection | Collection[]
-  afterBuild(): number
+  afterBuild(func: any): number
   afterCreate(): number
   afterRequest(): number
   assignQueryParams(queryParams: object): object

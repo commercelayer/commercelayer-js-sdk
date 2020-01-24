@@ -1,6 +1,5 @@
 import { createResourceLibrary } from 'active-resource'
 import Library, { GeneralObject } from './@types/Library'
-import * as _ from 'lodash'
 
 const subdomain = 'static-commerce'
 

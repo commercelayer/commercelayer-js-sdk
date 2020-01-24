@@ -29,6 +29,7 @@ export class LineItemCollection extends library.Base {
   metadata: object
   destroy: () => Promise<any>
   lineItemOptions: () => CollectionResponse<LineItemOptionCollection>
+  item: () => any
   static define() {
     this.attributes(
       'sku_code',
@@ -57,12 +58,16 @@ export class LineItemCollection extends library.Base {
     )
 
     this.hasOne('order', { className: 'Order' })
-    this.hasOne('item', { className: 'Item' })
-
+    this.belongsTo('item', { polymorphic: true })
     this.hasMany('lineItemOptions', { className: 'LineItemOption' })
   }
 }
 
 const LineItem = library.createResource<LineItemCollection>(LineItemCollection)
+
+LineItem.afterBuild(function() {
+  if (this.itemId) delete this.itemId
+  if (this.itemType) delete this.itemType
+})
 
 export default LineItem
