@@ -97,13 +97,16 @@ template.map(async (d: any) => {
             const attributes = {
               ...t.data
             }
-            if (Array.isArray(bTo)) {
-              bTo.map((b: any, k: number) => {
-                attributes[t.relationship[k]] = b
-              })
-            } else {
-              attributes[t.relationship] = bTo
+            if (t.relationship) {
+              if (Array.isArray(bTo)) {
+                bTo.map((b: any, k: number) => {
+                  attributes[t.relationship[k]] = b
+                })
+              } else {
+                attributes[t.relationship] = bTo
+              }
             }
+            console.log('attributes', attributes)
             const cBuild = await CLayer[d.className].create(attributes)
             console.log(`create ${d.className} :`, cBuild.id)
             elId = cBuild.id
