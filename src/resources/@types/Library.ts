@@ -31,6 +31,7 @@ export interface Base {
 }
 
 export interface BaseResource<T = any> extends Base {
+  // TODO: Add Promise<BaseResource<T>> to return promise
   (): BaseResource
   all(): Promise<CollectionResponse<T>>
   // where(): Collection | Collection[]
