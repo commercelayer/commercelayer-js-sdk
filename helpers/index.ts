@@ -1,4 +1,4 @@
-import getToken from './getToken'
+import { getTokenBlueBrand, getTokenLimeBrand } from './getToken'
 import getJson from './getJson'
 
-export { getToken, getJson }
+export { getTokenBlueBrand, getTokenLimeBrand, getJson }

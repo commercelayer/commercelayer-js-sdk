@@ -1,6 +1,6 @@
 import CLayer from '../src/resources'
 import { writeFileSync, existsSync } from 'fs'
-import { getToken } from '../helpers'
+import { getTokenBlueBrand } from '../helpers'
 import template from './template/template'
 import * as path from 'path'
 
@@ -17,7 +17,7 @@ beforeAll(async () => {
   if (RECORD) {
     const {
       data: { access_token }
-    } = await getToken()
+    } = await getTokenBlueBrand()
     CLayer.init({
       accessToken: access_token,
       endpoint: 'https://the-blue-brand-2.commercelayer.co'
