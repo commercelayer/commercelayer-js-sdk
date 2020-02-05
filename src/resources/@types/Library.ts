@@ -34,6 +34,7 @@ export interface Base {
   __queryParams: object
   __newRelation(r: any): any
   __extendObjectParam(type: string, options: object): any
+  afterRequest(callback: () => void): void
 }
 
 export interface BaseResource<T = any> extends Base {
