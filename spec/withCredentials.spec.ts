@@ -1,5 +1,4 @@
-import CLayer, { Sku } from '../src/resources'
-import init from '../src/resources/Initialize'
+import CLayer, { Sku, initCLayer } from '../src/resources'
 
 describe('withCredentials function', () => {
   it('With default export', () => {
@@ -11,7 +10,7 @@ describe('withCredentials function', () => {
     expect(sku.resourceLibrary.headers.Authorization).toBe('Bearer accessToken')
   })
   it('With export', () => {
-    init({
+    initCLayer({
       accessToken: 'accessTokenNull',
       endpoint: 'endpointnull'
     })
