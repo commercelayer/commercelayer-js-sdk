@@ -56,7 +56,7 @@ initCLayer({
 
 > In the following examples, we will use the latter solution (named import) and define only the functions associated with the specific resources we're going to access (SKUs and shipping categories). Check our [API reference](https://docs.commercelayer.io/api/) for the complete list of available resources and their attributes.
 
-## Feature withCredentials
+<!-- ## Feature withCredentials
 
 Welcome multi-connections! We can change the configuration for each resource. How? It's easy!
 
@@ -90,7 +90,7 @@ Sku.withCredentials({
   accessToken: 'your-access-token-new',
   endpoint: 'https://yourdomainnew.commercelayer.io'
 }).all()
-```
+``` -->
 
 # Use cases
 
