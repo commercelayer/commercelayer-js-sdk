@@ -28,7 +28,13 @@
     "build:types": "dts-bundle-generator -o ./dist/types.d.ts ./src/resources/index.ts --project tsconfig.prod.json",
     "watch": "webpack --progress --watch",
     "start": "webpack-dev-server --open --config webpack.dev.js",
-    "build:webpack": "rm -rf ./dist && webpack --config webpack.prod.js"
+    "build:webpack": "rm -rf ./dist && webpack --config webpack.prod.js",
+    "version:patch": "npm version patch",
+    "version:minor": "npm version minor",
+    "version:major": "npm version major",
+    "publish:patch": "npm run build && npm run version:patch && git push --follow-tags && npm publish --access public",
+    "publish:minor": "npm run build && npm run version:minor && git push --follow-tags && npm publish --access public",
+    "publish:major": "npm run build && npm run version:major && git push --follow-tags && npm publish --access public"
   },
   "contributors": [
     "Filippo Conforti",
