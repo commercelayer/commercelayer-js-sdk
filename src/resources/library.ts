@@ -1,5 +1,6 @@
 import { createResourceLibrary } from 'active-resource'
 import Library, { GeneralObject } from './@types/Library'
+import { InitConfig } from './Initialize'
 
 const subdomain = 'static-commerce'
 
@@ -20,6 +21,14 @@ class ExtendLibrary extends library.Base {
       eqOptions[`${v}_eq`] = options[v]
     })
     return this.where(eqOptions).first()
+  }
+  static withCredentials({ accessToken, endpoint }: InitConfig) {
+    this.resourceLibrary.baseUrl = `${endpoint}/api/`
+    this.resourceLibrary.headers = {
+      Authorization: `Bearer ${accessToken}`
+    }
+    this.__links = undefined
+    return this
   }
 }
 

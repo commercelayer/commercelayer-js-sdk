@@ -1,3 +1,4 @@
+import { InitConfig } from '../Initialize'
 export interface GeneralObject {
   [index: string]: string
 }
@@ -15,6 +16,12 @@ export interface BaseConfig {
 }
 
 export interface Base {
+  resourceLibrary: {
+    baseUrl: string
+    headers: {
+      Authorization: string
+    }
+  }
   __links: object
   new (): Base
   attributes(...attribute: string[]): void
@@ -22,7 +29,6 @@ export interface Base {
   hasMany(queryName: string, config: BaseConfig): void
   belongsTo(queryName: string, config: BaseConfig): void
   define(): void
-  // where(): any
   className: string
   queryName: string
   __queryParams: object
@@ -70,6 +76,7 @@ export interface BaseResource<T = any> extends Base {
   select(...params: string[]): BaseResource<T>
   where(options?: object): BaseResource<T>
   update(attrs: object, callback?: any): Promise<T>
+  withCredentials({ accessToken, endpoint }: InitConfig): BaseResource<T>
 }
 
 export interface Relation extends Collection {

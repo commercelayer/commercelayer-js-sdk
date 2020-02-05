@@ -42,7 +42,7 @@ import StockLevel, { StockLevelCollection } from './StockLevel'
 import StockLocation, { StockLocationCollection } from './StockLocation'
 import Webhook, { WebhookCollection } from './Webhook'
 import WireTransfer, { WireTransferCollection } from './WireTransfer'
-import init from './Initialize'
+import init, { Init } from './Initialize'
 import Geocoder, { GeocoderCollection } from './Geocoder'
 import PaymentSource, { PaymentSourceCollection } from './PaymentSource'
 import Item, { ItemCollection } from './Item'
@@ -111,8 +111,53 @@ export {
   WebhookCollection,
   WireTransferCollection
 }
-
-const CLayer: any = {
+export interface CLayer {
+  init: Init
+  Address: BaseResource<AddressCollection>
+  AdyenPayment: BaseResource<AdyenPaymentCollection>
+  Attachment: BaseResource<AttachmentCollection>
+  Attachable: BaseResource<AttachableCollection>
+  BraintreePayment: BaseResource<BraintreePaymentCollection>
+  CreditCard: BaseResource<CreditCardCollection>
+  CustomerAddress: BaseResource<CustomerAddressCollection>
+  CustomerGroup: BaseResource<CustomerGroupCollection>
+  CustomerPasswordReset: BaseResource<CustomerPasswordResetCollection>
+  CustomerPaymentSource: BaseResource<CustomerPaymentSourceCollection>
+  CustomerSubscription: BaseResource<CustomerSubscriptionCollection>
+  Customer: BaseResource<CustomerCollection>
+  DeliveryLeadTime: BaseResource<DeliveryLeadTimeCollection>
+  Geocoder: BaseResource<GeocoderCollection>
+  GiftCard: BaseResource<GiftCardCollection>
+  GiftCardRecipient: BaseResource<GiftCardRecipientCollection>
+  Import: BaseResource<ImportCollection>
+  InventoryModel: BaseResource<InventoryModelCollection>
+  Item: BaseResource<ItemCollection>
+  LineItemOption: BaseResource<LineItemOptionCollection>
+  LineItem: BaseResource<LineItemCollection>
+  Market: BaseResource<MarketCollection>
+  Merchant: BaseResource<MerchantCollection>
+  Order: BaseResource<OrderCollection>
+  Parcel: BaseResource<ParcelCollection>
+  PaymentMethod: BaseResource<PaymentMethodCollection>
+  PaymentGateway: BaseResource<PaymentGatewayCollection>
+  PaypalPayment: BaseResource<PaypalPaymentCollection>
+  PaymentSource: BaseResource<PaymentSourceCollection>
+  PriceList: BaseResource<PriceListCollection>
+  Price: BaseResource<PriceCollection>
+  Shipment: BaseResource<ShipmentCollection>
+  ShippingCategory: BaseResource<ShippingCategoryCollection>
+  ShippingMethod: BaseResource<ShippingMethodCollection>
+  ShippingZone: BaseResource<ShippingZoneCollection>
+  SkuOption: BaseResource<SkuOptionCollection>
+  Sku: BaseResource<SkuCollection>
+  StockItem: BaseResource<StockItemCollection>
+  StockLevel: BaseResource<StockLevelCollection>
+  StockLocation: BaseResource<StockLocationCollection>
+  StripePayment: BaseResource<StripePaymentCollection>
+  Webhook: BaseResource<WebhookCollection>
+  WireTransfer: BaseResource<WireTransferCollection>
+}
+const CLayer: CLayer = {
   init,
   Address,
   AdyenPayment,

@@ -5,7 +5,11 @@ export interface InitConfig {
   endpoint: string
 }
 
-const init = ({ accessToken, endpoint }: InitConfig): void => {
+export interface Init {
+  ({ accessToken, endpoint }: InitConfig): void
+}
+
+const init: Init = ({ accessToken, endpoint }: InitConfig): void => {
   library.baseUrl = `${endpoint}/api/`
   library.headers = {
     Authorization: `Bearer ${accessToken}`
