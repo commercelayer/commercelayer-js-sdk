@@ -36,17 +36,20 @@ template.map(async (d: any) => {
     let elId = ''
     beforeEach(async () => {
       if (RECORD) {
-        const clName: any = d.className
+        const clName = d.className
+        // @ts-ignore
         cl = await CLayer[clName].all()
         if (d.belongsToClass) {
           if (Array.isArray(d.belongsToClass)) {
             bTo = await Promise.all(
               d.belongsToClass.map(async (n: string) => {
+                // @ts-ignore
                 return await CLayer[n].first()
               })
             )
           } else {
             const cToName: any = d.belongsToClass
+            // @ts-ignore
             bTo = await CLayer[cToName].first()
           }
         }
@@ -106,18 +109,21 @@ template.map(async (d: any) => {
                 attributes[t.relationship] = bTo
               }
             }
-            console.log('attributes', attributes)
+            // console.log('attributes', attributes)
+            // @ts-ignore
             const cBuild = await CLayer[d.className].create(attributes)
             console.log(`create ${d.className} :`, cBuild.id)
             elId = cBuild.id
             return expect(cBuild.id).toEqual(elId)
           case 'update':
+            // @ts-ignore
             const cUpdate = await CLayer[d.className].find(elId)
             return cUpdate.update(t.data, async () => {
               console.log(`${d.className} updated!`)
               return await expect(true).toBe(true)
             })
           case 'delete':
+            // @ts-ignore
             const cDestroy = await CLayer[d.className].find(elId)
             await cDestroy.destroy()
             console.log(`${d.className} destroyed!`)
