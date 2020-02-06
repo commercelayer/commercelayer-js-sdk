@@ -56,46 +56,6 @@ initCLayer({
 
 > In the following examples, we will use the latter solution (named import) and define only the functions associated with the specific resources we're going to access (SKUs and shipping categories). Check our [API reference](https://docs.commercelayer.io/api/) for the complete list of available resources and their attributes.
 
-<!-- ## Configuration
-
-Commerce Layer JS SDK lets you either set the configuration at a global level or change it for each single request.
-
-### Global access token
-
-To use a single access token globally, you must initialize the library once and use the same access token for all the API calls)
-
-> You have not to initialize the library for the first time.
-
-```
-// default import
-
-import CLayer from '@commercelayer/js-sdk'
-
-CLayer.Sku.withCredentials({
-  accessToken: 'your-access-token',
-  endpoint: 'https://yourdomain.commercelayer.io'
-}).all()
-
-```
-
-### Single access tokens
-
-> You must initialize the library for the first time.
-
-```
-import { initCLayer, Sku } from '@commercelayer/js-sdk'
-
-initCLayer({
-  accessToken: 'your-access-token',
-  endpoint: 'https://yourdomain.commercelayer.io'
-})
-
-Sku.withCredentials({
-  accessToken: 'your-access-token-new',
-  endpoint: 'https://yourdomainnew.commercelayer.io'
-}).all()
-``` -->
-
 # Usage
 
 The code snippets below show how to use the Commerce Layer JS SDK when performing the standard CRUD operations provided by our REST API on the SKU resource.
