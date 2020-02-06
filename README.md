@@ -56,15 +56,19 @@ initCLayer({
 
 > In the following examples, we will use the latter solution (named import) and define only the functions associated with the specific resources we're going to access (SKUs and shipping categories). Check our [API reference](https://docs.commercelayer.io/api/) for the complete list of available resources and their attributes.
 
-<!-- ## Feature withCredentials
+<!-- ## Configuration
 
-Welcome multi-connections! We can change the configuration for each resource. How? It's easy!
+Commerce Layer JS SDK lets you either set the configuration at a global level or change it for each single request.
 
-### First method (default import)
+### Global access token
+
+To use a single access token globally, you must initialize the library once and use the same access token for all the API calls)
 
 > You have not to initialize the library for the first time.
 
 ```
+// default import
+
 import CLayer from '@commercelayer/js-sdk'
 
 CLayer.Sku.withCredentials({
@@ -74,7 +78,7 @@ CLayer.Sku.withCredentials({
 
 ```
 
-### Second method (single import)
+### Single access tokens
 
 > You must initialize the library for the first time.
 
@@ -92,7 +96,7 @@ Sku.withCredentials({
 }).all()
 ``` -->
 
-# Use cases
+# Usage
 
 The code snippets below show how to use the Commerce Layer JS SDK when performing the standard CRUD operations provided by our REST API on the SKU resource.
 
@@ -285,6 +289,17 @@ Check our API reference for more information on how to [update an SKU](https://d
 ```
 
 Check our API reference for more information on how to [delete an SKU](https://docs.commercelayer.io/api/resources/skus/delete_sku).
+
+# Overriding credentials
+
+If needed, Commerce Layer JS SDK lets you set the configuration at a request level. To do that, just use the `withCredentials()` method and authenticate the API call with the desired credentials:
+
+```
+const skus = await Sku.withCredentials({
+    accessToken: 'your-access-token',
+    endpoint: 'https://yourdomain.commercelayer.io'
+  }).all()
+```
 
 ---
 
