@@ -38,7 +38,7 @@ export interface Base {
 }
 
 export interface BaseResource<T = any> extends Base {
-  // TODO: Add Promise<BaseResource<T>> to return promise
+  // FIXME: Set Promise<CollectionResponse<T>> or Promise<Collection<T>> for all Promise response
   (): BaseResource
   all(): Promise<CollectionResponse<T>>
   // where(): Collection | Collection[]
