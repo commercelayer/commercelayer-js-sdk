@@ -1,7 +1,7 @@
 node_modules
 dist
 .vscode
-.env
+*.env
 spec/fixtures/*.json
 *.tgz
 .rts*
