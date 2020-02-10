@@ -1,6 +1,7 @@
 import { createResourceLibrary } from 'active-resource'
 import Library, { GeneralObject } from './@types/Library'
 import { InitConfig } from './Initialize'
+import * as _ from 'lodash'
 
 const subdomain = 'yourdomain'
 
@@ -10,6 +11,7 @@ const library: Library = createResourceLibrary(
 class ExtendLibrary extends library.Base {
   static accessToken = ''
   static endpoint = ''
+  static credentials = {}
   static where(options: object): any {
     return this.__newRelation(
       this.__extendObjectParam('filter', {
@@ -34,6 +36,10 @@ class ExtendLibrary extends library.Base {
         this.endpoint = this.resourceLibrary.baseUrl
       }
     }
+    this.credentials = {
+      [`${endpoint}/api/${this.queryName}`]: `Bearer ${accessToken}`,
+      ...this.credentials
+    }
     this.resourceLibrary.headers = {
       Authorization: `Bearer ${accessToken}`
     }
@@ -42,12 +48,23 @@ class ExtendLibrary extends library.Base {
   }
 }
 ExtendLibrary.afterRequest(function() {
-  if (this.constructor.endpoint && this.constructor.accessToken) {
+  if (
+    this.constructor.endpoint &&
+    this.constructor.accessToken &&
+    this.className
+  ) {
     this.constructor.resourceLibrary.baseUrl = this.constructor.endpoint
     this.constructor.resourceLibrary.headers = {
       Authorization: this.constructor.accessToken
     }
     this.constructor.__links = null
+  } else {
+    if (!_.isEmpty(this.constructor.credentials)) {
+      const credKey = this.__links.self.replace(`/${this.id}`, '')
+      this.constructor.resourceLibrary.headers = {
+        Authorization: this.constructor.credentials[credKey]
+      }
+    }
   }
 })
 

@@ -35,10 +35,11 @@ export interface Base {
   __newRelation(r: any): any
   __extendObjectParam(type: string, options: object): any
   afterRequest(callback: () => void): void
+  update(attrs: object, callback?: any): Promise<any>
+  destroy(): Promise<any>
 }
 
 export interface BaseResource<T = any> extends Base {
-  // FIXME: Set Promise<CollectionResponse<T>> or Promise<Collection<T>> for all Promise response
   (): BaseResource
   all(): Promise<CollectionResponse<T>>
   // where(): Collection | Collection[]

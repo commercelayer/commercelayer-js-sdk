@@ -6,7 +6,9 @@ describe('withCredentials function', () => {
       accessToken: 'accessToken',
       endpoint: 'endpoint'
     })
-    expect(sku.resourceLibrary.baseUrl).toBe('endpoint/api/')
+    expect(sku.resourceLibrary.baseUrl).toBe(
+      'https://yourdomain.commercelayer.io/api/'
+    )
     expect(sku.resourceLibrary.headers.Authorization).toBe('Bearer accessToken')
   })
   it('With export', () => {
@@ -24,7 +26,7 @@ describe('withCredentials function', () => {
       accessToken: 'accessToken',
       endpoint: 'endpoint'
     })
-    expect(sku.resourceLibrary.baseUrl).toBe('endpoint/api/')
+    expect(sku.resourceLibrary.baseUrl).toBe('endpointnull/api/')
     expect(sku.resourceLibrary.headers.Authorization).toBe('Bearer accessToken')
   })
 })
