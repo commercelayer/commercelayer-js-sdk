@@ -1,4 +1,4 @@
-import { InitConfig } from 'src/resources/Initialize'
+import { InitConfig } from '../resources/Initialize'
 import library from '../resources/library'
 
 class BaseClass extends library.Base {

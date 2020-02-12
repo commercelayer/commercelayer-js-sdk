@@ -27,7 +27,6 @@ class ExtendLibrary extends library.Base {
     return this.where(eqOptions).first()
   }
   static withCredentials({ accessToken, endpoint }: InitConfig) {
-    debugger
     if (!this.accessToken && !this.endpoint) {
       if (!this.resourceLibrary.headers?.Authorization) {
         this.accessToken = `Bearer `

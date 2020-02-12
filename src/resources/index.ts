@@ -62,7 +62,6 @@ import Library, {
   BaseResource
 } from './@types/Library'
 
-// TODO: Export all collection
 export {
   Library,
   Collection,
@@ -111,6 +110,7 @@ export {
   WebhookCollection,
   WireTransferCollection
 }
+
 export interface CLayer {
   init: Init
   Address: BaseResource<AddressCollection>
