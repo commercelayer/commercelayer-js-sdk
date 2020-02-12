@@ -1,6 +1,7 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 
-export class PriceCollection extends library.Base {
+export class PriceCollection extends BaseClass {
   static className = 'Price'
   currencyCode: string
   skuCode: string

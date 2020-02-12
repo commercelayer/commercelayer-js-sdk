@@ -1,4 +1,5 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 import { CollectionResponse } from './@types/Library'
 import { PriceCollection } from './Price'
 import { SkuOptionCollection } from './SkuOption'
@@ -31,7 +32,7 @@ export interface InventoryCollection {
   }[]
 }
 
-export class SkuCollection extends library.Base {
+export class SkuCollection extends BaseClass {
   static className = 'Sku'
   prices: () => CollectionResponse<PriceCollection>
   stockItems: () => CollectionResponse<StockItemCollection>

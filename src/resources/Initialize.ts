@@ -1,4 +1,5 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 
 export interface InitConfig {
   accessToken: string

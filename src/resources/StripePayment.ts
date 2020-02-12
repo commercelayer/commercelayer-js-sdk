@@ -1,6 +1,7 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 
-export class StripePaymentCollection extends library.Base {
+export class StripePaymentCollection extends BaseClass {
   static className = 'StripePayment'
   client_secret: string
   options: object

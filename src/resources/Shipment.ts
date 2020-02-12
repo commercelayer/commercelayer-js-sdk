@@ -1,10 +1,11 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 import { CollectionResponse } from './@types/Library'
 import { ShippingMethodCollection } from './ShippingMethod'
 import { ParcelCollection } from './Parcel'
 import { AttachmentCollection } from './Attachment'
 
-export class ShipmentCollection extends library.Base {
+export class ShipmentCollection extends BaseClass {
   static className = 'Shipment'
   number: string
   status: string

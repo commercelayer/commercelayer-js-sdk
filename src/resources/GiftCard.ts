@@ -1,9 +1,10 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 import { CollectionResponse, HeaderParams } from './@types/Library'
 import { MarketCollection } from './Market'
 import { GiftCardRecipientCollection } from './GiftCardRecipient'
 
-export class GiftCardCollection extends library.Base {
+export class GiftCardCollection extends BaseClass {
   static className = 'GiftCard'
   market: () => CollectionResponse<MarketCollection>
   giftCardRecipients: () => CollectionResponse<GiftCardRecipientCollection>

@@ -1,6 +1,7 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 
-export class AdyenPaymentCollection extends library.Base {
+export class AdyenPaymentCollection extends BaseClass {
   static className = 'AdyenPayment'
   payment_method: object
   payment_request_data: object

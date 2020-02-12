@@ -1,6 +1,7 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 
-export class ImportCollection extends library.Base {
+export class ImportCollection extends BaseClass {
   static className = 'Import'
   resourceType: string
   parentResourceId: number

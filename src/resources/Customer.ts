@@ -1,11 +1,12 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 import { CollectionResponse } from './@types/Library'
 import { OrderCollection } from './Order'
 import { CustomerSubscriptionCollection } from './CustomerSubscription'
 import { CustomerAddressCollection } from './CustomerAddress'
 import { CustomerPaymentSourceCollection } from './CustomerPaymentSource'
 
-export class CustomerCollection extends library.Base {
+export class CustomerCollection extends BaseClass {
   static className = 'Customer'
   email: string
   password: string

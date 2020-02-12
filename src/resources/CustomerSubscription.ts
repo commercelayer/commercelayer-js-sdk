@@ -1,6 +1,7 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 
-export class CustomerSubscriptionCollection extends library.Base {
+export class CustomerSubscriptionCollection extends BaseClass {
   static className = 'CustomerSubscription'
   customerEmail: string
   id: string

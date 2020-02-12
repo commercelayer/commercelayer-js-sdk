@@ -1,6 +1,7 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 
-export class SkuOptionCollection extends library.Base {
+export class SkuOptionCollection extends BaseClass {
   static className = 'SkuOption'
   name: string
   description: string

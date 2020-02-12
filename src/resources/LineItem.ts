@@ -1,8 +1,9 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 import { CollectionResponse } from './@types/Library'
 import { LineItemOptionCollection } from './LineItemOption'
 
-export class LineItemCollection extends library.Base {
+export class LineItemCollection extends BaseClass {
   static className = 'LineItem'
   quantity: number
   itemType: string

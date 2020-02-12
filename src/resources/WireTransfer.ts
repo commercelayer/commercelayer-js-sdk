@@ -1,6 +1,7 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 
-export class WireTransferCollection extends library.Base {
+export class WireTransferCollection extends BaseClass {
   static className = 'WireTransfer'
   id: string
   createdAt: Date

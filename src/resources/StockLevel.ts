@@ -1,6 +1,7 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 
-export class StockLevelCollection extends library.Base {
+export class StockLevelCollection extends BaseClass {
   static className = 'StockLevel'
   priority: number
   onHold: boolean

@@ -15,10 +15,14 @@ export const getTokenBlueBrand = async () => {
 
 // LIME BRAND
 export const getTokenLimeBrand = async () => {
+  const {
+    LIME_BRAND_ENDPOINT,
+    LIME_BRAND_CLIENT_ID,
+    LIME_BRAND_SCOPE
+  } = process.env
   return await getSalesChannelToken({
-    endpoint: 'https://the-lime-brand-2.commercelayer.co',
-    clientId:
-      '24938609156dc7391cd5dfdea32b828ef2c20e02bccfccda6510ed59c09935ac',
-    scope: 'market:50'
+    endpoint: LIME_BRAND_ENDPOINT,
+    clientId: LIME_BRAND_CLIENT_ID,
+    scope: LIME_BRAND_SCOPE
   })
 }

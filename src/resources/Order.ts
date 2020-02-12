@@ -1,4 +1,5 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 import { LineItemCollection } from './LineItem'
 import { CollectionResponse, Collection } from './@types/Library'
 import { ShipmentCollection } from './Shipment'
@@ -7,7 +8,7 @@ import { MarketCollection } from './Market'
 import { CustomerCollection } from './Customer'
 import { AddressCollection } from './Address'
 
-export class OrderCollection extends library.Base {
+export class OrderCollection extends BaseClass {
   static className = 'Order'
   number: number
   status: string

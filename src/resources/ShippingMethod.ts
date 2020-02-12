@@ -1,6 +1,7 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 
-export class ShippingMethodCollection extends library.Base {
+export class ShippingMethodCollection extends BaseClass {
   static className = 'ShippingMethod'
   name: string
   disabledAt: Date

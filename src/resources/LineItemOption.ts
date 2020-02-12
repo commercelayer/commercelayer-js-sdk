@@ -1,6 +1,7 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 
-export class LineItemOptionCollection extends library.Base {
+export class LineItemOptionCollection extends BaseClass {
   static className = 'LineItemOption'
   name: string
   quantity: number

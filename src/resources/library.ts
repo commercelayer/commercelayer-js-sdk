@@ -11,7 +11,7 @@ const library: Library = createResourceLibrary(
 class ExtendLibrary extends library.Base {
   static accessToken = ''
   static endpoint = ''
-  static credentials = {}
+  static singleRequest = false
   static where(options: object): any {
     return this.__newRelation(
       this.__extendObjectParam('filter', {
@@ -27,6 +27,7 @@ class ExtendLibrary extends library.Base {
     return this.where(eqOptions).first()
   }
   static withCredentials({ accessToken, endpoint }: InitConfig) {
+    debugger
     if (!this.accessToken && !this.endpoint) {
       if (!this.resourceLibrary.headers?.Authorization) {
         this.accessToken = `Bearer `
@@ -36,35 +37,22 @@ class ExtendLibrary extends library.Base {
         this.endpoint = this.resourceLibrary.baseUrl
       }
     }
-    this.credentials = {
-      [`${endpoint}/api/${this.queryName}`]: `Bearer ${accessToken}`,
-      ...this.credentials
-    }
     this.resourceLibrary.headers = {
       Authorization: `Bearer ${accessToken}`
     }
     this.__links = { related: `${endpoint}/api/${this.queryName}` }
+    this.singleRequest = true
     return this
   }
 }
 ExtendLibrary.afterRequest(function() {
-  if (
-    this.constructor.endpoint &&
-    this.constructor.accessToken &&
-    this.className
-  ) {
+  if (this.constructor.singleRequest) {
     this.constructor.resourceLibrary.baseUrl = this.constructor.endpoint
     this.constructor.resourceLibrary.headers = {
       Authorization: this.constructor.accessToken
     }
     this.constructor.__links = null
-  } else {
-    if (!_.isEmpty(this.constructor.credentials)) {
-      const credKey = this.__links.self.replace(`/${this.id}`, '')
-      this.constructor.resourceLibrary.headers = {
-        Authorization: this.constructor.credentials[credKey]
-      }
-    }
+    this.constructor.singleRequest = false
   }
 })
 

@@ -1,6 +1,7 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 
-export class CustomerPasswordResetCollection extends library.Base {
+export class CustomerPasswordResetCollection extends BaseClass {
   static className = 'CustomerPasswordReset'
   customerEmail: string
   resetPasswordToken: string

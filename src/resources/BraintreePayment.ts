@@ -1,6 +1,7 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 
-export class BraintreePaymentCollection extends library.Base {
+export class BraintreePaymentCollection extends BaseClass {
   static className = 'BraintreePayment'
   client_token: string
   payment_method_nonce: string

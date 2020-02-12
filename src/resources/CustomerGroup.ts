@@ -1,8 +1,9 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 import { CollectionResponse } from './@types/Library'
 import { CustomerCollection } from './Customer'
 
-export class CustomerGroupCollection extends library.Base {
+export class CustomerGroupCollection extends BaseClass {
   static className = 'CustomerGroup'
   name: string
   id: string

@@ -1,6 +1,7 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 
-export class GeocoderCollection extends library.Base {
+export class GeocoderCollection extends BaseClass {
   static className = 'Geocoder'
   static define() {
     this.attributes()

@@ -1,6 +1,7 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 
-export class AttachmentCollection extends library.Base {
+export class AttachmentCollection extends BaseClass {
   static className = 'Attachment'
   name: string
   description: string

@@ -1,6 +1,7 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 
-export class ShippingZoneCollection extends library.Base {
+export class ShippingZoneCollection extends BaseClass {
   static className = 'ShippingZone'
   name: string
   countryCodeRegex: string

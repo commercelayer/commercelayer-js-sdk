@@ -1,8 +1,9 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 import { CollectionResponse } from './@types/Library'
 import { SkuCollection } from './Sku'
 
-export class ShippingCategoryCollection extends library.Base {
+export class ShippingCategoryCollection extends BaseClass {
   static className = 'ShippingCategory'
   name: string
   id: string

@@ -1,7 +1,8 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 import { CollectionResponse } from './@types/Library'
 
-export class ParcelCollection extends library.Base {
+export class ParcelCollection extends BaseClass {
   static className = 'Parcel'
   number: string
   weight: number

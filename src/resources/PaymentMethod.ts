@@ -1,6 +1,7 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 
-export class PaymentMethodCollection extends library.Base {
+export class PaymentMethodCollection extends BaseClass {
   static className = 'PaymentMethod'
   paymentSourceType: string
   name: string

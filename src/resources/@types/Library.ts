@@ -37,6 +37,7 @@ export interface Base {
   afterRequest(callback: () => void): void
   update(attrs: object, callback?: any): Promise<any>
   destroy(): Promise<any>
+  withCredentials({ accessToken, endpoint }: InitConfig): Base
 }
 
 export interface BaseResource<T = any> extends Base {
@@ -59,7 +60,7 @@ export interface BaseResource<T = any> extends Base {
   fields(): Collection
   find(primaryKey: any): Promise<T>
   findBy(conditions: object): Promise<T> | Promise<CollectionResponse>
-  first(n?: number): Promise<T> | Promise<T[]>
+  first(n?: number): Promise<T[]>
   includes(...attribute: string[]): BaseResource<T>
   isA(klass: BaseResource<T>): boolean
   klass(): BaseResource<T>

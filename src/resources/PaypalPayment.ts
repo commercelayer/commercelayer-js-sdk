@@ -1,6 +1,7 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 
-export class PaypalPaymentCollection extends library.Base {
+export class PaypalPaymentCollection extends BaseClass {
   static className = 'PaypalPayment'
   returnUrl: string
   cancelUrl: string

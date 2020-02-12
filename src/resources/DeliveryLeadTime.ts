@@ -1,6 +1,7 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 
-export class DeliveryLeadTimeCollection extends library.Base {
+export class DeliveryLeadTimeCollection extends BaseClass {
   static className = 'DeliveryLeadTime'
   minHours: number
   maxHours: number

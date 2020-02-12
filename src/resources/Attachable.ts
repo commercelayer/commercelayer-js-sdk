@@ -1,6 +1,7 @@
 import library from './library'
+import BaseClass from '../utils/BaseClass'
 
-export class AttachableCollection extends library.Base {
+export class AttachableCollection extends BaseClass {
   static className = 'Attachable'
   static define() {
     this.attributes()
