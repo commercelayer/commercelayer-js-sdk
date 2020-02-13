@@ -66,6 +66,7 @@ The code snippets below show how to use the Commerce Layer JS SDK when performin
   - [How to fetch a single SKU](#how-to-fetch-a-single-sku)
   - [How to fetch a collection of SKUs](#how-to-fetch-a-collection-of-skus)
   - [How to paginate a collection of SKUs](#how-to-paginate-a-collection-of-skus)
+  - [How to iterate through a collection of SKUs](#how-to-iterate-through-a-collection-of-skus)
   - [How to build complex queries](#how-to-build-complex-queries)
 - ### Update
   - [How to update an existing SKU](#how-to-update-an-existing-sku)
@@ -111,7 +112,7 @@ Check our API reference for more information on how to [create an SKU](https://d
   const sku = await Sku.last()
 ```
 
-Check our API reference for more information on how to [retrieve an SKU](https://docs.commercelayer.io/api/resources/skus/retrieve_sku).
+Check our API reference for more information on how to [retrieve an SKU](https://docs.commercelayer.io/api/resources/skus/retrieve_sku) — please note that while the `find()` method returns the single resource object, `findBy()`, `first()`, and `last()` return an element from a collection (see next section for details).
 
 ### How to fetch a collection of SKUs
 
@@ -208,6 +209,16 @@ const skus = await Sku.perPage(5).page(3).all()
 > The default page number is **1**. The default page size is **10**. The maximum page size allowed is **25**.
 
 Check our API reference for more information on how [pagination](https://docs.commercelayer.io/api/pagination) works.
+
+### How to iterate through a collection of SKUs
+
+To execute a function for every item of a collection, use the `map()` method:
+
+```
+  // Fetches the whole list of SKUs and print their names and codes to console
+  const skus = await Sku.all()
+  skus.map(p => console.log('Product: ' + p.name + ' - Code: ' + p.code))
+```
 
 ### How to build complex queries
 
