@@ -15,10 +15,10 @@ export interface InventoryCollection {
       shippingMethod: {
         name: string
         reference: null | string
-        price_amount_cents: number
-        free_over_amount_cents: number
-        formatted_price_amount: string
-        formatted_free_over_amount: string
+        priceAmountCents: number
+        freeOverAmountCents: number
+        formattedPriceAmount: string
+        formattedFreeOverAmount: string
       }
       min: {
         hours: number
