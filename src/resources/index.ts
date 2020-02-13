@@ -78,6 +78,7 @@ export {
   CustomerPasswordResetCollection,
   CustomerPaymentSourceCollection,
   CustomerSubscriptionCollection,
+  CustomerCollection,
   DeliveryLeadTimeCollection,
   GeocoderCollection,
   GiftCardCollection,
