@@ -78,15 +78,12 @@ The code snippets below show how to use the Commerce Layer JS SDK when performin
 ### How to create an SKU
 
 ```
-  const name = 'Black Men T-shirt with White Logo (XL)'
-  const code = 'TSHIRTMM000000FFFFFFXL'
-
   const shippingCategory = await ShippingCategory.findBy({ name: 'Merchandising'}) // selects the shipping category (it's a required relationship for the SKU resource)
 
   const attributes = {
-    code,
-    name,
-    shippingCategory // assigns the relationship
+    code: 'TSHIRTMM000000FFFFFFXL',
+    name: 'Black Men T-shirt with White Logo (XL)',
+    shippingCategory: shippingCategory // assigns the relationship
   }
 
   const newSku = await Sku.create(attributes)
