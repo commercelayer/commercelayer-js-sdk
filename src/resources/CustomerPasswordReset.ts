@@ -15,14 +15,14 @@ export class CustomerPasswordResetCollection extends BaseClass {
   metadata: object
   static define() {
     this.attributes(
-      'customer_email',
-      'reset_password_token',
-      'customer_password',
-      '_reset_password_token',
-      'reset_password_at',
+      'customerEmail',
+      'resetPasswordToken',
+      'customerPassword',
+      '_resetPasswordToken',
+      'resetPasswordAt',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )

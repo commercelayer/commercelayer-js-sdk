@@ -7,8 +7,8 @@ export class GiftCardRecipientCollection extends BaseClass {
   static className = 'GiftCardRecipient'
   customer: () => CollectionResponse<CustomerCollection>
   email: string
-  first_name: string
-  last_name: string
+  firstName: string
+  lastName: string
   reference_origin: string
   id: string
   createdAt: Date
@@ -18,12 +18,12 @@ export class GiftCardRecipientCollection extends BaseClass {
   static define() {
     this.attributes(
       'email',
-      'first_name',
-      'last_name',
-      'reference_origin',
+      'firstName',
+      'lastName',
+      'referenceOrigin',
       'id',
-      'create_at',
-      'update_at',
+      'createAt',
+      'updateAt',
       'reference',
       'metadata'
     )

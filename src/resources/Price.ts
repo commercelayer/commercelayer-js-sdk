@@ -18,17 +18,17 @@ export class PriceCollection extends BaseClass {
   metadata: object
   static define() {
     this.attributes(
-      'currency_code',
-      'sku_code',
-      'amount_cents',
-      'amount_float',
-      'formatted_amount',
-      'compare_at_amount_cents',
-      'compare_at_amount_float',
-      'formatted_compare_at_amount',
+      'currencyCode',
+      'skuCode',
+      'amountCents',
+      'amountFloat',
+      'formattedAmount',
+      'compareAtAmountCents',
+      'compareAtAmountFloat',
+      'formattedCompareAtAmount',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )

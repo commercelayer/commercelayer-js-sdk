@@ -6,7 +6,7 @@ export class PaypalPaymentCollection extends BaseClass {
   returnUrl: string
   cancelUrl: string
   noteToPayer: string
-  paypalPayer_id: string
+  paypalPayerId: string
   name: string
   paypalId: string
   status: string
@@ -18,17 +18,17 @@ export class PaypalPaymentCollection extends BaseClass {
   metadata: object
   static define() {
     this.attributes(
-      'return_url',
-      'cancel_url',
-      'note_to_payer',
-      'paypal_payer_id',
+      'returnUrl',
+      'cancelUrl',
+      'noteToPayer',
+      'paypalPayerId',
       'name',
-      'paypal_id',
+      'paypalId',
       'status',
-      'approval_url',
+      'approvalUrl',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )

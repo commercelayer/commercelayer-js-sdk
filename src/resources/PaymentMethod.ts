@@ -16,15 +16,15 @@ export class PaymentMethodCollection extends BaseClass {
   metadata: object
   static define() {
     this.attributes(
-      'payment_source_type',
+      'paymentSourceType',
       'name',
-      'disabled_at',
-      'price_amount_cents',
-      'price_amount_float',
-      'formatted_price_amount',
+      'disabledAt',
+      'priceAmountCents',
+      'priceAmountFloat',
+      'formattedPriceAmount',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )

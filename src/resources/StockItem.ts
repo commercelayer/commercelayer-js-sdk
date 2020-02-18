@@ -12,11 +12,11 @@ export class StockItemCollection extends BaseClass {
   metadata: object
   static define() {
     this.attributes(
-      'sku_code',
+      'skuCode',
       'quantity',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )

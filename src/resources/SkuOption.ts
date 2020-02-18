@@ -20,15 +20,15 @@ export class SkuOptionCollection extends BaseClass {
     this.attributes(
       'name',
       'description',
-      'price_amount_cents',
-      'price_amount_float',
-      'formatted_price_amount',
-      'delay_hours',
-      'delay_days',
-      'sku_code_regex',
+      'priceAmountCents',
+      'priceAmountFloat',
+      'formattedPriceAmount',
+      'delayHours',
+      'delayDays',
+      'skuCodeRegex',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )

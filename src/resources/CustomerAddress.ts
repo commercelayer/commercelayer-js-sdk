@@ -5,8 +5,8 @@ export class CustomerAddressCollection extends BaseClass {
   static className = 'CustomerAddress'
   name: string
   id: string
-  created_at: string
-  updated_at: string
+  createdAt: string
+  updatedAt: string
   reference: string
   metadata: object
 
@@ -14,8 +14,8 @@ export class CustomerAddressCollection extends BaseClass {
     this.attributes(
       'name',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )

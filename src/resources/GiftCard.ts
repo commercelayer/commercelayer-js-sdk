@@ -10,27 +10,27 @@ export class GiftCardCollection extends BaseClass {
   giftCardRecipients: () => CollectionResponse<GiftCardRecipientCollection>
   status: string
   code: string
-  currency_code: string
-  initial_balance_cents: number
-  initial_balance_float: number
-  formatted_initial_balance: string
-  balance_cents: number
-  balance_float: number
-  formatted_balance: string
-  balance_max_cents: number
-  balance_max_float: number
-  formatted_balance_max: string
-  balance_log: object
-  single_use: boolean
+  currencyCode: string
+  initialBalanceCents: number
+  initialBalanceFloat: number
+  formattedInitialBalance: string
+  balanceCents: number
+  balanceFloat: number
+  formattedBalance: string
+  balanceMaxCents: number
+  balanceMaxFloat: number
+  formattedBalanceMax: string
+  balanceLog: object
+  singleUse: boolean
   rechargeable: boolean
-  image_url: string
-  expires_at: Date
-  reference_origin: string
-  recipient_email: string
+  imageUrl: string
+  expiresAt: Date
+  referenceOrigin: string
+  recipientEmail: string
   _purchase: number
   _activate: number
   _deactivate: number
-  _balance_change_cents: number
+  _balanceChangeCents: number
   id: string
   createdAt: Date
   updatedAt: Date
@@ -40,36 +40,36 @@ export class GiftCardCollection extends BaseClass {
     this.attributes(
       'status',
       'code',
-      'currency_code',
-      'initial_balance_cents',
-      'initial_balance_float',
-      'formatted_initial_balance',
-      'balance_cents',
-      'balance_float',
-      'formatted_balance',
-      'balance_max_cents',
-      'balance_max_float',
-      'formatted_balance_max',
-      'balance_log',
-      'single_use',
+      'currencyCode',
+      'initialBalanceCents',
+      'initialBalanceFloat',
+      'formattedInitialBalance',
+      'balanceCents',
+      'balanceFloat',
+      'formattedBalance',
+      'balanceMaxCents',
+      'balanceMaxFloat',
+      'formattedBalanceMax',
+      'balanceLog',
+      'singleUse',
       'rechargeable',
-      'image_url',
-      'expires_at',
-      'reference_origin',
-      'recipient_email',
+      'imageUrl',
+      'expiresAt',
+      'referenceOrigin',
+      'recipientEmail',
       '_purchase',
       '_activate',
       '_deactivate',
-      '_balance_change_cents',
+      '_balanceChangeCents',
       'id',
-      'create_at',
-      'update_at',
+      'createAt',
+      'updateAt',
       'reference',
       'metadata'
     )
 
     this.hasOne('market', { className: 'Market' })
-    this.hasOne('giftCardRecipents', { className: 'GiftCardRecipient' })
+    this.hasOne('giftCardRecipent', { className: 'GiftCardRecipient' })
   }
 }
 

@@ -12,10 +12,10 @@ export class CustomerSubscriptionCollection extends BaseClass {
 
   static define() {
     this.attributes(
-      'customer_email',
+      'customerEmail',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )

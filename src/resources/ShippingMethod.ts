@@ -9,12 +9,12 @@ export class ShippingMethodCollection extends BaseClass {
   priceAmountCents: number
   priceAmountFloat: number
   formattedPriceAmount: string
-  free_overAmountCents: number
-  free_overAmountFloat: number
-  formattedFree_overAmount: string
-  priceAmountFor_shipmentCents: number
-  priceAmountFor_shipmentFloat: number
-  formattedPriceAmountFor_shipment: string
+  freeOverAmountCents: number
+  freeOverAmountFloat: number
+  formattedFreeOverAmount: string
+  priceAmountForShipmentCents: number
+  priceAmountForShipmentFloat: number
+  formattedPriceAmountForShipment: string
   id: string
   createdAt: Date
   updatedAt: Date
@@ -24,20 +24,20 @@ export class ShippingMethodCollection extends BaseClass {
   static define() {
     this.attributes(
       'name',
-      'disabled_at',
-      'currency_code',
-      'price_amount_cents',
-      'price_amount_float',
-      'formatted_price_amount',
-      'free_over_amount_cents',
-      'free_over_amount_float',
-      'formatted_free_over_amount',
-      'price_amount_for_shipment_cents',
-      'price_amount_for_shipment_float',
-      'formatted_price_amount_for_shipment',
+      'disabledAt',
+      'currencyCode',
+      'priceAmountCents',
+      'priceAmountFloat',
+      'formattedPriceAmount',
+      'freeOverAmountCents',
+      'freeOverAmountFloat',
+      'formattedFreeOverAmount',
+      'priceAmountForShipmentCents',
+      'priceAmountForShipmentFloat',
+      'formattedPriceAmountForShipment',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )

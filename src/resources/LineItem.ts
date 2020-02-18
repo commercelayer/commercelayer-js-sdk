@@ -28,32 +28,31 @@ export class LineItemCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   metadata: object
-  destroy: () => Promise<any>
   lineItemOptions: () => CollectionResponse<LineItemOptionCollection>
   item: () => any
   static define() {
     this.attributes(
-      'sku_code',
+      'skuCode',
       'quantity',
-      '_update_quantity',
-      'currency_code',
-      'unit_amount_cents',
-      'unit_amount_float',
-      'formatted_unit_amount',
-      'options_amount_cents',
-      'options_amount_float',
-      'formatted_options_amount',
-      'total_amount_cents',
-      'total_amount_float',
-      'formatted_total_amount',
+      '_updateQuantity',
+      'currencyCode',
+      'unitAmountCents',
+      'unitAmountFloat',
+      'formattedUnitAmount',
+      'optionsAmountCents',
+      'optionsAmountFloat',
+      'formattedOptionsAmount',
+      'totalAmountCents',
+      'totalAmountFloat',
+      'formattedTotalAmount',
       'name',
-      'image_url',
-      'tax_rate',
-      'tax_breakdown',
-      'item_type',
+      'imageUrl',
+      'taxRate',
+      'taxBreakdown',
+      'itemType',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )

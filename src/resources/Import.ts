@@ -22,21 +22,21 @@ export class ImportCollection extends BaseClass {
   metadata: object
   static define() {
     this.attributes(
-      'resource_type',
-      'parent_resource_id',
+      'resourceType',
+      'parentResourceId',
       'status',
-      'started_at',
-      'completed_at',
+      'startedAt',
+      'completedAt',
       'inputs',
-      'errors_count',
-      'warnings_count',
-      'destroyed_count',
-      'errors_log',
-      'warnings_log',
-      'cleanup_records',
+      'errorsCount',
+      'warningsCount',
+      'destroyedCount',
+      'errorsLog',
+      'warningsLog',
+      'cleanupRecords',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )

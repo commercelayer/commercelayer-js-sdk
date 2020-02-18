@@ -30,8 +30,8 @@ export class CustomerCollection extends BaseClass {
       'password',
       'status',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )

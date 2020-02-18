@@ -138,10 +138,10 @@ export interface Collection<R = any> {
   association(name: string): any // TODO: Add interface HasOneAssociation
   attributes(): object
   changed(): boolean
-  changedFields(): Collection
-  clone(): any
-  destroy(): any
-  errors(): any
+  changedFields(): Collection<R>
+  clone(): Collection<R>
+  destroy(): Collection<R>
+  errors(): Collection<R>
   hasAttribute(attribute: string): boolean
   isA(klass: BaseResource): boolean
   klass(): BaseResource

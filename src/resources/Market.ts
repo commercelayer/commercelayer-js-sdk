@@ -18,10 +18,10 @@ export class MarketCollection extends BaseClass {
     this.attributes(
       'number',
       'name',
-      'facebook_pixel_id',
+      'facebookPixelId',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )

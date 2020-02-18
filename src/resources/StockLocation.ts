@@ -19,10 +19,10 @@ export class StockLocationCollection extends BaseClass {
   static define() {
     this.attributes(
       'name',
-      'label_format',
+      'labelFormat',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )

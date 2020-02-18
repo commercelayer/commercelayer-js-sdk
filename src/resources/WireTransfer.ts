@@ -9,7 +9,7 @@ export class WireTransferCollection extends BaseClass {
   reference: string
   metadata: object
   static define() {
-    this.attributes('id', 'created_at', 'updated_at', 'reference', 'metadata')
+    this.attributes('id', 'createdAt', 'updatedAt', 'reference', 'metadata')
     this.hasOne('order', { className: 'Order' })
   }
 }

@@ -16,7 +16,7 @@ export class ShipmentCollection extends BaseClass {
   _onHold: number
   _picking: number
   _packing: number
-  _readyToShip: number
+  ReadyToShip: number
   _ship: number
   _getRates: number
   selectedRateId: string
@@ -34,21 +34,21 @@ export class ShipmentCollection extends BaseClass {
     this.attributes(
       'number',
       'status',
-      'currency_code',
-      'cost_amount_cents',
-      'cost_amount_float',
-      'formatted_cost_amount',
-      '_on_hold',
+      'currencyCode',
+      'costAmountCents',
+      'costAmount_float',
+      'formattedCostAmount',
+      '_onHold',
       '_picking',
       '_packing',
-      '_ready_to_ship',
+      '_readyToShip',
       '_ship',
-      '_get_rates',
-      'selected_rate_id',
+      '_getRates',
+      'selectedRateId',
       '_purchase',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )
