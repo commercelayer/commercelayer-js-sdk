@@ -13,10 +13,10 @@ export class StockLevelCollection extends BaseClass {
   static define() {
     this.attributes(
       'priority',
-      'on_hold',
+      'onHold',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )

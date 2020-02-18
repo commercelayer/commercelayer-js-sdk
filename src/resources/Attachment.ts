@@ -17,8 +17,8 @@ export class AttachmentCollection extends BaseClass {
       'description',
       'url',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )

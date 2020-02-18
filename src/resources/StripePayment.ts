@@ -3,7 +3,7 @@ import BaseClass from '../utils/BaseClass'
 
 export class StripePaymentCollection extends BaseClass {
   static className = 'StripePayment'
-  client_secret: string
+  clientSecret: string
   options: object
   id: string
   createdAt: Date
@@ -12,11 +12,11 @@ export class StripePaymentCollection extends BaseClass {
   destroy: () => Promise<any>
   static define() {
     this.attributes(
-      'client_secret',
+      'clientSecret',
       'options',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )

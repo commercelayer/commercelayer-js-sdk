@@ -3,22 +3,21 @@ import BaseClass from '../utils/BaseClass'
 
 export class BraintreePaymentCollection extends BaseClass {
   static className = 'BraintreePayment'
-  client_token: string
-  payment_method_nonce: string
+  clientToken: string
+  paymentMethodNonce: string
   options: object
   id: string
   createdAt: Date
   updatedAt: Date
   metadata: object
-  destroy: () => Promise<any>
   static define() {
     this.attributes(
-      'client_token',
-      'payment_method_nonce',
+      'clientToken',
+      'paymentMethodNonce',
       'options',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )

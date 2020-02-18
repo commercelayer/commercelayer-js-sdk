@@ -17,11 +17,11 @@ export class PriceListCollection extends BaseClass {
   static define() {
     this.attributes(
       'name',
-      'currency_code',
-      'tax_included',
+      'currencyCode',
+      'taxIncluded',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )

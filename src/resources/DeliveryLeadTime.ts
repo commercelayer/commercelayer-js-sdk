@@ -14,13 +14,13 @@ export class DeliveryLeadTimeCollection extends BaseClass {
   metadata: object
   static define() {
     this.attributes(
-      'min_hours',
-      'max_hours',
-      'min_days',
-      'max_days',
+      'minHours',
+      'maxHours',
+      'minDays',
+      'maxDays',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )

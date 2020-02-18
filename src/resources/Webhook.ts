@@ -14,11 +14,11 @@ export class WebhookCollection extends BaseClass {
   static define() {
     this.attributes(
       'topic',
-      'callback_url',
-      'include_resources',
+      'callbackUrl',
+      'includeResources',
       'id',
-      'created_at',
-      'updated_at',
+      'createdAt',
+      'updatedAt',
       'reference',
       'metadata'
     )
