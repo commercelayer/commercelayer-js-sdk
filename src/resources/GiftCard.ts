@@ -7,7 +7,7 @@ import { GiftCardRecipientCollection } from './GiftCardRecipient'
 export class GiftCardCollection extends BaseClass {
   static className = 'GiftCard'
   market: () => CollectionResponse<MarketCollection>
-  giftCardRecipients: () => CollectionResponse<GiftCardRecipientCollection>
+  giftCardRecipient: () => CollectionResponse<GiftCardRecipientCollection>
   status: string
   code: string
   currencyCode: string

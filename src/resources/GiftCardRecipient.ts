@@ -9,7 +9,7 @@ export class GiftCardRecipientCollection extends BaseClass {
   email: string
   firstName: string
   lastName: string
-  reference_origin: string
+  referenceOrigin: string
   id: string
   createdAt: Date
   updatedAt: Date
