@@ -1,13 +1,24 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
-import { CollectionResponse, HeaderParams } from './@types/Library'
 import { MarketCollection } from './Market'
 import { GiftCardRecipientCollection } from './GiftCardRecipient'
 
 export class GiftCardCollection extends BaseClass {
   static className = 'GiftCard'
-  market: () => CollectionResponse<MarketCollection>
-  giftCardRecipient: () => CollectionResponse<GiftCardRecipientCollection>
+  assignMarket: (value: MarketCollection) => MarketCollection
+  createMarket: (value?: MarketCollection) => Promise<MarketCollection>
+  updateMarket: (value?: MarketCollection) => Promise<MarketCollection>
+  assignGiftCardRecipient: (
+    value: GiftCardRecipientCollection
+  ) => Promise<GiftCardRecipientCollection>
+  createGiftCardRecipient: (
+    value?: GiftCardRecipientCollection
+  ) => Promise<GiftCardRecipientCollection>
+  updateGiftCardRecipient: (
+    value?: GiftCardRecipientCollection
+  ) => Promise<GiftCardRecipientCollection>
+  market: () => MarketCollection
+  giftCardRecipient: () => GiftCardRecipientCollection
   status: string
   code: string
   currencyCode: string
@@ -27,10 +38,10 @@ export class GiftCardCollection extends BaseClass {
   expiresAt: Date
   referenceOrigin: string
   recipientEmail: string
-  _purchase: number
-  _activate: number
-  _deactivate: number
-  _balanceChangeCents: number
+  Purchase: number
+  Activate: number
+  Deactivate: number
+  BalanceChangeCents: number
   id: string
   createdAt: Date
   updatedAt: Date
@@ -57,10 +68,10 @@ export class GiftCardCollection extends BaseClass {
       'expiresAt',
       'referenceOrigin',
       'recipientEmail',
-      '_purchase',
-      '_activate',
-      '_deactivate',
-      '_balanceChangeCents',
+      'Purchase',
+      'Activate',
+      'Deactivate',
+      'BalanceChangeCents',
       'id',
       'createAt',
       'updateAt',
@@ -69,7 +80,7 @@ export class GiftCardCollection extends BaseClass {
     )
 
     this.hasOne('market', { className: 'Market' })
-    this.hasOne('giftCardRecipent', { className: 'GiftCardRecipient' })
+    this.hasOne('giftCardRecipient', { className: 'GiftCardRecipient' })
   }
 }
 

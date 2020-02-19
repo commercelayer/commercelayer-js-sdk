@@ -88,21 +88,21 @@ export class OrderCollection extends BaseClass {
   termsUrl: string
   privacyUrl: string
   checkoutUrl: string
-  _place: number
-  _cancel: number
-  _approve: number
-  _capture: number
-  _refund: number
-  _updateTaxes: number
-  _billingAddressCloneId: number
-  _shippingAddressCloneId: number
-  _customerPaymentSourceId: number
-  _shippingAddressSameAsBilling: number
-  _billingAddressSameAsShipping: number
-  _savePaymentSourceToCustomerWallet: number
-  _saveShippingAddressToCustomerAddressBook: number
-  _saveBillingAddressToCustomerAddressBook: number
-  _refresh: number
+  Place: number
+  Cancel: number
+  Approve: number
+  Capture: number
+  Refund: number
+  UpdateTaxes: number
+  BillingAddressCloneId: number
+  ShippingAddressCloneId: number
+  CustomerPaymentSourceId: number
+  ShippingAddressSameAsBilling: number
+  BillingAddressSameAsShipping: number
+  SavePaymentSourceToCustomerWallet: number
+  SaveShippingAddressToCustomerAddressBook: number
+  SaveBillingAddressToCustomerAddressBook: number
+  Refresh: number
   placedAt: Date
   approvedAt: Date
   cancelledAt: Date
@@ -201,21 +201,21 @@ export class OrderCollection extends BaseClass {
       'termsUrl',
       'privacyUrl',
       'checkoutUrl',
-      '_place',
-      '_cancel',
-      '_approve',
-      '_capture',
-      '_refund',
-      '_updateTaxes',
-      '_billingAddressCloneId',
-      '_shippingAddressCloneId',
-      '_customerPaymentSourceId',
-      '_shippingAddressSameAsBilling',
-      '_billingAddressSameAsShipping',
-      '_savePaymentSourceToCustomerWallet',
-      '_saveShippingAddressToCustomerAddressBook',
-      '_saveBillingAddressToCustomerAddressBook',
-      '_refresh',
+      'Place',
+      'Cancel',
+      'Approve',
+      'Capture',
+      'Refund',
+      'UpdateTaxes',
+      'BillingAddressCloneId',
+      'ShippingAddressCloneId',
+      'CustomerPaymentSourceId',
+      'ShippingAddressSameAsBilling',
+      'BillingAddressSameAsShipping',
+      'SavePaymentSourceToCustomerWallet',
+      'SaveShippingAddressToCustomerAddressBook',
+      'SaveBillingAddressToCustomerAddressBook',
+      'Refresh',
       'placedAt',
       'approvedAt',
       'cancelledAt',
