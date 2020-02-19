@@ -49,6 +49,7 @@ export interface BaseResource<T = any> extends Base {
   afterRequest(): number
   assignQueryParams(queryParams: object): object
   assignResourceRelatedQueryParams(queryParams: object): object
+  assignAttributes(values: object): object
   attributes(): {
     all: any // TODO: Add collection type?
     read: any // TODO: Add collection type?
