@@ -83,6 +83,7 @@ The code snippets below show how to use the Commerce Layer JS SDK when performin
   const attributes = {
     code: 'TSHIRTMM000000FFFFFFXL',
     name: 'Black Men T-shirt with White Logo (XL)',
+    imageUrl: 'https://img.yourdomain.com/skus/image.png', // optional attribute
     shippingCategory: shippingCategory // assigns the relationship
   }
 
@@ -238,7 +239,8 @@ Commerce Layer SDK lets you construct API requests through simple to use chained
   const sku = await Sku.find('xYZkjABcde') // fetches the SKU by ID
 
   const attributes = {
-    description: 'Updated description.'
+    description: 'Updated description.',
+    imageUrl: 'https://img.yourdomain.com/skus/new-image.png'
   }
 
   sku.update(attributes) // updates the SKU on the server
