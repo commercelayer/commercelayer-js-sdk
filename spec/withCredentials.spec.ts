@@ -1,4 +1,4 @@
-import CLayer, { Sku, initCLayer } from '../src/resources'
+import CLayer from '../src/resources'
 import { getTokenBlueBrand, getTokenLimeBrand } from '../helpers/getToken'
 
 let blueBrandConfig = { accessToken: '', endpoint: '' }
