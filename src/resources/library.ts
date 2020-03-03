@@ -145,7 +145,6 @@ class ExtendLibrary extends library.Base {
 }
 
 ExtendLibrary.afterBuild(function() {
-  debugger
   delete this.meta
 })
 ExtendLibrary.afterRequest(function() {
