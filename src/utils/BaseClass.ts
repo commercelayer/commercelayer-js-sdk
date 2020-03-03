@@ -1,7 +1,15 @@
+// TODO remove ts-ignore comments
 import { InitConfig } from '../resources/Initialize'
 import library from '../resources/library'
 
 class BaseClass extends library.Base {
+  meta = {}
+  getMetaInfo() {
+    return this.meta
+  }
+  setMetaInfo(meta: object) {
+    return (this.meta = meta)
+  }
   withCredentials({ accessToken, endpoint }: InitConfig) {
     // @ts-ignore
     if (!this.constructor.accessToken && !this.constructor.endpoint) {

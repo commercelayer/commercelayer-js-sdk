@@ -35,18 +35,18 @@ export interface Base {
   __newRelation(r: any): any
   __extendObjectParam(type: string, options: object): any
   afterRequest(callback: () => void): void
+  afterBuild(callback: () => void): void
+  afterCreate(callback: () => void): void
   update(attrs: object, callback?: any): Promise<any>
   destroy(): Promise<any>
   withCredentials({ accessToken, endpoint }: InitConfig): Base
+  find(primaryKey: string): Promise<any>
 }
 
 export interface BaseResource<T = any> extends Base {
   (): BaseResource
   all(): Promise<CollectionResponse<T>>
   // where(): Collection | Collection[]
-  afterBuild(func: any): number
-  afterCreate(): number
-  afterRequest(): number
   assignQueryParams(queryParams: object): object
   assignResourceRelatedQueryParams(queryParams: object): object
   assignAttributes(values: object): object
@@ -59,21 +59,23 @@ export interface BaseResource<T = any> extends Base {
   create(attributes: object): Promise<T>
   each(iteratee: any): any
   fields(): Collection
-  find(primaryKey: any): Promise<T>
-  findBy(conditions: object): Promise<T> | Promise<CollectionResponse>
-  first(n?: number): Promise<T[]>
+  find(primaryKey: string): Promise<T>
+  findBy(conditions: object): Promise<T>
+  first(): Promise<T>
+  first(n: number): Promise<T[]>
   includes(...attribute: string[]): BaseResource<T>
   isA(klass: BaseResource<T>): boolean
   klass(): BaseResource<T>
-  last(n?: number): Promise<Collection> | Promise<CollectionResponse>
-  limit(n?: number): Promise<Collection> | Promise<CollectionResponse>
+  last(): Promise<T>
+  last(n: number): Promise<T[]>
+  limit(n?: number): BaseResource<T> // TODO interface Relation
   links(): {
     related: string
   }
-  offset(n?: number): Promise<Collection> | Promise<CollectionResponse>
-  order(args: object): Promise<Collection> | Promise<CollectionResponse>
-  page(n?: number): Promise<Collection> | Promise<CollectionResponse>
-  perPage(n?: number): BaseResource<T>
+  offset(n?: number): BaseResource<T> // TODO interface Relation
+  order(args: object): BaseResource<T> // TODO interface Relation
+  page(n: number): BaseResource<T> // TODO interface Relation
+  perPage(n: number): BaseResource<T> // TODO interface Relation
   primaryKey: string
   queryParams(): object
   resetQueryParams(): object
@@ -98,6 +100,12 @@ export interface LinksRelationships {
   last: string
 }
 
+export type MetaInformation = {
+  pageCount?: number
+  mode?: string
+  recordCount?: number
+}
+
 export interface CollectionResponse<T = any> {
   __collection: Collection[]
   __links: LinksRelationships
@@ -106,35 +114,40 @@ export interface CollectionResponse<T = any> {
   links(): LinksRelationships | null
   nextPage(): Promise<CollectionResponse<T>>
   prevPage(): Promise<CollectionResponse<T>>
-  toCollection(): Collection | Collection[]
-  all(): Collection[]
+  toCollection(): Collection
+  all(): T[]
   clear(): []
-  clone(): Collection[]
+  clone(): T[]
   compact(iteratee: any): any
   delete(): any
   detect(predicate: any): any
   each(iteratee: any): any
   empty(): boolean
-  first(n: number): Collection | Collection[]
+  first(): T
+  first(n: number): T[]
   flatten(): any
-  get(index: number): Collection
+  get(index: number): T
   include(item: any): boolean
   indexOf(item: any): any
   inject(memo: object, interatee: any): any
   join(): string
-  last(n: number): Collection | Collection[]
-  map(iteratee: (param: Collection) => any): void
-  pop(): Collection
+  last(): T
+  last(n: number): T[]
+  map(iteratee: (param: T) => any): void
+  pop(): T
   push(): number
   replace(original: any, next: any): any
   select(predicate?: any): CollectionResponse<T>
   set(index: number, item: BaseResource): Collection
-  shift(): any
+  shift(): T
   toArray(): T[]
-  unshift(): any
+  unshift(): T
   size(): number
+  getMetaInfo(): MetaInformation
+  withCredentials({ accessToken, endpoint }: InitConfig): CollectionResponse<T>
 }
 
+// TODO types check if it is correct
 export interface Collection<R = any> {
   association(name: string): any // TODO: Add interface HasOneAssociation
   attributes(): object
@@ -142,7 +155,7 @@ export interface Collection<R = any> {
   changedFields(): Collection<R>
   clone(): Collection<R>
   destroy(): Collection<R>
-  errors(): Collection<R>
+  errors(): BaseResource<R[]>
   hasAttribute(attribute: string): boolean
   isA(klass: BaseResource): boolean
   klass(): BaseResource
