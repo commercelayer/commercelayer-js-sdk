@@ -15,8 +15,9 @@ beforeAll(async () => {
 
 it('METHOD --- Find', async () => {
   expect.assertions(2)
-  CLayer.init(blueBrandConfig)
-  const sku = await CLayer.Sku.find('wBeDdSgYQW')
+  const sku = await CLayer.Sku.withCredentials(blueBrandConfig).find(
+    'wBeDdSgYQW'
+  )
   expect(sku.id).toBe('wBeDdSgYQW')
   expect(sku.meta).toHaveProperty('mode', 'test')
 })
@@ -110,7 +111,7 @@ it('METHOD --- All with next page', async () => {
   expect(nextPage).toBe(true)
   expect(firstSku.id).toBe('GBwpOSPKAn')
   if (nextPage) {
-    const nextSkus = await sku.nextPage()
+    const nextSkus = await sku.withCredentials(blueBrandConfig).nextPage()
     const nextMeta = nextSkus.getMetaInfo()
     const nextFirstSku = nextSkus.first()
     expect(nextSkus.toArray()).toHaveLength(25)
@@ -153,4 +154,29 @@ it('METHOD --- All with includes', async () => {
   expect(sku.toArray()).toHaveLength(10)
   expect(meta).toHaveProperty('recordCount', 97)
   expect(meta).toHaveProperty('pageCount', 10)
+})
+
+it('METHOD --- Multi requests', async () => {
+  // expect.assertions(3)
+  const sku = await CLayer.Sku.withCredentials(blueBrandConfig).find(
+    'wBeDdSgYQW'
+  )
+  const skus = await CLayer.Sku.withCredentials(blueBrandConfig)
+    .includes('prices')
+    .all()
+  const allPrices = await CLayer.Price.withCredentials(blueBrandConfig).all()
+
+  const meta = sku.getMetaInfo()
+  expect(sku.id).toBe('wBeDdSgYQW')
+  expect(meta).toHaveProperty('mode', 'test')
+
+  const metaSkus = skus.getMetaInfo()
+  expect(skus.toArray()).toHaveLength(10)
+  expect(metaSkus).toHaveProperty('recordCount', 97)
+  expect(metaSkus).toHaveProperty('pageCount', 10)
+
+  const metaPrices = allPrices.getMetaInfo()
+  expect(allPrices.toArray()).toHaveLength(10)
+  expect(metaPrices).toHaveProperty('recordCount', 194)
+  expect(metaPrices).toHaveProperty('pageCount', 20)
 })

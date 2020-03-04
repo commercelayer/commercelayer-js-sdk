@@ -117,7 +117,6 @@ class ExtendLibrary extends library.Base {
           // @ts-ignore
           const metaCamelCase = library.interface.toCamelCase(meta)
           classThis.meta = metaCamelCase
-          CollectionResponse.prototype.getMetaInfo = () => metaCamelCase
           return config
         },
         (error: any) => {
@@ -161,8 +160,9 @@ ExtendLibrary.afterRequest(function() {
   }
 })
 
-CollectionResponse.prototype.getMetaInfo = () => {
-  return {}
+CollectionResponse.prototype.getMetaInfo = function() {
+  // @ts-ignore
+  return this.first().getMetaInfo()
 }
 
 CollectionResponse.prototype.withCredentials = function({
