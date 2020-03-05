@@ -165,6 +165,16 @@ CollectionResponse.prototype.getMetaInfo = function() {
   return this.first().getMetaInfo()
 }
 
+CollectionResponse.prototype.pageCount = function() {
+  // @ts-ignore
+  return this.first().pageCount()
+}
+
+CollectionResponse.prototype.recordCount = function() {
+  // @ts-ignore
+  return this.first().recordCount()
+}
+
 CollectionResponse.prototype.withCredentials = function({
   accessToken,
   endpoint

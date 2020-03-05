@@ -2,10 +2,22 @@
 import { InitConfig } from '../resources/Initialize'
 import library from '../resources/library'
 
+export type Meta = {
+  pageCount?: number
+  recordCount?: number
+  mode?: string
+}
+
 class BaseClass extends library.Base {
-  meta = {}
+  meta: Meta = {}
   getMetaInfo() {
     return this.meta
+  }
+  pageCount() {
+    return this.meta.pageCount
+  }
+  recordCount() {
+    return this.meta.recordCount
   }
   setMetaInfo(meta: object) {
     return (this.meta = meta)

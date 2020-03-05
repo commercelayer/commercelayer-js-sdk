@@ -13,6 +13,16 @@ beforeAll(async () => {
   return null
 })
 
+it('METHOD --- pageCount and recordCount', async () => {
+  expect.assertions(3)
+  const sku = await CLayer.Sku.withCredentials(blueBrandConfig).findBy({
+    code: 'BABYONBU000000E63E7412MX'
+  })
+  expect(sku.id).toBe('wBeDdSgYQW')
+  expect(sku.recordCount()).toBe(1)
+  expect(sku.pageCount()).toBe(1)
+})
+
 it('METHOD --- Find', async () => {
   expect.assertions(2)
   const sku = await CLayer.Sku.withCredentials(blueBrandConfig).find(
@@ -71,6 +81,16 @@ it('METHOD --- All', async () => {
   expect(sku.toArray()).toHaveLength(10)
   expect(meta).toHaveProperty('recordCount', 97)
   expect(meta).toHaveProperty('pageCount', 10)
+})
+
+it('METHOD --- All with pageCount and recordCount', async () => {
+  expect.assertions(3)
+  const sku = await CLayer.Sku.withCredentials(blueBrandConfig).all()
+  const pageCount = sku.pageCount()
+  const recordCount = sku.recordCount()
+  expect(sku.toArray()).toHaveLength(10)
+  expect(recordCount).toBe(97)
+  expect(pageCount).toBe(10)
 })
 
 it('METHOD --- All with next page', async () => {

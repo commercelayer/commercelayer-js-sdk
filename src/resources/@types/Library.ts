@@ -144,6 +144,8 @@ export interface CollectionResponse<T = any> {
   unshift(): T
   size(): number
   getMetaInfo(): MetaInformation
+  pageCount(): MetaInformation['pageCount']
+  recordCount(): MetaInformation['recordCount']
   withCredentials({ accessToken, endpoint }: InitConfig): CollectionResponse<T>
 }
 
