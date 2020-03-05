@@ -29,7 +29,7 @@ it('METHOD --- Find', async () => {
     'wBeDdSgYQW'
   )
   expect(sku.id).toBe('wBeDdSgYQW')
-  expect(sku.meta).toHaveProperty('mode', 'test')
+  expect(sku.mode()).toEqual('test')
 })
 
 it('METHOD --- FindBy', async () => {

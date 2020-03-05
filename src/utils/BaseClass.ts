@@ -19,6 +19,9 @@ class BaseClass extends library.Base {
   recordCount() {
     return this.meta.recordCount
   }
+  mode() {
+    return this.meta.mode
+  }
   setMetaInfo(meta: object) {
     return (this.meta = meta)
   }
