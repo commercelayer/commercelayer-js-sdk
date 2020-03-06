@@ -110,7 +110,14 @@ Check our API reference for more information on how to [create an SKU](https://d
   const sku = await Sku.last()
 ```
 
-Check our API reference for more information on how to [retrieve an SKU](https://docs.commercelayer.io/api/resources/skus/retrieve_sku) — please note that while the `find()` method returns the single resource object, `findBy()`, `first()`, and `last()` return an element from a collection (see next section for details).
+When fetching a single resource you can leverage the `mode()` method to get its `meta` information:
+
+```
+  const sku = await Sku.find('xYZkjABcde')
+  const meta = sku.mode() // the resource environment (can be one of 'test' or 'live')
+```
+
+Check our API reference for more information on how to [retrieve an SKU](https://docs.commercelayer.io/api/resources/skus/retrieve_sku).
 
 ### How to fetch a collection of SKUs
 
@@ -181,6 +188,13 @@ Check our API reference for more information on how to [retrieve an SKU](https:/
   const skus = await Sku.where({ nameCont: 'Black', shippingCategoryNameStart: 'MERCH'}).all()
 ```
 
+When fetching a collection of resources you can leverage the `getMetaInfo()` method to get its `meta` information:
+
+```
+  const skus = await Sku.all()
+  const meta = skus.getMetaInfo()
+```
+
 Check our API reference for more information on how to [list all SKUs](https://docs.commercelayer.io/api/resources/skus/list_skus), [sort the results](https://docs.commercelayer.io/api/sorting-results), use [sparse fieldsets](https://docs.commercelayer.io/api/sparse-fieldsets), [include associations](https://docs.commercelayer.io/api/including-associations), and [filter data](https://docs.commercelayer.io/api/filtering-data).
 
 ### How to paginate a collection of SKUs
@@ -188,20 +202,26 @@ Check our API reference for more information on how to [list all SKUs](https://d
 When you fetch a collection of resources, you get paginated results:
 
 ```
-// Fetches the SKUs, setting the page number to 3 and the page size to 5
-const skus = await Sku.perPage(5).page(3).all()
+  // Fetches the SKUs, setting the page number to 3 and the page size to 5
+  const skus = await Sku.perPage(5).page(3).all()
 
-// Checks next page
+  // Checks next page
   if(skus.hasNextPage()) {
     const nextSkus = await skus.nextPage()
     // ...
   }
 
-// Checks previous page
+  // Checks previous page
   if(skus.hasPrevPage()) {
     const prevSkus = await skus.prevPage()
     // ...
   }
+
+  // Gets the total number of SKUs in the collection
+  const skuCount = skus.recordCount()
+
+  // Gets the total number of pages
+  const pageCount = skus.pageCount()
 ```
 
 > The default page number is **1**. The default page size is **10**. The maximum page size allowed is **25**.
@@ -213,7 +233,7 @@ Check our API reference for more information on how [pagination](https://docs.co
 To execute a function for every item of a collection, use the `map()` method:
 
 ```
-  // Fetches the whole list of SKUs and print their names and codes to console
+  // Fetches the whole list of SKUs and prints their names and codes to console
   const skus = await Sku.all()
   skus.map(p => console.log('Product: ' + p.name + ' - Code: ' + p.code))
 ```
