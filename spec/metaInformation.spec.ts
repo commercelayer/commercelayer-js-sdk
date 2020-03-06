@@ -23,6 +23,15 @@ it('METHOD --- pageCount and recordCount', async () => {
   expect(sku.pageCount()).toBe(1)
 })
 
+it('METHOD --- perPage', async () => {
+  expect.assertions(2)
+  const sku = await CLayer.Sku.withCredentials(blueBrandConfig)
+    .perPage(5)
+    .all()
+  expect(sku.recordCount()).toBe(97)
+  expect(sku.pageCount()).toBe(20)
+})
+
 it('METHOD --- Find', async () => {
   expect.assertions(2)
   const sku = await CLayer.Sku.withCredentials(blueBrandConfig).find(
@@ -101,7 +110,7 @@ it('METHOD --- All with next page', async () => {
   const meta = sku.getMetaInfo()
   expect(sku.toArray()).toHaveLength(25)
   expect(meta).toHaveProperty('recordCount', 97)
-  expect(meta).toHaveProperty('pageCount', 10)
+  expect(meta).toHaveProperty('pageCount', 4)
 })
 
 it('METHOD --- All with page', async () => {

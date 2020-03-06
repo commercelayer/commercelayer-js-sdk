@@ -47,6 +47,12 @@ class ExtendLibrary extends library.Base {
     // @ts-ignore
     return super.page(value)
   }
+  static perPage(value?: number) {
+    // @ts-ignore
+    this.includeMetaInfo(this.interface().axios.interceptors)
+    // @ts-ignore
+    return super.perPage(value)
+  }
   static limit(value: any) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
@@ -114,6 +120,7 @@ class ExtendLibrary extends library.Base {
           const meta = _.isArray(config.data.data)
             ? config.data.meta
             : config.data.data.meta
+          debugger
           // @ts-ignore
           const metaCamelCase = library.interface.toCamelCase(meta)
           classThis.meta = metaCamelCase
