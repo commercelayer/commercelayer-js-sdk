@@ -120,7 +120,6 @@ class ExtendLibrary extends library.Base {
           const meta = _.isArray(config.data.data)
             ? config.data.meta
             : config.data.data.meta
-          debugger
           // @ts-ignore
           const metaCamelCase = library.interface.toCamelCase(meta)
           classThis.meta = metaCamelCase
