@@ -117,6 +117,7 @@ class ExtendLibrary extends library.Base {
       interceptResp.handlers.shift()
       interceptResp.use(
         (config: any) => {
+          if (!config['data']) return config
           const meta = _.isArray(config.data.data)
             ? config.data.meta
             : config.data.data.meta
