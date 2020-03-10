@@ -209,3 +209,24 @@ it('METHOD --- Multi requests', async () => {
   expect(metaPrices).toHaveProperty('recordCount', 194)
   expect(metaPrices).toHaveProperty('pageCount', 20)
 })
+
+it('METHOD --- Relationship', async () => {
+  // expect.assertions(3)
+  const sku = await CLayer.Sku.withCredentials(blueBrandConfig).find(
+    'wBeDdSgYQW'
+  )
+
+  const prices = await sku
+    .withCredentials(blueBrandConfig)
+    .prices()
+    .load()
+
+  const meta = sku.getMetaInfo()
+  expect(sku.id).toBe('wBeDdSgYQW')
+  expect(meta).toHaveProperty('mode', 'test')
+
+  const pageCount = prices.pageCount()
+  const recordCount = prices.recordCount()
+  expect(pageCount).toBe(20)
+  expect(recordCount).toBe(194)
+})

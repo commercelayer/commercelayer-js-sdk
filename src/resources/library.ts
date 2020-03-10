@@ -124,6 +124,8 @@ class ExtendLibrary extends library.Base {
           // @ts-ignore
           const metaCamelCase = library.interface.toCamelCase(meta)
           classThis.meta = metaCamelCase
+          // @ts-ignore
+          library['lastMetaRequest'] = metaCamelCase
           return config
         },
         (error: any) => {
@@ -149,13 +151,15 @@ class ExtendLibrary extends library.Base {
     }
   }
 }
-
 ExtendLibrary.afterBuild(function() {
   delete this.meta
 })
 ExtendLibrary.afterRequest(function() {
   if (!_.isEmpty(this.constructor.meta)) {
     this.setMetaInfo(this.constructor.meta)
+  } else if (!this.getMetaInfo()) {
+    // @ts-ignore
+    this.setMetaInfo(library.lastMetaRequest)
   }
   if (this.constructor.singleRequest) {
     this.constructor.resourceLibrary.baseUrl = this.constructor.endpoint
