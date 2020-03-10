@@ -127,7 +127,8 @@ export interface CollectionResponse<T = any> {
   first(n: number): T[]
   flatten(): any
   get(index: number): T
-  include(item: any): boolean
+  includes(...attribute: string[]): CollectionResponse<T>
+  load(): Promise<CollectionResponse<T>>
   indexOf(item: any): any
   inject(memo: object, interatee: any): any
   join(): string
@@ -148,6 +149,8 @@ export interface CollectionResponse<T = any> {
   recordCount(): MetaInformation['recordCount']
   withCredentials({ accessToken, endpoint }: InitConfig): CollectionResponse<T>
 }
+
+// TODO Add CollectionProxy ex: order.lineItems()
 
 // TODO types check if it is correct
 export interface Collection<R = any> {
