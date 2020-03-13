@@ -7,7 +7,7 @@ import {
 import Library, { GeneralObject } from './@types/Library'
 import { InitConfig } from './Initialize'
 import * as _ from 'lodash'
-import BaseClass from 'src/utils/BaseClass'
+import BaseClass from '../utils/BaseClass'
 
 const subdomain = 'yourdomain'
 
