@@ -1,6 +1,6 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
-import { CollectionResponse } from './@types/Library'
+import { CollectionProxy } from './@types/Library'
 import { LineItemOptionCollection } from './LineItemOption'
 
 export class LineItemCollection extends BaseClass {
@@ -28,7 +28,7 @@ export class LineItemCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   metadata: object
-  lineItemOptions: () => CollectionResponse<LineItemOptionCollection>
+  lineItemOptions: () => CollectionProxy<LineItemOptionCollection>
   item: () => any
   static define() {
     this.attributes(

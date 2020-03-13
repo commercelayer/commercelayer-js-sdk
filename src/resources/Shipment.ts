@@ -1,6 +1,6 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
-import { CollectionResponse } from './@types/Library'
+import { CollectionProxy } from './@types/Library'
 import { ShippingMethodCollection } from './ShippingMethod'
 import { ParcelCollection } from './Parcel'
 import { AttachmentCollection } from './Attachment'
@@ -26,10 +26,10 @@ export class ShipmentCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
-  shipmentLineItems: () => CollectionResponse<any>
-  availableShippingMethods: () => CollectionResponse<ShippingMethodCollection>
-  parcels: () => CollectionResponse<ParcelCollection>
-  attachments: () => CollectionResponse<AttachmentCollection>
+  shipmentLineItems: () => CollectionProxy<any>
+  availableShippingMethods: () => CollectionProxy<ShippingMethodCollection>
+  parcels: () => CollectionProxy<ParcelCollection>
+  attachments: () => CollectionProxy<AttachmentCollection>
   static define() {
     this.attributes(
       'number',

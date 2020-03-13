@@ -1,6 +1,6 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
-import { CollectionResponse } from './@types/Library'
+import { CollectionProxy } from './@types/Library'
 
 export class ParcelCollection extends BaseClass {
   static className = 'Parcel'
@@ -32,7 +32,7 @@ export class ParcelCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
-  parcelLineItems: () => CollectionResponse<any>
+  parcelLineItems: () => CollectionProxy<any>
   static define() {
     this.attributes(
       'number',

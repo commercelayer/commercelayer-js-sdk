@@ -1,6 +1,6 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
-import { CollectionResponse } from './@types/Library'
+import { CollectionProxy } from './@types/Library'
 import { OrderCollection } from './Order'
 
 export class MarketCollection extends BaseClass {
@@ -13,7 +13,7 @@ export class MarketCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
-  orders: () => CollectionResponse<OrderCollection>
+  orders: () => CollectionProxy<OrderCollection>
   static define() {
     this.attributes(
       'number',

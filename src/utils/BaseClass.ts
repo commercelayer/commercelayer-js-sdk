@@ -1,6 +1,7 @@
 // TODO remove ts-ignore comments
 import { InitConfig } from '../resources/Initialize'
 import library from '../resources/library'
+import { CollectionResponse } from '../resources/@types/Library'
 
 export type Meta = {
   pageCount?: number
@@ -9,23 +10,47 @@ export type Meta = {
 }
 
 class BaseClass extends library.Base {
-  meta: Meta = {}
+  __meta: Meta = {}
+  __collectionMeta: Meta = {}
+  includes: (...attribute: string[]) => this
+  all: () => Promise<CollectionResponse<this>>
   getMetaInfo() {
-    return this.meta
+    return this.__meta
   }
   pageCount() {
-    return this.meta.pageCount
+    return this.__meta.pageCount
   }
   recordCount() {
-    return this.meta.recordCount
+    return this.__meta.recordCount
   }
   mode() {
-    return this.meta.mode
+    return this.__meta.mode
   }
   setMetaInfo(meta: object) {
-    return (this.meta = meta)
+    return (this.__meta = meta)
+  }
+  setCollectionMetaInfo(meta: object) {
+    return (this.__collectionMeta = meta)
+  }
+  klass() {
+    // @ts-ignore
+    const interceptors = super.klass().interface().axios.interceptors
+    // @ts-ignore
+    this.constructor.includeMetaInfo(interceptors)
+    // @ts-ignore
+    return super.klass()
+  }
+  association(name: string) {
+    // @ts-ignore
+    const interceptors = super.association(name).interface().axios.interceptors
+    // @ts-ignore
+    this.constructor.includeMetaInfo(interceptors)
+    // @ts-ignore
+    return super.association(name)
   }
   withCredentials({ accessToken, endpoint }: InitConfig) {
+    // @ts-ignore
+    this.constructor.includeMetaInfo()
     // @ts-ignore
     if (!this.constructor.accessToken && !this.constructor.endpoint) {
       // @ts-ignore

@@ -151,6 +151,17 @@ export interface CollectionResponse<T = any> {
 }
 
 // TODO Add CollectionProxy ex: order.lineItems()
+export interface CollectionProxy<P> {
+  all(): Promise<CollectionResponse<P>>
+  load(): Promise<CollectionResponse<P>>
+  empty(): boolean
+  size(): boolean
+  target(): CollectionResponse<P>
+  toArray(): P[]
+  find(primaryKey: string): Promise<P>
+  findBy(conditions: object): Promise<P>
+  includes(...attribute: string[]): CollectionProxy<P>
+}
 
 // TODO types check if it is correct
 export interface Collection<R = any> {
@@ -184,6 +195,17 @@ export interface CreateResource<R = any> {
 }
 
 export default interface Library extends CreateResource {
+  customRequests: {
+    [key: string]: {
+      [key: string]: {
+        [key: string]: object
+      }
+    }
+  }
+  interface: {
+    toCamelCase: <T extends any>(value: T) => T
+  }
+  singleRequest: boolean
   baseUrl: string
   headers: {
     Authorization: string

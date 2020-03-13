@@ -1,7 +1,7 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
 import { LineItemCollection } from './LineItem'
-import { CollectionResponse, Collection } from './@types/Library'
+import { Collection, CollectionProxy } from './@types/Library'
 import { ShipmentCollection } from './Shipment'
 import { PaymentMethodCollection } from './PaymentMethod'
 import { MarketCollection } from './Market'
@@ -113,9 +113,12 @@ export class OrderCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
-  lineItems: () => CollectionResponse<LineItemCollection>
-  availablePaymentMethods: () => CollectionResponse<PaymentMethodCollection>
-  shipments: () => CollectionResponse<ShipmentCollection>
+  loadLineItems: () => CollectionProxy<LineItemCollection>
+  loadAvailablePaymentMethods: () => CollectionProxy<PaymentMethodCollection>
+  loadShipments: () => CollectionProxy<ShipmentCollection>
+  lineItems: () => CollectionProxy<LineItemCollection>
+  availablePaymentMethods: () => CollectionProxy<PaymentMethodCollection>
+  shipments: () => CollectionProxy<ShipmentCollection>
   buildMarket: () => Collection<MarketCollection>
   buildCustomer: () => Collection<CustomerCollection>
   buildShippingAddress: () => Collection<AddressCollection>

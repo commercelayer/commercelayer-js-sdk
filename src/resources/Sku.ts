@@ -1,6 +1,6 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
-import { CollectionResponse } from './@types/Library'
+import { CollectionResponse, CollectionProxy } from './@types/Library'
 import { PriceCollection } from './Price'
 import { SkuOptionCollection } from './SkuOption'
 import { DeliveryLeadTimeCollection } from './DeliveryLeadTime'
@@ -34,10 +34,10 @@ export interface InventoryCollection {
 
 export class SkuCollection extends BaseClass {
   static className = 'Sku'
-  prices: () => CollectionResponse<PriceCollection>
-  stockItems: () => CollectionResponse<StockItemCollection>
-  deliveryLeadTimes: () => CollectionResponse<DeliveryLeadTimeCollection>
-  skuOptions: () => CollectionResponse<SkuOptionCollection>
+  prices: () => CollectionProxy<PriceCollection>
+  stockItems: () => CollectionProxy<StockItemCollection>
+  deliveryLeadTimes: () => CollectionProxy<DeliveryLeadTimeCollection>
+  skuOptions: () => CollectionProxy<SkuOptionCollection>
   code: string
   name: string
   description: string
@@ -69,7 +69,6 @@ export class SkuCollection extends BaseClass {
       'reference',
       'metadata'
     )
-
     this.hasOne('shippingCategory', { className: 'ShippingCategory' })
 
     this.hasMany('prices', { className: 'Price' })

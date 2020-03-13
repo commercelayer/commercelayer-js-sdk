@@ -1,6 +1,6 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
-import { CollectionResponse } from './@types/Library'
+import { CollectionProxy } from './@types/Library'
 import { OrderCollection } from './Order'
 import { CustomerSubscriptionCollection } from './CustomerSubscription'
 import { CustomerAddressCollection } from './CustomerAddress'
@@ -16,14 +16,10 @@ export class CustomerCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
-  customerAddresses: () => CollectionResponse<CustomerAddressCollection>
-  customerPaymentSources: () => CollectionResponse<
-    CustomerPaymentSourceCollection
-  >
-  customerSubscriptions: () => CollectionResponse<
-    CustomerSubscriptionCollection
-  >
-  orders: () => CollectionResponse<OrderCollection>
+  customerAddresses: () => CollectionProxy<CustomerAddressCollection>
+  customerPaymentSources: () => CollectionProxy<CustomerPaymentSourceCollection>
+  customerSubscriptions: () => CollectionProxy<CustomerSubscriptionCollection>
+  orders: () => CollectionProxy<OrderCollection>
   static define() {
     this.attributes(
       'email',
