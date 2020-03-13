@@ -7,12 +7,23 @@ import {
 import Library, { GeneralObject } from './@types/Library'
 import { InitConfig } from './Initialize'
 import * as _ from 'lodash'
+import BaseClass from 'src/utils/BaseClass'
 
 const subdomain = 'yourdomain'
 
 const library: Library = createResourceLibrary(
   `https://${subdomain}.commercelayer.io/api/`
 )
+
+library['customRequests'] = {}
+
+const cleanUrl = (url: string) => {
+  const lastSlash = url.lastIndexOf('/') + 1
+  if (lastSlash === url.length) {
+    return url.substring(0, url.length - 1)
+  }
+  return url
+}
 
 class ExtendLibrary extends library.Base {
   static accessToken = ''
@@ -58,6 +69,12 @@ class ExtendLibrary extends library.Base {
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
     return super.limit(value)
+  }
+  static offset(value: any) {
+    // @ts-ignore
+    this.includeMetaInfo(this.interface().axios.interceptors)
+    // @ts-ignore
+    return super.offset(value)
   }
   static where(options: object): any {
     // @ts-ignore
@@ -106,7 +123,6 @@ class ExtendLibrary extends library.Base {
   }
   static find(paramKey: string) {
     this.includeMetaInfo()
-    // @ts-ignore
     return super.find(paramKey)
   }
   static setInterceptors(interceptors: any, klass: any = null) {
@@ -121,11 +137,12 @@ class ExtendLibrary extends library.Base {
           const meta = _.isArray(config.data.data)
             ? config.data.meta
             : config.data.data.meta
-          // @ts-ignore
           const metaCamelCase = library.interface.toCamelCase(meta)
           classThis.meta = metaCamelCase
-          // @ts-ignore
-          library['lastMetaRequest'] = metaCamelCase
+          config.data.collectionParent = classThis
+          const url = cleanUrl(config.config.url)
+          library.customRequests = {}
+          library.customRequests[url] = config.data
           return config
         },
         (error: any) => {
@@ -151,16 +168,33 @@ class ExtendLibrary extends library.Base {
     }
   }
 }
+
+const setMetaByRequest = <T extends BaseClass>(child: T) => {
+  _.map(library.customRequests, req => {
+    if (_.isArray(req.data)) {
+      // @ts-ignore
+      const childData = _.first(req.data.filter(v => child.id === v.id))
+      if (!_.isEmpty(childData)) {
+        const collectionMeta = library.interface.toCamelCase(req.meta)
+        const meta = library.interface.toCamelCase(childData.meta)
+        child.setMetaInfo(meta)
+        child.setCollectionMetaInfo(collectionMeta)
+      }
+    } else {
+      const meta = library.interface.toCamelCase(req.data.meta)
+      child.setMetaInfo(meta)
+    }
+  })
+}
+
 ExtendLibrary.afterBuild(function() {
-  delete this.meta
+  delete this.__meta
+  delete this.__collectionMeta
 })
+
 ExtendLibrary.afterRequest(function() {
-  if (!_.isEmpty(this.constructor.meta)) {
-    this.setMetaInfo(this.constructor.meta)
-  } else if (!this.getMetaInfo()) {
-    // @ts-ignore
-    this.setMetaInfo(library.lastMetaRequest)
-  }
+  const klass = this
+  setMetaByRequest<typeof klass>(this)
   if (this.constructor.singleRequest) {
     this.constructor.resourceLibrary.baseUrl = this.constructor.endpoint
     this.constructor.resourceLibrary.headers = {
@@ -172,18 +206,17 @@ ExtendLibrary.afterRequest(function() {
 })
 
 CollectionResponse.prototype.getMetaInfo = function() {
-  // @ts-ignore
-  return this.first().getMetaInfo()
+  return this.first().__collectionMeta || this.first().getMetaInfo()
 }
 
 CollectionResponse.prototype.pageCount = function() {
-  // @ts-ignore
-  return this.first().pageCount()
+  return this.first().__collectionMeta['pageCount'] || this.first().pageCount()
 }
 
 CollectionResponse.prototype.recordCount = function() {
-  // @ts-ignore
-  return this.first().recordCount()
+  return (
+    this.first().__collectionMeta['recordCount'] || this.first().recordCount()
+  )
 }
 
 CollectionResponse.prototype.withCredentials = function({
@@ -193,9 +226,7 @@ CollectionResponse.prototype.withCredentials = function({
   library.headers = {
     Authorization: `Bearer ${accessToken}`
   }
-  // @ts-ignore
   library.singleRequest = true
-  // @ts-ignore
   return this
 }
 
