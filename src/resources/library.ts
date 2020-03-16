@@ -206,17 +206,33 @@ ExtendLibrary.afterRequest(function() {
 })
 
 CollectionResponse.prototype.getMetaInfo = function() {
-  return this.first().__collectionMeta || this.first().getMetaInfo()
+  const firstItem = this.first()
+  if (_.isEmpty(firstItem)) {
+    return {}
+  }
+  return _.has(firstItem, '__collectionMeta')
+    ? firstItem.__collectionMeta
+    : firstItem.getMetaInfo()
 }
 
 CollectionResponse.prototype.pageCount = function() {
-  return this.first().__collectionMeta['pageCount'] || this.first().pageCount()
+  const firstItem = this.first()
+  if (_.isEmpty(firstItem)) {
+    return 0
+  }
+  return _.has(firstItem, '__collectionMeta.pageCount')
+    ? firstItem.__collectionMeta.pageCount
+    : this.first().pageCount()
 }
 
 CollectionResponse.prototype.recordCount = function() {
-  return (
-    this.first().__collectionMeta['recordCount'] || this.first().recordCount()
-  )
+  const firstItem = this.first()
+  if (_.isEmpty(firstItem)) {
+    return 0
+  }
+  return _.has(firstItem, '__collectionMeta.recordCount')
+    ? firstItem.__collectionMeta.recordCount
+    : this.first().recordCount()
 }
 
 CollectionResponse.prototype.withCredentials = function({
