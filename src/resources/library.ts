@@ -23,7 +23,7 @@ library['permittedCache'] = [
   { method: 'get', collectionName: 'StockItemCollection' },
 ]
 
-const cleanUrl = (url: string): string => {
+const cleanUrl = (url: string) => {
   const lastSlash = url.lastIndexOf('/') + 1
   if (lastSlash === url.length) {
     return url.substring(0, url.length - 1)
@@ -37,12 +37,11 @@ const cacheAllowed = (collectionName: string, method: string): boolean => {
   })
   return !!_.first(check)
 }
-
 class ExtendLibrary extends library.Base {
   static accessToken = ''
   static endpoint = ''
   static singleRequest = false
-  static cache: null | boolean = null
+  static cache: string | boolean = ''
   static meta = {}
   constructor() {
     super()
@@ -103,6 +102,7 @@ class ExtendLibrary extends library.Base {
     return this.where({ cache: this.cache }).offset(value)
   }
   static where(options: object): any {
+    // @ts-ignore
     let newOptions = {}
     if (_.has(options, 'cache')) {
       // @ts-ignore
@@ -113,7 +113,7 @@ class ExtendLibrary extends library.Base {
       newOptions = {
         q: { ...options },
       }
-      if (!_.isNull(cache)) {
+      if (cache !== '') {
         // @ts-ignore
         newOptions['cache'] = cache
       }
@@ -150,12 +150,15 @@ class ExtendLibrary extends library.Base {
         this.endpoint = this.resourceLibrary.baseUrl
       }
     }
-    this.cache = cache
     this.resourceLibrary.headers = {
       Authorization: `Bearer ${accessToken}`,
     }
     this.__links = { related: `${endpoint}/api/${this.queryName}` }
     this.singleRequest = true
+    if (!_.isUndefined(cache)) {
+      this.cache = cache
+    }
+
     return this
   }
   static includeMetaInfo(interceptors: any = null, klass: any = this) {
@@ -165,7 +168,7 @@ class ExtendLibrary extends library.Base {
     return this
   }
   static find(paramKey: string) {
-    // @ts-ignore
+    this.includeMetaInfo()
     return this.where({ cache: this.cache }).find(paramKey)
   }
   static setInterceptors(interceptors: any, klass: any = null) {
@@ -173,27 +176,27 @@ class ExtendLibrary extends library.Base {
     const interceptResp = interceptors?.response
     const interceptReq = interceptors?.request
     const respHandlers = interceptResp?.handlers
+    interceptReq.handlers.shift()
+    interceptReq.use((config: any) => {
+      let cache = library.cache
+      const singleCache =
+        !_.isEmpty(config.params) && _.has(config.params, 'filter.cache')
+      if (singleCache) {
+        cache = config.params['filter']['cache']
+        delete config.params['filter']['cache']
+      }
+      const url = cleanUrl(config.url)
+      const collectionName = classThis.name
+      const method = config.method
+      const isAllowed = cacheAllowed(collectionName, method)
+      if (cache && isAllowed) {
+        config.url = url
+        config.params['cache'] = cache
+      }
+      return config
+    })
     if (respHandlers?.length === 1) {
       interceptResp.handlers.shift()
-      interceptReq.handlers.shift()
-      interceptReq.use((config: any) => {
-        let cache = library.cache
-        const singleCache =
-          !_.isEmpty(config.params) && _.has(config.params, 'filter.cache')
-        if (singleCache) {
-          cache = config.params['filter']['cache']
-          delete config.params['filter']['cache']
-        }
-        const url = cleanUrl(config.url)
-        const collectionName = classThis.name
-        const method = config.method
-        const isAllowed = cacheAllowed(collectionName, method)
-        if (cache && isAllowed) {
-          config.url = url
-          config.params['cache'] = cache
-        }
-        return config
-      })
       interceptResp.use(
         (config: any) => {
           if (!config['data']) return config
@@ -265,7 +268,8 @@ ExtendLibrary.afterRequest(function() {
     }
     this.constructor.__links = null
     this.constructor.singleRequest = false
-    this.constructor.cache = null
+    this.constructor.cache = ''
+    debugger
   }
 })
 

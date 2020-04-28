@@ -9,7 +9,7 @@ beforeAll(async () => {
   const { accessToken } = await getTokenBlueBrand()
   blueBrandConfig = {
     accessToken: accessToken,
-    endpoint: ENDPOINT
+    endpoint: ENDPOINT,
   }
   return null
 })
@@ -17,7 +17,7 @@ beforeAll(async () => {
 it('METHOD --- pageCount and recordCount', async () => {
   expect.assertions(2)
   const sku = await CLayer.Sku.withCredentials(blueBrandConfig).findBy({
-    code: 'BABYONBU000000E63E7412MX'
+    code: 'BABYONBU000000E63E7412MX',
   })
   expect(sku.id).toBe('wBeDdSgYQW')
   expect(sku.mode()).toBe('test')
@@ -44,7 +44,7 @@ it('METHOD --- Find', async () => {
 it('METHOD --- FindBy', async () => {
   expect.assertions(2)
   const sku = await CLayer.Sku.withCredentials(blueBrandConfig).findBy({
-    code: 'BABYONBU000000E63E7412MX'
+    code: 'BABYONBU000000E63E7412MX',
   })
   expect(sku.id).toBe('wBeDdSgYQW')
   expect(sku.mode()).toBe('test')
@@ -273,14 +273,14 @@ it('METHOD --- Order -> lineItems withCredentials', async () => {
   const pageCount = lineItems.pageCount()
   const recordCount = lineItems.recordCount()
   expect(pageCount).toBe(4)
-  expect(recordCount).toBe(36)
+  expect(recordCount).toBe(37)
 })
 
 it('METHOD --- Order -> lineItems', async () => {
   expect.assertions(4)
   return Order.withCredentials(blueBrandConfig)
     .find('awjobhxYPX')
-    .then(res => {
+    .then((res) => {
       const meta = res.getMetaInfo()
       expect(res.id).toBe('awjobhxYPX')
       expect(meta).toHaveProperty('mode', 'test')
@@ -293,7 +293,7 @@ it('METHOD --- Order -> lineItems', async () => {
           const pageCount = col.pageCount()
           const recordCount = col.recordCount()
           expect(pageCount).toBe(4)
-          expect(recordCount).toBe(36)
+          expect(recordCount).toBe(37)
         })
     })
 })
@@ -302,7 +302,7 @@ it('METHOD --- Sku -> Prices', async () => {
   expect.assertions(4)
   return CLayer.Sku.withCredentials(blueBrandConfig)
     .find('wBeDdSgYQW')
-    .then(res => {
+    .then((res) => {
       const meta = res.getMetaInfo()
       expect(res.id).toBe('wBeDdSgYQW')
       expect(meta).toHaveProperty('mode', 'test')
@@ -311,7 +311,7 @@ it('METHOD --- Sku -> Prices', async () => {
         .withCredentials(blueBrandConfig)
         .prices()
         .all()
-        .then(col => {
+        .then((col) => {
           const pageCount = col.pageCount()
           const recordCount = col.recordCount()
           expect(pageCount).toBe(1)
@@ -348,13 +348,13 @@ it('METHOD --- Get order and update lineItems', async () => {
   expect(order.getMetaInfo()).toHaveProperty('mode', 'test')
 
   expect(lineItems.pageCount()).toBe(4)
-  expect(lineItems.recordCount()).toBe(36)
+  expect(lineItems.recordCount()).toBe(37)
 
   expect(newOrder.id).toBe('awjobhxYPX')
   expect(newOrder.getMetaInfo()).toHaveProperty('mode', 'test')
 
   expect(newLineItems.pageCount()).toBe(4)
-  expect(newLineItems.recordCount()).toBe(36)
+  expect(newLineItems.recordCount()).toBe(37)
 })
 
 it('METHOD --- CRUD lineItem', async () => {
@@ -368,7 +368,7 @@ it('METHOD --- CRUD lineItem', async () => {
   ).create({
     order,
     skuCode: 'BABYONBU000000E63E7412MX',
-    quantity: 1
+    quantity: 1,
   })
 
   await lineItem.withCredentials(blueBrandConfig).destroy()

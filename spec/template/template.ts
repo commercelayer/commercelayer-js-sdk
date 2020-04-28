@@ -8,36 +8,36 @@ export default [
       'stockItems',
       'deliveryLeadTimes',
       'skuOptions',
-      'shippingCategory'
+      'shippingCategory',
     ],
     tests: [
       {
-        type: 'toArray'
+        type: 'toArray',
       },
       {
-        type: 'size'
+        type: 'size',
       },
       {
-        type: 'associations'
+        type: 'associations',
       },
       {
         type: 'create',
         relationship: 'shippingCategory',
         data: {
           name: 'Black Men T-shirt with White Logo (UNIT-TEST)',
-          code: 'TSHIRTMM000000FFFFFFXLUNITTEST'
-        }
+          code: 'TSHIRTMM000000FFFFFFXLUNITTEST',
+        },
       },
       {
         type: 'update',
         data: {
-          description: 'Unit test'
-        }
+          description: 'Unit test',
+        },
       },
       {
-        type: 'delete'
-      }
-    ]
+        type: 'delete',
+      },
+    ],
   },
   {
     testName: 'Orders',
@@ -51,36 +51,36 @@ export default [
       'paymentSource',
       'availablePaymentMethods',
       'lineItems',
-      'shipments'
+      'shipments',
     ],
     tests: [
       {
-        type: 'toArray'
+        type: 'toArray',
       },
       {
-        type: 'size'
+        type: 'size',
       },
       {
-        type: 'associations'
+        type: 'associations',
       },
       {
         type: 'create',
         relationship: 'market',
         data: {
           shipping_country_code_lock: 'US',
-          language_code: 'en'
-        }
+          language_code: 'en',
+        },
       },
       {
         type: 'update',
         data: {
-          reference: 'UnitTest'
-        }
+          reference: 'UnitTest',
+        },
       },
       {
-        type: 'delete'
-      }
-    ]
+        type: 'delete',
+      },
+    ],
   },
   {
     testName: 'Credit Cards',
@@ -89,13 +89,13 @@ export default [
     associations: ['order'],
     tests: [
       {
-        type: 'toArray'
+        type: 'toArray',
       },
       {
-        type: 'size'
+        type: 'size',
       },
       {
-        type: 'associations'
+        type: 'associations',
       },
       {
         type: 'create',
@@ -106,16 +106,16 @@ export default [
           number: '4111111111111111',
           month: '10',
           year: '2023',
-          verification_value: '123'
-        }
+          verification_value: '123',
+        },
       },
       {
         type: 'update',
         data: {
-          first_name: 'Alessandro'
-        }
-      }
-    ]
+          first_name: 'Alessandro',
+        },
+      },
+    ],
   },
   {
     testName: 'Customer Address',
@@ -124,29 +124,29 @@ export default [
     associations: ['customer', 'address'],
     tests: [
       {
-        type: 'toArray'
+        type: 'toArray',
       },
       {
-        type: 'size'
+        type: 'size',
       },
       {
-        type: 'associations'
+        type: 'associations',
       },
       {
         type: 'create',
         relationship: ['customer', 'address'],
-        data: {}
+        data: {},
       },
       {
         type: 'update',
         data: {
-          reference: 'UNIT TEST REFERENCE'
-        }
+          reference: 'UNIT TEST REFERENCE',
+        },
       },
       {
-        type: 'delete'
-      }
-    ]
+        type: 'delete',
+      },
+    ],
   },
   {
     testName: 'Delivery lead time',
@@ -155,15 +155,15 @@ export default [
     associations: ['stockLocation', 'shippingMethod'],
     tests: [
       {
-        type: 'toArray'
+        type: 'toArray',
       },
       {
-        type: 'size'
+        type: 'size',
       },
       {
-        type: 'associations'
-      }
-    ]
+        type: 'associations',
+      },
+    ],
   },
   {
     testName: 'Inventory Models',
@@ -172,15 +172,15 @@ export default [
     associations: ['stockLevels'],
     tests: [
       {
-        type: 'toArray'
+        type: 'toArray',
       },
       {
-        type: 'size'
+        type: 'size',
       },
       {
-        type: 'associations'
-      }
-    ]
+        type: 'associations',
+      },
+    ],
   },
   {
     testName: 'Line Items',
@@ -189,32 +189,32 @@ export default [
     associations: ['order'],
     tests: [
       {
-        type: 'toArray'
+        type: 'toArray',
       },
       {
-        type: 'size'
+        type: 'size',
       },
       {
-        type: 'associations'
+        type: 'associations',
       },
       {
         type: 'create',
         relationship: ['order'],
         data: {
           quantity: '1',
-          sku_code: 'TSHIRTMM000000FFFFFFXLXX'
-        }
+          sku_code: 'TSHIRTMM000000FFFFFFXLXX',
+        },
       },
       {
         type: 'update',
         data: {
-          sku_code: 'HATBSBMU000000E63E74XXXX'
-        }
+          sku_code: 'HATBSBMU000000E63E74XXXX',
+        },
       },
       {
-        type: 'delete'
-      }
-    ]
+        type: 'delete',
+      },
+    ],
   },
   {
     testName: 'Market',
@@ -223,86 +223,86 @@ export default [
     associations: ['merchant', 'priceList', 'inventoryModel'],
     tests: [
       {
-        type: 'toArray'
+        type: 'toArray',
       },
       {
-        type: 'size'
+        type: 'size',
       },
       {
-        type: 'associations'
+        type: 'associations',
       },
       {
         type: 'create',
         relationship: ['merchant', 'priceList', 'inventoryModel'],
         data: {
-          name: 'Market UNIT TEST'
-        }
+          name: 'Market UNIT TEST',
+        },
       },
       {
         type: 'update',
         data: {
-          reference: 'UNIT TEST REFERENCE'
-        }
+          reference: 'UNIT TEST REFERENCE',
+        },
       },
       {
-        type: 'delete'
-      }
-    ]
+        type: 'delete',
+      },
+    ],
   },
-  {
-    testName: 'GiftCard',
-    belongsToClass: '',
-    className: 'GiftCard',
-    associations: ['market', 'giftCardRecepients'],
-    tests: [
-      {
-        type: 'toArray'
-      },
-      {
-        type: 'size'
-      },
-      {
-        type: 'create',
-        data: {
-          currencyCode: 'USD',
-          balanceCents: 15000
-        }
-      },
-      {
-        type: 'update',
-        data: {
-          balanceCents: 20000
-        }
-      },
-      {
-        type: 'delete'
-      }
-    ]
-  },
-  {
-    testName: 'GiftCardRecepient',
-    // belongsToClass: '',
-    className: 'GiftCardRecipient',
-    // associations: '',
-    tests: [
-      {
-        type: 'toArray'
-      },
-      {
-        type: 'create',
-        data: {
-          email: 'alessandro@commercelayer.io'
-        }
-      },
-      {
-        type: 'update',
-        data: {
-          email: 'acasazza@commercelayer.io'
-        }
-      },
-      {
-        type: 'delete'
-      }
-    ]
-  }
+  // {
+  //   testName: 'GiftCard',
+  //   belongsToClass: '',
+  //   className: 'GiftCard',
+  //   associations: ['market', 'giftCardRecepients'],
+  //   tests: [
+  //     {
+  //       type: 'toArray'
+  //     },
+  //     {
+  //       type: 'size'
+  //     },
+  //     {
+  //       type: 'create',
+  //       data: {
+  //         currencyCode: 'USD',
+  //         balanceCents: 15000
+  //       }
+  //     },
+  //     {
+  //       type: 'update',
+  //       data: {
+  //         balanceCents: 20000
+  //       }
+  //     },
+  //     {
+  //       type: 'delete'
+  //     }
+  //   ]
+  // },
+  // {
+  //   testName: 'GiftCardRecepient',
+  //   // belongsToClass: '',
+  //   className: 'GiftCardRecipient',
+  //   // associations: '',
+  //   tests: [
+  //     {
+  //       type: 'toArray'
+  //     },
+  //     {
+  //       type: 'create',
+  //       data: {
+  //         email: 'alessandro@commercelayer.io'
+  //       }
+  //     },
+  //     {
+  //       type: 'update',
+  //       data: {
+  //         email: 'acasazza@commercelayer.io'
+  //       }
+  //     },
+  //     {
+  //       type: 'delete'
+  //     }
+  //   ]
+  // }
 ]
