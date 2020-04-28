@@ -269,7 +269,6 @@ ExtendLibrary.afterRequest(function() {
     this.constructor.__links = null
     this.constructor.singleRequest = false
     this.constructor.cache = ''
-    debugger
   }
 })
 
