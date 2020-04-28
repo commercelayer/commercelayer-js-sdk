@@ -194,6 +194,11 @@ export interface CreateResource<R = any> {
   createResource<R>(resource: Base): BaseResource<R>
 }
 
+type PermittedCacheResource = {
+  collectionName: string
+  method: 'get'
+}
+
 export default interface Library extends CreateResource {
   customRequests: {
     [key: string]: {
@@ -205,6 +210,8 @@ export default interface Library extends CreateResource {
   interface: {
     toCamelCase: <T extends any>(value: T) => T
   }
+  cache: boolean
+  permittedCache: PermittedCacheResource[]
   singleRequest: boolean
   baseUrl: string
   headers: {

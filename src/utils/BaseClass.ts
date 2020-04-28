@@ -48,7 +48,7 @@ class BaseClass extends library.Base {
     // @ts-ignore
     return super.association(name)
   }
-  withCredentials({ accessToken, endpoint }: InitConfig) {
+  withCredentials({ accessToken, endpoint, cache }: InitConfig) {
     // @ts-ignore
     this.constructor.includeMetaInfo()
     // @ts-ignore
@@ -68,17 +68,19 @@ class BaseClass extends library.Base {
     }
     // @ts-ignore
     this.constructor.resourceLibrary.headers = {
-      Authorization: `Bearer ${accessToken}`
+      Authorization: `Bearer ${accessToken}`,
     }
     // @ts-ignore
     this.__links = {
       // @ts-ignore
       related: `${endpoint}/api/${this.constructor.queryName}`,
       // @ts-ignore
-      self: `${endpoint}/api/${this.constructor.queryName}/${this.id}`
+      self: `${endpoint}/api/${this.constructor.queryName}/${this.id}`,
     }
     // @ts-ignore
     this.constructor.singleRequest = true
+    // @ts-ignore
+    this.constructor.cache = cache
     return this
   }
 }
