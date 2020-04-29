@@ -101,6 +101,18 @@ class ExtendLibrary extends library.Base {
     // @ts-ignore
     return this.where({ cache: this.cache }).offset(value)
   }
+  static nextPagePromise() {
+    // @ts-ignore
+    this.includeMetaInfo(this.interface().axios.interceptors)
+    // @ts-ignore
+    return this.where({ cache: this.cache }).nextPagePromise()
+  }
+  static prevPage() {
+    // @ts-ignore
+    this.includeMetaInfo(this.interface().axios.interceptors)
+    // @ts-ignore
+    return this.where({ cache: this.cache }).prevPage()
+  }
   static where(options: object): any {
     // @ts-ignore
     let newOptions = {}
@@ -120,6 +132,10 @@ class ExtendLibrary extends library.Base {
     } else {
       newOptions = {
         q: { ...options },
+      }
+      if (this.cache !== '') {
+        // @ts-ignore
+        newOptions['cache'] = this.cache
       }
     }
     // @ts-ignore
@@ -305,11 +321,13 @@ CollectionResponse.prototype.recordCount = function() {
 CollectionResponse.prototype.withCredentials = function({
   accessToken,
   endpoint,
+  cache,
 }: InitConfig) {
   library.headers = {
     Authorization: `Bearer ${accessToken}`,
   }
   library.singleRequest = true
+  library.cache = cache
   return this
 }
 
