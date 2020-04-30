@@ -367,14 +367,13 @@ it('METHOD --- CRUD lineItem', async () => {
     blueBrandConfig
   ).create({
     order,
-    skuCode: 'BABYONBU000000E63E7412MX',
+    skuCode: 'BABYONBU000000E63E746MXX',
     quantity: 1,
   })
 
-  await lineItem.withCredentials(blueBrandConfig).destroy()
-
   expect(order.id).toBe('awjobhxYPX')
   expect(order.getMetaInfo()).toHaveProperty('mode', 'test')
-
   expect(lineItem.getMetaInfo()).toHaveProperty('mode', 'test')
+
+  await lineItem.withCredentials(blueBrandConfig).destroy()
 })

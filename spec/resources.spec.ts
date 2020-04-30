@@ -5,7 +5,6 @@ import template from './template/template'
 import * as path from 'path'
 
 const RECORD = process.env.RECORD === 'true'
-console.log('RECORD ---> :', RECORD)
 let xhrResponse: any = []
 const fixturesPath = path.join(__dirname, 'fixtures', 'fixtures.json')
 const checkPath = existsSync(fixturesPath)
@@ -16,11 +15,11 @@ if (checkPath && !RECORD) {
 beforeAll(async () => {
   if (RECORD) {
     const {
-      data: { access_token }
+      data: { access_token },
     } = await getTokenBlueBrand()
     CLayer.init({
       accessToken: access_token,
-      endpoint: 'https://the-blue-brand-2.commercelayer.co'
+      endpoint: 'https://the-blue-brand-2.commercelayer.co',
     })
   }
 })
@@ -61,7 +60,7 @@ template.map(async (d: any) => {
         const data: any = {
           testName: d.testName,
           attributes: {},
-          relationships: {}
+          relationships: {},
         }
         data.attributes = firstCl.attributes()
         if (d.associations) {
@@ -98,7 +97,7 @@ template.map(async (d: any) => {
             })
           case 'create':
             const attributes = {
-              ...t.data
+              ...t.data,
             }
             if (t.relationship) {
               if (Array.isArray(bTo)) {
