@@ -4,19 +4,22 @@ import CreditCard, { CreditCardCollection } from './CreditCard'
 import CustomerAddress, { CustomerAddressCollection } from './CustomerAddress'
 import CustomerGroup, { CustomerGroupCollection } from './CustomerGroup'
 import CustomerPasswordReset, {
-  CustomerPasswordResetCollection
+  CustomerPasswordResetCollection,
 } from './CustomerPasswordReset'
 import CustomerPaymentSource, {
-  CustomerPaymentSourceCollection
+  CustomerPaymentSourceCollection,
 } from './CustomerPaymentSource'
 import CustomerSubscription, {
-  CustomerSubscriptionCollection
+  CustomerSubscriptionCollection,
 } from './CustomerSubscription'
 import Customer, { CustomerCollection } from './Customer'
 import DeliveryLeadTime, {
-  DeliveryLeadTimeCollection
+  DeliveryLeadTimeCollection,
 } from './DeliveryLeadTime'
 import Import, { ImportCollection } from './Import'
+import InStockSubscription, {
+  InStockSubscriptionCollection,
+} from './InStockSubscription'
 import InventoryModel, { InventoryModelCollection } from './InventoryModel'
 import LineItemOption, { LineItemOptionCollection } from './LineItemOption'
 import LineItem, { LineItemCollection } from './LineItem'
@@ -31,12 +34,14 @@ import Price, { PriceCollection } from './Price'
 import PriceList, { PriceListCollection } from './PriceList'
 import Shipment, { ShipmentCollection } from './Shipment'
 import ShippingCategory, {
-  ShippingCategoryCollection
+  ShippingCategoryCollection,
 } from './ShippingCategory'
 import ShippingMethod, { ShippingMethodCollection } from './ShippingMethod'
 import ShippingZone, { ShippingZoneCollection } from './ShippingZone'
 import SkuOption, { SkuOptionCollection } from './SkuOption'
 import Sku, { SkuCollection, InventoryCollection } from './Sku'
+import SkuList, { SkuListCollection } from './SkuList'
+import SkuListItem, { SkuListItemCollection } from './SkuListItem'
 import StockItem, { StockItemCollection } from './StockItem'
 import StockLevel, { StockLevelCollection } from './StockLevel'
 import StockLocation, { StockLocationCollection } from './StockLocation'
@@ -49,17 +54,17 @@ import Item, { ItemCollection } from './Item'
 import Attachable, { AttachableCollection } from './Attachable'
 import GiftCard, { GiftCardCollection } from './GiftCard'
 import GiftCardRecipient, {
-  GiftCardRecipientCollection
+  GiftCardRecipientCollection,
 } from './GiftCardRecipient'
 import AdyenPayment, { AdyenPaymentCollection } from './AdyenPayment'
 import BraintreePayment, {
-  BraintreePaymentCollection
+  BraintreePaymentCollection,
 } from './BraintreePayment'
 import StripePayment, { StripePaymentCollection } from './StripePayment'
 import Library, {
   Collection,
   CollectionResponse,
-  BaseResource
+  BaseResource,
 } from './@types/Library'
 
 export {
@@ -84,6 +89,7 @@ export {
   GiftCardCollection,
   GiftCardRecipientCollection,
   ImportCollection,
+  InStockSubscriptionCollection,
   InventoryModelCollection,
   LineItemCollection,
   LineItemOptionCollection,
@@ -102,6 +108,8 @@ export {
   ShippingMethodCollection,
   ShippingZoneCollection,
   SkuCollection,
+  SkuListCollection,
+  SkuListItemCollection,
   InventoryCollection,
   SkuOptionCollection,
   StockItemCollection,
@@ -109,7 +117,7 @@ export {
   StockLocationCollection,
   StripePaymentCollection,
   WebhookCollection,
-  WireTransferCollection
+  WireTransferCollection,
 }
 
 export interface CLayer {
@@ -131,6 +139,7 @@ export interface CLayer {
   GiftCard: BaseResource<GiftCardCollection>
   GiftCardRecipient: BaseResource<GiftCardRecipientCollection>
   Import: BaseResource<ImportCollection>
+  InStockSubscription: BaseResource<InStockSubscriptionCollection>
   InventoryModel: BaseResource<InventoryModelCollection>
   Item: BaseResource<ItemCollection>
   LineItemOption: BaseResource<LineItemOptionCollection>
@@ -151,6 +160,8 @@ export interface CLayer {
   ShippingZone: BaseResource<ShippingZoneCollection>
   SkuOption: BaseResource<SkuOptionCollection>
   Sku: BaseResource<SkuCollection>
+  SkuList: BaseResource<SkuListCollection>
+  SkuListItem: BaseResource<SkuListItemCollection>
   StockItem: BaseResource<StockItemCollection>
   StockLevel: BaseResource<StockLevelCollection>
   StockLocation: BaseResource<StockLocationCollection>
@@ -177,6 +188,7 @@ const CLayer: CLayer = {
   GiftCard,
   GiftCardRecipient,
   Import,
+  InStockSubscription,
   InventoryModel,
   Item,
   LineItemOption,
@@ -197,12 +209,14 @@ const CLayer: CLayer = {
   ShippingZone,
   SkuOption,
   Sku,
+  SkuList,
+  SkuListItem,
   StockItem,
   StockLevel,
   StockLocation,
   StripePayment,
   Webhook,
-  WireTransfer
+  WireTransfer,
 }
 
 const initCLayer = init
@@ -251,7 +265,7 @@ export {
   StockLocation,
   StripePayment,
   Webhook,
-  WireTransfer
+  WireTransfer,
 }
 
 export default CLayer
