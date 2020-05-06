@@ -195,7 +195,7 @@ export interface CreateResource<R = any> {
 }
 
 type PermittedCacheResource = {
-  collectionName: string
+  queryName: string
   method: 'get'
 }
 

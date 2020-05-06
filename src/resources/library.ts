@@ -18,9 +18,9 @@ const library: Library = createResourceLibrary(
 library['customRequests'] = {}
 library['cache'] = false
 library['permittedCache'] = [
-  { method: 'get', collectionName: 'SkuCollection' },
-  { method: 'get', collectionName: 'PriceCollection' },
-  { method: 'get', collectionName: 'StockItemCollection' },
+  { method: 'get', queryName: 'skus' },
+  { method: 'get', queryName: 'prices' },
+  { method: 'get', queryName: 'stock_items' },
 ]
 
 const cleanUrl = (url: string) => {
@@ -31,10 +31,12 @@ const cleanUrl = (url: string) => {
   return url
 }
 
-const cacheAllowed = (collectionName: string, method: string): boolean => {
+const cacheAllowed = (queryName: string, method: string): boolean => {
+  console.log('queryName, method', queryName, method)
   const check = library.permittedCache.filter((c) => {
-    return c.method === method && c.collectionName === collectionName
+    return c.method === method && c.queryName === queryName
   })
+  console.log('check', check, library.permittedCache)
   return !!_.first(check)
 }
 class ExtendLibrary extends library.Base {
@@ -192,25 +194,31 @@ class ExtendLibrary extends library.Base {
     const interceptResp = interceptors?.response
     const interceptReq = interceptors?.request
     const respHandlers = interceptResp?.handlers
-    interceptReq.handlers.shift()
-    interceptReq.use((config: any) => {
-      let cache = library.cache
-      const singleCache =
-        !_.isEmpty(config.params) && _.has(config.params, 'filter.cache')
-      if (singleCache) {
-        cache = config.params['filter']['cache']
-        delete config.params['filter']['cache']
+    interceptReq.use(
+      function(config: any) {
+        let cache = library.cache
+        const singleCache =
+          !_.isEmpty(config.params) && _.has(config.params, 'filter.cache')
+        if (singleCache) {
+          cache = config.params['filter']['cache']
+          delete config.params['filter']['cache']
+        }
+        const url = cleanUrl(config.url)
+        const collectionName = classThis.queryName
+        const method = config.method
+        const isAllowed = cacheAllowed(collectionName, method)
+        if (cache && isAllowed) {
+          config.url = url
+          config.params['cache'] = cache
+        }
+        console.log('SDK request', config, isAllowed, cache)
+        return config
+      },
+      function(error: any) {
+        // Do something with request error
+        return Promise.reject(error)
       }
-      const url = cleanUrl(config.url)
-      const collectionName = classThis.name
-      const method = config.method
-      const isAllowed = cacheAllowed(collectionName, method)
-      if (cache && isAllowed) {
-        config.url = url
-        config.params['cache'] = cache
-      }
-      return config
-    })
+    )
     if (respHandlers?.length === 1) {
       interceptResp.handlers.shift()
       interceptResp.use(

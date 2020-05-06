@@ -4,7 +4,7 @@
     "baseUrl": "./src/",
     "sourceMap": true,
     "noImplicitAny": false,
-    "target": "es5",
+    "target": "ES2016",
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "module": "esnext",
