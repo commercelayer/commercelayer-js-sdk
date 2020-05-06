@@ -31,9 +31,9 @@ const cleanUrl = (url: string) => {
   return url
 }
 
-const cacheAllowed = (queryName: string, method: string): boolean => {
+const cacheAllowed = (url: string, method: string): boolean => {
   const check = library.permittedCache.filter((c) => {
-    return c.method === method && c.queryName === queryName
+    return c.method === method && url.search(`/api/${c.queryName}`) !== -1
   })
   return !!_.first(check)
 }
@@ -202,9 +202,8 @@ class ExtendLibrary extends library.Base {
           delete config.params['filter']['cache']
         }
         const url = cleanUrl(config.url)
-        const collectionName = classThis.queryName
         const method = config.method
-        const isAllowed = cacheAllowed(collectionName, method)
+        const isAllowed = cacheAllowed(url, method)
         if (cache && isAllowed) {
           config.url = url
           config.params['cache'] = cache
