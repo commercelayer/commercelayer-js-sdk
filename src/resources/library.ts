@@ -32,11 +32,9 @@ const cleanUrl = (url: string) => {
 }
 
 const cacheAllowed = (queryName: string, method: string): boolean => {
-  console.log('queryName, method', queryName, method)
   const check = library.permittedCache.filter((c) => {
     return c.method === method && c.queryName === queryName
   })
-  console.log('check', check, library.permittedCache)
   return !!_.first(check)
 }
 class ExtendLibrary extends library.Base {
@@ -211,7 +209,6 @@ class ExtendLibrary extends library.Base {
           config.url = url
           config.params['cache'] = cache
         }
-        console.log('SDK request', config, isAllowed, cache)
         return config
       },
       function(error: any) {
