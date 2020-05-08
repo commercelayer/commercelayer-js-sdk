@@ -8,7 +8,7 @@ export class AdyenPaymentCollection extends BaseClass {
   paymentRequestDetails: object
   paymentResponse: object
   Authorize: boolean
-  Details: boolean
+  _details: boolean
   id: string
   createdAt: Date
   updatedAt: Date
@@ -20,8 +20,8 @@ export class AdyenPaymentCollection extends BaseClass {
       'paymentRequestData',
       'paymentRequestDetails',
       'paymentResponse',
-      'Authorize',
-      'Details',
+      '_authorize',
+      '_details',
       'id',
       'createdAt',
       'updatedAt',

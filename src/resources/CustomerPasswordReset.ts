@@ -6,7 +6,7 @@ export class CustomerPasswordResetCollection extends BaseClass {
   customerEmail: string
   resetPasswordToken: string
   customerPassword: string
-  ResetPasswordToken: string
+  _resetPasswordToken: string
   resetPasswordAt: Date
   id: string
   createdAt: Date
@@ -18,7 +18,7 @@ export class CustomerPasswordResetCollection extends BaseClass {
       'customerEmail',
       'resetPasswordToken',
       'customerPassword',
-      'ResetPasswordToken',
+      '_resetPasswordToken',
       'resetPasswordAt',
       'id',
       'createdAt',

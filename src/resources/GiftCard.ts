@@ -38,10 +38,10 @@ export class GiftCardCollection extends BaseClass {
   expiresAt: Date
   referenceOrigin: string
   recipientEmail: string
-  Purchase: number
-  Activate: number
-  Deactivate: number
-  BalanceChangeCents: number
+  _purchase: number
+  _activate: number
+  _deactivate: number
+  _balanceChangeCents: number
   id: string
   createdAt: Date
   updatedAt: Date
@@ -68,10 +68,10 @@ export class GiftCardCollection extends BaseClass {
       'expiresAt',
       'referenceOrigin',
       'recipientEmail',
-      'Purchase',
-      'Activate',
-      'Deactivate',
-      'BalanceChangeCents',
+      '_purchase',
+      '_activate',
+      '_deactivate',
+      '_balanceChangeCents',
       'id',
       'createAt',
       'updateAt',

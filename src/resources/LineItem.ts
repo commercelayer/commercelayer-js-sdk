@@ -13,7 +13,7 @@ export class LineItemCollection extends BaseClass {
   formattedTotalAmount: string
   reference: string
   skuCode: string
-  UpdateQuantity: string
+  _updateQuantity: string
   currencyCode: string
   unitAmountCents: number
   unitAmountFloat: number
@@ -34,7 +34,7 @@ export class LineItemCollection extends BaseClass {
     this.attributes(
       'skuCode',
       'quantity',
-      'UpdateQuantity',
+      '_updateQuantity',
       'currencyCode',
       'unitAmountCents',
       'unitAmountFloat',

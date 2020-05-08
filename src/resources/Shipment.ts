@@ -13,14 +13,14 @@ export class ShipmentCollection extends BaseClass {
   costAmountCents: number
   costAmountFloat: number
   formattedCostAmount: string
-  OnHold: number
-  Picking: number
-  Packing: number
-  ReadyToShip: number
-  Ship: number
-  GetRates: number
+  _onHold: number
+  _picking: number
+  _packing: number
+  _readyToShip: number
+  _ship: number
+  _getRates: number
   selectedRateId: string
-  Purchase: number
+  _purchase: number
   id: string
   createdAt: Date
   updatedAt: Date
@@ -36,16 +36,16 @@ export class ShipmentCollection extends BaseClass {
       'status',
       'currencyCode',
       'costAmountCents',
-      'costAmount_float',
+      'costAmountFloat',
       'formattedCostAmount',
-      'OnHold',
-      'Picking',
-      'Packing',
-      'ReadyToShip',
-      'Ship',
-      'GetRates',
+      '_onHold',
+      '_picking',
+      '_packing',
+      '_readyToShip',
+      '_ship',
+      '_getRates',
       'selectedRateId',
-      'Purchase',
+      '_purchase',
       'id',
       'createdAt',
       'updatedAt',
