@@ -48,20 +48,6 @@
     "ecommerce",
     "api"
   ],
-  "jest": {
-    "testEnvironment": "node",
-    "setupFiles": [
-      "dotenv/config"
-    ],
-    "moduleFileExtensions": [
-      "ts",
-      "js"
-    ],
-    "transform": {
-      "\\.(ts|js|snap)$": "ts-jest"
-    },
-    "testTimeout": 50000
-  },
   "dependencies": {
     "active-resource": "^1.0.0-beta.7"
   },
@@ -69,27 +55,29 @@
     "@babel/core": "^7.9.6",
     "@babel/polyfill": "^7.8.7",
     "@babel/preset-env": "^7.9.6",
+    "@babel/preset-typescript": "^7.9.0",
     "@commercelayer/js-auth": "^2.0.2",
     "@types/axios": "^0.14.0",
     "@types/jest": "^25.2.1",
     "@types/lodash": "^4.14.150",
     "@types/mocha": "^7.0.2",
+    "babel-jest": "^26.0.1",
     "babel-loader": "^8.1.0",
     "dotenv": "^8.2.0",
-    "dotenv-webpack": "^1.7.0",
+    "dotenv-webpack": "^1.8.0",
     "fs": "0.0.2",
-    "jest": "^25.5.2",
+    "jest": "^26.0.1",
     "jest-snapshot-parser": "^1.0.0",
     "lodash": "^4.17.15",
     "path": "^0.12.7",
     "rollup-plugin-babel": "^4.4.0",
-    "ts-jest": "^25.4.0",
-    "ts-loader": "^7.0.2",
+    "ts-jest": "^25.5.1",
+    "ts-loader": "^7.0.4",
     "tsdx": "^0.13.2",
     "typescript": "^3.8.3",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3",
+    "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^4.2.2"
   }
 }
