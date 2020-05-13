@@ -74,7 +74,7 @@
     "ts-jest": "^25.5.1",
     "ts-loader": "^7.0.4",
     "tsdx": "^0.13.2",
-    "typescript": "^3.8.3",
+    "typescript": "^3.9.2",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0",
