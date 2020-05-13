@@ -151,7 +151,7 @@ export interface CollectionResponse<T = any> {
 }
 
 // TODO Add CollectionProxy ex: order.lineItems()
-export interface CollectionProxy<P> {
+export interface CollectionProxy<P> extends Pick<BaseResource<P>, 'where'> {
   all(): Promise<CollectionResponse<P>>
   load(): Promise<CollectionResponse<P>>
   empty(): boolean

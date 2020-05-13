@@ -1,5 +1,7 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
+import { LineItemCollection } from './LineItem'
+import { SkuOptionCollection } from './SkuOption'
 
 export class LineItemOptionCollection extends BaseClass {
   static className = 'LineItemOption'
@@ -20,6 +22,8 @@ export class LineItemOptionCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
+  lineItem: () => Promise<LineItemCollection>
+  skuOption: () => Promise<SkuOptionCollection>
   static define() {
     this.attributes(
       'name',

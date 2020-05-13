@@ -5,6 +5,7 @@ import { OrderCollection } from './Order'
 import { CustomerSubscriptionCollection } from './CustomerSubscription'
 import { CustomerAddressCollection } from './CustomerAddress'
 import { CustomerPaymentSourceCollection } from './CustomerPaymentSource'
+import { CustomerGroupCollection } from './CustomerGroup'
 
 export class CustomerCollection extends BaseClass {
   static className = 'Customer'
@@ -20,6 +21,7 @@ export class CustomerCollection extends BaseClass {
   customerPaymentSources: () => CollectionProxy<CustomerPaymentSourceCollection>
   customerSubscriptions: () => CollectionProxy<CustomerSubscriptionCollection>
   orders: () => CollectionProxy<OrderCollection>
+  customerGroup: () => Promise<CustomerGroupCollection>
   static define() {
     this.attributes(
       'email',
@@ -36,7 +38,7 @@ export class CustomerCollection extends BaseClass {
 
     this.hasMany('customerAddresses', { className: 'CustomerAddress' })
     this.hasMany('customerPaymentSources', {
-      className: 'CustomerPaymentSource'
+      className: 'CustomerPaymentSource',
     })
     this.hasMany('customerSubscriptions', { className: 'CustomerSubscription' })
     this.hasMany('orders', { className: 'Order' })

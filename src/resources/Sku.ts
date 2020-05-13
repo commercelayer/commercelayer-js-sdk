@@ -5,6 +5,7 @@ import { PriceCollection } from './Price'
 import { SkuOptionCollection } from './SkuOption'
 import { DeliveryLeadTimeCollection } from './DeliveryLeadTime'
 import { StockItemCollection } from './StockItem'
+import { ShippingCategoryCollection } from './ShippingCategory'
 
 export interface InventoryCollection {
   available: boolean
@@ -34,10 +35,6 @@ export interface InventoryCollection {
 
 export class SkuCollection extends BaseClass {
   static className = 'Sku'
-  prices: () => CollectionProxy<PriceCollection>
-  stockItems: () => CollectionProxy<StockItemCollection>
-  deliveryLeadTimes: () => CollectionProxy<DeliveryLeadTimeCollection>
-  skuOptions: () => CollectionProxy<SkuOptionCollection>
   code: string
   name: string
   description: string
@@ -52,6 +49,11 @@ export class SkuCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
+  shippingCategory: () => Promise<SkuCollection>
+  prices: () => CollectionProxy<PriceCollection>
+  stockItems: () => CollectionProxy<StockItemCollection>
+  deliveryLeadTimes: () => CollectionProxy<DeliveryLeadTimeCollection>
+  skuOptions: () => CollectionProxy<SkuOptionCollection>
   static define() {
     this.attributes(
       'code',
@@ -70,7 +72,6 @@ export class SkuCollection extends BaseClass {
       'metadata'
     )
     this.hasOne('shippingCategory', { className: 'ShippingCategory' })
-
     this.hasMany('prices', { className: 'Price' })
     this.hasMany('stockItems', { className: 'StockItem' })
     this.hasMany('deliveryLeadTimes', { className: 'DeliveryLeadTime' })

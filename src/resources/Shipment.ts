@@ -4,6 +4,9 @@ import { CollectionProxy } from './@types/Library'
 import { ShippingMethodCollection } from './ShippingMethod'
 import { ParcelCollection } from './Parcel'
 import { AttachmentCollection } from './Attachment'
+import { ShippingCategoryCollection } from './ShippingCategory'
+import { StockLocationCollection } from './StockLocation'
+import { AddressCollection } from './Address'
 
 export class ShipmentCollection extends BaseClass {
   static className = 'Shipment'
@@ -26,6 +29,10 @@ export class ShipmentCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
+  shippingCategory: () => Promise<ShippingCategoryCollection>
+  stockLocation: () => Promise<StockLocationCollection>
+  shippingAddress: () => Promise<AddressCollection>
+  shippingMethod: () => Promise<ShippingMethodCollection>
   shipmentLineItems: () => CollectionProxy<any>
   availableShippingMethods: () => CollectionProxy<ShippingMethodCollection>
   parcels: () => CollectionProxy<ParcelCollection>

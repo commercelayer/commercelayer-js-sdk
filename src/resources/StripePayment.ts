@@ -1,5 +1,6 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
+import { OrderCollection } from './Order'
 
 export class StripePaymentCollection extends BaseClass {
   static className = 'StripePayment'
@@ -9,7 +10,7 @@ export class StripePaymentCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   metadata: object
-  destroy: () => Promise<any>
+  order: () => Promise<OrderCollection>
   static define() {
     this.attributes(
       'clientSecret',

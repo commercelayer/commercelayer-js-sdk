@@ -11,6 +11,7 @@ export class AttachmentCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
+  attachable: () => Promise<AttachmentCollection>
   static define() {
     this.attributes(
       'name',

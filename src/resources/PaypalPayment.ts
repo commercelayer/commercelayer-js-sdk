@@ -1,5 +1,6 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
+import { OrderCollection } from './Order'
 
 export class PaypalPaymentCollection extends BaseClass {
   static className = 'PaypalPayment'
@@ -16,6 +17,7 @@ export class PaypalPaymentCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
+  order: () => Promise<OrderCollection>
   static define() {
     this.attributes(
       'returnUrl',

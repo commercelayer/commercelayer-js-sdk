@@ -1,5 +1,6 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
+import { MarketCollection } from './Market'
 
 export class SkuOptionCollection extends BaseClass {
   static className = 'SkuOption'
@@ -16,6 +17,7 @@ export class SkuOptionCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
+  market: () => Promise<MarketCollection>
   static define() {
     this.attributes(
       'name',

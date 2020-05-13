@@ -4,10 +4,6 @@ import { CustomerCollection } from './Customer'
 
 export class GiftCardRecipientCollection extends BaseClass {
   static className = 'GiftCardRecipient'
-  assignCustomer: (value: CustomerCollection) => CustomerCollection
-  createCustomer: (value?: CustomerCollection) => Promise<CustomerCollection>
-  updateCustomer: (value?: CustomerCollection) => Promise<CustomerCollection>
-  customer: () => CustomerCollection
   email: string
   firstName: string
   lastName: string
@@ -17,6 +13,7 @@ export class GiftCardRecipientCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
+  customer: () => Promise<CustomerCollection>
   static define() {
     this.attributes(
       'email',

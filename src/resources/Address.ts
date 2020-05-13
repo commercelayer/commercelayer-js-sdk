@@ -1,5 +1,6 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
+import { GeocoderCollection } from './Geocoder'
 
 export class AddressCollection extends BaseClass {
   static className = 'Address'
@@ -32,6 +33,7 @@ export class AddressCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
+  geocoder: () => Promise<GeocoderCollection>
   static define() {
     this.attributes(
       'business',

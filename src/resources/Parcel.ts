@@ -1,6 +1,8 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
 import { CollectionProxy } from './@types/Library'
+import { ShipmentCollection } from './Shipment'
+import { LineItemCollection } from './LineItem'
 
 export class ParcelCollection extends BaseClass {
   static className = 'Parcel'
@@ -32,7 +34,8 @@ export class ParcelCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
-  parcelLineItems: () => CollectionProxy<any>
+  shipment: () => Promise<ShipmentCollection>
+  parcelLineItems: () => CollectionProxy<LineItemCollection>
   static define() {
     this.attributes(
       'number',
@@ -66,7 +69,7 @@ export class ParcelCollection extends BaseClass {
     )
 
     this.hasOne('shipment', { className: 'Shipment' })
-    this.hasMany('parcelLineItems', { className: 'ParcelLineItem' })
+    this.hasMany('parcelLineItems', { className: 'LineItem' })
   }
 }
 

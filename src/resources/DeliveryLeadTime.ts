@@ -1,5 +1,7 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
+import { StockLocationCollection } from './StockLocation'
+import { ShippingMethodCollection } from './ShippingMethod'
 
 export class DeliveryLeadTimeCollection extends BaseClass {
   static className = 'DeliveryLeadTime'
@@ -12,6 +14,8 @@ export class DeliveryLeadTimeCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
+  stockLocation: () => Promise<StockLocationCollection>
+  shippingMethod: () => Promise<ShippingMethodCollection>
   static define() {
     this.attributes(
       'minHours',

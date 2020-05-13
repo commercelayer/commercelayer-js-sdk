@@ -1,5 +1,9 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
+import { MarketCollection } from './Market'
+import { ShippingZoneCollection } from './ShippingZone'
+import { ShippingCategoryCollection } from './ShippingCategory'
+import { DeliveryLeadTimeCollection } from './DeliveryLeadTime'
 
 export class ShippingMethodCollection extends BaseClass {
   static className = 'ShippingMethod'
@@ -20,7 +24,10 @@ export class ShippingMethodCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
-
+  market: () => Promise<MarketCollection>
+  shippingZone: () => Promise<ShippingZoneCollection>
+  shippingCategory: () => Promise<ShippingCategoryCollection>
+  deliveryLeadTime: () => Promise<DeliveryLeadTimeCollection>
   static define() {
     this.attributes(
       'name',
@@ -46,7 +53,7 @@ export class ShippingMethodCollection extends BaseClass {
     this.hasOne('shippingZone', { className: 'ShippingZone' })
     this.hasOne('shippingCategory', { className: 'ShippingCategory' })
     this.hasOne('deliveryLeadTimeForShipment', {
-      className: 'DeliveryLeadTime'
+      className: 'DeliveryLeadTime',
     })
   }
 }

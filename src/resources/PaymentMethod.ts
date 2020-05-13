@@ -1,5 +1,6 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
+import { MarketCollection } from './Market'
 
 export class PaymentMethodCollection extends BaseClass {
   static className = 'PaymentMethod'
@@ -14,6 +15,8 @@ export class PaymentMethodCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
+  market: () => Promise<MarketCollection>
+  paymentMethod: () => Promise<PaymentMethodCollection>
   static define() {
     this.attributes(
       'paymentSourceType',

@@ -5,20 +5,6 @@ import { GiftCardRecipientCollection } from './GiftCardRecipient'
 
 export class GiftCardCollection extends BaseClass {
   static className = 'GiftCard'
-  assignMarket: (value: MarketCollection) => MarketCollection
-  createMarket: (value?: MarketCollection) => Promise<MarketCollection>
-  updateMarket: (value?: MarketCollection) => Promise<MarketCollection>
-  assignGiftCardRecipient: (
-    value: GiftCardRecipientCollection
-  ) => Promise<GiftCardRecipientCollection>
-  createGiftCardRecipient: (
-    value?: GiftCardRecipientCollection
-  ) => Promise<GiftCardRecipientCollection>
-  updateGiftCardRecipient: (
-    value?: GiftCardRecipientCollection
-  ) => Promise<GiftCardRecipientCollection>
-  market: () => MarketCollection
-  giftCardRecipient: () => GiftCardRecipientCollection
   status: string
   code: string
   currencyCode: string
@@ -47,6 +33,8 @@ export class GiftCardCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
+  market: () => Promise<MarketCollection>
+  giftCardRecipient: () => Promise<GiftCardRecipientCollection>
   static define() {
     this.attributes(
       'status',

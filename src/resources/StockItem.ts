@@ -1,5 +1,7 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
+import { StockLocationCollection } from './StockLocation'
+import { SkuCollection } from './Sku'
 
 export class StockItemCollection extends BaseClass {
   static className = 'StockItem'
@@ -10,6 +12,8 @@ export class StockItemCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
+  stockLocation: () => Promise<StockLocationCollection>
+  sku: () => Promise<SkuCollection>
   static define() {
     this.attributes(
       'skuCode',

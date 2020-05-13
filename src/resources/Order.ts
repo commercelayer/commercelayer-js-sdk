@@ -7,6 +7,10 @@ import { PaymentMethodCollection } from './PaymentMethod'
 import { MarketCollection } from './Market'
 import { CustomerCollection } from './Customer'
 import { AddressCollection } from './Address'
+import { AdyenPaymentCollection } from './AdyenPayment'
+import { BraintreePaymentCollection } from './BraintreePayment'
+import { StripePaymentCollection } from './StripePayment'
+import { PaypalPaymentCollection } from './PaypalPayment'
 
 export class OrderCollection extends BaseClass {
   static className = 'Order'
@@ -113,17 +117,20 @@ export class OrderCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
-  loadLineItems: () => CollectionProxy<LineItemCollection>
-  loadAvailablePaymentMethods: () => CollectionProxy<PaymentMethodCollection>
-  loadShipments: () => CollectionProxy<ShipmentCollection>
+  market: () => Promise<MarketCollection>
+  customer: () => Promise<CustomerCollection>
+  shippingAddress: () => Promise<AddressCollection>
+  billingAddress: () => Promise<AddressCollection>
+  paymentMethod: () => Promise<PaymentMethodCollection>
   lineItems: () => CollectionProxy<LineItemCollection>
   availablePaymentMethods: () => CollectionProxy<PaymentMethodCollection>
   shipments: () => CollectionProxy<ShipmentCollection>
-  buildMarket: () => Collection<MarketCollection>
-  buildCustomer: () => Collection<CustomerCollection>
-  buildShippingAddress: () => Collection<AddressCollection>
-  buildBillingAddress: () => Collection<AddressCollection>
-  buildPaymentMethod: () => Collection<PaymentMethodCollection>
+  paymentSource: () => Promise<
+    | AdyenPaymentCollection
+    | BraintreePaymentCollection
+    | PaypalPaymentCollection
+    | StripePaymentCollection
+  >
   static define() {
     this.attributes(
       'number',

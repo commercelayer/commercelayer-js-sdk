@@ -1,5 +1,6 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
+import { OrderCollection } from './Order'
 
 export class WireTransferCollection extends BaseClass {
   static className = 'WireTransfer'
@@ -8,6 +9,7 @@ export class WireTransferCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
+  order: () => Promise<OrderCollection>
   static define() {
     this.attributes('id', 'createdAt', 'updatedAt', 'reference', 'metadata')
     this.hasOne('order', { className: 'Order' })

@@ -1,5 +1,7 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
+import { PriceListCollection } from './PriceList'
+import { SkuCollection } from './Sku'
 
 export class PriceCollection extends BaseClass {
   static className = 'Price'
@@ -16,6 +18,8 @@ export class PriceCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
+  priceList: () => Promise<PriceListCollection>
+  sku: () => Promise<SkuCollection>
   static define() {
     this.attributes(
       'currencyCode',

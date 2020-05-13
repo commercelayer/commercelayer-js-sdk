@@ -1,5 +1,7 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
+import { StockLocationCollection } from './StockLocation'
+import { InventoryModelCollection } from './InventoryModel'
 
 export class StockLevelCollection extends BaseClass {
   static className = 'StockLevel'
@@ -10,6 +12,8 @@ export class StockLevelCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
+  stockLocation: () => Promise<StockLocationCollection>
+  inventoryModel: () => Promise<InventoryModelCollection>
   static define() {
     this.attributes(
       'priority',

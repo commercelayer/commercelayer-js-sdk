@@ -1,5 +1,6 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
+import { CustomerCollection } from './Customer'
 
 export class CustomerPasswordResetCollection extends BaseClass {
   static className = 'CustomerPasswordReset'
@@ -13,6 +14,7 @@ export class CustomerPasswordResetCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
+  customer: () => Promise<CustomerCollection>
   static define() {
     this.attributes(
       'customerEmail',
