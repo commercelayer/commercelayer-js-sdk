@@ -37,7 +37,7 @@ export interface Base {
   afterRequest(callback: () => void): void
   afterBuild(callback: () => void): void
   afterCreate(callback: () => void): void
-  update(attrs: object, callback?: any): Promise<any>
+  // update(attrs: object, callback?: any): Promise<any>
   destroy(): Promise<any>
   withCredentials({ accessToken, endpoint }: InitConfig): Base
   find(primaryKey: string): Promise<any>
@@ -171,7 +171,7 @@ export interface Collection<R = any> {
   changedFields(): Collection<R>
   clone(): Collection<R>
   destroy(): Collection<R>
-  errors(): BaseResource<R[]>
+  errors(): Errors<R>
   hasAttribute(attribute: string): boolean
   isA(klass: BaseResource): boolean
   klass(): BaseResource
@@ -192,6 +192,14 @@ export interface Collection<R = any> {
 
 export interface CreateResource<R = any> {
   createResource<R>(resource: Base): BaseResource<R>
+}
+
+export interface Errors<T = any> {
+  (): T
+  base: T
+  empty(): boolean
+  toArray(): T[]
+  toCollection(): Collection<T>
 }
 
 type PermittedCacheResource = {

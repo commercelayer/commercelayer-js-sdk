@@ -1,7 +1,7 @@
 // TODO remove ts-ignore comments
 import { InitConfig } from '../resources/Initialize'
 import library from '../resources/library'
-import { CollectionResponse } from '../resources/@types/Library'
+import { CollectionResponse, Errors } from '../resources/@types/Library'
 import * as _ from 'lodash'
 
 export type Meta = {
@@ -15,6 +15,8 @@ class BaseClass extends library.Base {
   __collectionMeta: Meta = {}
   includes: (...attribute: string[]) => this
   all: () => Promise<CollectionResponse<this>>
+  errors: () => Errors<this>
+  update: (attrs: object, callback?: (response: this) => void) => this
   getMetaInfo() {
     return this.__meta
   }
