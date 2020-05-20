@@ -187,7 +187,7 @@ export interface Collection<R = any> {
   reload(): any
   save(callback?: any): any
   update(attrs: object, callback?: any): Collection
-  valide(): boolean
+  valid(): boolean
 }
 
 export interface CreateResource<R = any> {
