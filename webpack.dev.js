@@ -9,7 +9,7 @@ module.exports = merge(common, {
   mode: 'development',
   plugins: [
     new Dotenv({
-      path: path.resolve(__dirname, '.env')
+      path: path.resolve(__dirname, '.env'),
     }),
     new webpack.DefinePlugin({
       process: {
@@ -18,9 +18,10 @@ module.exports = merge(common, {
           GRANT_TYPE: JSON.stringify(process.env.GRANT_TYPE),
           CLIENT_ID: JSON.stringify(process.env.CLIENT_ID),
           CLIENT_SECRET: JSON.stringify(process.env.CLIENT_SECRET),
-          SCOPE: JSON.stringify(process.env.SCOPE)
-        }
-      }
-    })
-  ]
+          SALES_CHANNEL_ID: JSON.stringify(process.env.SALES_CHANNEL_ID),
+          SCOPE: JSON.stringify(process.env.SCOPE),
+        },
+      },
+    }),
+  ],
 })
