@@ -1,7 +1,6 @@
-import CLayer, { initCLayer, Order } from '../src/resources'
+import CLayer, { Order } from '../src/resources'
 import { getTokenBlueBrand } from '../helpers/getToken'
 import skus from '../helpers/testSkus'
-import { LineItemCollection } from '../src/resources/LineItem'
 
 let blueBrandConfig = { accessToken: '', endpoint: '' }
 const { ENDPOINT } = process.env

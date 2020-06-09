@@ -9,11 +9,11 @@ beforeAll(async () => {
   const { accessToken: limeAccessToken } = await getTokenLimeBrand()
   blueBrandConfig = {
     accessToken: accessToken,
-    endpoint: ENDPOINT
+    endpoint: ENDPOINT,
   }
   limeBrandConfig = {
     accessToken: limeAccessToken,
-    endpoint: LIME_BRAND_ENDPOINT
+    endpoint: LIME_BRAND_ENDPOINT,
   }
   return null
 })
@@ -57,14 +57,14 @@ it('CRUD - Async update', () => {
   expect.assertions(2)
   return CLayer.Sku.withCredentials(blueBrandConfig)
     .find('wBeDdSgYQW')
-    .then(s => {
+    .then((s) => {
       expect(s.id).toBe('wBeDdSgYQW')
       return s
         .withCredentials(blueBrandConfig)
         .update({
-          description: 'Unit test async description'
+          description: 'Unit test async description',
         })
-        .then(u => {
+        .then((u) => {
           return expect(u.description).toBe('Unit test async description')
         })
     })
@@ -138,7 +138,7 @@ it('CRUD - Sync multi-connection update', async () => {
   )
   expect(blueSku.id).toBe('wBeDdSgYQW')
   const updateBlue = await blueSku.withCredentials(blueBrandConfig).update({
-    description: 'Unit test sync description with multi-connection'
+    description: 'Unit test sync description with multi-connection',
   })
   expect(updateBlue.description).toBe(
     'Unit test sync description with multi-connection'

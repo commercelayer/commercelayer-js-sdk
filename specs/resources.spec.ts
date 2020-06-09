@@ -1,3 +1,4 @@
+/// <reference path="../src/resources/@types/active-resource.d.ts" />
 import CLayer from '../src/resources'
 import { writeFileSync, existsSync } from 'fs'
 import { getTokenBlueBrand } from '../helpers'
