@@ -2,7 +2,6 @@
 import { InitConfig } from '../resources/Initialize'
 import library from '../resources/library'
 import { CollectionResponse, Errors } from '../resources/@types/Library'
-import * as _ from 'lodash'
 
 export type Meta = {
   pageCount?: number
@@ -51,7 +50,7 @@ class BaseClass extends library.Base {
     // @ts-ignore
     return super.association(name)
   }
-  withCredentials({ accessToken, endpoint, cache }: InitConfig) {
+  withCredentials({ accessToken, endpoint }: InitConfig) {
     // @ts-ignore
     this.constructor.includeMetaInfo()
     // @ts-ignore
@@ -82,10 +81,6 @@ class BaseClass extends library.Base {
     }
     // @ts-ignore
     this.constructor.singleRequest = true
-    if (!_.isUndefined(cache)) {
-      // @ts-ignore
-      this.constructor.cacheRequest = cache
-    }
     return this
   }
 }

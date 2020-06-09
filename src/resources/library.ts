@@ -6,7 +6,7 @@ import {
 } from 'active-resource'
 import Library, { GeneralObject } from './@types/Library'
 import { InitConfig } from './Initialize'
-import * as _ from 'lodash'
+import _ from 'lodash'
 import BaseClass from '../utils/BaseClass'
 
 const subdomain = 'yourdomain'
@@ -16,12 +16,6 @@ const library: Library = createResourceLibrary(
 )
 
 library['customRequests'] = {}
-library['cache'] = false
-library['permittedCache'] = [
-  { method: 'get', queryName: 'skus' },
-  { method: 'get', queryName: 'prices' },
-  { method: 'get', queryName: 'stock_items' },
-]
 
 const cleanUrl = (url: string) => {
   const lastSlash = url.lastIndexOf('/') + 1
@@ -31,17 +25,10 @@ const cleanUrl = (url: string) => {
   return url
 }
 
-const cacheAllowed = (url: string, method: string): boolean => {
-  const check = library.permittedCache.filter((c) => {
-    return c.method === method && url.search(`/api/${c.queryName}`) !== -1
-  })
-  return !!_.first(check)
-}
 class ExtendLibrary extends library.Base {
   static accessToken = ''
   static endpoint = ''
   static singleRequest = false
-  static cache: string | boolean = ''
   static meta = {}
   constructor() {
     super()
@@ -51,95 +38,73 @@ class ExtendLibrary extends library.Base {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    return this.where({ cache: this.cache }).includes(params)
+    return super.includes(params)
   }
   static select(params: string[]) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    return this.where({ cache: this.cache }).select(params)
+    return super.select(params)
   }
   static order(params: object) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    return this.where({ cache: this.cache }).order(params)
+    return super.order(params)
   }
   static first(value?: number) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    return this.where({ cache: this.cache }).first(value)
+    return super.first(value)
   }
   static last(value?: number) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    return this.where({ cache: this.cache }).last(value)
+    return super.last(value)
   }
   static page(value?: number) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    return this.where({ cache: this.cache }).page(value)
+    return super.page(value)
   }
   static perPage(value?: number) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    return this.where({ cache: this.cache }).perPage(value)
+    return super.perPage(value)
   }
   static limit(value: any) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    return this.where({ cache: this.cache }).limit(value)
+    return super.limit(value)
   }
   static offset(value: any) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    return this.where({ cache: this.cache }).offset(value)
+    return super.offset(value)
   }
   static nextPagePromise() {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    return this.where({ cache: this.cache }).nextPagePromise()
+    return super.nextPagePromise()
   }
   static prevPage() {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    return this.where({ cache: this.cache }).prevPage()
+    return super.prevPage()
   }
   static where(options: object): any {
     // @ts-ignore
-    let newOptions = {}
-    if (_.has(options, 'cache')) {
-      // @ts-ignore
-      const cache = options['cache']
-      // @ts-ignore
-      delete options['cache']
-      // @ts-ignore
-      newOptions = {
-        q: { ...options },
-      }
-      if (cache !== '') {
-        // @ts-ignore
-        newOptions['cache'] = cache
-      }
-    } else {
-      newOptions = {
-        q: { ...options },
-      }
-      if (this.cache !== '') {
-        // @ts-ignore
-        newOptions['cache'] = this.cache
-      }
-    }
-    // @ts-ignore
-    const relation = super.where(newOptions)
+    const relation = super.where({
+      q: { ...options },
+    })
     this.includeMetaInfo(relation.interface().axios.interceptors)
     return relation
   }
@@ -147,16 +112,16 @@ class ExtendLibrary extends library.Base {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    return this.where({ cache: this.cache }).all()
+    return super.all()
   }
   static findBy(options: GeneralObject): any {
     const eqOptions: GeneralObject = {}
     Object.keys(options).map((v: string) => {
       eqOptions[`${v}_eq`] = options[v]
     })
-    return this.where({ ...eqOptions, cache: this.cache }).first()
+    return this.where({ ...eqOptions }).first()
   }
-  static withCredentials({ accessToken, endpoint, cache }: InitConfig) {
+  static withCredentials({ accessToken, endpoint }: InitConfig) {
     if (!this.accessToken && !this.endpoint) {
       if (!this.resourceLibrary.headers?.Authorization) {
         this.accessToken = `Bearer `
@@ -171,10 +136,6 @@ class ExtendLibrary extends library.Base {
     }
     this.__links = { related: `${endpoint}/api/${this.queryName}` }
     this.singleRequest = true
-    if (!_.isUndefined(cache)) {
-      this.cache = cache
-    }
-
     return this
   }
   static includeMetaInfo(interceptors: any = null, klass: any = this) {
@@ -185,36 +146,12 @@ class ExtendLibrary extends library.Base {
   }
   static find(paramKey: string) {
     this.includeMetaInfo()
-    return this.where({ cache: this.cache }).find(paramKey)
+    return super.find(paramKey)
   }
   static setInterceptors(interceptors: any, klass: any = null) {
     const classThis = this
     const interceptResp = interceptors?.response
-    const interceptReq = interceptors?.request
     const respHandlers = interceptResp?.handlers
-    interceptReq.use(
-      function(config: any) {
-        let cache = library.cache
-        const singleCache =
-          !_.isEmpty(config.params) && _.has(config.params, 'filter.cache')
-        if (singleCache) {
-          cache = config.params['filter']['cache']
-          delete config.params['filter']['cache']
-        }
-        const url = cleanUrl(config.url)
-        const method = config.method
-        const isAllowed = cacheAllowed(url, method)
-        if (cache && isAllowed) {
-          config.url = url
-          config.params['cache'] = cache
-        }
-        return config
-      },
-      function(error: any) {
-        // Do something with request error
-        return Promise.reject(error)
-      }
-    )
     if (respHandlers?.length === 1) {
       interceptResp.handlers.shift()
       interceptResp.use(
@@ -288,7 +225,6 @@ ExtendLibrary.afterRequest(function() {
     }
     this.constructor.__links = null
     this.constructor.singleRequest = false
-    this.constructor.cache = ''
   }
 })
 
@@ -325,13 +261,11 @@ CollectionResponse.prototype.recordCount = function() {
 CollectionResponse.prototype.withCredentials = function({
   accessToken,
   endpoint,
-  cache,
 }: InitConfig) {
   library.headers = {
     Authorization: `Bearer ${accessToken}`,
   }
   library.singleRequest = true
-  library.cache = cache
   return this
 }
 

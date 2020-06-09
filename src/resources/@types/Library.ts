@@ -218,8 +218,6 @@ export default interface Library extends CreateResource {
   interface: {
     toCamelCase: <T extends any>(value: T) => T
   }
-  cache: boolean
-  permittedCache: PermittedCacheResource[]
   singleRequest: boolean
   baseUrl: string
   headers: {
