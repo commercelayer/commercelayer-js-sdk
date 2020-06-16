@@ -12,11 +12,11 @@ To get started with Commerce Layer JS SDK you need to install it and then get th
 
 - [Installation](#installation)
 - [Authentication](#authentication)
-- [Using ES6 import](#using-es6-import)
+- [Import](#import)
 
 ## Installation
 
-Commerce Layer JS SDK is available as an npm package:
+Commerce Layer JS SDK is available as an [npm package](https://www.npmjs.com/package/@commercelayer/js-sdk):
 
 ```
 // npm
@@ -32,7 +32,7 @@ All requests to Commerce Layer API must be authenticated with an [OAuth2](https:
 
 > Feel free to use [Commerce Layer JS Auth](https://github.com/commercelayer/commercelayer-js-auth), a JavaScript library that helps you wrap our authentication API.
 
-## Using ES6 import
+## Import
 
 You can use either the ES6 default or named import with the SDK as follow:
 
@@ -285,11 +285,51 @@ Check our API reference for more information on how to [delete an SKU](https://d
 If needed, Commerce Layer JS SDK lets you set the configuration at a request level. To do that, just use the `withCredentials()` method and authenticate the API call with the desired credentials:
 
 ```
-const skus = await Sku.withCredentials({
+  const skus = await Sku.withCredentials({
     accessToken: 'your-access-token',
     endpoint: 'https://yourdomain.commercelayer.io'
   }).all()
 ```
+
+# Handling validation errors
+
+Commerce Layer API returns specific errors (with extra information) on each attribute of a single resource. You can inspect them to properly handle validation errors (if any). To do that, use the `errors()` method:
+
+```
+  // logs 2 error messages to console: 
+  // 'shipping_category - must exist'
+  // 'name - can't be blank'
+
+  const attributes = { code: 'TSHIRTMM000000FFFFFFXL' }
+
+  const newSku = await Sku.create(attributes, (sku) => {
+    const errors = sku.errors()
+    if (!errors.empty()) {
+      errors.toArray().map((e) => {
+        console.error(e.code + ' on ' + e.field + ': ' + e.message)
+      })
+    }
+  })
+
+  // logs 1 error message to console
+  // 'pieces_per_pack - must be greater than 0'
+
+  const sku = await Sku.findBy({ code: 'TSHIRTMM000000FFFFFFXL' })
+
+  const attributes = { piecesPerPack: 0 }
+
+  sku.update(attributes, (sku) => {
+    const errors = sku.errors()
+    if (!errors.empty()) {
+      errors.toArray().map((e) => {
+      console.error(e.code + ' on ' + e.field + ': ' + e.message)
+      })
+    }
+  })
+
+```
+
+Check our API reference for more information about the [errors](https://docs.commercelayer.io/api/handling-errors) returned by the API.
 
 ---
 
