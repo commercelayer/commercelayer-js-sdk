@@ -59,14 +59,14 @@ it('CRUD - Async update', () => {
     .find('wBeDdSgYQW')
     .then((s) => {
       expect(s.id).toBe('wBeDdSgYQW')
-      return s
-        .withCredentials(blueBrandConfig)
-        .update({
+      return s.withCredentials(blueBrandConfig).update(
+        {
           description: 'Unit test async description',
-        })
-        .then((u) => {
-          return expect(u.description).toBe('Unit test async description')
-        })
+        },
+        (u) => {
+          expect(u.description).toBe('Unit test async description')
+        }
+      )
     })
 })
 // it('CRUD - Async multi-connection select', () => {
