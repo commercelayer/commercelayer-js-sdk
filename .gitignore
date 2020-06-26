@@ -5,3 +5,4 @@ dist
 specs/fixtures/*.json
 *.tgz
 .rts*
+coverage

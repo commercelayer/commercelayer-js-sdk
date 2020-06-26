@@ -6,4 +6,6 @@ module.exports = {
     '/node_modules/', // default
     '<rootDir>/specs/.*/fixtures/', // don't run tests in fixtures
   ],
+  collectCoverageFrom: ['src/**/*.{ts,tsx,js,jsx}'],
+  testTimeout: 30000,
 }
