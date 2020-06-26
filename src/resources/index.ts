@@ -66,39 +66,44 @@ import Library, {
   CollectionResponse,
   BaseResource,
 } from './@types/Library'
+import ExternalPayment, { ExternalPaymentCollection } from './ExternalPayment'
+import Package, { PackageCollection } from './Package'
 
 export {
-  Library,
-  Collection,
-  CollectionResponse,
-  BaseResource,
   AddressCollection,
   AdyenPaymentCollection,
   AttachableCollection,
   AttachmentCollection,
+  BaseResource,
   BraintreePaymentCollection,
+  Collection,
+  CollectionResponse,
   CreditCardCollection,
   CustomerAddressCollection,
+  CustomerCollection,
   CustomerGroupCollection,
   CustomerPasswordResetCollection,
   CustomerPaymentSourceCollection,
   CustomerSubscriptionCollection,
-  CustomerCollection,
   DeliveryLeadTimeCollection,
+  ExternalPaymentCollection,
   GeocoderCollection,
   GiftCardCollection,
   GiftCardRecipientCollection,
   ImportCollection,
   InStockSubscriptionCollection,
+  InventoryCollection,
   InventoryModelCollection,
+  Library,
   LineItemCollection,
   LineItemOptionCollection,
   MarketCollection,
   MerchantCollection,
   OrderCollection,
+  PackageCollection,
   ParcelCollection,
-  PaymentMethodCollection,
   PaymentGatewayCollection,
+  PaymentMethodCollection,
   PaymentSourceCollection,
   PaypalPaymentCollection,
   PriceCollection,
@@ -110,7 +115,6 @@ export {
   SkuCollection,
   SkuListCollection,
   SkuListItemCollection,
-  InventoryCollection,
   SkuOptionCollection,
   StockItemCollection,
   StockLevelCollection,
@@ -121,20 +125,20 @@ export {
 }
 
 export interface CLayer {
-  init: Init
   Address: BaseResource<AddressCollection>
   AdyenPayment: BaseResource<AdyenPaymentCollection>
-  Attachment: BaseResource<AttachmentCollection>
   Attachable: BaseResource<AttachableCollection>
+  Attachment: BaseResource<AttachmentCollection>
   BraintreePayment: BaseResource<BraintreePaymentCollection>
   CreditCard: BaseResource<CreditCardCollection>
+  Customer: BaseResource<CustomerCollection>
   CustomerAddress: BaseResource<CustomerAddressCollection>
   CustomerGroup: BaseResource<CustomerGroupCollection>
   CustomerPasswordReset: BaseResource<CustomerPasswordResetCollection>
   CustomerPaymentSource: BaseResource<CustomerPaymentSourceCollection>
   CustomerSubscription: BaseResource<CustomerSubscriptionCollection>
-  Customer: BaseResource<CustomerCollection>
   DeliveryLeadTime: BaseResource<DeliveryLeadTimeCollection>
+  ExternalPayment: BaseResource<ExternalPaymentCollection>
   Geocoder: BaseResource<GeocoderCollection>
   GiftCard: BaseResource<GiftCardCollection>
   GiftCardRecipient: BaseResource<GiftCardRecipientCollection>
@@ -142,48 +146,50 @@ export interface CLayer {
   InStockSubscription: BaseResource<InStockSubscriptionCollection>
   InventoryModel: BaseResource<InventoryModelCollection>
   Item: BaseResource<ItemCollection>
-  LineItemOption: BaseResource<LineItemOptionCollection>
   LineItem: BaseResource<LineItemCollection>
+  LineItemOption: BaseResource<LineItemOptionCollection>
   Market: BaseResource<MarketCollection>
   Merchant: BaseResource<MerchantCollection>
   Order: BaseResource<OrderCollection>
+  Package: BaseResource<PackageCollection>
   Parcel: BaseResource<ParcelCollection>
-  PaymentMethod: BaseResource<PaymentMethodCollection>
   PaymentGateway: BaseResource<PaymentGatewayCollection>
-  PaypalPayment: BaseResource<PaypalPaymentCollection>
+  PaymentMethod: BaseResource<PaymentMethodCollection>
   PaymentSource: BaseResource<PaymentSourceCollection>
-  PriceList: BaseResource<PriceListCollection>
+  PaypalPayment: BaseResource<PaypalPaymentCollection>
   Price: BaseResource<PriceCollection>
+  PriceList: BaseResource<PriceListCollection>
   Shipment: BaseResource<ShipmentCollection>
   ShippingCategory: BaseResource<ShippingCategoryCollection>
   ShippingMethod: BaseResource<ShippingMethodCollection>
   ShippingZone: BaseResource<ShippingZoneCollection>
-  SkuOption: BaseResource<SkuOptionCollection>
   Sku: BaseResource<SkuCollection>
   SkuList: BaseResource<SkuListCollection>
   SkuListItem: BaseResource<SkuListItemCollection>
+  SkuOption: BaseResource<SkuOptionCollection>
   StockItem: BaseResource<StockItemCollection>
   StockLevel: BaseResource<StockLevelCollection>
   StockLocation: BaseResource<StockLocationCollection>
   StripePayment: BaseResource<StripePaymentCollection>
   Webhook: BaseResource<WebhookCollection>
   WireTransfer: BaseResource<WireTransferCollection>
+  init: Init
 }
 const CLayer: CLayer = {
-  init,
   Address,
   AdyenPayment,
-  Attachment,
   Attachable,
+  Attachment,
   BraintreePayment,
   CreditCard,
+  Customer,
   CustomerAddress,
   CustomerGroup,
   CustomerPasswordReset,
   CustomerPaymentSource,
   CustomerSubscription,
-  Customer,
   DeliveryLeadTime,
+  ExternalPayment,
   Geocoder,
   GiftCard,
   GiftCardRecipient,
@@ -191,51 +197,53 @@ const CLayer: CLayer = {
   InStockSubscription,
   InventoryModel,
   Item,
-  LineItemOption,
   LineItem,
+  LineItemOption,
   Market,
   Merchant,
   Order,
+  Package,
   Parcel,
-  PaymentMethod,
   PaymentGateway,
-  PaypalPayment,
+  PaymentMethod,
   PaymentSource,
-  PriceList,
+  PaypalPayment,
   Price,
+  PriceList,
   Shipment,
   ShippingCategory,
   ShippingMethod,
   ShippingZone,
-  SkuOption,
   Sku,
   SkuList,
   SkuListItem,
+  SkuOption,
   StockItem,
   StockLevel,
   StockLocation,
   StripePayment,
   Webhook,
   WireTransfer,
+  init,
 }
 
 const initCLayer = init
 
 export {
-  initCLayer,
   Address,
   AdyenPayment,
-  Attachment,
   Attachable,
+  Attachment,
   BraintreePayment,
   CreditCard,
+  Customer,
   CustomerAddress,
   CustomerGroup,
   CustomerPasswordReset,
   CustomerPaymentSource,
   CustomerSubscription,
-  Customer,
   DeliveryLeadTime,
+  ExternalPayment,
   Geocoder,
   GiftCard,
   GiftCardRecipient,
@@ -243,32 +251,34 @@ export {
   InStockSubscription,
   InventoryModel,
   Item,
-  LineItemOption,
   LineItem,
+  LineItemOption,
   Market,
   Merchant,
   Order,
+  Package,
   Parcel,
-  PaymentMethod,
   PaymentGateway,
-  PaypalPayment,
+  PaymentMethod,
   PaymentSource,
-  PriceList,
+  PaypalPayment,
   Price,
+  PriceList,
   Shipment,
   ShippingCategory,
   ShippingMethod,
   ShippingZone,
-  SkuOption,
   Sku,
   SkuList,
   SkuListItem,
+  SkuOption,
   StockItem,
   StockLevel,
   StockLocation,
   StripePayment,
   Webhook,
   WireTransfer,
+  initCLayer,
 }
 
 export default CLayer

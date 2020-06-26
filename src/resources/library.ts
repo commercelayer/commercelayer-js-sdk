@@ -148,7 +148,7 @@ class ExtendLibrary extends library.Base {
     this.includeMetaInfo()
     return super.find(paramKey)
   }
-  static setInterceptors(interceptors: any, klass: any = null) {
+  static setInterceptors(interceptors: any, _klass: any = null) {
     const classThis = this
     const interceptResp = interceptors?.response
     const respHandlers = interceptResp?.handlers
