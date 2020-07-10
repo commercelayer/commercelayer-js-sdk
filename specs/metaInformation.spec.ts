@@ -1,4 +1,4 @@
-import CLayer, { Order } from '../src/resources'
+import CLayer, { Order } from '../src'
 import { getTokenBlueBrand } from '../helpers/getToken'
 import skus from '../helpers/testSkus'
 
