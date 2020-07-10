@@ -5,7 +5,6 @@ import { PriceCollection } from './Price'
 import { SkuOptionCollection } from './SkuOption'
 import { DeliveryLeadTimeCollection } from './DeliveryLeadTime'
 import { StockItemCollection } from './StockItem'
-import { ShippingCategoryCollection } from './ShippingCategory'
 
 export interface InventoryCollection {
   available: boolean

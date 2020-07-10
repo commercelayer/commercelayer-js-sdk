@@ -1,7 +1,7 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
 import { LineItemCollection } from './LineItem'
-import { Collection, CollectionProxy } from './@types/Library'
+import { CollectionProxy } from './@types/Library'
 import { ShipmentCollection } from './Shipment'
 import { PaymentMethodCollection } from './PaymentMethod'
 import { MarketCollection } from './Market'
@@ -252,7 +252,9 @@ export class OrderCollection extends BaseClass {
 const Order = library.createResource<OrderCollection>(OrderCollection)
 
 Order.afterBuild(function() {
+  // @ts-ignore
   if (this.paymentSourceId) delete this.paymentSourceId
+  // @ts-ignore
   if (this.paymentSourceType) delete this.paymentSourceType
 })
 
