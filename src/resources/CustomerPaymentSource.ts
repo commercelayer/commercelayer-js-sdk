@@ -40,7 +40,9 @@ const CustomerPaymentSource = library.createResource<
 >(CustomerPaymentSourceCollection)
 
 CustomerPaymentSource.afterBuild(function() {
+  // @ts-ignore
   if (this.paymentSourceId) delete this.paymentSourceId
+  // @ts-ignore
   if (this.paymentSourceType) delete this.paymentSourceType
 })
 

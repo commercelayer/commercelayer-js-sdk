@@ -211,19 +211,29 @@ const setMetaByRequest = <T extends BaseClass>(child: T) => {
 }
 
 ExtendLibrary.afterBuild(function() {
+  // @ts-ignore
   delete this.__meta
+  // @ts-ignore
   delete this.__collectionMeta
 })
 
 ExtendLibrary.afterRequest(function() {
+  // @ts-ignore
   const klass = this
+  // @ts-ignore
   setMetaByRequest<typeof klass>(this)
+  // @ts-ignore
   if (this.constructor.singleRequest) {
+    // @ts-ignore
     this.constructor.resourceLibrary.baseUrl = this.constructor.endpoint
+    // @ts-ignore
     this.constructor.resourceLibrary.headers = {
+      // @ts-ignore
       Authorization: this.constructor.accessToken,
     }
+    // @ts-ignore
     this.constructor.__links = null
+    // @ts-ignore
     this.constructor.singleRequest = false
   }
 })
@@ -260,8 +270,8 @@ CollectionResponse.prototype.recordCount = function() {
 
 CollectionResponse.prototype.withCredentials = function({
   accessToken,
-  endpoint,
-}: InitConfig) {
+}: // endpoint, NOTE: To understand
+InitConfig) {
   library.headers = {
     Authorization: `Bearer ${accessToken}`,
   }

@@ -75,7 +75,9 @@ export class LineItemCollection extends BaseClass {
 const LineItem = library.createResource<LineItemCollection>(LineItemCollection)
 
 LineItem.afterBuild(function() {
+  // @ts-ignore
   if (this.itemId) delete this.itemId
+  // @ts-ignore
   if (this.itemType) delete this.itemType
 })
 

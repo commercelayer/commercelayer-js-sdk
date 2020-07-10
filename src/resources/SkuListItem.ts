@@ -1,6 +1,5 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
-import { CollectionProxy } from './@types/Library'
 import { SkuCollection } from './Sku'
 import { SkuListCollection } from './SkuList'
 

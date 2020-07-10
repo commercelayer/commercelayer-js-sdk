@@ -32,7 +32,9 @@ const Attachment = library.createResource<AttachmentCollection>(
 )
 
 Attachment.afterBuild(function() {
+  // @ts-ignore
   if (this.attachableId) delete this.attachableId
+  // @ts-ignore
   if (this.attachableType) delete this.attachableType
 })
 

@@ -6,3 +6,4 @@ specs/fixtures/*.json
 *.tgz
 .rts*
 coverage
+.next
