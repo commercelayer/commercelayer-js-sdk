@@ -1,4 +1,4 @@
-import CLayer from '../src/resources'
+import CLayer from '../src/'
 import { writeFileSync, existsSync } from 'fs'
 import { getTokenBlueBrand } from '../helpers'
 import template from './template/template'

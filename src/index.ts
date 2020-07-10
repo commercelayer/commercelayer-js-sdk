@@ -1,73 +1,97 @@
-import Address, { AddressCollection } from './Address'
-import Attachment, { AttachmentCollection } from './Attachment'
-import CreditCard, { CreditCardCollection } from './CreditCard'
-import CustomerAddress, { CustomerAddressCollection } from './CustomerAddress'
-import CustomerGroup, { CustomerGroupCollection } from './CustomerGroup'
+import Address, { AddressCollection } from './resources/Address'
+import Attachment, { AttachmentCollection } from './resources/Attachment'
+import CreditCard, { CreditCardCollection } from './resources/CreditCard'
+import CustomerAddress, {
+  CustomerAddressCollection,
+} from './resources/CustomerAddress'
+import CustomerGroup, {
+  CustomerGroupCollection,
+} from './resources/CustomerGroup'
 import CustomerPasswordReset, {
   CustomerPasswordResetCollection,
-} from './CustomerPasswordReset'
+} from './resources/CustomerPasswordReset'
 import CustomerPaymentSource, {
   CustomerPaymentSourceCollection,
-} from './CustomerPaymentSource'
+} from './resources/CustomerPaymentSource'
 import CustomerSubscription, {
   CustomerSubscriptionCollection,
-} from './CustomerSubscription'
-import Customer, { CustomerCollection } from './Customer'
+} from './resources/CustomerSubscription'
+import Customer, { CustomerCollection } from './resources/Customer'
 import DeliveryLeadTime, {
   DeliveryLeadTimeCollection,
-} from './DeliveryLeadTime'
-import Import, { ImportCollection } from './Import'
+} from './resources/DeliveryLeadTime'
+import Import, { ImportCollection } from './resources/Import'
 import InStockSubscription, {
   InStockSubscriptionCollection,
-} from './InStockSubscription'
-import InventoryModel, { InventoryModelCollection } from './InventoryModel'
-import LineItemOption, { LineItemOptionCollection } from './LineItemOption'
-import LineItem, { LineItemCollection } from './LineItem'
-import Market, { MarketCollection } from './Market'
-import Merchant, { MerchantCollection } from './Merchant'
-import Order, { OrderCollection } from './Order'
-import Parcel, { ParcelCollection } from './Parcel'
-import PaymentMethod, { PaymentMethodCollection } from './PaymentMethod'
-import PaymentGateway, { PaymentGatewayCollection } from './PaymentGateway'
-import PaypalPayment, { PaypalPaymentCollection } from './PaypalPayment'
-import Price, { PriceCollection } from './Price'
-import PriceList, { PriceListCollection } from './PriceList'
-import Shipment, { ShipmentCollection } from './Shipment'
+} from './resources/InStockSubscription'
+import InventoryModel, {
+  InventoryModelCollection,
+} from './resources/InventoryModel'
+import LineItemOption, {
+  LineItemOptionCollection,
+} from './resources/LineItemOption'
+import LineItem, { LineItemCollection } from './resources/LineItem'
+import Market, { MarketCollection } from './resources/Market'
+import Merchant, { MerchantCollection } from './resources/Merchant'
+import Order, { OrderCollection } from './resources/Order'
+import Parcel, { ParcelCollection } from './resources/Parcel'
+import PaymentMethod, {
+  PaymentMethodCollection,
+} from './resources/PaymentMethod'
+import PaymentGateway, {
+  PaymentGatewayCollection,
+} from './resources/PaymentGateway'
+import PaypalPayment, {
+  PaypalPaymentCollection,
+} from './resources/PaypalPayment'
+import Price, { PriceCollection } from './resources/Price'
+import PriceList, { PriceListCollection } from './resources/PriceList'
+import Shipment, { ShipmentCollection } from './resources/Shipment'
 import ShippingCategory, {
   ShippingCategoryCollection,
-} from './ShippingCategory'
-import ShippingMethod, { ShippingMethodCollection } from './ShippingMethod'
-import ShippingZone, { ShippingZoneCollection } from './ShippingZone'
-import SkuOption, { SkuOptionCollection } from './SkuOption'
-import Sku, { SkuCollection, InventoryCollection } from './Sku'
-import SkuList, { SkuListCollection } from './SkuList'
-import SkuListItem, { SkuListItemCollection } from './SkuListItem'
-import StockItem, { StockItemCollection } from './StockItem'
-import StockLevel, { StockLevelCollection } from './StockLevel'
-import StockLocation, { StockLocationCollection } from './StockLocation'
-import Webhook, { WebhookCollection } from './Webhook'
-import WireTransfer, { WireTransferCollection } from './WireTransfer'
-import init, { Init } from './Initialize'
-import Geocoder, { GeocoderCollection } from './Geocoder'
-import PaymentSource, { PaymentSourceCollection } from './PaymentSource'
-import Item, { ItemCollection } from './Item'
-import Attachable, { AttachableCollection } from './Attachable'
-import GiftCard, { GiftCardCollection } from './GiftCard'
+} from './resources/ShippingCategory'
+import ShippingMethod, {
+  ShippingMethodCollection,
+} from './resources/ShippingMethod'
+import ShippingZone, { ShippingZoneCollection } from './resources/ShippingZone'
+import SkuOption, { SkuOptionCollection } from './resources/SkuOption'
+import Sku, { SkuCollection, InventoryCollection } from './resources/Sku'
+import SkuList, { SkuListCollection } from './resources/SkuList'
+import SkuListItem, { SkuListItemCollection } from './resources/SkuListItem'
+import StockItem, { StockItemCollection } from './resources/StockItem'
+import StockLevel, { StockLevelCollection } from './resources/StockLevel'
+import StockLocation, {
+  StockLocationCollection,
+} from './resources/StockLocation'
+import Webhook, { WebhookCollection } from './resources/Webhook'
+import WireTransfer, { WireTransferCollection } from './resources/WireTransfer'
+import init, { Init } from './resources/Initialize'
+import Geocoder, { GeocoderCollection } from './resources/Geocoder'
+import PaymentSource, {
+  PaymentSourceCollection,
+} from './resources/PaymentSource'
+import Item, { ItemCollection } from './resources/Item'
+import Attachable, { AttachableCollection } from './resources/Attachable'
+import GiftCard, { GiftCardCollection } from './resources/GiftCard'
 import GiftCardRecipient, {
   GiftCardRecipientCollection,
-} from './GiftCardRecipient'
-import AdyenPayment, { AdyenPaymentCollection } from './AdyenPayment'
+} from './resources/GiftCardRecipient'
+import AdyenPayment, { AdyenPaymentCollection } from './resources/AdyenPayment'
 import BraintreePayment, {
   BraintreePaymentCollection,
-} from './BraintreePayment'
-import StripePayment, { StripePaymentCollection } from './StripePayment'
+} from './resources/BraintreePayment'
+import StripePayment, {
+  StripePaymentCollection,
+} from './resources/StripePayment'
 import Library, {
   Collection,
   CollectionResponse,
   BaseResource,
-} from './@types/Library'
-import ExternalPayment, { ExternalPaymentCollection } from './ExternalPayment'
-import Package, { PackageCollection } from './Package'
+} from './resources/@types/Library'
+import ExternalPayment, {
+  ExternalPaymentCollection,
+} from './resources/ExternalPayment'
+import Package, { PackageCollection } from './resources/Package'
 
 export {
   AddressCollection,

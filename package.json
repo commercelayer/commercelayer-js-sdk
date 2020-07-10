@@ -27,7 +27,7 @@
     "test:coverage": "RECORD=true jest --coverage",
     "build": "tsdx build --tsconfig ./tsconfig.prod.json --entry ./src/resources/index.ts",
     "build:types": "dts-bundle-generator -o ./dist/types.d.ts ./src/resources/index.ts --project tsconfig.prod.json",
-    "watch": "webpack --progress --watch",
+    "watch": "tsdx watch",
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build:webpack": "rm -rf ./dist && webpack --config webpack.prod.js",
     "version:patch": "npm version patch",
