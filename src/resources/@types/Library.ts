@@ -57,12 +57,12 @@ export interface BaseResource<T = any> extends Base {
     readWrite: any // TODO: Add collection type?
   }
   build(params?: object): Collection<T> | CollectionResponse<T>
-  create(attributes: object): Promise<T>
+  create(attributes: object): Promise<Collection<T>>
   each(iteratee: any): any
-  fields(): Collection
-  find(primaryKey: string): Promise<T>
+  fields(): Collection<T>
+  find(primaryKey: string): Promise<Collection<T>>
   findBy(conditions: object): Promise<T>
-  first(): Promise<T>
+  first(): Promise<Collection<T>>
   first(n: number): Promise<T[]>
   includes(...attribute: string[]): BaseResource<T>
   isA(klass: BaseResource<T>): boolean
@@ -187,7 +187,7 @@ export interface Collection<R = any> {
   queryParamsForReflection(): any
   reload(): any
   save(callback?: any): any
-  update(attrs: object, callback?: any): Collection
+  update(attrs: object, callback?: any): Collection<R>
   valid(): boolean
 }
 

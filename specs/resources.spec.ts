@@ -111,21 +111,21 @@ template.map(async (d: any) => {
             // console.log('attributes', attributes)
             // @ts-ignore
             const cBuild = await CLayer[d.className].create(attributes)
-            console.log(`create ${d.className} :`, cBuild.id)
+            // console.log(`create ${d.className} :`, cBuild.id)
             elId = cBuild.id
             return expect(cBuild.id).toEqual(elId)
           case 'update':
             // @ts-ignore
             const cUpdate = await CLayer[d.className].find(elId)
             return cUpdate.update(t.data, async () => {
-              console.log(`${d.className} updated!`)
+              // console.log(`${d.className} updated!`)
               return await expect(true).toBe(true)
             })
           case 'delete':
             // @ts-ignore
             const cDestroy = await CLayer[d.className].find(elId)
             await cDestroy.destroy()
-            console.log(`${d.className} destroyed!`)
+            // console.log(`${d.className} destroyed!`)
             return expect(true).toBe(true)
           default:
             return null
