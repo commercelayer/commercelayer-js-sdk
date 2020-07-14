@@ -1,0 +1,49 @@
+name: CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Begin CI...
+        uses: actions/checkout@v2
+
+      - name: Use Node 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Use cached node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: nodeModules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            nodeModules-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+        env:
+          CI: true
+
+      # - name: Lint
+      #   run: yarn lint
+      #   env:
+      #     CI: true
+
+      - name: Test
+        run: yarn test --ci --coverage --maxWorkers=2
+        env:
+          CI: true
+          ENDPOINT: https://the-blue-brand-2.commercelayer.co
+          SALES_CHANNEL_ID: 4769bcf1998d700d5e159a89b24233a1ecec7e1524505fb8b7652c3e10139d78
+          CLIENT_ID: b1aa32826ce12ba2f74c59a555e3ed98a7db4ec710b14575b7e97f0a49fb9a4d
+          CLIENT_SECRET: 8fed019759490ba13c482cc2541ef77c6b8d0b3df04db80807110784fbfec021
+          SCOPE: market:49
+          LIME_BRAND_ENDPOINT: https://the-lime-brand-2.commercelayer.co
+          LIME_BRAND_CLIENT_ID: 24938609156dc7391cd5dfdea32b828ef2c20e02bccfccda6510ed59c09935ac
+          LIME_BRAND_SCOPE: market:50
+      - name: Build
+        run: yarn build
+        env:
+          CI: true
