@@ -44,7 +44,7 @@ export interface Base {
   errors(): Errors<any>
 }
 
-export interface BaseResource<T = any> extends Base {
+export interface BaseResource<T = any> extends Omit<Base, 'withCredentials'> {
   (): BaseResource
   all(): Promise<CollectionResponse<T>>
   // where(): Collection | Collection[]
@@ -57,12 +57,12 @@ export interface BaseResource<T = any> extends Base {
     readWrite: any // TODO: Add collection type?
   }
   build(params?: object): Collection<T> | CollectionResponse<T>
-  create(attributes: object): Promise<Collection<T>>
+  create(attributes: object): Promise<T>
   each(iteratee: any): any
   fields(): Collection<T>
-  find(primaryKey: string): Promise<Collection<T>>
+  find(primaryKey: string): Promise<T>
   findBy(conditions: object): Promise<T>
-  first(): Promise<Collection<T>>
+  first(): Promise<T>
   first(n: number): Promise<T[]>
   includes(...attribute: string[]): BaseResource<T>
   isA(klass: BaseResource<T>): boolean
