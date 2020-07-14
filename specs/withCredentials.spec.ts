@@ -64,7 +64,7 @@ it('CRUD - Async update', () => {
           description: 'Unit test async description',
         },
         (u) => {
-          expect(u.description).toBe('Unit test async description')
+          return expect(u.description).toBe('Unit test async description')
         }
       )
     })

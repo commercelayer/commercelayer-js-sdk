@@ -249,34 +249,34 @@ export default [
       },
     ],
   },
-  {
-    testName: 'SkuList',
-    className: 'SkuList',
-    tests: [
-      {
-        type: 'toArray',
-      },
-      {
-        type: 'size',
-      },
-      {
-        type: 'create',
-        data: {
-          name: 'Unit test list',
-          skuCodeRegex: '^(A|B).*$',
-        },
-      },
-      {
-        type: 'update',
-        data: {
-          description: 'UNIT TEST REFERENCE',
-        },
-      },
-      {
-        type: 'delete',
-      },
-    ],
-  },
+  // {
+  //   testName: 'SkuList',
+  //   className: 'SkuList',
+  //   tests: [
+  //     {
+  //       type: 'toArray',
+  //     },
+  //     {
+  //       type: 'size',
+  //     },
+  //     {
+  //       type: 'create',
+  //       data: {
+  //         name: 'Unit test list',
+  //         skuCodeRegex: '^(A|B).*$',
+  //       },
+  //     },
+  //     {
+  //       type: 'update',
+  //       data: {
+  //         description: 'UNIT TEST REFERENCE',
+  //       },
+  //     },
+  //     {
+  //       type: 'delete',
+  //     },
+  //   ],
+  // },
   // {
   //   testName: 'GiftCard',
   //   belongsToClass: '',

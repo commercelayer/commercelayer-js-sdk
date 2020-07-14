@@ -37,10 +37,11 @@ export interface Base {
   afterRequest(callback: () => void): void
   afterBuild(callback: () => void): void
   afterCreate(callback: () => void): void
-  // update(attrs: object, callback?: any): Promise<any>
+  update(attrs: object, callback?: (res) => any): any
   destroy(): Promise<any>
   withCredentials({ accessToken, endpoint }: InitConfig): Base
   find(primaryKey: string): Promise<any>
+  errors(): Errors<any>
 }
 
 export interface BaseResource<T = any> extends Base {
@@ -190,7 +191,7 @@ export interface Collection<R = any> {
   valid(): boolean
 }
 
-export interface CreateResource<R = any> {
+export interface CreateResource {
   createResource<R>(resource: Base): BaseResource<R>
 }
 
@@ -200,11 +201,6 @@ export interface Errors<T = any> {
   empty(): boolean
   toArray(): T[]
   toCollection(): Collection<T>
-}
-
-type PermittedCacheResource = {
-  queryName: string
-  method: 'get'
 }
 
 export default interface Library extends CreateResource {

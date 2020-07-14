@@ -21,11 +21,12 @@
     "README.md"
   ],
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:record": "RECORD=true jest",
-    "test:coverage": "RECORD=true jest --coverage",
-    "build": "tsdx build --tsconfig ./tsconfig.prod.json --entry ./src/resources/index.ts",
+    "test": "tsdx test",
+    "test:watch": "tsdx test --watch",
+    "test:coverage": "tsdx test --coverage",
+    "test:record": "RECORD=true tsdx test",
+    "test:record:coverage": "RECORD=true tsdx test --coverage",
+    "build": "tsdx build --tsconfig ./tsconfig.prod.json --entry ./src/index.ts",
     "watch": "tsdx watch",
     "dev": "next",
     "version:patch": "npm version patch",
