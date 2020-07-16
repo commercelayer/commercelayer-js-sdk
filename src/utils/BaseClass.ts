@@ -1,7 +1,10 @@
 // TODO remove ts-ignore comments
 import { InitConfig } from '../resources/Initialize'
 import library from '../resources/library'
-import { CollectionResponse } from '../resources/@types/Library'
+import {
+  CollectionResponse,
+  HeadersResponse,
+} from '../resources/@types/Library'
 
 export type Meta = {
   pageCount?: number
@@ -12,12 +15,16 @@ export type Meta = {
 class BaseClass extends library.Base {
   __meta: Meta = {}
   __collectionMeta: Meta = {}
+  __headers: HeadersResponse | {} = {}
   includes: (...attribute: string[]) => this
   all: () => Promise<CollectionResponse<this>>
   // errors: () => Errors<this>
   // update: (attrs: object, callback?: (response: this) => void) => this
   getMetaInfo() {
     return this.__meta
+  }
+  getHeaders() {
+    return this.__headers
   }
   pageCount() {
     return this.__meta.pageCount
@@ -30,6 +37,9 @@ class BaseClass extends library.Base {
   }
   setMetaInfo(meta: object) {
     return (this.__meta = meta)
+  }
+  setHeaders(headers: object) {
+    return (this.__headers = headers)
   }
   setCollectionMetaInfo(meta: object) {
     return (this.__collectionMeta = meta)
