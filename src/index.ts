@@ -88,68 +88,83 @@ import ExternalPayment, {
   ExternalPaymentCollection,
 } from './resources/ExternalPayment'
 import Package, { PackageCollection } from './resources/Package'
+import Adjustment, { AdjustmentCollection } from './resources/Adjustment'
+import Capture, { CaptureCollection } from './resources/Capture'
+import Authorization, {
+  AuthorizationCollection,
+} from './resources/Authorization'
+import BillingInfoValidationRule, {
+  BillingInfoValidationRuleCollection,
+} from './resources/BillingInfoValidationRule'
+import Refund, { RefundCollection } from './resources/Refund'
+import Void, { VoidCollection } from './resources/Void'
 
-// export {
-//   AddressCollection,
-//   AdyenPaymentCollection,
-//   AttachableCollection,
-//   AttachmentCollection,
-//   BaseResource,
-//   BraintreePaymentCollection,
-//   Collection,
-//   CollectionResponse,
-//   CreditCardCollection,
-//   CustomerAddressCollection,
-//   CustomerCollection,
-//   CustomerGroupCollection,
-//   CustomerPasswordResetCollection,
-//   CustomerPaymentSourceCollection,
-//   CustomerSubscriptionCollection,
-//   DeliveryLeadTimeCollection,
-//   ExternalPaymentCollection,
-//   GeocoderCollection,
-//   GiftCardCollection,
-//   GiftCardRecipientCollection,
-//   ImportCollection,
-//   InStockSubscriptionCollection,
-//   InventoryCollection,
-//   InventoryModelCollection,
-//   Library,
-//   LineItemCollection,
-//   LineItemOptionCollection,
-//   MarketCollection,
-//   MerchantCollection,
-//   OrderCollection,
-//   PackageCollection,
-//   ParcelCollection,
-//   PaymentGatewayCollection,
-//   PaymentMethodCollection,
-//   PaymentSourceCollection,
-//   PaypalPaymentCollection,
-//   PriceCollection,
-//   PriceListCollection,
-//   ShipmentCollection,
-//   ShippingCategoryCollection,
-//   ShippingMethodCollection,
-//   ShippingZoneCollection,
-//   SkuCollection,
-//   SkuListCollection,
-//   SkuListItemCollection,
-//   SkuOptionCollection,
-//   StockItemCollection,
-//   StockLevelCollection,
-//   StockLocationCollection,
-//   StripePaymentCollection,
-//   WebhookCollection,
-//   WireTransferCollection,
-// }
+export {
+  AddressCollection,
+  AdjustmentCollection,
+  AdyenPaymentCollection,
+  AttachableCollection,
+  AttachmentCollection,
+  AuthorizationCollection,
+  BillingInfoValidationRuleCollection,
+  BraintreePaymentCollection,
+  CaptureCollection,
+  CreditCardCollection,
+  CustomerAddressCollection,
+  CustomerCollection,
+  CustomerGroupCollection,
+  CustomerPasswordResetCollection,
+  CustomerPaymentSourceCollection,
+  CustomerSubscriptionCollection,
+  DeliveryLeadTimeCollection,
+  ExternalPaymentCollection,
+  GeocoderCollection,
+  GiftCardCollection,
+  GiftCardRecipientCollection,
+  ImportCollection,
+  InStockSubscriptionCollection,
+  InventoryModelCollection,
+  LineItemCollection,
+  LineItemOptionCollection,
+  MarketCollection,
+  MerchantCollection,
+  OrderCollection,
+  PackageCollection,
+  ParcelCollection,
+  PaymentGatewayCollection,
+  PaymentMethodCollection,
+  PaymentSourceCollection,
+  PaypalPaymentCollection,
+  PriceCollection,
+  PriceListCollection,
+  RefundCollection,
+  ShipmentCollection,
+  ShippingCategoryCollection,
+  ShippingMethodCollection,
+  ShippingZoneCollection,
+  SkuCollection,
+  SkuListCollection,
+  SkuListItemCollection,
+  SkuOptionCollection,
+  StockItemCollection,
+  StockLevelCollection,
+  StockLocationCollection,
+  StripePaymentCollection,
+  VoidCollection,
+  WebhookCollection,
+  WireTransferCollection,
+}
 
 export interface CLayer {
   Address: BaseResource<AddressCollection>
+  Adjustment: BaseResource<AdjustmentCollection>
   AdyenPayment: BaseResource<AdyenPaymentCollection>
   Attachable: BaseResource<AttachableCollection>
   Attachment: BaseResource<AttachmentCollection>
+  Authorization: BaseResource<AuthorizationCollection>
+  BillingInfoValidationRule: BaseResource<BillingInfoValidationRuleCollection>
   BraintreePayment: BaseResource<BraintreePaymentCollection>
+  Capture: BaseResource<CaptureCollection>
   CreditCard: BaseResource<CreditCardCollection>
   Customer: BaseResource<CustomerCollection>
   CustomerAddress: BaseResource<CustomerAddressCollection>
@@ -179,6 +194,7 @@ export interface CLayer {
   PaypalPayment: BaseResource<PaypalPaymentCollection>
   Price: BaseResource<PriceCollection>
   PriceList: BaseResource<PriceListCollection>
+  Refund: BaseResource<RefundCollection>
   Shipment: BaseResource<ShipmentCollection>
   ShippingCategory: BaseResource<ShippingCategoryCollection>
   ShippingMethod: BaseResource<ShippingMethodCollection>
@@ -191,16 +207,21 @@ export interface CLayer {
   StockLevel: BaseResource<StockLevelCollection>
   StockLocation: BaseResource<StockLocationCollection>
   StripePayment: BaseResource<StripePaymentCollection>
+  Void: BaseResource<VoidCollection>
   Webhook: BaseResource<WebhookCollection>
   WireTransfer: BaseResource<WireTransferCollection>
   init: Init
 }
 const CLayer: CLayer = {
   Address,
+  Adjustment,
   AdyenPayment,
   Attachable,
   Attachment,
+  Authorization,
+  BillingInfoValidationRule,
   BraintreePayment,
+  Capture,
   CreditCard,
   Customer,
   CustomerAddress,
@@ -230,6 +251,7 @@ const CLayer: CLayer = {
   PaypalPayment,
   Price,
   PriceList,
+  Refund,
   Shipment,
   ShippingCategory,
   ShippingMethod,
@@ -242,6 +264,7 @@ const CLayer: CLayer = {
   StockLevel,
   StockLocation,
   StripePayment,
+  Void,
   Webhook,
   WireTransfer,
   init,
@@ -251,10 +274,14 @@ const initCLayer = init
 
 export {
   Address,
+  Adjustment,
   AdyenPayment,
   Attachable,
   Attachment,
+  Authorization,
+  BillingInfoValidationRule,
   BraintreePayment,
+  Capture,
   CreditCard,
   Customer,
   CustomerAddress,
@@ -284,6 +311,7 @@ export {
   PaypalPayment,
   Price,
   PriceList,
+  Refund,
   Shipment,
   ShippingCategory,
   ShippingMethod,
@@ -296,6 +324,7 @@ export {
   StockLevel,
   StockLocation,
   StripePayment,
+  Void,
   Webhook,
   WireTransfer,
   initCLayer,

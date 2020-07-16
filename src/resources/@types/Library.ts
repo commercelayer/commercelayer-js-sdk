@@ -73,7 +73,7 @@ export interface Base {
   errors(): Errors<any>
 }
 
-export interface BaseResource<T = any> extends Base {
+export interface BaseResource<T = any> extends Omit<Base, 'withCredentials'> {
   (): BaseResource
   all(): Promise<CollectionResponse<T>>
   // where(): Collection | Collection[]
@@ -88,7 +88,7 @@ export interface BaseResource<T = any> extends Base {
   build(params?: object): Collection<T> | CollectionResponse<T>
   create(attributes: object): Promise<T>
   each(iteratee: any): any
-  fields(): Collection
+  fields(): Collection<T>
   find(primaryKey: string): Promise<T>
   findBy(conditions: object): Promise<T>
   first(): Promise<T>
@@ -217,7 +217,7 @@ export interface Collection<R = any> {
   queryParamsForReflection(): any
   reload(): any
   save(callback?: any): any
-  update(attrs: object, callback?: any): Collection
+  update(attrs: object, callback?: any): Collection<R>
   valid(): boolean
 }
 

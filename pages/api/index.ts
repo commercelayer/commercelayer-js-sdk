@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import _ from 'lodash'
 import { getTokenBlueBrand } from '../../helpers/getToken'
-import { initCLayer, Order, Sku } from '../../src'
+import { initCLayer, Order } from '../../src'
 
 export default async (__: NextApiRequest, res: NextApiResponse) => {
   const { ENDPOINT } = process.env
@@ -12,10 +12,8 @@ export default async (__: NextApiRequest, res: NextApiResponse) => {
   }
   initCLayer(config)
   const order = await Order.withCredentials(config).find('JqXQehvOkN')
-  const sku = await Order.withCredentials(config).all()
   res.status(200).json({
     success: true,
-    orderHeaders: order.getHeaders(),
-    skuHeaders: sku.getHeaders(),
+    order: order.attributes(),
   })
 }
