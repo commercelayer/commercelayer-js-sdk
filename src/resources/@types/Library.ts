@@ -7,6 +7,35 @@ export interface HeaderParams {
   Authorization: string
 }
 
+export interface HeadersResponse {
+  connection: string
+  server: string
+  'x-frame-options': string
+  'x-xss-protection': string
+  'x-content-type-options': string
+  'x-download-options': string
+  'x-permitted-cross-domain-policies': string
+  'referrer-policy': string
+  'x-ratelimit-limit': string
+  'x-ratelimit-count': string
+  'x-ratelimit-period': string
+  'content-type': string
+  etag: string
+  'cache-control': string
+  'x-request-id': string
+  'strict-transport-security': string
+  via: string
+  'accept-ranges': string
+  age: string
+  date: string
+  'x-served-by': string
+  'x-cache': string
+  'x-cache-hits': string
+  'x-timer': string
+  vary: string
+  'transfer-encoding': string
+}
+
 export interface BaseConfig {
   className?: string
   polymorphic?: boolean
@@ -145,6 +174,7 @@ export interface CollectionResponse<T = any> {
   toArray(): T[]
   unshift(): T
   size(): number
+  getHeaders(): HeadersResponse
   getMetaInfo(): MetaInformation
   pageCount(): MetaInformation['pageCount']
   recordCount(): MetaInformation['recordCount']

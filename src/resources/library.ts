@@ -162,10 +162,14 @@ class ExtendLibrary extends library.Base {
             : config.data.data.meta
           const metaCamelCase = library.interface.toCamelCase(meta)
           classThis.meta = metaCamelCase
-          config.data.collectionParent = classThis
+          // config.data.collectionParent = classThis
           const url = cleanUrl(config.config.url)
           library.customRequests = {}
-          library.customRequests[url] = config.data
+          library.customRequests[url] = {
+            ...config.data,
+            headers: config.headers,
+            collectionParent: classThis,
+          }
           return config
         },
         (error: any) => {
@@ -194,6 +198,9 @@ class ExtendLibrary extends library.Base {
 
 const setMetaByRequest = <T extends BaseClass>(child: T) => {
   _.map(library.customRequests, (req) => {
+    if (!_.isEmpty(req.headers)) {
+      child.setHeaders(req.headers)
+    }
     if (_.isArray(req.data)) {
       // @ts-ignore
       const childData = _.first(req.data.filter((v) => child.id === v.id))
@@ -215,6 +222,8 @@ ExtendLibrary.afterBuild(function() {
   delete this.__meta
   // @ts-ignore
   delete this.__collectionMeta
+  // @ts-ignore
+  delete this.__headers
 })
 
 ExtendLibrary.afterRequest(function() {
@@ -246,6 +255,16 @@ CollectionResponse.prototype.getMetaInfo = function() {
   return _.has(firstItem, '__collectionMeta')
     ? firstItem.__collectionMeta
     : firstItem.getMetaInfo()
+}
+
+CollectionResponse.prototype.getHeaders = function() {
+  const firstItem = this.first()
+  if (_.isEmpty(firstItem)) {
+    return {}
+  }
+  return _.has(firstItem, '__headers')
+    ? firstItem.__headers
+    : firstItem.getHeaders()
 }
 
 CollectionResponse.prototype.pageCount = function() {
