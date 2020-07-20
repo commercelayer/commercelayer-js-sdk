@@ -10,6 +10,7 @@ export class InventoryModelCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   reference: string
+  referenceOrigin: string
   metadata: object
   stockLevels: () => CollectionProxy<StockLevelCollection>
   static define() {
@@ -19,6 +20,7 @@ export class InventoryModelCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
     this.hasMany('stockLevels', { className: 'StockLevel' })

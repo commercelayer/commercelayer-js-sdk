@@ -16,6 +16,7 @@ export class SkuOptionCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   reference: string
+  referenceOrigin: string
   metadata: object
   market: () => Promise<MarketCollection>
   static define() {
@@ -32,6 +33,7 @@ export class SkuOptionCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
 

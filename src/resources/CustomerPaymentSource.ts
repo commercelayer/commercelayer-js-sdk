@@ -1,10 +1,6 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
 import { CustomerCollection } from './Customer'
-import { AdyenPaymentCollection } from './AdyenPayment'
-import { BraintreePaymentCollection } from './BraintreePayment'
-import { StripePaymentCollection } from './StripePayment'
-import { PaypalPaymentCollection } from './PaypalPayment'
 
 export class CustomerPaymentSourceCollection extends BaseClass {
   static className = 'CustomerPaymentSource'
@@ -13,14 +9,11 @@ export class CustomerPaymentSourceCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   reference: string
+  referenceOrigin: string
   metadata: object
+  paymentSourceId: string
+  paymentSourceType: string
   customer: () => Promise<CustomerCollection>
-  paymentSource: () => Promise<
-    | AdyenPaymentCollection
-    | BraintreePaymentCollection
-    | PaypalPaymentCollection
-    | StripePaymentCollection
-  >
   static define() {
     this.attributes(
       'name',
@@ -28,6 +21,7 @@ export class CustomerPaymentSourceCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
     this.hasOne('customer', { className: 'Customer' })

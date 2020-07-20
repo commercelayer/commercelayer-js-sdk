@@ -13,6 +13,7 @@ export class StockLocationCollection extends BaseClass {
   createdAt: string
   updatedAt: string
   reference: string
+  referenceOrigin: string
   metadata: object
   address: () => Promise<AddressCollection>
   stockLevels: () => CollectionProxy<StockLevelCollection>
@@ -25,6 +26,7 @@ export class StockLocationCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
 

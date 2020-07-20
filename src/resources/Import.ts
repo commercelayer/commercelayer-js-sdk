@@ -19,6 +19,7 @@ export class ImportCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   reference: string
+  referenceOrigin: string
   metadata: object
   static define() {
     this.attributes(
@@ -38,6 +39,7 @@ export class ImportCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
   }

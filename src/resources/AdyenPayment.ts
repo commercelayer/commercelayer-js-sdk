@@ -11,6 +11,8 @@ export class AdyenPaymentCollection extends BaseClass {
   Authorize: boolean
   _details: boolean
   id: string
+  reference: string
+  referenceOrigin: string
   createdAt: Date
   updatedAt: Date
   metadata: object
@@ -27,6 +29,7 @@ export class AdyenPaymentCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
 

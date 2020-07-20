@@ -11,6 +11,7 @@ export class StockItemCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   reference: string
+  referenceOrigin: string
   metadata: object
   stockLocation: () => Promise<StockLocationCollection>
   sku: () => Promise<SkuCollection>
@@ -22,6 +23,7 @@ export class StockItemCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
 

@@ -23,6 +23,7 @@ export class ShippingMethodCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   reference: string
+  referenceOrigin: string
   metadata: object
   market: () => Promise<MarketCollection>
   shippingZone: () => Promise<ShippingZoneCollection>
@@ -46,6 +47,7 @@ export class ShippingMethodCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
 

@@ -21,6 +21,7 @@ export class LineItemOptionCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   reference: string
+  referenceOrigin: string
   metadata: object
   lineItem: () => Promise<LineItemCollection>
   skuOption: () => Promise<SkuOptionCollection>
@@ -42,6 +43,7 @@ export class LineItemOptionCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
 

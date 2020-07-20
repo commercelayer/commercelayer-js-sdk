@@ -17,6 +17,7 @@ export class PriceCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   reference: string
+  referenceOrigin: string
   metadata: object
   priceList: () => Promise<PriceListCollection>
   sku: () => Promise<SkuCollection>
@@ -34,6 +35,7 @@ export class PriceCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
 

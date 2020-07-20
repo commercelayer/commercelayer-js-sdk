@@ -2,9 +2,6 @@ import library from './library'
 import BaseClass from '../utils/BaseClass'
 import { CollectionProxy } from './@types/Library'
 import { LineItemOptionCollection } from './LineItemOption'
-import { SkuCollection } from './Sku'
-import { ShipmentCollection } from './Shipment'
-import { PaymentMethodCollection } from './PaymentMethod'
 import { OrderCollection } from './Order'
 
 export class LineItemCollection extends BaseClass {
@@ -16,6 +13,7 @@ export class LineItemCollection extends BaseClass {
   formattedUnitAmount: string
   formattedTotalAmount: string
   reference: string
+  referenceOrigin: string
   skuCode: string
   _updateQuantity: string
   currencyCode: string
@@ -32,13 +30,9 @@ export class LineItemCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   metadata: object
+  itemId: string
   order: () => Promise<OrderCollection>
   lineItemOptions: () => CollectionProxy<LineItemOptionCollection>
-  item: () => Promise<
-    SkuCollection | ShipmentCollection | PaymentMethodCollection
-    // TODO add promotionCollection
-    // | PromotionCollection
-  >
   static define() {
     this.attributes(
       'skuCode',
@@ -63,6 +57,7 @@ export class LineItemCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
 

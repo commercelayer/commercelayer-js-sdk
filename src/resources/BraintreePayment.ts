@@ -8,6 +8,8 @@ export class BraintreePaymentCollection extends BaseClass {
   paymentMethodNonce: string
   options: object
   id: string
+  reference: string
+  referenceOrigin: string
   createdAt: Date
   updatedAt: Date
   metadata: object
@@ -21,6 +23,7 @@ export class BraintreePaymentCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
 
