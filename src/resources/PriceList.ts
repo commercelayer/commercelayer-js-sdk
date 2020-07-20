@@ -12,6 +12,7 @@ export class PriceListCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   reference: string
+  referenceOrigin: string
   metadata: object
   prices: () => CollectionProxy<PriceCollection>
   static define() {
@@ -23,6 +24,7 @@ export class PriceListCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
 

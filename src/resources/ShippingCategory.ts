@@ -10,6 +10,7 @@ export class ShippingCategoryCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   reference: string
+  referenceOrigin: string
   metadata: object
   skus: () => CollectionProxy<SkuCollection>
   static define() {
@@ -18,7 +19,7 @@ export class ShippingCategoryCollection extends BaseClass {
       'id',
       'createdAt',
       'updatedAt',
-      'reference',
+      'referenceOrigin',
       'metadata'
     )
 

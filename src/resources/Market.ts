@@ -14,6 +14,7 @@ export class MarketCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   reference: string
+  referenceOrigin: string
   metadata: object
   orders: () => CollectionProxy<OrderCollection>
   priceList: () => CollectionProxy<PriceCollection>
@@ -27,6 +28,7 @@ export class MarketCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
     this.hasOne('merchant', { className: 'Merchant' })

@@ -32,6 +32,7 @@ export class AddressCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   reference: string
+  referenceOrigin: string
   metadata: object
   geocoder: () => Promise<GeocoderCollection>
   static define() {
@@ -64,6 +65,7 @@ export class AddressCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
 

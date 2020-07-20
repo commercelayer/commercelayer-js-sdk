@@ -8,10 +8,18 @@ export class WireTransferCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   reference: string
+  referenceOrigin: string
   metadata: object
   order: () => Promise<OrderCollection>
   static define() {
-    this.attributes('id', 'createdAt', 'updatedAt', 'reference', 'metadata')
+    this.attributes(
+      'id',
+      'createdAt',
+      'updatedAt',
+      'reference',
+      'referenceOrigin',
+      'metadata'
+    )
     this.hasOne('order', { className: 'Order' })
   }
 }

@@ -16,6 +16,7 @@ export class PaypalPaymentCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   reference: string
+  referenceOrigin: string
   metadata: object
   order: () => Promise<OrderCollection>
   static define() {
@@ -32,6 +33,7 @@ export class PaypalPaymentCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
 

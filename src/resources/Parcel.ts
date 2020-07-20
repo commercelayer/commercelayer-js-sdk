@@ -33,6 +33,7 @@ export class ParcelCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   reference: string
+  referenceOrigin: string
   metadata: object
   shipment: () => Promise<ShipmentCollection>
   parcelLineItems: () => CollectionProxy<LineItemCollection>
@@ -65,6 +66,7 @@ export class ParcelCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
 

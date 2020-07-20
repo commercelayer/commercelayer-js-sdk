@@ -10,6 +10,7 @@ export class CustomerAddressCollection extends BaseClass {
   createdAt: string
   updatedAt: string
   reference: string
+  referenceOrigin: string
   metadata: object
   customer: () => Promise<CustomerCollection>
   address: () => Promise<AddressCollection>
@@ -20,6 +21,7 @@ export class CustomerAddressCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
 

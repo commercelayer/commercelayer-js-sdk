@@ -13,6 +13,7 @@ export class DeliveryLeadTimeCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   reference: string
+  referenceOrigin: string
   metadata: object
   stockLocation: () => Promise<StockLocationCollection>
   shippingMethod: () => Promise<ShippingMethodCollection>
@@ -25,7 +26,7 @@ export class DeliveryLeadTimeCollection extends BaseClass {
       'id',
       'createdAt',
       'updatedAt',
-      'reference',
+      'referenceOrigin',
       'metadata'
     )
     this.hasOne('stockLocation', { className: 'StockLocation' })

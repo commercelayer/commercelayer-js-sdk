@@ -7,6 +7,8 @@ export class StripePaymentCollection extends BaseClass {
   clientSecret: string
   options: object
   id: string
+  reference: string
+  referenceOrigin: string
   createdAt: Date
   updatedAt: Date
   metadata: object
@@ -19,6 +21,7 @@ export class StripePaymentCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
 

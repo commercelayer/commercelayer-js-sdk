@@ -10,8 +10,10 @@ export class AttachmentCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   reference: string
+  referenceOrigin: string
   metadata: object
-  attachable: () => Promise<AttachmentCollection>
+  attachableId: string
+  attachableType: string
   static define() {
     this.attributes(
       'name',
@@ -21,6 +23,7 @@ export class AttachmentCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
     this.belongsTo('attachable', { polymorphic: true })

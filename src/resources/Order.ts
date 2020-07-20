@@ -7,16 +7,14 @@ import { PaymentMethodCollection } from './PaymentMethod'
 import { MarketCollection } from './Market'
 import { CustomerCollection } from './Customer'
 import { AddressCollection } from './Address'
-import { AdyenPaymentCollection } from './AdyenPayment'
-import { BraintreePaymentCollection } from './BraintreePayment'
-import { StripePaymentCollection } from './StripePayment'
-import { PaypalPaymentCollection } from './PaypalPayment'
 
 export class OrderCollection extends BaseClass {
   static className = 'Order'
   number: number
   status: string
   paymentStatus: string
+  paymentSourceId: string
+  paymentSourceType: string
   fulfillmentStatus: string
   guest: boolean
   editable: boolean
@@ -116,6 +114,7 @@ export class OrderCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   reference: string
+  referenceOrigin: string
   metadata: object
   market: () => Promise<MarketCollection>
   customer: () => Promise<CustomerCollection>
@@ -125,12 +124,6 @@ export class OrderCollection extends BaseClass {
   lineItems: () => CollectionProxy<LineItemCollection>
   availablePaymentMethods: () => CollectionProxy<PaymentMethodCollection>
   shipments: () => CollectionProxy<ShipmentCollection>
-  paymentSource: () => Promise<
-    | AdyenPaymentCollection
-    | BraintreePaymentCollection
-    | PaypalPaymentCollection
-    | StripePaymentCollection
-  >
   static define() {
     this.attributes(
       'number',
@@ -235,6 +228,7 @@ export class OrderCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
 

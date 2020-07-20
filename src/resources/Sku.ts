@@ -47,6 +47,7 @@ export class SkuCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   reference: string
+  referenceOrigin: string
   metadata: object
   shippingCategory: () => Promise<SkuCollection>
   prices: () => CollectionProxy<PriceCollection>
@@ -68,6 +69,7 @@ export class SkuCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
     this.hasOne('shippingCategory', { className: 'ShippingCategory' })

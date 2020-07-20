@@ -11,6 +11,7 @@ export class CustomerGroupCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   reference: string
+  referenceOrigin: string
   metadata: object
   customers: () => CollectionProxy<CustomerCollection>
   priceList: () => Promise<PriceListCollection>
@@ -21,6 +22,7 @@ export class CustomerGroupCollection extends BaseClass {
       'createdAt',
       'updatedAt',
       'reference',
+      'referenceOrigin',
       'metadata'
     )
 
