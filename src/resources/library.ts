@@ -8,6 +8,7 @@ import Library, { GeneralObject } from './@types/Library'
 import { InitConfig } from './Initialize'
 import _ from 'lodash'
 import BaseClass from '../utils/BaseClass'
+import { cleanUrl, parserParams } from '../utils/helpers'
 
 const subdomain = 'yourdomain'
 
@@ -16,14 +17,6 @@ const library: Library = createResourceLibrary(
 )
 
 library['customRequests'] = {}
-
-const cleanUrl = (url: string) => {
-  const lastSlash = url.lastIndexOf('/') + 1
-  if (lastSlash === url.length) {
-    return url.substring(0, url.length - 1)
-  }
-  return url
-}
 
 class ExtendLibrary extends library.Base {
   static accessToken = ''
@@ -150,8 +143,15 @@ class ExtendLibrary extends library.Base {
   }
   static setInterceptors(interceptors: any, _klass: any = null) {
     const classThis = this
+    const interceptReq = interceptors?.request
     const interceptResp = interceptors?.response
     const respHandlers = interceptResp?.handlers
+    interceptReq.use((config) => {
+      if (!_.isEmpty(config.params)) {
+        config.params = parserParams(config.params)
+      }
+      return config
+    })
     if (respHandlers?.length === 1) {
       interceptResp.handlers.shift()
       interceptResp.use(
