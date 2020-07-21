@@ -14,7 +14,7 @@
     "email": "alessandro@commercelayer.io"
   },
   "main": "./dist/index.js",
-  "types": "./dist/resources/index.d.ts",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "package.json",
