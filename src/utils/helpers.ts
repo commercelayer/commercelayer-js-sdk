@@ -35,8 +35,8 @@ export const parserParams = <P extends FilterParams>(params: P): P => {
     })
     const expFields = params.fields[includeKey].split(',')
     const fields = expFields
-      .filter((field) => {
-        return !expInclude.includes(field)
+      .map((field) => {
+        return expInclude.includes(field) ? _.first(field.split('.')) : field
       })
       .join(',')
     params.fields[includeKey] = fields
