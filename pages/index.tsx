@@ -1,14 +1,23 @@
 import { useEffect } from 'react'
 import { getTokenBlueBrand } from '../helpers'
-import { initCLayer, Sku } from '../dist'
+import { initCLayer, Sku, Order } from '../src'
 import _ from 'lodash'
 
 export default function Home(props) {
   useEffect(() => {
+    Order.withCredentials(props.config)
+      .includes('paymentSource')
+      .select('id', 'status')
+      .where({ status: 'placed', paymentStatus: 'authorized' })
+      .order({ updatedAt: 'asc' })
+      .all()
+      .then((res) => {
+        debugger
+      })
     return () => {}
   }, [])
   console.log('props', props)
-  return <div className="container">ciao</div>
+  return <div className="container">Hello JS SDK!</div>
 }
 
 export async function getStaticProps() {
@@ -18,11 +27,7 @@ export async function getStaticProps() {
     accessToken: accessToken,
     endpoint: ENDPOINT,
   }
-  initCLayer(config)
-  const sku = await Sku.find('wBeDdSgYQW')
-  console.log('update', Sku)
-  debugger
   return {
-    props: {},
+    props: { config },
   }
 }
