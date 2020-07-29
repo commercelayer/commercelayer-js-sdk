@@ -1,10 +1,11 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
-import { CollectionProxy } from './@types/Library'
+import { CollectionProxy, SingleRelationship } from './@types/Library'
 import { PriceCollection } from './Price'
 import { SkuOptionCollection } from './SkuOption'
 import { DeliveryLeadTimeCollection } from './DeliveryLeadTime'
 import { StockItemCollection } from './StockItem'
+import { ShippingCategoryCollection } from './ShippingCategory'
 
 export interface InventoryCollection {
   available: boolean
@@ -49,7 +50,7 @@ export class SkuCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  shippingCategory: () => Promise<SkuCollection>
+  shippingCategory: () => SingleRelationship<ShippingCategoryCollection>
   prices: () => CollectionProxy<PriceCollection>
   stockItems: () => CollectionProxy<StockItemCollection>
   deliveryLeadTimes: () => CollectionProxy<DeliveryLeadTimeCollection>

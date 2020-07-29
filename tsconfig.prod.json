@@ -17,6 +17,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "declaration": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
     "lib": ["esnext", "dom.iterable", "dom"],
     "importHelpers": true,
     "typeRoots": ["node_modules/@types", "src/@types"],

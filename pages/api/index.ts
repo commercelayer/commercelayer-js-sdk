@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import _ from 'lodash'
 import { getTokenBlueBrand } from '../../helpers/getToken'
-import { initCLayer, Order } from '../../src'
+import { initCLayer, Order } from '../../dist'
 
 export default async (__: NextApiRequest, res: NextApiResponse) => {
   const { ENDPOINT } = process.env

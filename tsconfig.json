@@ -8,11 +8,11 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
     "isolatedModules": true,
     "jsx": "preserve"
   },

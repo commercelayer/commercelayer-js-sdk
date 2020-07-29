@@ -221,6 +221,9 @@ export interface Collection<R = any> {
   valid(): boolean
 }
 
+export type SingleRelationship<R> = R | null
+export type MultiRelationship<R> = CollectionProxy<R> | null
+
 export interface CreateResource {
   createResource<R>(resource: Base): BaseResource<R>
 }

@@ -45,18 +45,6 @@ class ExtendLibrary extends library.Base {
     // @ts-ignore
     return super.order(params)
   }
-  static first(value?: number) {
-    // @ts-ignore
-    this.includeMetaInfo(this.interface().axios.interceptors)
-    // @ts-ignore
-    return super.first(value)
-  }
-  static last(value?: number) {
-    // @ts-ignore
-    this.includeMetaInfo(this.interface().axios.interceptors)
-    // @ts-ignore
-    return super.last(value)
-  }
   static page(value?: number) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
@@ -81,18 +69,6 @@ class ExtendLibrary extends library.Base {
     // @ts-ignore
     return super.offset(value)
   }
-  static nextPagePromise() {
-    // @ts-ignore
-    this.includeMetaInfo(this.interface().axios.interceptors)
-    // @ts-ignore
-    return super.nextPagePromise()
-  }
-  static prevPage() {
-    // @ts-ignore
-    this.includeMetaInfo(this.interface().axios.interceptors)
-    // @ts-ignore
-    return super.prevPage()
-  }
   static where(options: object): any {
     // @ts-ignore
     const relation = super.where({
@@ -112,7 +88,7 @@ class ExtendLibrary extends library.Base {
     Object.keys(options).map((v: string) => {
       eqOptions[`${v}_eq`] = options[v]
     })
-    return this.where({ ...eqOptions }).first()
+    return this.where(eqOptions).first()
   }
   static withCredentials({ accessToken, endpoint }: InitConfig) {
     if (!this.accessToken && !this.endpoint) {
