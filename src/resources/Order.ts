@@ -1,12 +1,21 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
 import { LineItemCollection } from './LineItem'
-import { CollectionProxy } from './@types/Library'
+import {
+  CollectionProxy,
+  SingleRelationship,
+  MultiRelationship,
+} from './@types/Library'
 import { ShipmentCollection } from './Shipment'
 import { PaymentMethodCollection } from './PaymentMethod'
 import { MarketCollection } from './Market'
 import { CustomerCollection } from './Customer'
 import { AddressCollection } from './Address'
+import { StripePaymentCollection } from './StripePayment'
+import { WireTransferCollection } from './WireTransfer'
+import { PaypalPaymentCollection } from './PaypalPayment'
+import { BraintreePaymentCollection } from './BraintreePayment'
+import { AdyenPaymentCollection } from './AdyenPayment'
 
 export class OrderCollection extends BaseClass {
   static className = 'Order'
@@ -118,10 +127,18 @@ export class OrderCollection extends BaseClass {
   metadata: object
   market: () => Promise<MarketCollection>
   customer: () => Promise<CustomerCollection>
-  shippingAddress: () => Promise<AddressCollection>
+  shippingAddress: () => SingleRelationship<AddressCollection>
+  paymentSource: () => SingleRelationship<
+    | StripePaymentCollection
+    | WireTransferCollection
+    | PaypalPaymentCollection
+    | BraintreePaymentCollection
+    | AdyenPaymentCollection
+  >
+  loadShippingAddress: () => Promise<AddressCollection>
   billingAddress: () => Promise<AddressCollection>
   paymentMethod: () => Promise<PaymentMethodCollection>
-  lineItems: () => CollectionProxy<LineItemCollection>
+  lineItems: () => MultiRelationship<LineItemCollection>
   availablePaymentMethods: () => CollectionProxy<PaymentMethodCollection>
   shipments: () => CollectionProxy<ShipmentCollection>
   static define() {

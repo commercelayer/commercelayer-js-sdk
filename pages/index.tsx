@@ -1,17 +1,16 @@
 import { useEffect } from 'react'
 import { getTokenBlueBrand } from '../helpers'
-import { initCLayer, Sku, Order } from '../src'
+import { initCLayer, Sku, Order } from '../dist'
 import _ from 'lodash'
 
 export default function Home(props) {
   useEffect(() => {
     Order.withCredentials(props.config)
-      .includes('paymentSource')
-      .select('id', 'status')
-      .where({ status: 'placed', paymentStatus: 'authorized' })
-      .order({ updatedAt: 'asc' })
-      .all()
+      .includes('shippingAddress,paymentSource')
+      .find('jwBXVhxvqG')
       .then((res) => {
+        console.log('res.lineItems', res.lineItems().all)
+        // res.shippingAddress.name
         debugger
       })
     return () => {}
