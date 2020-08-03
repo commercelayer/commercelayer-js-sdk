@@ -98,6 +98,32 @@ import BillingInfoValidationRule, {
 } from './resources/BillingInfoValidationRule'
 import Refund, { RefundCollection } from './resources/Refund'
 import Void, { VoidCollection } from './resources/Void'
+import CouponCodesPromotionRule, {
+  CouponCodesPromotionRuleCollection,
+} from './resources/CouponCodesPromotionRule'
+import Coupon, { CouponCollection } from './resources/Coupon'
+import ExternalPromotion, {
+  ExternalPromotionCollection,
+} from './resources/ExternalPromotion'
+import FixedAmountPromotion, {
+  FixedAmountPromotionCollection,
+} from './resources/FixedAmountPromotion'
+import FreeShippingPromotion, {
+  FreeShippingPromotionCollection,
+} from './resources/FreeShippingPromotion'
+import OrderAmountPromotionRule, {
+  OrderAmountPromotionRuleCollection,
+} from './resources/OrderAmountPromotionRule'
+import PercentageDiscountPromotion, {
+  PercentageDiscountPromotionCollection,
+} from './resources/PercentageDiscountPromotion'
+import PromotionRule, {
+  PromotionRuleCollection,
+} from './resources/PromotionRule'
+import Promotion, { PromotionCollection } from './resources/Promotion'
+import SkuListPromotionRule, {
+  SkuListPromotionRuleCollection,
+} from './resources/SkuListPromotionRule'
 
 export {
   AddressCollection,
@@ -109,6 +135,8 @@ export {
   BillingInfoValidationRuleCollection,
   BraintreePaymentCollection,
   CaptureCollection,
+  CouponCodesPromotionRuleCollection,
+  CouponCollection,
   CreditCardCollection,
   CustomerAddressCollection,
   CustomerCollection,
@@ -118,6 +146,9 @@ export {
   CustomerSubscriptionCollection,
   DeliveryLeadTimeCollection,
   ExternalPaymentCollection,
+  ExternalPromotionCollection,
+  FixedAmountPromotionCollection,
+  FreeShippingPromotionCollection,
   GeocoderCollection,
   GiftCardCollection,
   GiftCardRecipientCollection,
@@ -128,6 +159,7 @@ export {
   LineItemOptionCollection,
   MarketCollection,
   MerchantCollection,
+  OrderAmountPromotionRuleCollection,
   OrderCollection,
   PackageCollection,
   ParcelCollection,
@@ -135,8 +167,11 @@ export {
   PaymentMethodCollection,
   PaymentSourceCollection,
   PaypalPaymentCollection,
+  PercentageDiscountPromotionCollection,
   PriceCollection,
   PriceListCollection,
+  PromotionCollection,
+  PromotionRuleCollection,
   RefundCollection,
   ShipmentCollection,
   ShippingCategoryCollection,
@@ -145,6 +180,7 @@ export {
   SkuCollection,
   SkuListCollection,
   SkuListItemCollection,
+  SkuListPromotionRuleCollection,
   SkuOptionCollection,
   StockItemCollection,
   StockLevelCollection,
@@ -165,6 +201,8 @@ export interface CLayer {
   BillingInfoValidationRule: BaseResource<BillingInfoValidationRuleCollection>
   BraintreePayment: BaseResource<BraintreePaymentCollection>
   Capture: BaseResource<CaptureCollection>
+  Coupon: BaseResource<CouponCollection>
+  CouponCodesPromotionRule: BaseResource<CouponCodesPromotionRuleCollection>
   CreditCard: BaseResource<CreditCardCollection>
   Customer: BaseResource<CustomerCollection>
   CustomerAddress: BaseResource<CustomerAddressCollection>
@@ -174,6 +212,9 @@ export interface CLayer {
   CustomerSubscription: BaseResource<CustomerSubscriptionCollection>
   DeliveryLeadTime: BaseResource<DeliveryLeadTimeCollection>
   ExternalPayment: BaseResource<ExternalPaymentCollection>
+  ExternalPromotion: BaseResource<ExternalPromotionCollection>
+  FixedAmountPromotion: BaseResource<FixedAmountPromotionCollection>
+  FreeShippingPromotion: BaseResource<FreeShippingPromotionCollection>
   Geocoder: BaseResource<GeocoderCollection>
   GiftCard: BaseResource<GiftCardCollection>
   GiftCardRecipient: BaseResource<GiftCardRecipientCollection>
@@ -186,14 +227,20 @@ export interface CLayer {
   Market: BaseResource<MarketCollection>
   Merchant: BaseResource<MerchantCollection>
   Order: BaseResource<OrderCollection>
+  OrderAmountPromotionRule: BaseResource<OrderAmountPromotionRuleCollection>
   Package: BaseResource<PackageCollection>
   Parcel: BaseResource<ParcelCollection>
   PaymentGateway: BaseResource<PaymentGatewayCollection>
   PaymentMethod: BaseResource<PaymentMethodCollection>
   PaymentSource: BaseResource<PaymentSourceCollection>
   PaypalPayment: BaseResource<PaypalPaymentCollection>
+  PercentageDiscountPromotion: BaseResource<
+    PercentageDiscountPromotionCollection
+  >
   Price: BaseResource<PriceCollection>
   PriceList: BaseResource<PriceListCollection>
+  Promotion: BaseResource<PromotionCollection>
+  PromotionRule: BaseResource<PromotionRuleCollection>
   Refund: BaseResource<RefundCollection>
   Shipment: BaseResource<ShipmentCollection>
   ShippingCategory: BaseResource<ShippingCategoryCollection>
@@ -202,6 +249,7 @@ export interface CLayer {
   Sku: BaseResource<SkuCollection>
   SkuList: BaseResource<SkuListCollection>
   SkuListItem: BaseResource<SkuListItemCollection>
+  SkuListPromotionRule: BaseResource<SkuListPromotionRuleCollection>
   SkuOption: BaseResource<SkuOptionCollection>
   StockItem: BaseResource<StockItemCollection>
   StockLevel: BaseResource<StockLevelCollection>
@@ -222,6 +270,8 @@ const CLayer: CLayer = {
   BillingInfoValidationRule,
   BraintreePayment,
   Capture,
+  Coupon,
+  CouponCodesPromotionRule,
   CreditCard,
   Customer,
   CustomerAddress,
@@ -231,6 +281,9 @@ const CLayer: CLayer = {
   CustomerSubscription,
   DeliveryLeadTime,
   ExternalPayment,
+  ExternalPromotion,
+  FixedAmountPromotion,
+  FreeShippingPromotion,
   Geocoder,
   GiftCard,
   GiftCardRecipient,
@@ -243,14 +296,18 @@ const CLayer: CLayer = {
   Market,
   Merchant,
   Order,
+  OrderAmountPromotionRule,
   Package,
   Parcel,
   PaymentGateway,
   PaymentMethod,
   PaymentSource,
   PaypalPayment,
+  PercentageDiscountPromotion,
   Price,
   PriceList,
+  Promotion,
+  PromotionRule,
   Refund,
   Shipment,
   ShippingCategory,
@@ -259,6 +316,7 @@ const CLayer: CLayer = {
   Sku,
   SkuList,
   SkuListItem,
+  SkuListPromotionRule,
   SkuOption,
   StockItem,
   StockLevel,
@@ -282,6 +340,8 @@ export {
   BillingInfoValidationRule,
   BraintreePayment,
   Capture,
+  Coupon,
+  CouponCodesPromotionRule,
   CreditCard,
   Customer,
   CustomerAddress,
@@ -291,6 +351,9 @@ export {
   CustomerSubscription,
   DeliveryLeadTime,
   ExternalPayment,
+  ExternalPromotion,
+  FixedAmountPromotion,
+  FreeShippingPromotion,
   Geocoder,
   GiftCard,
   GiftCardRecipient,
@@ -303,14 +366,18 @@ export {
   Market,
   Merchant,
   Order,
+  OrderAmountPromotionRule,
   Package,
   Parcel,
   PaymentGateway,
   PaymentMethod,
   PaymentSource,
   PaypalPayment,
+  PercentageDiscountPromotion,
   Price,
   PriceList,
+  Promotion,
+  PromotionRule,
   Refund,
   Shipment,
   ShippingCategory,
@@ -319,6 +386,7 @@ export {
   Sku,
   SkuList,
   SkuListItem,
+  SkuListPromotionRule,
   SkuOption,
   StockItem,
   StockLevel,

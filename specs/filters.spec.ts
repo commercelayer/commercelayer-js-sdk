@@ -51,7 +51,7 @@ it('METHOD --- select with includes and where', async () => {
   expect.assertions(4)
   const order = await CLayer.Order.withCredentials(blueBrandConfig)
     .where({
-      paymentStatusIn: 'authorized',
+      paymentStatusIn: 'unpaid',
     })
     .includes('lineItems.lineItemOptions')
     .select('number')
