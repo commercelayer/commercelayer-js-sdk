@@ -78,6 +78,9 @@ export class SkuCollection extends BaseClass {
     this.hasMany('stockItems', { className: 'StockItem' })
     this.hasMany('deliveryLeadTimes', { className: 'DeliveryLeadTime' })
     this.hasMany('skuOptions', { className: 'SkuOption' })
+    this.hasMany('availablePromotions', {
+      className: 'Promotion',
+    })
   }
 }
 
