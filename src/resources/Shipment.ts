@@ -67,7 +67,7 @@ export class ShipmentCollection extends BaseClass {
     this.hasOne('shippingAddress', { className: 'Address' })
     this.hasOne('shippingMethod', { className: 'ShippingMethod' })
 
-    this.hasMany('shipmentLineItems', { className: 'ShipmentLineItem' })
+    this.hasMany('shipmentLineItems', { className: 'LineItem' })
     this.hasMany('availableShippingMethods', { className: 'ShippingMethod' })
     this.hasMany('parcels', { className: 'Parcel' })
     this.hasMany('attachments', { className: 'Attachment' })
