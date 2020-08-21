@@ -83,7 +83,7 @@ import BraintreePayment, {
 import StripePayment, {
   StripePaymentCollection,
 } from './resources/StripePayment'
-import { BaseResource } from './resources/@types/Library'
+import { BaseResource } from './resources/typings/Library'
 import ExternalPayment, {
   ExternalPaymentCollection,
 } from './resources/ExternalPayment'
