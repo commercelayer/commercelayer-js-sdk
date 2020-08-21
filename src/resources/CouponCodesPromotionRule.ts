@@ -1,6 +1,6 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
-import { SingleRelationship } from './@types/Library'
+import { SingleRelationship } from './typings/Library'
 import { PromotionCollection } from './Promotion'
 
 export class CouponCodesPromotionRuleCollection extends BaseClass {

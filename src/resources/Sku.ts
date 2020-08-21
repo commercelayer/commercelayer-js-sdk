@@ -1,6 +1,6 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
-import { CollectionProxy, SingleRelationship } from './@types/Library'
+import { CollectionProxy, SingleRelationship } from './typings/Library'
 import { PriceCollection } from './Price'
 import { SkuOptionCollection } from './SkuOption'
 import { DeliveryLeadTimeCollection } from './DeliveryLeadTime'

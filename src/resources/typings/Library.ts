@@ -109,7 +109,7 @@ export interface BaseResource<T = any> extends Omit<Base, 'withCredentials'> {
   primaryKey: string
   queryParams(): object
   resetQueryParams(): object
-  select(...params: string[]): BaseResource<T>
+  select(...params: Array<string | Record<string, string[]>>): BaseResource<T>
   where(options?: object): BaseResource<T>
   update(attrs: object, callback?: any): Promise<T>
   withCredentials({ accessToken, endpoint }: InitConfig): BaseResource<T>

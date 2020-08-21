@@ -5,7 +5,7 @@ import {
   CollectionProxy,
   SingleRelationship,
   MultiRelationship,
-} from './@types/Library'
+} from './typings/Library'
 import { ShipmentCollection } from './Shipment'
 import { PaymentMethodCollection } from './PaymentMethod'
 import { MarketCollection } from './Market'

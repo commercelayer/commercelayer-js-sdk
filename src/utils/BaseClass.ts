@@ -4,7 +4,7 @@ import library from '../resources/library'
 import {
   CollectionResponse,
   HeadersResponse,
-} from '../resources/@types/Library'
+} from '../resources/typings/Library'
 
 export type Meta = {
   pageCount?: number
