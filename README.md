@@ -141,11 +141,6 @@ Check our API reference for more information on how to [retrieve an SKU](https:/
   // Sorts the results by creation date in descending order
   const skus = await Sku.order({ createdAt: 'desc' }).all()
 
-  // SPARSE FIELDSETS
-
-  // Requests the API to return only specific fields
-  const skus = await Sku.select('name', 'metadata').all()
-
   // INCLUDING ASSOCIATIONS
 
   // Includes an association (prices)
@@ -166,6 +161,16 @@ Check our API reference for more information on how to [retrieve an SKU](https:/
   // Includes an association (prices) and calculates the size of the related currently loaded collection
   const sku = await Sku.includes('prices').first()
   const pricesSize = sku.prices().size()
+
+  // SPARSE FIELDSETS
+
+  // Requests the API to return only specific fields
+  const skus = await Sku.select('name', 'metadata').all()
+
+  // Requests the API to return only specific fields of the included resource
+  const skus = await Sku.includes('prices')
+		.select('code', { prices: ['currencyCode', 'formattedAmount'] })
+		.all()
 
   // FILTERING DATA
 
@@ -296,7 +301,7 @@ If needed, Commerce Layer JS SDK lets you set the configuration at a request lev
 Commerce Layer API returns specific errors (with extra information) on each attribute of a single resource. You can inspect them to properly handle validation errors (if any). To do that, use the `errors()` method:
 
 ```
-  // logs 2 error messages to console: 
+  // logs 2 error messages to console:
   // 'shipping_category - must exist'
   // 'name - can't be blank'
 
