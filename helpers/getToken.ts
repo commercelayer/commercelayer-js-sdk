@@ -28,15 +28,23 @@ export const getTokenBlueBrand = async (type: AuthType = 'integration') => {
 }
 
 // LIME BRAND
-export const getTokenLimeBrand = async () => {
+export const getTokenLimeBrand = async (type: AuthType = 'integration') => {
   const {
     LIME_BRAND_ENDPOINT,
     LIME_BRAND_CLIENT_ID,
     LIME_BRAND_SCOPE,
+    LIME_BRAND_CLIENT_ID_INTEGRATION,
+    LIME_BRAND_CLIENT_SECRET,
   } = process.env
-  return await getSalesChannelToken({
-    endpoint: LIME_BRAND_ENDPOINT,
-    clientId: LIME_BRAND_CLIENT_ID,
-    scope: LIME_BRAND_SCOPE,
-  })
+  return type === 'integration'
+    ? await getIntegrationToken({
+        endpoint: LIME_BRAND_ENDPOINT,
+        clientId: LIME_BRAND_CLIENT_ID_INTEGRATION,
+        clientSecret: LIME_BRAND_CLIENT_SECRET,
+      })
+    : await await getSalesChannelToken({
+        endpoint: LIME_BRAND_ENDPOINT,
+        clientId: LIME_BRAND_CLIENT_ID,
+        scope: LIME_BRAND_SCOPE,
+      })
 }
