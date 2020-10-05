@@ -1,8 +1,8 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
 import { CollectionProxy } from './typings/Library'
-import { OrderCollection } from './Order'
-import { PriceCollection } from './Price'
+import { CustomerGroupCollection } from './CustomerGroup'
+import { PriceListCollection } from './PriceList'
 import { InventoryModelCollection } from './InventoryModel'
 
 export class MarketCollection extends BaseClass {
@@ -16,8 +16,8 @@ export class MarketCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  orders: () => CollectionProxy<OrderCollection>
-  priceList: () => CollectionProxy<PriceCollection>
+  customerGroup: () => CollectionProxy<CustomerGroupCollection>
+  priceList: () => CollectionProxy<PriceListCollection>
   inventoryModel: () => CollectionProxy<InventoryModelCollection>
   static define() {
     this.attributes(
@@ -34,7 +34,7 @@ export class MarketCollection extends BaseClass {
     this.hasOne('merchant', { className: 'Merchant' })
     this.hasOne('priceList', { className: 'PriceList' })
     this.hasOne('inventoryModel', { className: 'InventoryModel' })
-    this.hasMany('orders', { className: 'Order' })
+    this.hasMany('customerGroup', { className: 'CustomerGroup' })
   }
 }
 

@@ -366,7 +366,7 @@ it('METHOD --- CRUD lineItem', async () => {
     blueBrandConfig
   ).create({
     order,
-    skuCode: 'BABYONBU000000E63E746MXX',
+    skuCode: 'BABYONBU000000E63E7412MX',
     quantity: 1,
   })
 
