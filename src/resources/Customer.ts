@@ -9,15 +9,18 @@ import { CustomerGroupCollection } from './CustomerGroup'
 
 export class CustomerCollection extends BaseClass {
   static className = 'Customer'
-  email: string
-  password: string
-  status: 'prospect' | 'acquired' | 'repeat'
-  id: string
   createdAt: Date
-  updatedAt: Date
+  email: string
+  hasPassword: boolean
+  id: string
+  metadata: object
+  password: string
+  passwordBlank: boolean
+  passwordPresent: boolean
   reference: string
   referenceOrigin: string
-  metadata: object
+  status: 'prospect' | 'acquired' | 'repeat'
+  updatedAt: Date
   customerAddresses: () => CollectionProxy<CustomerAddressCollection>
   customerPaymentSources: () => CollectionProxy<CustomerPaymentSourceCollection>
   customerSubscriptions: () => CollectionProxy<CustomerSubscriptionCollection>
@@ -26,7 +29,10 @@ export class CustomerCollection extends BaseClass {
   static define() {
     this.attributes(
       'email',
+      'hasPassword',
       'password',
+      'passwordBlank',
+      'passwordPresent',
       'status',
       'id',
       'createdAt',
