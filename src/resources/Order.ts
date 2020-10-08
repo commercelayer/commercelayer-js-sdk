@@ -115,6 +115,7 @@ export class OrderCollection extends BaseClass {
   _saveBillingAddressToCustomerAddressBook: number
   _refresh: number
   placedAt: Date
+  archivedAt: Date
   approvedAt: Date
   cancelledAt: Date
   paymentUpdatedAt: Date
@@ -242,6 +243,7 @@ export class OrderCollection extends BaseClass {
       'paymentUpdatedAt',
       'fulfillmentUpdatedAt',
       'id',
+      'archivedAt',
       'createdAt',
       'updatedAt',
       'reference',
