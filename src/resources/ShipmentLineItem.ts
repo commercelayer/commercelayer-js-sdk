@@ -2,7 +2,7 @@ import library from './library'
 import BaseClass from '../utils/BaseClass'
 import { ShipmentCollection } from './Shipment'
 import { LineItemCollection } from './LineItem'
-import { StockItemCollection } from '../../dist'
+import { StockItemCollection } from './StockItem'
 
 export class ShipmentLineItemCollection extends BaseClass {
   static className = 'ShipmentLineItem'
