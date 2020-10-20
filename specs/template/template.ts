@@ -167,7 +167,7 @@ export default [
   },
   {
     testName: 'Inventory Models',
-    belongsToClass: 'StockLevel',
+    belongsToClass: 'InventoryStockLocation',
     className: 'InventoryModel',
     associations: ['stockLevels'],
     tests: [

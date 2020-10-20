@@ -1,6 +1,5 @@
 import Address, { AddressCollection } from './resources/Address'
 import Attachment, { AttachmentCollection } from './resources/Attachment'
-import CreditCard, { CreditCardCollection } from './resources/CreditCard'
 import CustomerAddress, {
   CustomerAddressCollection,
 } from './resources/CustomerAddress'
@@ -59,7 +58,9 @@ import Sku, { SkuCollection } from './resources/Sku'
 import SkuList, { SkuListCollection } from './resources/SkuList'
 import SkuListItem, { SkuListItemCollection } from './resources/SkuListItem'
 import StockItem, { StockItemCollection } from './resources/StockItem'
-import StockLevel, { StockLevelCollection } from './resources/StockLevel'
+import InventoryStockLocation, {
+  InventoryStockLocationCollection,
+} from './resources/InventoryStockLocation'
 import StockLocation, {
   StockLocationCollection,
 } from './resources/StockLocation'
@@ -124,6 +125,16 @@ import Promotion, { PromotionCollection } from './resources/Promotion'
 import SkuListPromotionRule, {
   SkuListPromotionRuleCollection,
 } from './resources/SkuListPromotionRule'
+import InventoryReturnLocation, {
+  InventoryReturnLocationCollection,
+} from './resources/InventoryReturnLocation'
+import Return, { ReturnCollection } from './resources/Return'
+import ReturnLineItem, {
+  ReturnLineItemCollection,
+} from './resources/ReturnLineItem'
+import ShipmentLineItem, {
+  ShipmentLineItemCollection,
+} from './resources/ShipmentLineItem'
 
 export {
   AddressCollection,
@@ -137,7 +148,6 @@ export {
   CaptureCollection,
   CouponCodesPromotionRuleCollection,
   CouponCollection,
-  CreditCardCollection,
   CustomerAddressCollection,
   CustomerCollection,
   CustomerGroupCollection,
@@ -154,6 +164,7 @@ export {
   GiftCardRecipientCollection,
   ImportCollection,
   InStockSubscriptionCollection,
+  InventoryReturnLocationCollection,
   InventoryModelCollection,
   LineItemCollection,
   LineItemOptionCollection,
@@ -173,6 +184,9 @@ export {
   PromotionCollection,
   PromotionRuleCollection,
   RefundCollection,
+  ReturnCollection,
+  ReturnLineItemCollection,
+  ShipmentLineItemCollection,
   ShipmentCollection,
   ShippingCategoryCollection,
   ShippingMethodCollection,
@@ -183,7 +197,7 @@ export {
   SkuListPromotionRuleCollection,
   SkuOptionCollection,
   StockItemCollection,
-  StockLevelCollection,
+  InventoryStockLocationCollection,
   StockLocationCollection,
   StripePaymentCollection,
   VoidCollection,
@@ -203,7 +217,6 @@ export interface CLayer {
   Capture: BaseResource<CaptureCollection>
   Coupon: BaseResource<CouponCollection>
   CouponCodesPromotionRule: BaseResource<CouponCodesPromotionRuleCollection>
-  CreditCard: BaseResource<CreditCardCollection>
   Customer: BaseResource<CustomerCollection>
   CustomerAddress: BaseResource<CustomerAddressCollection>
   CustomerGroup: BaseResource<CustomerGroupCollection>
@@ -221,6 +234,7 @@ export interface CLayer {
   Import: BaseResource<ImportCollection>
   InStockSubscription: BaseResource<InStockSubscriptionCollection>
   InventoryModel: BaseResource<InventoryModelCollection>
+  InventoryReturnLocation: BaseResource<InventoryReturnLocationCollection>
   Item: BaseResource<ItemCollection>
   LineItem: BaseResource<LineItemCollection>
   LineItemOption: BaseResource<LineItemOptionCollection>
@@ -242,7 +256,10 @@ export interface CLayer {
   Promotion: BaseResource<PromotionCollection>
   PromotionRule: BaseResource<PromotionRuleCollection>
   Refund: BaseResource<RefundCollection>
+  Return: BaseResource<ReturnCollection>
+  ReturnLineItem: BaseResource<ReturnLineItemCollection>
   Shipment: BaseResource<ShipmentCollection>
+  ShipmentLineItem: BaseResource<ShipmentLineItemCollection>
   ShippingCategory: BaseResource<ShippingCategoryCollection>
   ShippingMethod: BaseResource<ShippingMethodCollection>
   ShippingZone: BaseResource<ShippingZoneCollection>
@@ -252,7 +269,7 @@ export interface CLayer {
   SkuListPromotionRule: BaseResource<SkuListPromotionRuleCollection>
   SkuOption: BaseResource<SkuOptionCollection>
   StockItem: BaseResource<StockItemCollection>
-  StockLevel: BaseResource<StockLevelCollection>
+  InventoryStockLocation: BaseResource<InventoryStockLocationCollection>
   StockLocation: BaseResource<StockLocationCollection>
   StripePayment: BaseResource<StripePaymentCollection>
   Void: BaseResource<VoidCollection>
@@ -272,7 +289,6 @@ const CLayer: CLayer = {
   Capture,
   Coupon,
   CouponCodesPromotionRule,
-  CreditCard,
   Customer,
   CustomerAddress,
   CustomerGroup,
@@ -290,6 +306,7 @@ const CLayer: CLayer = {
   Import,
   InStockSubscription,
   InventoryModel,
+  InventoryReturnLocation,
   Item,
   LineItem,
   LineItemOption,
@@ -309,7 +326,10 @@ const CLayer: CLayer = {
   Promotion,
   PromotionRule,
   Refund,
+  Return,
+  ReturnLineItem,
   Shipment,
+  ShipmentLineItem,
   ShippingCategory,
   ShippingMethod,
   ShippingZone,
@@ -319,7 +339,7 @@ const CLayer: CLayer = {
   SkuListPromotionRule,
   SkuOption,
   StockItem,
-  StockLevel,
+  InventoryStockLocation,
   StockLocation,
   StripePayment,
   Void,
@@ -342,7 +362,6 @@ export {
   Capture,
   Coupon,
   CouponCodesPromotionRule,
-  CreditCard,
   Customer,
   CustomerAddress,
   CustomerGroup,
@@ -360,6 +379,7 @@ export {
   Import,
   InStockSubscription,
   InventoryModel,
+  InventoryReturnLocation,
   Item,
   LineItem,
   LineItemOption,
@@ -379,7 +399,10 @@ export {
   Promotion,
   PromotionRule,
   Refund,
+  Return,
+  ReturnLineItem,
   Shipment,
+  ShipmentLineItem,
   ShippingCategory,
   ShippingMethod,
   ShippingZone,
@@ -389,7 +412,7 @@ export {
   SkuListPromotionRule,
   SkuOption,
   StockItem,
-  StockLevel,
+  InventoryStockLocation,
   StockLocation,
   StripePayment,
   Void,
