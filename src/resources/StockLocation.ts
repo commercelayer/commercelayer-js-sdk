@@ -1,7 +1,7 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
 import { CollectionProxy } from './typings/Library'
-import { StockLevelCollection } from './StockLevel'
+import { InventoryStockLocationCollection } from './InventoryStockLocation'
 import { StockItemCollection } from './StockItem'
 import { AddressCollection } from './Address'
 
@@ -16,7 +16,9 @@ export class StockLocationCollection extends BaseClass {
   referenceOrigin: string
   metadata: object
   address: () => Promise<AddressCollection>
-  stockLevels: () => CollectionProxy<StockLevelCollection>
+  InventoryStockLocations: () => CollectionProxy<
+    InventoryStockLocationCollection
+  >
   stockItems: () => CollectionProxy<StockItemCollection>
   static define() {
     this.attributes(
@@ -32,7 +34,9 @@ export class StockLocationCollection extends BaseClass {
 
     this.hasOne('address', { className: 'Address' })
 
-    this.hasMany('stockLevels', { className: 'StockLevel' })
+    this.hasMany('InventoryStockLocations', {
+      className: 'InventoryStockLocation',
+    })
     this.hasMany('stockItems', { className: 'StockItem' })
   }
 }

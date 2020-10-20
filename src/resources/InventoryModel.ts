@@ -1,7 +1,7 @@
 import library from './library'
 import BaseClass from '../utils/BaseClass'
 import { CollectionProxy } from './typings/Library'
-import { StockLevelCollection } from './StockLevel'
+import { InventoryStockLocationCollection } from './InventoryStockLocation'
 
 export class InventoryModelCollection extends BaseClass {
   static className = 'InventoryModel'
@@ -12,7 +12,9 @@ export class InventoryModelCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  stockLevels: () => CollectionProxy<StockLevelCollection>
+  InventoryStockLocations: () => CollectionProxy<
+    InventoryStockLocationCollection
+  >
   static define() {
     this.attributes(
       'name',
@@ -23,7 +25,9 @@ export class InventoryModelCollection extends BaseClass {
       'referenceOrigin',
       'metadata'
     )
-    this.hasMany('stockLevels', { className: 'StockLevel' })
+    this.hasMany('InventoryStockLocations', {
+      className: 'InventoryStockLocation',
+    })
   }
 }
 

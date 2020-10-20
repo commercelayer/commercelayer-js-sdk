@@ -3,8 +3,8 @@ import BaseClass from '../utils/BaseClass'
 import { StockLocationCollection } from './StockLocation'
 import { InventoryModelCollection } from './InventoryModel'
 
-export class StockLevelCollection extends BaseClass {
-  static className = 'StockLevel'
+export class InventoryStockLocationCollection extends BaseClass {
+  static className = 'InventoryStockLocation'
   priority: number
   onHold: boolean
   id: string
@@ -32,8 +32,8 @@ export class StockLevelCollection extends BaseClass {
   }
 }
 
-const StockLevel = library.createResource<StockLevelCollection>(
-  StockLevelCollection
-)
+const InventoryStockLocation = library.createResource<
+  InventoryStockLocationCollection
+>(InventoryStockLocationCollection)
 
-export default StockLevel
+export default InventoryStockLocation
