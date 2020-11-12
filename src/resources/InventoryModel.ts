@@ -12,7 +12,7 @@ export class InventoryModelCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  InventoryStockLocations: () => CollectionProxy<
+  inventoryStockLocations: () => CollectionProxy<
     InventoryStockLocationCollection
   >
   static define() {
@@ -25,7 +25,7 @@ export class InventoryModelCollection extends BaseClass {
       'referenceOrigin',
       'metadata'
     )
-    this.hasMany('InventoryStockLocations', {
+    this.hasMany('inventoryStockLocations', {
       className: 'InventoryStockLocation',
     })
   }
