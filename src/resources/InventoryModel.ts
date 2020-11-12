@@ -7,6 +7,7 @@ export class InventoryModelCollection extends BaseClass {
   static className = 'InventoryModel'
   name: string
   id: string
+  stockLocationsCutoff: number
   createdAt: Date
   updatedAt: Date
   reference: string
@@ -19,6 +20,7 @@ export class InventoryModelCollection extends BaseClass {
     this.attributes(
       'name',
       'id',
+      'stockLocationsCutoff',
       'createdAt',
       'updatedAt',
       'reference',
