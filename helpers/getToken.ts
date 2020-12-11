@@ -19,12 +19,22 @@ export const getTokenBlueBrand = async (type: AuthType = 'integration') => {
         endpoint: ENDPOINT,
         clientId: CLIENT_ID,
         clientSecret: CLIENT_SECRET,
+        scope: SCOPE,
       })
     : await getSalesChannelToken({
         endpoint: ENDPOINT,
         clientId: SALES_CHANNEL_ID,
         scope: SCOPE,
       })
+}
+
+export const getTokenBlueBrandWeb = async (
+  type: AuthType = 'integration',
+  config
+) => {
+  return type === 'integration'
+    ? await getIntegrationToken(config)
+    : await getSalesChannelToken(config)
 }
 
 // LIME BRAND

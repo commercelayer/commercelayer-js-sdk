@@ -27,17 +27,17 @@ class ExtendLibrary extends library.Base {
     super()
     return this
   }
-  static includes(params: string[]) {
+  static includes(...params: string[]) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    return super.includes(params)
+    return super.includes(...params)
   }
-  static select(params: string[]) {
+  static select(...params: string[]) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    return super.select(params)
+    return super.select(...params)
   }
   static order(params: object) {
     // @ts-ignore
