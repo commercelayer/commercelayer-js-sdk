@@ -128,7 +128,9 @@ export class OrderCollection extends BaseClass {
   metadata: object
   market: () => Promise<MarketCollection>
   customer: () => Promise<CustomerCollection>
-  shippingAddress: () => SingleRelationship<AddressCollection>
+  shippingAddress: () =>
+    | Promise<AddressCollection>
+    | SingleRelationship<AddressCollection>
   paymentSource: () => SingleRelationship<
     | StripePaymentCollection
     | WireTransferCollection
@@ -137,7 +139,9 @@ export class OrderCollection extends BaseClass {
     | AdyenPaymentCollection
   >
   loadShippingAddress: () => Promise<AddressCollection>
-  billingAddress: () => Promise<AddressCollection>
+  billingAddress: () =>
+    | Promise<AddressCollection>
+    | SingleRelationship<AddressCollection>
   paymentMethod: () => Promise<PaymentMethodCollection>
   lineItems: () => MultiRelationship<LineItemCollection>
   availablePaymentMethods: () => CollectionProxy<PaymentMethodCollection>
