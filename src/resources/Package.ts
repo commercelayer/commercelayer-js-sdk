@@ -1,7 +1,7 @@
 import library from './library'
-import BaseClass from '../utils/BaseClass'
+import BaseClass from '#utils/BaseClass'
 import { StockLocationCollection } from './StockLocation'
-import { CollectionProxy } from './typings/Library'
+import { CollectionProxy } from '#typings/Library'
 import { ParcelCollection } from './Parcel'
 
 export class PackageCollection extends BaseClass {

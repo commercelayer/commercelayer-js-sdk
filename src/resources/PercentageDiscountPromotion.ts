@@ -1,6 +1,6 @@
 import library from './library'
-import BaseClass from '../utils/BaseClass'
-import { SingleRelationship, MultiRelationship } from './typings/Library'
+import BaseClass from '#utils/BaseClass'
+import { SingleRelationship, MultiRelationship } from '#typings/Library'
 import { CouponCodesPromotionRuleCollection } from './CouponCodesPromotionRule'
 import { MarketCollection } from './Market'
 import { SkuListCollection } from './SkuList'

@@ -1,5 +1,5 @@
 import library from './library'
-import BaseClass from '../utils/BaseClass'
+import BaseClass from '#utils/BaseClass'
 
 export class AuthorizationCollection extends BaseClass {
   static className = 'Authorization'

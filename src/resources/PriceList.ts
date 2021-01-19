@@ -1,6 +1,6 @@
 import library from './library'
-import BaseClass from '../utils/BaseClass'
-import { CollectionProxy } from './typings/Library'
+import BaseClass from '#utils/BaseClass'
+import { CollectionProxy } from '#typings/Library'
 import { PriceCollection } from './Price'
 
 export class PriceListCollection extends BaseClass {

@@ -1,6 +1,6 @@
 import library from './library'
-import BaseClass from '../utils/BaseClass'
-import { CollectionProxy } from './typings/Library'
+import BaseClass from '#utils/BaseClass'
+import { CollectionProxy } from '#typings/Library'
 import { InventoryStockLocationCollection } from './InventoryStockLocation'
 import { StockItemCollection } from './StockItem'
 import { AddressCollection } from './Address'
