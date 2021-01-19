@@ -4,7 +4,7 @@ import skus from '../helpers/testSkus'
 
 let blueBrandConfig = { accessToken: '', endpoint: '' }
 const { ENDPOINT } = process.env
-const totRecordCount = 247
+const totRecordCount = 97
 
 beforeAll(async () => {
   const { accessToken } = await getTokenBlueBrand()
