@@ -1,10 +1,7 @@
 // TODO remove ts-ignore comments
-import { InitConfig } from '../resources/Initialize'
-import library from '../resources/library'
-import {
-  CollectionResponse,
-  HeadersResponse,
-} from '../resources/typings/Library'
+import { InitConfig } from '#resources/Initialize'
+import library from '#resources/library'
+import { CollectionResponse, HeadersResponse } from '#typings/Library'
 
 export type Meta = {
   pageCount?: number

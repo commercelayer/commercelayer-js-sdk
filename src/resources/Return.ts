@@ -1,11 +1,11 @@
 import library from './library'
-import BaseClass from '../utils/BaseClass'
+import BaseClass from '#utils/BaseClass'
 import { OrderCollection } from './Order'
 import { CustomerCollection } from './Customer'
 import { InventoryReturnLocationCollection } from './InventoryReturnLocation'
 import { StockLocationCollection } from './StockLocation'
 import { AddressCollection } from './Address'
-import { CollectionProxy } from './typings/Library'
+import { CollectionProxy } from '#typings/Library'
 import { ReturnLineItemCollection } from './ReturnLineItem'
 import { AttachmentCollection } from './Attachment'
 

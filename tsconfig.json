@@ -14,7 +14,14 @@
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "baseUrl": "./",
+    "paths": {
+      "@commercelayer/js-sdk": ["src/index"],
+      "#resources/*": ["src/resources/*"],
+      "#utils/*": ["src/utils/*"],
+      "#typings/*": ["src/typings/*"]
+    }
   },
   "exclude": ["node_modules"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]

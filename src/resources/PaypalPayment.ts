@@ -1,5 +1,5 @@
 import library from './library'
-import BaseClass from '../utils/BaseClass'
+import BaseClass from '#utils/BaseClass'
 import { OrderCollection } from './Order'
 
 export class PaypalPaymentCollection extends BaseClass {

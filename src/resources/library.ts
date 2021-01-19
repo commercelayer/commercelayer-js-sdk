@@ -4,11 +4,11 @@ import {
   // @ts-ignore
   CollectionResponse,
 } from 'active-resource'
-import Library, { GeneralObject } from './typings/Library'
+import Library, { GeneralObject } from '#typings/Library'
 import { InitConfig } from './Initialize'
 import _ from 'lodash'
-import BaseClass from '../utils/BaseClass'
-import { cleanUrl, parserParams } from '../utils/helpers'
+import BaseClass from '#utils/BaseClass'
+import { cleanUrl, parserParams } from '#utils/helpers'
 
 const subdomain = 'yourdomain'
 

@@ -1,4 +1,4 @@
-import { InitConfig } from '../Initialize'
+import { InitConfig } from '#resources/Initialize'
 export interface GeneralObject {
   [index: string]: string
 }

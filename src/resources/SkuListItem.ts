@@ -1,5 +1,5 @@
 import library from './library'
-import BaseClass from '../utils/BaseClass'
+import BaseClass from '#utils/BaseClass'
 import { SkuCollection } from './Sku'
 import { SkuListCollection } from './SkuList'
 

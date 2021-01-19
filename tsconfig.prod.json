@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
-    "baseUrl": "./src/",
+    "outDir": "dist",
+    "baseUrl": "src",
     "sourceMap": true,
     "noImplicitAny": false,
     "target": "es5",
@@ -21,9 +21,12 @@
     "noUnusedLocals": true,
     "lib": ["esnext", "dom.iterable", "dom"],
     "importHelpers": true,
-    "typeRoots": ["node_modules/@types", "src/@types"],
-    "types": ["node"]
+    "paths": {
+      "#resources/*": ["src/resources/*"],
+      "#utils/*": ["src/utils/*"],
+      "#typings/*": ["src/typings/*"]
+    }
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts", "helpers"]
 }

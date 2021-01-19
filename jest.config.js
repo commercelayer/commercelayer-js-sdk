@@ -1,3 +1,6 @@
+const tsconfig = require('./tsconfig.json')
+const moduleNameMapper = require('tsconfig-paths-jest')(tsconfig)
+
 module.exports = {
   testEnvironment: 'node',
   setupFiles: ['dotenv/config'],
@@ -8,4 +11,5 @@ module.exports = {
   ],
   collectCoverageFrom: ['src/**/*.{ts,tsx,js,jsx}'],
   testTimeout: 30000,
+  moduleNameMapper,
 }
