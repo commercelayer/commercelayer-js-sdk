@@ -129,12 +129,29 @@ import InventoryReturnLocation, {
   InventoryReturnLocationCollection,
 } from '#resources/InventoryReturnLocation'
 import Return, { ReturnCollection } from '#resources/Return'
+import ExternalTaxCalculator, {
+  ExternalTaxCalculatorCollection,
+} from '#resources/ExternalTaxCalculator'
+import ManualTaxCalculator, {
+  ManualTaxCalculatorCollection,
+} from '#resources/ManualTaxCalculator'
+import TaxCalculator, {
+  TaxCalculatorCollection,
+} from '#resources/TaxCalculator'
+import TaxRule, { TaxRuleCollection } from '#resources/TaxRule'
+import TaxjarAccount, {
+  TaxjarAccountCollection,
+} from '#resources/TaxjarAccount'
 import ReturnLineItem, {
   ReturnLineItemCollection,
 } from '#resources/ReturnLineItem'
 import ShipmentLineItem, {
   ShipmentLineItemCollection,
 } from '#resources/ShipmentLineItem'
+import TaxCategory, { TaxCategoryCollection } from '#resources/TaxCategory'
+import AvalaraAccount, {
+  AvalaraAccountCollection,
+} from '#resources/AvalaraAccount'
 
 export {
   AddressCollection,
@@ -143,6 +160,7 @@ export {
   AttachableCollection,
   AttachmentCollection,
   AuthorizationCollection,
+  AvalaraAccountCollection,
   BillingInfoValidationRuleCollection,
   BraintreePaymentCollection,
   CaptureCollection,
@@ -157,6 +175,7 @@ export {
   DeliveryLeadTimeCollection,
   ExternalPaymentCollection,
   ExternalPromotionCollection,
+  ExternalTaxCalculatorCollection,
   FixedAmountPromotionCollection,
   FreeShippingPromotionCollection,
   GeocoderCollection,
@@ -164,10 +183,12 @@ export {
   GiftCardRecipientCollection,
   ImportCollection,
   InStockSubscriptionCollection,
-  InventoryReturnLocationCollection,
   InventoryModelCollection,
+  InventoryReturnLocationCollection,
+  InventoryStockLocationCollection,
   LineItemCollection,
   LineItemOptionCollection,
+  ManualTaxCalculatorCollection,
   MarketCollection,
   MerchantCollection,
   OrderAmountPromotionRuleCollection,
@@ -186,8 +207,8 @@ export {
   RefundCollection,
   ReturnCollection,
   ReturnLineItemCollection,
-  ShipmentLineItemCollection,
   ShipmentCollection,
+  ShipmentLineItemCollection,
   ShippingCategoryCollection,
   ShippingMethodCollection,
   ShippingZoneCollection,
@@ -197,9 +218,12 @@ export {
   SkuListPromotionRuleCollection,
   SkuOptionCollection,
   StockItemCollection,
-  InventoryStockLocationCollection,
   StockLocationCollection,
   StripePaymentCollection,
+  TaxCalculatorCollection,
+  TaxCategoryCollection,
+  TaxRuleCollection,
+  TaxjarAccountCollection,
   VoidCollection,
   WebhookCollection,
   WireTransferCollection,
@@ -212,6 +236,7 @@ export interface CLayer {
   Attachable: BaseResource<AttachableCollection>
   Attachment: BaseResource<AttachmentCollection>
   Authorization: BaseResource<AuthorizationCollection>
+  AvalaraAccount: BaseResource<AvalaraAccountCollection>
   BillingInfoValidationRule: BaseResource<BillingInfoValidationRuleCollection>
   BraintreePayment: BaseResource<BraintreePaymentCollection>
   Capture: BaseResource<CaptureCollection>
@@ -226,6 +251,7 @@ export interface CLayer {
   DeliveryLeadTime: BaseResource<DeliveryLeadTimeCollection>
   ExternalPayment: BaseResource<ExternalPaymentCollection>
   ExternalPromotion: BaseResource<ExternalPromotionCollection>
+  ExternalTaxCalculator: BaseResource<ExternalTaxCalculatorCollection>
   FixedAmountPromotion: BaseResource<FixedAmountPromotionCollection>
   FreeShippingPromotion: BaseResource<FreeShippingPromotionCollection>
   Geocoder: BaseResource<GeocoderCollection>
@@ -235,9 +261,11 @@ export interface CLayer {
   InStockSubscription: BaseResource<InStockSubscriptionCollection>
   InventoryModel: BaseResource<InventoryModelCollection>
   InventoryReturnLocation: BaseResource<InventoryReturnLocationCollection>
+  InventoryStockLocation: BaseResource<InventoryStockLocationCollection>
   Item: BaseResource<ItemCollection>
   LineItem: BaseResource<LineItemCollection>
   LineItemOption: BaseResource<LineItemOptionCollection>
+  ManualTaxCalculator: BaseResource<ManualTaxCalculatorCollection>
   Market: BaseResource<MarketCollection>
   Merchant: BaseResource<MerchantCollection>
   Order: BaseResource<OrderCollection>
@@ -269,9 +297,12 @@ export interface CLayer {
   SkuListPromotionRule: BaseResource<SkuListPromotionRuleCollection>
   SkuOption: BaseResource<SkuOptionCollection>
   StockItem: BaseResource<StockItemCollection>
-  InventoryStockLocation: BaseResource<InventoryStockLocationCollection>
   StockLocation: BaseResource<StockLocationCollection>
   StripePayment: BaseResource<StripePaymentCollection>
+  TaxCalculator: BaseResource<TaxCalculatorCollection>
+  TaxCategory: BaseResource<TaxCategoryCollection>
+  TaxRule: BaseResource<TaxRuleCollection>
+  TaxjarAccount: BaseResource<TaxjarAccountCollection>
   Void: BaseResource<VoidCollection>
   Webhook: BaseResource<WebhookCollection>
   WireTransfer: BaseResource<WireTransferCollection>
@@ -284,6 +315,7 @@ const CLayer: CLayer = {
   Attachable,
   Attachment,
   Authorization,
+  AvalaraAccount,
   BillingInfoValidationRule,
   BraintreePayment,
   Capture,
@@ -298,6 +330,7 @@ const CLayer: CLayer = {
   DeliveryLeadTime,
   ExternalPayment,
   ExternalPromotion,
+  ExternalTaxCalculator,
   FixedAmountPromotion,
   FreeShippingPromotion,
   Geocoder,
@@ -307,9 +340,11 @@ const CLayer: CLayer = {
   InStockSubscription,
   InventoryModel,
   InventoryReturnLocation,
+  InventoryStockLocation,
   Item,
   LineItem,
   LineItemOption,
+  ManualTaxCalculator,
   Market,
   Merchant,
   Order,
@@ -339,9 +374,12 @@ const CLayer: CLayer = {
   SkuListPromotionRule,
   SkuOption,
   StockItem,
-  InventoryStockLocation,
   StockLocation,
   StripePayment,
+  TaxCalculator,
+  TaxCategory,
+  TaxRule,
+  TaxjarAccount,
   Void,
   Webhook,
   WireTransfer,
@@ -357,6 +395,7 @@ export {
   Attachable,
   Attachment,
   Authorization,
+  AvalaraAccount,
   BillingInfoValidationRule,
   BraintreePayment,
   Capture,
@@ -371,6 +410,7 @@ export {
   DeliveryLeadTime,
   ExternalPayment,
   ExternalPromotion,
+  ExternalTaxCalculator,
   FixedAmountPromotion,
   FreeShippingPromotion,
   Geocoder,
@@ -380,9 +420,11 @@ export {
   InStockSubscription,
   InventoryModel,
   InventoryReturnLocation,
+  InventoryStockLocation,
   Item,
   LineItem,
   LineItemOption,
+  ManualTaxCalculator,
   Market,
   Merchant,
   Order,
@@ -412,9 +454,12 @@ export {
   SkuListPromotionRule,
   SkuOption,
   StockItem,
-  InventoryStockLocation,
   StockLocation,
   StripePayment,
+  TaxCalculator,
+  TaxCategory,
+  TaxRule,
+  TaxjarAccount,
   Void,
   Webhook,
   WireTransfer,

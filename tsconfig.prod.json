@@ -22,9 +22,9 @@
     "lib": ["esnext", "dom.iterable", "dom"],
     "importHelpers": true,
     "paths": {
-      "#resources/*": ["src/resources/*"],
-      "#utils/*": ["src/utils/*"],
-      "#typings/*": ["src/typings/*"]
+      "#resources/*": ["resources/*"],
+      "#utils/*": ["utils/*"],
+      "#typings/*": ["typings/*"]
     }
   },
   "include": ["src/**/*"],
