@@ -4,6 +4,8 @@ import skus from '../helpers/testSkus'
 
 let blueBrandConfig = { accessToken: '', endpoint: '' }
 const { ENDPOINT } = process.env
+const totRecordCount = 247
+
 beforeAll(async () => {
   const { accessToken } = await getTokenBlueBrand()
   blueBrandConfig = {
@@ -27,7 +29,7 @@ it('METHOD --- perPage', async () => {
   const sku = await CLayer.Sku.withCredentials(blueBrandConfig)
     .perPage(5)
     .all()
-  expect(sku.recordCount()).toBe(97)
+  expect(sku.recordCount()).toBe(totRecordCount)
   expect(sku.pageCount()).toBe(20)
 })
 
@@ -85,7 +87,7 @@ it('METHOD --- All', async () => {
   const sku = await CLayer.Sku.withCredentials(blueBrandConfig).all()
   const meta = sku.getMetaInfo()
   expect(sku.toArray()).toHaveLength(10)
-  expect(meta).toHaveProperty('recordCount', 97)
+  expect(meta).toHaveProperty('recordCount', totRecordCount)
   expect(meta).toHaveProperty('pageCount', 10)
 })
 
@@ -95,7 +97,7 @@ it('METHOD --- All with pageCount and recordCount', async () => {
   const pageCount = sku.pageCount()
   const recordCount = sku.recordCount()
   expect(sku.toArray()).toHaveLength(10)
-  expect(recordCount).toBe(97)
+  expect(recordCount).toBe(totRecordCount)
   expect(pageCount).toBe(10)
 })
 
@@ -106,7 +108,7 @@ it('METHOD --- All with next page', async () => {
     .all()
   const meta = sku.getMetaInfo()
   expect(sku.toArray()).toHaveLength(25)
-  expect(meta).toHaveProperty('recordCount', 97)
+  expect(meta).toHaveProperty('recordCount', totRecordCount)
   expect(meta).toHaveProperty('pageCount', 4)
 })
 
@@ -117,7 +119,7 @@ it('METHOD --- All with page', async () => {
     .all()
   const meta = sku.getMetaInfo()
   expect(sku.toArray()).toHaveLength(10)
-  expect(meta).toHaveProperty('recordCount', 97)
+  expect(meta).toHaveProperty('recordCount', totRecordCount)
   expect(meta).toHaveProperty('pageCount', 10)
 })
 
@@ -181,7 +183,7 @@ it('METHOD --- All with select', async () => {
     .all()
   const meta = sku.getMetaInfo()
   expect(sku.toArray()).toHaveLength(10)
-  expect(meta).toHaveProperty('recordCount', 97)
+  expect(meta).toHaveProperty('recordCount', totRecordCount)
   expect(meta).toHaveProperty('pageCount', 10)
 })
 
@@ -192,7 +194,7 @@ it('METHOD --- All with order', async () => {
     .all()
   const meta = sku.getMetaInfo()
   expect(sku.toArray()).toHaveLength(10)
-  expect(meta).toHaveProperty('recordCount', 97)
+  expect(meta).toHaveProperty('recordCount', totRecordCount)
   expect(meta).toHaveProperty('pageCount', 10)
 })
 
@@ -203,7 +205,7 @@ it('METHOD --- All with includes', async () => {
     .all()
   const meta = sku.getMetaInfo()
   expect(sku.toArray()).toHaveLength(10)
-  expect(meta).toHaveProperty('recordCount', 97)
+  expect(meta).toHaveProperty('recordCount', totRecordCount)
   expect(meta).toHaveProperty('pageCount', 10)
 })
 
@@ -223,7 +225,7 @@ it('METHOD --- Multi requests', async () => {
 
   const metaSkus = skus.getMetaInfo()
   expect(skus.toArray()).toHaveLength(10)
-  expect(metaSkus).toHaveProperty('recordCount', 97)
+  expect(metaSkus).toHaveProperty('recordCount', totRecordCount)
   expect(metaSkus).toHaveProperty('pageCount', 10)
 
   const metaPrices = allPrices.getMetaInfo()

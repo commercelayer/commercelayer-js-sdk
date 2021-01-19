@@ -10,9 +10,9 @@ module.exports = {
       plugins: [
         alias({
           entries: [
-            { find: '#resources/*', replacement: 'src/resources/*' },
-            { find: '#utils/*', replacement: 'src/utils/*' },
-            { find: '#typings/*', replacement: 'src/typings/*' },
+            { find: '#resources/*', replacement: 'resources/*' },
+            { find: '#utils/*', replacement: 'utils/*' },
+            { find: '#typings/*', replacement: 'typings/*' },
           ],
         }),
       ],
