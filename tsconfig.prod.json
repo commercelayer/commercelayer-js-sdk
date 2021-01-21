@@ -17,6 +17,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "declaration": true,
+    "declarationMap": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "lib": ["esnext", "dom.iterable", "dom"],
