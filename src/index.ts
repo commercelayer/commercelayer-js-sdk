@@ -1,157 +1,157 @@
-import Address, { AddressCollection } from './resources/Address'
-import Attachment, { AttachmentCollection } from './resources/Attachment'
+import Address, { AddressCollection } from '#resources/Address'
+import Attachment, { AttachmentCollection } from '#resources/Attachment'
 import CustomerAddress, {
   CustomerAddressCollection,
-} from './resources/CustomerAddress'
+} from '#resources/CustomerAddress'
 import CustomerGroup, {
   CustomerGroupCollection,
-} from './resources/CustomerGroup'
+} from '#resources/CustomerGroup'
 import CustomerPasswordReset, {
   CustomerPasswordResetCollection,
-} from './resources/CustomerPasswordReset'
+} from '#resources/CustomerPasswordReset'
 import CustomerPaymentSource, {
   CustomerPaymentSourceCollection,
-} from './resources/CustomerPaymentSource'
+} from '#resources/CustomerPaymentSource'
 import CustomerSubscription, {
   CustomerSubscriptionCollection,
-} from './resources/CustomerSubscription'
-import Customer, { CustomerCollection } from './resources/Customer'
+} from '#resources/CustomerSubscription'
+import Customer, { CustomerCollection } from '#resources/Customer'
 import DeliveryLeadTime, {
   DeliveryLeadTimeCollection,
-} from './resources/DeliveryLeadTime'
-import Import, { ImportCollection } from './resources/Import'
+} from '#resources/DeliveryLeadTime'
+import Import, { ImportCollection } from '#resources/Import'
 import InStockSubscription, {
   InStockSubscriptionCollection,
-} from './resources/InStockSubscription'
+} from '#resources/InStockSubscription'
 import InventoryModel, {
   InventoryModelCollection,
-} from './resources/InventoryModel'
+} from '#resources/InventoryModel'
 import LineItemOption, {
   LineItemOptionCollection,
-} from './resources/LineItemOption'
-import LineItem, { LineItemCollection } from './resources/LineItem'
-import Market, { MarketCollection } from './resources/Market'
-import Merchant, { MerchantCollection } from './resources/Merchant'
-import Order, { OrderCollection } from './resources/Order'
-import Parcel, { ParcelCollection } from './resources/Parcel'
+} from '#resources/LineItemOption'
+import LineItem, { LineItemCollection } from '#resources/LineItem'
+import Market, { MarketCollection } from '#resources/Market'
+import Merchant, { MerchantCollection } from '#resources/Merchant'
+import Order, { OrderCollection } from '#resources/Order'
+import Parcel, { ParcelCollection } from '#resources/Parcel'
 import PaymentMethod, {
   PaymentMethodCollection,
-} from './resources/PaymentMethod'
+} from '#resources/PaymentMethod'
 import PaymentGateway, {
   PaymentGatewayCollection,
-} from './resources/PaymentGateway'
+} from '#resources/PaymentGateway'
 import PaypalPayment, {
   PaypalPaymentCollection,
-} from './resources/PaypalPayment'
-import Price, { PriceCollection } from './resources/Price'
-import PriceList, { PriceListCollection } from './resources/PriceList'
-import Shipment, { ShipmentCollection } from './resources/Shipment'
+} from '#resources/PaypalPayment'
+import Price, { PriceCollection } from '#resources/Price'
+import PriceList, { PriceListCollection } from '#resources/PriceList'
+import Shipment, { ShipmentCollection } from '#resources/Shipment'
 import ShippingCategory, {
   ShippingCategoryCollection,
-} from './resources/ShippingCategory'
+} from '#resources/ShippingCategory'
 import ShippingMethod, {
   ShippingMethodCollection,
-} from './resources/ShippingMethod'
-import ShippingZone, { ShippingZoneCollection } from './resources/ShippingZone'
-import SkuOption, { SkuOptionCollection } from './resources/SkuOption'
-import Sku, { SkuCollection } from './resources/Sku'
-import SkuList, { SkuListCollection } from './resources/SkuList'
-import SkuListItem, { SkuListItemCollection } from './resources/SkuListItem'
-import StockItem, { StockItemCollection } from './resources/StockItem'
+} from '#resources/ShippingMethod'
+import ShippingZone, { ShippingZoneCollection } from '#resources/ShippingZone'
+import SkuOption, { SkuOptionCollection } from '#resources/SkuOption'
+import Sku, { SkuCollection } from '#resources/Sku'
+import SkuList, { SkuListCollection } from '#resources/SkuList'
+import SkuListItem, { SkuListItemCollection } from '#resources/SkuListItem'
+import StockItem, { StockItemCollection } from '#resources/StockItem'
 import InventoryStockLocation, {
   InventoryStockLocationCollection,
-} from './resources/InventoryStockLocation'
+} from '#resources/InventoryStockLocation'
 import StockLocation, {
   StockLocationCollection,
-} from './resources/StockLocation'
-import Webhook, { WebhookCollection } from './resources/Webhook'
-import WireTransfer, { WireTransferCollection } from './resources/WireTransfer'
-import init, { Init } from './resources/Initialize'
-import Geocoder, { GeocoderCollection } from './resources/Geocoder'
+} from '#resources/StockLocation'
+import Webhook, { WebhookCollection } from '#resources/Webhook'
+import WireTransfer, { WireTransferCollection } from '#resources/WireTransfer'
+import init, { Init } from '#resources/Initialize'
+import Geocoder, { GeocoderCollection } from '#resources/Geocoder'
 import PaymentSource, {
   PaymentSourceCollection,
-} from './resources/PaymentSource'
-import Item, { ItemCollection } from './resources/Item'
-import Attachable, { AttachableCollection } from './resources/Attachable'
-import GiftCard, { GiftCardCollection } from './resources/GiftCard'
+} from '#resources/PaymentSource'
+import Item, { ItemCollection } from '#resources/Item'
+import Attachable, { AttachableCollection } from '#resources/Attachable'
+import GiftCard, { GiftCardCollection } from '#resources/GiftCard'
 import GiftCardRecipient, {
   GiftCardRecipientCollection,
-} from './resources/GiftCardRecipient'
-import AdyenPayment, { AdyenPaymentCollection } from './resources/AdyenPayment'
+} from '#resources/GiftCardRecipient'
+import AdyenPayment, { AdyenPaymentCollection } from '#resources/AdyenPayment'
 import BraintreePayment, {
   BraintreePaymentCollection,
-} from './resources/BraintreePayment'
+} from '#resources/BraintreePayment'
 import StripePayment, {
   StripePaymentCollection,
-} from './resources/StripePayment'
+} from '#resources/StripePayment'
 import { BaseResource } from './typings/Library'
 import ExternalPayment, {
   ExternalPaymentCollection,
-} from './resources/ExternalPayment'
-import Package, { PackageCollection } from './resources/Package'
-import Adjustment, { AdjustmentCollection } from './resources/Adjustment'
-import Capture, { CaptureCollection } from './resources/Capture'
+} from '#resources/ExternalPayment'
+import Package, { PackageCollection } from '#resources/Package'
+import Adjustment, { AdjustmentCollection } from '#resources/Adjustment'
+import Capture, { CaptureCollection } from '#resources/Capture'
 import Authorization, {
   AuthorizationCollection,
-} from './resources/Authorization'
+} from '#resources/Authorization'
 import BillingInfoValidationRule, {
   BillingInfoValidationRuleCollection,
-} from './resources/BillingInfoValidationRule'
-import Refund, { RefundCollection } from './resources/Refund'
-import Void, { VoidCollection } from './resources/Void'
+} from '#resources/BillingInfoValidationRule'
+import Refund, { RefundCollection } from '#resources/Refund'
+import Void, { VoidCollection } from '#resources/Void'
 import CouponCodesPromotionRule, {
   CouponCodesPromotionRuleCollection,
-} from './resources/CouponCodesPromotionRule'
-import Coupon, { CouponCollection } from './resources/Coupon'
+} from '#resources/CouponCodesPromotionRule'
+import Coupon, { CouponCollection } from '#resources/Coupon'
 import ExternalPromotion, {
   ExternalPromotionCollection,
-} from './resources/ExternalPromotion'
+} from '#resources/ExternalPromotion'
 import FixedAmountPromotion, {
   FixedAmountPromotionCollection,
-} from './resources/FixedAmountPromotion'
+} from '#resources/FixedAmountPromotion'
 import FreeShippingPromotion, {
   FreeShippingPromotionCollection,
-} from './resources/FreeShippingPromotion'
+} from '#resources/FreeShippingPromotion'
 import OrderAmountPromotionRule, {
   OrderAmountPromotionRuleCollection,
-} from './resources/OrderAmountPromotionRule'
+} from '#resources/OrderAmountPromotionRule'
 import PercentageDiscountPromotion, {
   PercentageDiscountPromotionCollection,
-} from './resources/PercentageDiscountPromotion'
+} from '#resources/PercentageDiscountPromotion'
 import PromotionRule, {
   PromotionRuleCollection,
-} from './resources/PromotionRule'
-import Promotion, { PromotionCollection } from './resources/Promotion'
+} from '#resources/PromotionRule'
+import Promotion, { PromotionCollection } from '#resources/Promotion'
 import SkuListPromotionRule, {
   SkuListPromotionRuleCollection,
-} from './resources/SkuListPromotionRule'
+} from '#resources/SkuListPromotionRule'
 import InventoryReturnLocation, {
   InventoryReturnLocationCollection,
-} from './resources/InventoryReturnLocation'
-import Return, { ReturnCollection } from './resources/Return'
+} from '#resources/InventoryReturnLocation'
+import Return, { ReturnCollection } from '#resources/Return'
 import ExternalTaxCalculator, {
   ExternalTaxCalculatorCollection,
-} from './resources/ExternalTaxCalculator'
+} from '#resources/ExternalTaxCalculator'
 import ManualTaxCalculator, {
   ManualTaxCalculatorCollection,
-} from './resources/ManualTaxCalculator'
+} from '#resources/ManualTaxCalculator'
 import TaxCalculator, {
   TaxCalculatorCollection,
-} from './resources/TaxCalculator'
-import TaxRule, { TaxRuleCollection } from './resources/TaxRule'
+} from '#resources/TaxCalculator'
+import TaxRule, { TaxRuleCollection } from '#resources/TaxRule'
 import TaxjarAccount, {
   TaxjarAccountCollection,
-} from './resources/TaxjarAccount'
+} from '#resources/TaxjarAccount'
 import ReturnLineItem, {
   ReturnLineItemCollection,
-} from './resources/ReturnLineItem'
+} from '#resources/ReturnLineItem'
 import ShipmentLineItem, {
   ShipmentLineItemCollection,
-} from './resources/ShipmentLineItem'
-import TaxCategory, { TaxCategoryCollection } from './resources/TaxCategory'
+} from '#resources/ShipmentLineItem'
+import TaxCategory, { TaxCategoryCollection } from '#resources/TaxCategory'
 import AvalaraAccount, {
   AvalaraAccountCollection,
-} from './resources/AvalaraAccount'
+} from '#resources/AvalaraAccount'
 
 export {
   AddressCollection,

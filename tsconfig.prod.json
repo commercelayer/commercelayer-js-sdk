@@ -25,7 +25,13 @@
       "#resources/*": ["resources/*"],
       "#utils/*": ["utils/*"],
       "#typings/*": ["typings/*"]
-    }
+    },
+    "plugins": [
+      {
+        "transform": "@zerollup/ts-transform-paths",
+        "exclude": ["*"]
+      }
+    ]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts", "helpers"]
