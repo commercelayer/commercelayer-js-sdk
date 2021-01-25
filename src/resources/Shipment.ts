@@ -1,43 +1,60 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
-import { CollectionProxy } from '#typings/Library'
+import { MultiRelationship, SingleRelationship } from '#typings/Library'
 import { ShippingMethodCollection } from './ShippingMethod'
 import { ParcelCollection } from './Parcel'
 import { AttachmentCollection } from './Attachment'
 import { ShippingCategoryCollection } from './ShippingCategory'
 import { StockLocationCollection } from './StockLocation'
 import { AddressCollection } from './Address'
+import { ShipmentLineItemCollection } from './ShipmentLineItem'
 
 export class ShipmentCollection extends BaseClass {
   static className = 'Shipment'
-  number: string
-  status: string
-  currencyCode: string
-  costAmountCents: number
-  costAmountFloat: number
-  formattedCostAmount: string
+  _getRates: number
   _onHold: number
-  _picking: number
   _packing: number
+  _picking: number
+  _purchase: number
   _readyToShip: number
   _ship: number
-  _getRates: number
-  selectedRateId: string
-  _purchase: number
-  id: string
+  costAmountCents: number
+  costAmountFloat: number
   createdAt: Date
-  updatedAt: Date
+  currencyCode: string
+  formattedCostAmount: string
+  id: string
+  metadata: object
+  number: string
   reference: string
   referenceOrigin: string
-  metadata: object
-  shippingCategory: () => Promise<ShippingCategoryCollection>
-  stockLocation: () => Promise<StockLocationCollection>
-  shippingAddress: () => Promise<AddressCollection>
-  shippingMethod: () => Promise<ShippingMethodCollection>
-  shipmentLineItems: () => CollectionProxy<any>
-  availableShippingMethods: () => CollectionProxy<ShippingMethodCollection>
-  parcels: () => CollectionProxy<ParcelCollection>
-  attachments: () => CollectionProxy<AttachmentCollection>
+  selectedRateId: string
+  status: string
+  updatedAt: Date
+  shippingCategory: () =>
+    | Promise<SingleRelationship<ShippingCategoryCollection>>
+    | SingleRelationship<ShippingCategoryCollection>
+  stockLocation: () =>
+    | Promise<SingleRelationship<StockLocationCollection>>
+    | SingleRelationship<StockLocationCollection>
+  shippingAddress: () =>
+    | Promise<SingleRelationship<AddressCollection>>
+    | SingleRelationship<AddressCollection>
+  shippingMethod: () =>
+    | Promise<SingleRelationship<ShippingMethodCollection>>
+    | SingleRelationship<ShippingMethodCollection>
+  shipmentLineItems: () =>
+    | Promise<MultiRelationship<ShipmentLineItemCollection>>
+    | MultiRelationship<ShipmentLineItemCollection>
+  availableShippingMethods: () =>
+    | Promise<MultiRelationship<ShippingMethodCollection>>
+    | MultiRelationship<ShippingMethodCollection>
+  parcels: () =>
+    | Promise<MultiRelationship<ParcelCollection>>
+    | MultiRelationship<ParcelCollection>
+  attachments: () =>
+    | Promise<MultiRelationship<AttachmentCollection>>
+    | MultiRelationship<AttachmentCollection>
   static define() {
     this.attributes(
       'number',
@@ -67,7 +84,7 @@ export class ShipmentCollection extends BaseClass {
     this.hasOne('shippingAddress', { className: 'Address' })
     this.hasOne('shippingMethod', { className: 'ShippingMethod' })
 
-    this.hasMany('shipmentLineItems', { className: 'LineItem' })
+    this.hasMany('shipmentLineItems', { className: 'ShipmentLineItem' })
     this.hasMany('availableShippingMethods', { className: 'ShippingMethod' })
     this.hasMany('parcels', { className: 'Parcel' })
     this.hasMany('attachments', { className: 'Attachment' })

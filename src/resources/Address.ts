@@ -4,37 +4,38 @@ import { GeocoderCollection } from './Geocoder'
 
 export class AddressCollection extends BaseClass {
   static className = 'Address'
+  billingInfo: string
   business: boolean
-  firstName: string
-  lastName: string
+  city: string
   company: string
+  countryCode: string
+  createdAt: Date
+  customerAddressId?: string
+  email: string
+  firstName: string
+  fullAddress: string
   fullName: string
+  geocoder: () => Promise<GeocoderCollection>
+  id: string
+  isGeocoded: boolean
+  isLocalized: boolean
+  lastName: string
+  lat: number
   line1: string
   line2: string
-  city: string
-  zipCode: string
-  stateCode: string
-  countryCode: string
-  phone: string
-  fullAddress: string
-  name: string
-  email: string
-  notes: string
-  lat: number
   lng: number
-  isLocalized: boolean
-  isGeocoded: boolean
-  providerName: string
   mapUrl: string
-  staticMapUrl: string
-  billingInfo: string
-  id: string
-  createdAt: Date
-  updatedAt: Date
+  metadata: object
+  name: string
+  notes: string
+  phone: string
+  providerName: string
   reference: string
   referenceOrigin: string
-  metadata: object
-  geocoder: () => Promise<GeocoderCollection>
+  stateCode: string
+  staticMapUrl: string
+  updatedAt: Date
+  zipCode: string
   static define() {
     this.attributes(
       'business',
