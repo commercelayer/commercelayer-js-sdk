@@ -149,6 +149,9 @@ import ShipmentLineItem, {
   ShipmentLineItemCollection,
 } from '#resources/ShipmentLineItem'
 import TaxCategory, { TaxCategoryCollection } from '#resources/TaxCategory'
+import StockTransfer, {
+  StockTransferCollection,
+} from './resources/StockTransfer'
 import AvalaraAccount, {
   AvalaraAccountCollection,
 } from '#resources/AvalaraAccount'
@@ -219,6 +222,7 @@ export {
   SkuOptionCollection,
   StockItemCollection,
   StockLocationCollection,
+  StockTransferCollection,
   StripePaymentCollection,
   TaxCalculatorCollection,
   TaxCategoryCollection,
@@ -298,6 +302,7 @@ export interface CLayer {
   SkuOption: BaseResource<SkuOptionCollection>
   StockItem: BaseResource<StockItemCollection>
   StockLocation: BaseResource<StockLocationCollection>
+  StockTransfer: BaseResource<StockTransferCollection>
   StripePayment: BaseResource<StripePaymentCollection>
   TaxCalculator: BaseResource<TaxCalculatorCollection>
   TaxCategory: BaseResource<TaxCategoryCollection>
@@ -375,6 +380,7 @@ const CLayer: CLayer = {
   SkuOption,
   StockItem,
   StockLocation,
+  StockTransfer,
   StripePayment,
   TaxCalculator,
   TaxCategory,
@@ -455,6 +461,7 @@ export {
   SkuOption,
   StockItem,
   StockLocation,
+  StockTransfer,
   StripePayment,
   TaxCalculator,
   TaxCategory,

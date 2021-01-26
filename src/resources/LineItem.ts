@@ -1,10 +1,6 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
-import {
-  CollectionProxy,
-  MultiRelationship,
-  SingleRelationship,
-} from '#typings/Library'
+import { MultiRelationship, SingleRelationship } from '#typings/Library'
 import { LineItemOptionCollection } from './LineItemOption'
 import { OrderCollection } from './Order'
 

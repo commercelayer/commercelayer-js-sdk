@@ -1,7 +1,6 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
 import {
-  CollectionProxy,
   MultiRelationship,
   SingleRelationship,
 } from '#typings/Library'

@@ -1,11 +1,7 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
 import { LineItemCollection } from './LineItem'
-import {
-  CollectionProxy,
-  SingleRelationship,
-  MultiRelationship,
-} from '#typings/Library'
+import { SingleRelationship, MultiRelationship } from '#typings/Library'
 import { ShipmentCollection } from './Shipment'
 import { PaymentMethodCollection } from './PaymentMethod'
 import { MarketCollection } from './Market'
