@@ -14,10 +14,8 @@ export class TaxCategoryCollection extends BaseClass {
   referenceOrigin: string
   skuCode: string
   updatedAt: Date
-  sku: () => Promise<SkuCollection> | SingleRelationship<SkuCollection>
-  taxCalculator: () =>
-    | Promise<TaxCalculatorCollection>
-    | SingleRelationship<TaxCalculatorCollection>
+  sku: () => SingleRelationship<SkuCollection>
+  taxCalculator: () => SingleRelationship<TaxCalculatorCollection>
   static define() {
     this.attributes(
       'code',

@@ -31,30 +31,14 @@ export class ShipmentCollection extends BaseClass {
   selectedRateId: string
   status: string
   updatedAt: Date
-  shippingCategory: () =>
-    | Promise<SingleRelationship<ShippingCategoryCollection>>
-    | SingleRelationship<ShippingCategoryCollection>
-  stockLocation: () =>
-    | Promise<SingleRelationship<StockLocationCollection>>
-    | SingleRelationship<StockLocationCollection>
-  shippingAddress: () =>
-    | Promise<SingleRelationship<AddressCollection>>
-    | SingleRelationship<AddressCollection>
-  shippingMethod: () =>
-    | Promise<SingleRelationship<ShippingMethodCollection>>
-    | SingleRelationship<ShippingMethodCollection>
-  shipmentLineItems: () =>
-    | Promise<MultiRelationship<ShipmentLineItemCollection>>
-    | MultiRelationship<ShipmentLineItemCollection>
-  availableShippingMethods: () =>
-    | Promise<MultiRelationship<ShippingMethodCollection>>
-    | MultiRelationship<ShippingMethodCollection>
-  parcels: () =>
-    | Promise<MultiRelationship<ParcelCollection>>
-    | MultiRelationship<ParcelCollection>
-  attachments: () =>
-    | Promise<MultiRelationship<AttachmentCollection>>
-    | MultiRelationship<AttachmentCollection>
+  shippingCategory: () => SingleRelationship<ShippingCategoryCollection>
+  stockLocation: () => SingleRelationship<StockLocationCollection>
+  shippingAddress: () => SingleRelationship<AddressCollection>
+  shippingMethod: () => SingleRelationship<ShippingMethodCollection>
+  shipmentLineItems: () => MultiRelationship<ShipmentLineItemCollection>
+  availableShippingMethods: () => MultiRelationship<ShippingMethodCollection>
+  parcels: () => MultiRelationship<ParcelCollection>
+  attachments: () => MultiRelationship<AttachmentCollection>
   static define() {
     this.attributes(
       'number',

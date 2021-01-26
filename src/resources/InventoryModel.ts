@@ -1,6 +1,6 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
-import { CollectionProxy } from '#typings/Library'
+import { MultiRelationship } from '#typings/Library'
 import { InventoryStockLocationCollection } from './InventoryStockLocation'
 
 export class InventoryModelCollection extends BaseClass {
@@ -13,7 +13,7 @@ export class InventoryModelCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  inventoryStockLocations: () => CollectionProxy<
+  inventoryStockLocations: () => MultiRelationship<
     InventoryStockLocationCollection
   >
   static define() {

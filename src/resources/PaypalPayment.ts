@@ -1,6 +1,7 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
 import { OrderCollection } from './Order'
+import { SingleRelationship } from '#typings/Library'
 
 export class PaypalPaymentCollection extends BaseClass {
   static className = 'PaypalPayment'
@@ -18,7 +19,7 @@ export class PaypalPaymentCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  order: () => Promise<OrderCollection>
+  order: () => SingleRelationship<OrderCollection>
   static define() {
     this.attributes(
       'returnUrl',

@@ -1,6 +1,6 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
-import { CollectionProxy } from '#typings/Library'
+import { MultiRelationship, SingleRelationship } from '#typings/Library'
 import { ShipmentCollection } from './Shipment'
 import { LineItemCollection } from './LineItem'
 
@@ -35,8 +35,8 @@ export class ParcelCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  shipment: () => Promise<ShipmentCollection>
-  parcelLineItems: () => CollectionProxy<LineItemCollection>
+  shipment: () => SingleRelationship<ShipmentCollection>
+  parcelLineItems: () => MultiRelationship<LineItemCollection>
   static define() {
     this.attributes(
       'number',

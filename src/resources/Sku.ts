@@ -1,6 +1,6 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
-import { CollectionProxy, SingleRelationship } from '#typings/Library'
+import { MultiRelationship, SingleRelationship } from '#typings/Library'
 import { PriceCollection } from './Price'
 import { SkuOptionCollection } from './SkuOption'
 import { DeliveryLeadTimeCollection } from './DeliveryLeadTime'
@@ -51,10 +51,10 @@ export class SkuCollection extends BaseClass {
   referenceOrigin: string
   metadata: object
   shippingCategory: () => SingleRelationship<ShippingCategoryCollection>
-  prices: () => CollectionProxy<PriceCollection>
-  stockItems: () => CollectionProxy<StockItemCollection>
-  deliveryLeadTimes: () => CollectionProxy<DeliveryLeadTimeCollection>
-  skuOptions: () => CollectionProxy<SkuOptionCollection>
+  prices: () => MultiRelationship<PriceCollection>
+  stockItems: () => MultiRelationship<StockItemCollection>
+  deliveryLeadTimes: () => MultiRelationship<DeliveryLeadTimeCollection>
+  skuOptions: () => MultiRelationship<SkuOptionCollection>
   static define() {
     this.attributes(
       'code',

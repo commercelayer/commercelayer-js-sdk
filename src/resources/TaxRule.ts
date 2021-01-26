@@ -24,9 +24,7 @@ export class TaxRuleCollection extends BaseClass {
   taxRate: number
   updatedAt: Date
   zipCodeRegex: string
-  manualTaxCalculator: () =>
-    | Promise<ManualTaxCalculatorCollection>
-    | SingleRelationship<ManualTaxCalculatorCollection>
+  manualTaxCalculator: () => SingleRelationship<ManualTaxCalculatorCollection>
 
   static define() {
     this.attributes(

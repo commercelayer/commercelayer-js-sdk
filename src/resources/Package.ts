@@ -1,7 +1,7 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
 import { StockLocationCollection } from './StockLocation'
-import { CollectionProxy } from '#typings/Library'
+import { MultiRelationship, SingleRelationship } from '#typings/Library'
 import { ParcelCollection } from './Parcel'
 
 export class PackageCollection extends BaseClass {
@@ -16,8 +16,8 @@ export class PackageCollection extends BaseClass {
   unitOfLength: 'cm' | 'in'
   updatedAt: Date
   width: number
-  stockLocation: () => Promise<StockLocationCollection>
-  parcels: () => CollectionProxy<ParcelCollection>
+  stockLocation: () => SingleRelationship<StockLocationCollection>
+  parcels: () => MultiRelationship<ParcelCollection>
   static define() {
     this.attributes(
       'code',

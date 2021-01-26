@@ -3,6 +3,7 @@ import BaseClass from '#utils/BaseClass'
 import { ShipmentCollection } from './Shipment'
 import { LineItemCollection } from './LineItem'
 import { StockItemCollection } from './StockItem'
+import { SingleRelationship } from '#typings/Library'
 
 export class ShipmentLineItemCollection extends BaseClass {
   static className = 'ShipmentLineItem'
@@ -13,9 +14,9 @@ export class ShipmentLineItemCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  shipment: () => Promise<ShipmentCollection>
-  lineItem: () => Promise<LineItemCollection>
-  stockItem: () => Promise<StockItemCollection>
+  shipment: () => SingleRelationship<ShipmentCollection>
+  lineItem: () => SingleRelationship<LineItemCollection>
+  stockItem: () => SingleRelationship<StockItemCollection>
   static define() {
     this.attributes(
       'skuCode',

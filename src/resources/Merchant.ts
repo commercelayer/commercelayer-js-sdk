@@ -1,6 +1,7 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
 import { AddressCollection } from './Address'
+import { SingleRelationship } from '#typings/Library'
 
 export class MerchantCollection extends BaseClass {
   static className = 'Merchant'
@@ -11,7 +12,7 @@ export class MerchantCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  address: () => Promise<AddressCollection>
+  address: () => SingleRelationship<AddressCollection>
   static define() {
     this.attributes(
       'name',

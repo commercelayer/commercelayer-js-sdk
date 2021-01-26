@@ -13,12 +13,8 @@ export class ManualTaxCalculatorCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   updatedAt: Date
-  taxCategories: () =>
-    | Promise<TaxCategoryCollection>
-    | MultiRelationship<TaxCategoryCollection>
-  taxRules: () =>
-    | Promise<TaxRuleCollection>
-    | MultiRelationship<TaxRuleCollection>
+  taxCategories: () => MultiRelationship<TaxCategoryCollection>
+  taxRules: () => MultiRelationship<TaxRuleCollection>
   static define() {
     this.attributes(
       'createdAt',

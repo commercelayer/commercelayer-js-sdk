@@ -2,6 +2,7 @@ import library from './library'
 import BaseClass from '#utils/BaseClass'
 import { SkuCollection } from './Sku'
 import { SkuListCollection } from './SkuList'
+import { SingleRelationship } from '#typings/Library'
 
 export class SkuListItemCollection extends BaseClass {
   static className = 'SkuListItem'
@@ -11,8 +12,8 @@ export class SkuListItemCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  sku: () => Promise<SkuCollection>
-  skuList: () => Promise<SkuListCollection>
+  sku: () => SingleRelationship<SkuCollection>
+  skuList: () => SingleRelationship<SkuListCollection>
   static define() {
     this.attributes(
       'position',

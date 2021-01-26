@@ -2,6 +2,7 @@ import library from './library'
 import BaseClass from '#utils/BaseClass'
 import { LineItemCollection } from './LineItem'
 import { ReturnCollection } from './Return'
+import { SingleRelationship } from '#typings/Library'
 
 export class ReturnLineItemCollection extends BaseClass {
   static className = 'ReturnLineItem'
@@ -16,8 +17,8 @@ export class ReturnLineItemCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  return: () => Promise<ReturnCollection> | ReturnCollection
-  lineItem: () => Promise<LineItemCollection> | LineItemCollection
+  return: () => SingleRelationship<ReturnCollection>
+  lineItem: () => SingleRelationship<LineItemCollection>
   static define() {
     this.attributes(
       'skuCode',

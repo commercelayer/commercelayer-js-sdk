@@ -13,9 +13,7 @@ export class ExternalTaxCalculatorCollection extends BaseClass {
   referenceOrigin: string
   updatedAt: Date
   taxCalculatorUrl: string
-  taxCategories: () =>
-    | Promise<TaxCategoryCollection>
-    | MultiRelationship<TaxCategoryCollection>
+  taxCategories: () => MultiRelationship<TaxCategoryCollection>
   static define() {
     this.attributes(
       'createdAt',

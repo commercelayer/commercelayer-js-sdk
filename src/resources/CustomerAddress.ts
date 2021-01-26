@@ -13,12 +13,8 @@ export class CustomerAddressCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  customer: () =>
-    | Promise<CustomerCollection>
-    | SingleRelationship<CustomerCollection>
-  address: () =>
-    | Promise<AddressCollection>
-    | SingleRelationship<AddressCollection>
+  customer: () => SingleRelationship<CustomerCollection>
+  address: () => SingleRelationship<AddressCollection>
   static define() {
     this.attributes(
       'name',

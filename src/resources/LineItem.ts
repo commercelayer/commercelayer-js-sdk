@@ -1,6 +1,10 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
-import { CollectionProxy } from '#typings/Library'
+import {
+  CollectionProxy,
+  MultiRelationship,
+  SingleRelationship,
+} from '#typings/Library'
 import { LineItemOptionCollection } from './LineItemOption'
 import { OrderCollection } from './Order'
 
@@ -31,8 +35,8 @@ export class LineItemCollection extends BaseClass {
   updatedAt: Date
   metadata: object
   itemId: string
-  order: () => Promise<OrderCollection>
-  lineItemOptions: () => CollectionProxy<LineItemOptionCollection>
+  order: () => SingleRelationship<OrderCollection>
+  lineItemOptions: () => MultiRelationship<LineItemOptionCollection>
   static define() {
     this.attributes(
       'skuCode',

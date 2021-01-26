@@ -1,6 +1,6 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
-import { CollectionProxy } from '#typings/Library'
+import { MultiRelationship } from '#typings/Library'
 import { SkuCollection } from './Sku'
 import { SkuListItemCollection } from './SkuListItem'
 
@@ -16,8 +16,8 @@ export class SkuListCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  skus: () => CollectionProxy<SkuCollection>
-  skuListItems: () => CollectionProxy<SkuListItemCollection>
+  skus: () => MultiRelationship<SkuCollection>
+  skuListItems: () => MultiRelationship<SkuListItemCollection>
   static define() {
     this.attributes(
       'name',

@@ -1,6 +1,7 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
 import { OrderCollection } from './Order'
+import { SingleRelationship } from '#typings/Library'
 
 export class AdyenPaymentCollection extends BaseClass {
   static className = 'AdyenPayment'
@@ -16,7 +17,7 @@ export class AdyenPaymentCollection extends BaseClass {
   createdAt: Date
   updatedAt: Date
   metadata: object
-  order: () => OrderCollection
+  order: () => SingleRelationship<OrderCollection>
   static define() {
     this.attributes(
       'paymentMethod',

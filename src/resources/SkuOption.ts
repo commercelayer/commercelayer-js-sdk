@@ -1,6 +1,7 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
 import { MarketCollection } from './Market'
+import { SingleRelationship } from '#typings/Library'
 
 export class SkuOptionCollection extends BaseClass {
   static className = 'SkuOption'
@@ -18,7 +19,7 @@ export class SkuOptionCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  market: () => Promise<MarketCollection>
+  market: () => SingleRelationship<MarketCollection>
   static define() {
     this.attributes(
       'name',

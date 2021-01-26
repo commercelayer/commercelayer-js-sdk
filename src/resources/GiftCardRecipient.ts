@@ -1,6 +1,7 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
 import { CustomerCollection } from './Customer'
+import { SingleRelationship } from '#typings/Library'
 
 export class GiftCardRecipientCollection extends BaseClass {
   static className = 'GiftCardRecipient'
@@ -13,7 +14,7 @@ export class GiftCardRecipientCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
-  customer: () => Promise<CustomerCollection>
+  customer: () => SingleRelationship<CustomerCollection>
   static define() {
     this.attributes(
       'email',

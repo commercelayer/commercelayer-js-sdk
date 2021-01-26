@@ -16,9 +16,7 @@ export class AvalaraAccountCollection extends BaseClass {
   referenceOrigin: string
   updatedAt: Date
   username: string
-  taxCategories: () =>
-    | Promise<TaxCategoryCollection>
-    | MultiRelationship<TaxCategoryCollection>
+  taxCategories: () => MultiRelationship<TaxCategoryCollection>
   static define() {
     this.attributes(
       'companyCode',

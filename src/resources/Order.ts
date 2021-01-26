@@ -126,11 +126,9 @@ export class OrderCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  market: () => Promise<MarketCollection>
-  customer: () => Promise<CustomerCollection>
-  shippingAddress: () =>
-    | Promise<AddressCollection>
-    | SingleRelationship<AddressCollection>
+  market: () => SingleRelationship<MarketCollection>
+  customer: () => SingleRelationship<CustomerCollection>
+  shippingAddress: () => SingleRelationship<AddressCollection>
   paymentSource: () => SingleRelationship<
     | StripePaymentCollection
     | WireTransferCollection
@@ -138,14 +136,12 @@ export class OrderCollection extends BaseClass {
     | BraintreePaymentCollection
     | AdyenPaymentCollection
   >
-  loadShippingAddress: () => Promise<AddressCollection>
-  billingAddress: () =>
-    | Promise<AddressCollection>
-    | SingleRelationship<AddressCollection>
-  paymentMethod: () => Promise<PaymentMethodCollection>
+  loadShippingAddress: () => SingleRelationship<AddressCollection>
+  billingAddress: () => SingleRelationship<AddressCollection>
+  paymentMethod: () => SingleRelationship<PaymentMethodCollection>
   lineItems: () => MultiRelationship<LineItemCollection>
-  availablePaymentMethods: () => CollectionProxy<PaymentMethodCollection>
-  shipments: () => CollectionProxy<ShipmentCollection>
+  availablePaymentMethods: () => MultiRelationship<PaymentMethodCollection>
+  shipments: () => MultiRelationship<ShipmentCollection>
   static define() {
     this.attributes(
       'number',

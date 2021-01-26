@@ -1,6 +1,10 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
-import { CollectionProxy } from '#typings/Library'
+import {
+  CollectionProxy,
+  MultiRelationship,
+  SingleRelationship,
+} from '#typings/Library'
 import { OrderCollection } from './Order'
 import { CustomerSubscriptionCollection } from './CustomerSubscription'
 import { CustomerAddressCollection } from './CustomerAddress'
@@ -21,11 +25,13 @@ export class CustomerCollection extends BaseClass {
   referenceOrigin: string
   status: 'prospect' | 'acquired' | 'repeat'
   updatedAt: Date
-  customerAddresses: () => CollectionProxy<CustomerAddressCollection>
-  customerPaymentSources: () => CollectionProxy<CustomerPaymentSourceCollection>
-  customerSubscriptions: () => CollectionProxy<CustomerSubscriptionCollection>
-  orders: () => CollectionProxy<OrderCollection>
-  customerGroup: () => Promise<CustomerGroupCollection>
+  customerAddresses: () => MultiRelationship<CustomerAddressCollection>
+  customerPaymentSources: () => MultiRelationship<
+    CustomerPaymentSourceCollection
+  >
+  customerSubscriptions: () => MultiRelationship<CustomerSubscriptionCollection>
+  orders: () => MultiRelationship<OrderCollection>
+  customerGroup: () => SingleRelationship<CustomerGroupCollection>
   static define() {
     this.attributes(
       'email',

@@ -1,6 +1,7 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
 import { OrderCollection } from './Order'
+import { SingleRelationship } from '#typings/Library'
 
 export class WireTransferCollection extends BaseClass {
   static className = 'WireTransfer'
@@ -10,7 +11,7 @@ export class WireTransferCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  order: () => Promise<OrderCollection>
+  order: () => SingleRelationship<OrderCollection>
   static define() {
     this.attributes(
       'id',

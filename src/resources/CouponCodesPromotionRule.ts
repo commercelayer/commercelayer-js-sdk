@@ -20,7 +20,7 @@ export class CouponCodesPromotionRuleCollection extends BaseClass {
       'metadata'
     )
 
-    this.hasOne('promotions', { className: 'Promotion' })
+    this.hasOne('promotion', { className: 'Promotion' })
   }
 }
 

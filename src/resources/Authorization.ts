@@ -1,5 +1,9 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
+import { MultiRelationship, SingleRelationship } from '#typings/Library'
+import { OrderCollection } from './Order'
+import { CaptureCollection } from './Capture'
+import { VoidCollection } from './Void'
 
 export class AuthorizationCollection extends BaseClass {
   static className = 'Authorization'
@@ -35,6 +39,9 @@ export class AuthorizationCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
+  order: () => SingleRelationship<OrderCollection>
+  captures: () => MultiRelationship<CaptureCollection>
+  voids: () => MultiRelationship<VoidCollection>
   static define() {
     this.attributes(
       'number',

@@ -1,5 +1,8 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
+import { SingleRelationship } from '#typings/Library'
+import { OrderCollection } from './Order'
+import { AuthorizationCollection } from './Authorization'
 
 export class VoidCollection extends BaseClass {
   static className = 'Void'
@@ -19,6 +22,8 @@ export class VoidCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
+  order: () => SingleRelationship<OrderCollection>
+  referenceAuthorization: () => SingleRelationship<AuthorizationCollection>
   static define() {
     this.attributes(
       'number',

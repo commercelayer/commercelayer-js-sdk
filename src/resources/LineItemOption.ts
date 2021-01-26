@@ -2,6 +2,7 @@ import library from './library'
 import BaseClass from '#utils/BaseClass'
 import { LineItemCollection } from './LineItem'
 import { SkuOptionCollection } from './SkuOption'
+import { SingleRelationship } from '#typings/Library'
 
 export class LineItemOptionCollection extends BaseClass {
   static className = 'LineItemOption'
@@ -23,8 +24,8 @@ export class LineItemOptionCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  lineItem: () => Promise<LineItemCollection>
-  skuOption: () => Promise<SkuOptionCollection>
+  lineItem: () => SingleRelationship<LineItemCollection>
+  skuOption: () => SingleRelationship<SkuOptionCollection>
   static define() {
     this.attributes(
       'name',

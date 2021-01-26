@@ -4,6 +4,7 @@ import { MarketCollection } from './Market'
 import { ShippingZoneCollection } from './ShippingZone'
 import { ShippingCategoryCollection } from './ShippingCategory'
 import { DeliveryLeadTimeCollection } from './DeliveryLeadTime'
+import { SingleRelationship } from '#typings/Library'
 
 export class ShippingMethodCollection extends BaseClass {
   static className = 'ShippingMethod'
@@ -25,10 +26,10 @@ export class ShippingMethodCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  market: () => Promise<MarketCollection>
-  shippingZone: () => Promise<ShippingZoneCollection>
-  shippingCategory: () => Promise<ShippingCategoryCollection>
-  deliveryLeadTime: () => Promise<DeliveryLeadTimeCollection>
+  market: () => SingleRelationship<MarketCollection>
+  shippingZone: () => SingleRelationship<ShippingZoneCollection>
+  shippingCategory: () => SingleRelationship<ShippingCategoryCollection>
+  deliveryLeadTime: () => SingleRelationship<DeliveryLeadTimeCollection>
   static define() {
     this.attributes(
       'name',

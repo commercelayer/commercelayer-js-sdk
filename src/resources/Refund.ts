@@ -1,5 +1,8 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
+import { SingleRelationship } from '#typings/Library'
+import { OrderCollection } from './Order'
+import { CaptureCollection } from './Capture'
 
 export class RefundCollection extends BaseClass {
   static className = 'Refund'
@@ -19,6 +22,8 @@ export class RefundCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
+  order: () => SingleRelationship<OrderCollection>
+  referenceCapture: () => SingleRelationship<CaptureCollection>
   static define() {
     this.attributes(
       'number',

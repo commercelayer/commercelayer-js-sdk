@@ -2,6 +2,7 @@ import library from './library'
 import BaseClass from '#utils/BaseClass'
 import { MarketCollection } from './Market'
 import { GiftCardRecipientCollection } from './GiftCardRecipient'
+import { SingleRelationship } from '#typings/Library'
 
 export class GiftCardCollection extends BaseClass {
   static className = 'GiftCard'
@@ -33,8 +34,8 @@ export class GiftCardCollection extends BaseClass {
   updatedAt: Date
   reference: string
   metadata: object
-  market: () => Promise<MarketCollection>
-  giftCardRecipient: () => Promise<GiftCardRecipientCollection>
+  market: () => SingleRelationship<MarketCollection>
+  giftCardRecipient: () => SingleRelationship<GiftCardRecipientCollection>
   static define() {
     this.attributes(
       'status',

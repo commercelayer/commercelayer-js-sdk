@@ -1,6 +1,6 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
-import { CollectionProxy } from '#typings/Library'
+import { MultiRelationship, SingleRelationship } from '#typings/Library'
 import { InventoryStockLocationCollection } from './InventoryStockLocation'
 import { StockItemCollection } from './StockItem'
 import { AddressCollection } from './Address'
@@ -15,11 +15,11 @@ export class StockLocationCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  address: () => Promise<AddressCollection>
-  InventoryStockLocations: () => CollectionProxy<
+  address: () => SingleRelationship<AddressCollection>
+  InventoryStockLocations: () => MultiRelationship<
     InventoryStockLocationCollection
   >
-  stockItems: () => CollectionProxy<StockItemCollection>
+  stockItems: () => MultiRelationship<StockItemCollection>
   static define() {
     this.attributes(
       'name',

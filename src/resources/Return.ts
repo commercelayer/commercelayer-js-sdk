@@ -5,7 +5,7 @@ import { CustomerCollection } from './Customer'
 import { InventoryReturnLocationCollection } from './InventoryReturnLocation'
 import { StockLocationCollection } from './StockLocation'
 import { AddressCollection } from './Address'
-import { CollectionProxy } from '#typings/Library'
+import { MultiRelationship, SingleRelationship } from '#typings/Library'
 import { ReturnLineItemCollection } from './ReturnLineItem'
 import { AttachmentCollection } from './Attachment'
 
@@ -40,18 +40,16 @@ export class ReturnCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  order: () => Promise<OrderCollection> | OrderCollection
-  customer: () => Promise<CustomerCollection> | CustomerCollection
-  inventoryReturnLocation: () =>
-    | Promise<InventoryReturnLocationCollection>
-    | InventoryReturnLocationCollection
-  stockLocation: () =>
-    | Promise<StockLocationCollection>
-    | StockLocationCollection
-  originAddress: () => Promise<AddressCollection> | AddressCollection
-  destinationAddress: () => Promise<AddressCollection> | AddressCollection
-  returnLineItems: () => CollectionProxy<ReturnLineItemCollection>
-  attachments: () => CollectionProxy<AttachmentCollection>
+  order: () => SingleRelationship<OrderCollection>
+  customer: () => SingleRelationship<CustomerCollection>
+  inventoryReturnLocation: () => SingleRelationship<
+    InventoryReturnLocationCollection
+  >
+  stockLocation: () => SingleRelationship<StockLocationCollection>
+  originAddress: () => SingleRelationship<AddressCollection>
+  destinationAddress: () => SingleRelationship<AddressCollection>
+  returnLineItems: () => MultiRelationship<ReturnLineItemCollection>
+  attachments: () => MultiRelationship<AttachmentCollection>
   static define() {
     this.attributes(
       'number',

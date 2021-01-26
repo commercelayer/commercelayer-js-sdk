@@ -1,6 +1,6 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
-import { CollectionProxy } from '#typings/Library'
+import { MultiRelationship } from '#typings/Library'
 import { PriceCollection } from './Price'
 
 export class PriceListCollection extends BaseClass {
@@ -14,7 +14,7 @@ export class PriceListCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  prices: () => CollectionProxy<PriceCollection>
+  prices: () => MultiRelationship<PriceCollection>
   static define() {
     this.attributes(
       'name',

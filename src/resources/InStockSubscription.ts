@@ -3,6 +3,7 @@ import BaseClass from '#utils/BaseClass'
 import { SkuCollection } from './Sku'
 import { MarketCollection } from './Market'
 import { CustomerCollection } from './Customer'
+import { SingleRelationship } from '#typings/Library'
 
 export class InStockSubscriptionCollection extends BaseClass {
   static className = 'InStockSubscription'
@@ -16,9 +17,9 @@ export class InStockSubscriptionCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  market: () => Promise<MarketCollection>
-  customer: () => Promise<CustomerCollection>
-  sku: () => Promise<SkuCollection>
+  market: () => SingleRelationship<MarketCollection>
+  customer: () => SingleRelationship<CustomerCollection>
+  sku: () => SingleRelationship<SkuCollection>
   static define() {
     this.attributes(
       'status',

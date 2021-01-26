@@ -1,6 +1,6 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
-import { CollectionProxy } from '#typings/Library'
+import { MultiRelationship } from '#typings/Library'
 import { CustomerGroupCollection } from './CustomerGroup'
 import { PriceListCollection } from './PriceList'
 import { InventoryModelCollection } from './InventoryModel'
@@ -16,9 +16,9 @@ export class MarketCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  customerGroup: () => CollectionProxy<CustomerGroupCollection>
-  priceList: () => CollectionProxy<PriceListCollection>
-  inventoryModel: () => CollectionProxy<InventoryModelCollection>
+  customerGroup: () => MultiRelationship<CustomerGroupCollection>
+  priceList: () => MultiRelationship<PriceListCollection>
+  inventoryModel: () => MultiRelationship<InventoryModelCollection>
   static define() {
     this.attributes(
       'number',

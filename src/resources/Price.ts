@@ -2,6 +2,7 @@ import library from './library'
 import BaseClass from '#utils/BaseClass'
 import { PriceListCollection } from './PriceList'
 import { SkuCollection } from './Sku'
+import { SingleRelationship } from '#typings/Library'
 
 export class PriceCollection extends BaseClass {
   static className = 'Price'
@@ -19,8 +20,8 @@ export class PriceCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
-  priceList: () => Promise<PriceListCollection>
-  sku: () => Promise<SkuCollection>
+  priceList: () => SingleRelationship<PriceListCollection>
+  sku: () => SingleRelationship<SkuCollection>
   static define() {
     this.attributes(
       'currencyCode',

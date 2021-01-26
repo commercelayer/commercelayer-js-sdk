@@ -1,19 +1,20 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
 import { OrderCollection } from './Order'
+import { SingleRelationship } from '#typings/Library'
 
 export class BraintreePaymentCollection extends BaseClass {
   static className = 'BraintreePayment'
   clientToken: string
   paymentMethodNonce: string
-  options: object
+  options: Record<string, any>
   id: string
   reference: string
   referenceOrigin: string
   createdAt: Date
   updatedAt: Date
-  metadata: object
-  order: () => Promise<OrderCollection>
+  metadata: Record<string, string>
+  order: () => SingleRelationship<OrderCollection>
   static define() {
     this.attributes(
       'clientToken',

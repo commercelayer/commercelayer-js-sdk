@@ -1,6 +1,7 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
 import { OrderCollection } from './Order'
+import { SingleRelationship } from '#typings/Library'
 
 export class ExternalPaymentCollection extends BaseClass {
   static className = 'ExternalPayment'
@@ -12,7 +13,7 @@ export class ExternalPaymentCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   updatedAt: Date
-  order: () => OrderCollection
+  order: () => SingleRelationship<OrderCollection>
   static define() {
     this.attributes(
       'createdAt',
