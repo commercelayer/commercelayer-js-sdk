@@ -1,7 +1,7 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
 import { CustomerCollection } from './Customer'
-import { SingleRelationship } from 'dist/typings/Library'
+import { SingleRelationship } from '#typings/Library'
 
 export class CustomerSubscriptionCollection extends BaseClass {
   static className = 'CustomerSubscription'
