@@ -8,6 +8,7 @@ import { ShippingCategoryCollection } from './ShippingCategory'
 import { StockLocationCollection } from './StockLocation'
 import { AddressCollection } from './Address'
 import { ShipmentLineItemCollection } from './ShipmentLineItem'
+import { StockTransferCollection } from './StockTransfer'
 
 export class ShipmentCollection extends BaseClass {
   static className = 'Shipment'
@@ -31,14 +32,15 @@ export class ShipmentCollection extends BaseClass {
   selectedRateId: string
   status: string
   updatedAt: Date
-  shippingCategory: () => SingleRelationship<ShippingCategoryCollection>
-  stockLocation: () => SingleRelationship<StockLocationCollection>
-  shippingAddress: () => SingleRelationship<AddressCollection>
-  shippingMethod: () => SingleRelationship<ShippingMethodCollection>
-  shipmentLineItems: () => MultiRelationship<ShipmentLineItemCollection>
+  attachments: () => MultiRelationship<AttachmentCollection>
   availableShippingMethods: () => MultiRelationship<ShippingMethodCollection>
   parcels: () => MultiRelationship<ParcelCollection>
-  attachments: () => MultiRelationship<AttachmentCollection>
+  shipmentLineItems: () => MultiRelationship<ShipmentLineItemCollection>
+  shippingAddress: () => SingleRelationship<AddressCollection>
+  shippingCategory: () => SingleRelationship<ShippingCategoryCollection>
+  shippingMethod: () => SingleRelationship<ShippingMethodCollection>
+  stockLocation: () => SingleRelationship<StockLocationCollection>
+  stockTransfers: () => MultiRelationship<StockTransferCollection>
   static define() {
     this.attributes(
       'number',
@@ -72,6 +74,7 @@ export class ShipmentCollection extends BaseClass {
     this.hasMany('availableShippingMethods', { className: 'ShippingMethod' })
     this.hasMany('parcels', { className: 'Parcel' })
     this.hasMany('attachments', { className: 'Attachment' })
+    this.hasMany('stockTranfers', { className: 'StockTransfer' })
   }
 }
 

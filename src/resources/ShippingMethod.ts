@@ -26,6 +26,7 @@ export class ShippingMethodCollection extends BaseClass {
   reference: string
   referenceOrigin: string
   metadata: object
+  shipmentId?: string
   market: () => SingleRelationship<MarketCollection>
   shippingZone: () => SingleRelationship<ShippingZoneCollection>
   shippingCategory: () => SingleRelationship<ShippingCategoryCollection>
