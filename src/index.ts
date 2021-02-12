@@ -155,6 +155,7 @@ import StockTransfer, {
 import AvalaraAccount, {
   AvalaraAccountCollection,
 } from '#resources/AvalaraAccount'
+import Organization, { OrganizationCollection } from '#resources/Organization'
 
 export {
   AddressCollection,
@@ -196,6 +197,7 @@ export {
   MerchantCollection,
   OrderAmountPromotionRuleCollection,
   OrderCollection,
+  OrganizationCollection,
   PackageCollection,
   ParcelCollection,
   PaymentGatewayCollection,
@@ -273,6 +275,7 @@ export interface CLayer {
   Market: BaseResource<MarketCollection>
   Merchant: BaseResource<MerchantCollection>
   Order: BaseResource<OrderCollection>
+  Organization: BaseResource<OrganizationCollection>
   OrderAmountPromotionRule: BaseResource<OrderAmountPromotionRuleCollection>
   Package: BaseResource<PackageCollection>
   Parcel: BaseResource<ParcelCollection>
@@ -354,6 +357,7 @@ const CLayer: CLayer = {
   Merchant,
   Order,
   OrderAmountPromotionRule,
+  Organization,
   Package,
   Parcel,
   PaymentGateway,
@@ -435,6 +439,7 @@ export {
   Merchant,
   Order,
   OrderAmountPromotionRule,
+  Organization,
   Package,
   Parcel,
   PaymentGateway,
