@@ -3,6 +3,25 @@ import _ from 'lodash'
 import { Sku } from '../src'
 import { getTokenBlueBrandWeb } from '../helpers/getToken'
 
+const interceptors = {
+  request: {
+    before: (config) => {
+      console.log('Before request', config)
+    },
+    error: (err) => {
+      console.log('Request error', err)
+    },
+  },
+  response: {
+    before: (config) => {
+      console.log('Before response', config)
+    },
+    error: (err) => {
+      console.log('Error request', err)
+    },
+  },
+}
+
 export default function Home(props) {
   const [token, setToken] = useState(null)
   // const [lineItems, setLineItems] = useState<LineItemCollection[]>([])
@@ -32,7 +51,13 @@ export default function Home(props) {
       //   })
     }
     if (token) {
+      // initCLayer({
+      //   ...token,
+      //   interceptors,
+      // })
+
       Sku.withCredentials(token)
+        .setCustomInterceptors(interceptors)
         .select('code', 'reference', 'referenceOrigin')
         .all()
         .then((skus) => {

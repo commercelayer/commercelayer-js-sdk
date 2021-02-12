@@ -43,13 +43,12 @@ export const getTokenLimeBrand = async (type: AuthType = 'integration') => {
     LIME_BRAND_ENDPOINT,
     LIME_BRAND_CLIENT_ID,
     LIME_BRAND_SCOPE,
-    LIME_BRAND_CLIENT_ID_INTEGRATION,
     LIME_BRAND_CLIENT_SECRET,
   } = process.env
   return type === 'integration'
     ? await getIntegrationToken({
         endpoint: LIME_BRAND_ENDPOINT,
-        clientId: LIME_BRAND_CLIENT_ID_INTEGRATION,
+        clientId: LIME_BRAND_CLIENT_ID,
         clientSecret: LIME_BRAND_CLIENT_SECRET,
       })
     : await getSalesChannelToken({

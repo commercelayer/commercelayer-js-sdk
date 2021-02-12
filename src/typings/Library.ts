@@ -71,9 +71,11 @@ export interface Base {
   withCredentials({ accessToken, endpoint }: InitConfig): Base
   find(primaryKey: string): Promise<any>
   errors(): Errors<any>
+  setCustomInterceptors(interceptors: InitConfig['interceptors']): Base
 }
 
-export interface BaseResource<T = any> extends Omit<Base, 'withCredentials'> {
+export interface BaseResource<T = any>
+  extends Omit<Base, 'withCredentials' | 'setCustomInterceptors'> {
   (): BaseResource
   all(): Promise<CollectionResponse<T>>
   // where(): Collection | Collection[]
@@ -113,6 +115,9 @@ export interface BaseResource<T = any> extends Omit<Base, 'withCredentials'> {
   where(options?: object): BaseResource<T>
   update(attrs: object, callback?: any): Promise<T>
   withCredentials({ accessToken, endpoint }: InitConfig): BaseResource<T>
+  setCustomInterceptors(
+    interceptors: InitConfig['interceptors']
+  ): BaseResource<T>
 }
 
 export interface Relation extends Collection {
@@ -255,4 +260,5 @@ export default interface Library extends CreateResource {
     Authorization: string
   }
   Base: Base
+  customInterceptors?: InitConfig['interceptors']
 }

@@ -62,12 +62,12 @@ it('SKU --- multi relationships with includes --- prices', async () => {
   ).toBeGreaterThanOrEqual(1)
 })
 
-it('Order --- polymorphic relationship', async () => {
-  expect.assertions(3)
-  const order = await CLayer.Order.withCredentials(blueBrandConfig)
-    .includes('shippingAddress,paymentSource')
-    .find('jwBXVhxvqG')
-  expect(order.paymentSource()).not.toBeNull()
-  expect(order.shippingAddress()).not.toBeNull()
-  expect(order.paymentSource().reference).toBe('jwBXVhxvqG')
-})
+// it('Order --- polymorphic relationship', async () => {
+//   expect.assertions(3)
+//   const order = await CLayer.Order.withCredentials(blueBrandConfig)
+//     .includes('shippingAddress,paymentSource')
+//     .find('xNlalhzzdw')
+//   expect(order.paymentSource()).not.toBeNull()
+//   expect(order.shippingAddress()).not.toBeNull()
+//   expect(order.paymentSource().reference).toBe('xNlalhzzdw')
+// })

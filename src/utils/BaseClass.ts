@@ -90,6 +90,11 @@ class BaseClass extends library.Base {
     this.constructor.singleRequest = true
     return this
   }
+  setCustomInterceptors(interceptors: InitConfig['interceptors']) {
+    // @ts-ignore
+    this.constructor.customInterceptors = interceptors
+    return this
+  }
 }
 
 export default BaseClass

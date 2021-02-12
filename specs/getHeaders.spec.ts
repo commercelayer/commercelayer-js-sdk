@@ -37,7 +37,7 @@ it('METHOD --- perPage', async () => {
 it('METHOD --- Find', async () => {
   expect.assertions(3)
   const sku = await CLayer.Sku.withCredentials(blueBrandConfig).find(
-    'wBeDdSgYQW'
+    'wZeDdSamqn'
   )
   expect(sku.getHeaders()).not.toBeNull()
   expect(sku.getHeaders()).toHaveProperty('connection')
@@ -49,7 +49,7 @@ it('METHOD --- FindBy', async () => {
   const sku = await CLayer.Sku.withCredentials(blueBrandConfig).findBy({
     code: 'BABYONBU000000E63E7412MX',
   })
-  expect(sku.id).toBe('wBeDdSgYQW')
+  expect(sku.id).toBe('wZeDdSamqn')
   expect(sku.getHeaders()).not.toBeNull()
   expect(sku.getHeaders()).toHaveProperty('connection')
   expect(sku.getHeaders()).toHaveProperty('server')
@@ -58,7 +58,7 @@ it('METHOD --- FindBy', async () => {
 it('METHOD --- First', async () => {
   expect.assertions(4)
   const sku = await CLayer.Sku.withCredentials(blueBrandConfig).first()
-  expect(sku.id).toBe('GBwpOSPKAn')
+  expect(sku.id).toBe('GZwpOSLVjW')
   expect(sku.getHeaders()).not.toBeNull()
   expect(sku.getHeaders()).toHaveProperty('connection')
   expect(sku.getHeaders()).toHaveProperty('server')
@@ -76,7 +76,7 @@ it('METHOD --- First with number', async () => {
 it('METHOD --- Last', async () => {
   expect.assertions(4)
   const sku = await CLayer.Sku.withCredentials(blueBrandConfig).last()
-  expect(sku.id).toBe('enKjRSNXGB')
+  expect(sku.id).toBe('eWKjRSwazZ')
   expect(sku.getHeaders()).not.toBeNull()
   expect(sku.getHeaders()).toHaveProperty('connection')
   expect(sku.getHeaders()).toHaveProperty('server')
@@ -133,7 +133,7 @@ it('METHOD --- All with next page', async () => {
 it('METHOD --- Multi requests', async () => {
   expect.assertions(9)
   const sku = await CLayer.Sku.withCredentials(blueBrandConfig).find(
-    'wBeDdSgYQW'
+    'wZeDdSamqn'
   )
   const skus = await CLayer.Sku.withCredentials(blueBrandConfig)
     .includes('prices')
@@ -156,7 +156,7 @@ it('METHOD --- Multi requests', async () => {
 it('METHOD --- Order -> lineItems withCredentials', async () => {
   expect.assertions(4)
   const order = await CLayer.Order.withCredentials(blueBrandConfig).find(
-    'awjobhxYPX'
+    'JwXQehvvyP'
   )
 
   const lineItems = await order
@@ -165,7 +165,7 @@ it('METHOD --- Order -> lineItems withCredentials', async () => {
     .includes('lineItemOptions')
     .load()
 
-  expect(order.id).toBe('awjobhxYPX')
+  expect(order.id).toBe('JwXQehvvyP')
   expect(lineItems.getHeaders()).not.toBeNull()
   expect(lineItems.getHeaders()).toHaveProperty('connection')
   expect(lineItems.getHeaders()).toHaveProperty('server')
@@ -174,7 +174,7 @@ it('METHOD --- Order -> lineItems withCredentials', async () => {
 it('METHOD --- Sku -> Prices', async () => {
   expect.assertions(6)
   return CLayer.Sku.withCredentials(blueBrandConfig)
-    .find('wBeDdSgYQW')
+    .find('wZeDdSamqn')
     .then((res) => {
       expect(res.getHeaders()).not.toBeNull()
       expect(res.getHeaders()).toHaveProperty('connection')
@@ -195,7 +195,7 @@ it('METHOD --- Sku -> Prices', async () => {
 it('METHOD --- Get order and update lineItems', async () => {
   expect.assertions(14)
   const order = await CLayer.Order.withCredentials(blueBrandConfig).find(
-    'awjobhxYPX'
+    'JwXQehvvyP'
   )
 
   const lineItems = await order
@@ -206,7 +206,7 @@ it('METHOD --- Get order and update lineItems', async () => {
   await lineItems.first().update({ quantity: 1 })
 
   const newOrder = await CLayer.Order.withCredentials(blueBrandConfig).find(
-    'awjobhxYPX'
+    'JwXQehvvyP'
   )
 
   const newLineItems = await newOrder
@@ -216,7 +216,7 @@ it('METHOD --- Get order and update lineItems', async () => {
 
   await newLineItems.first().update({ quantity: 2 })
 
-  expect(order.id).toBe('awjobhxYPX')
+  expect(order.id).toBe('JwXQehvvyP')
   expect(order.getHeaders()).not.toBeNull()
   expect(order.getHeaders()).toHaveProperty('connection')
   expect(order.getHeaders()).toHaveProperty('server')
@@ -225,7 +225,7 @@ it('METHOD --- Get order and update lineItems', async () => {
   expect(lineItems.getHeaders()).toHaveProperty('connection')
   expect(lineItems.getHeaders()).toHaveProperty('server')
 
-  expect(newOrder.id).toBe('awjobhxYPX')
+  expect(newOrder.id).toBe('JwXQehvvyP')
   expect(newOrder.getHeaders()).not.toBeNull()
   expect(newOrder.getHeaders()).toHaveProperty('connection')
   expect(newOrder.getHeaders()).toHaveProperty('server')

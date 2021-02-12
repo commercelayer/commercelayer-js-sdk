@@ -30,7 +30,9 @@ export class ShippingMethodCollection extends BaseClass {
   market: () => SingleRelationship<MarketCollection>
   shippingZone: () => SingleRelationship<ShippingZoneCollection>
   shippingCategory: () => SingleRelationship<ShippingCategoryCollection>
-  deliveryLeadTime: () => SingleRelationship<DeliveryLeadTimeCollection>
+  deliveryLeadTimeForShipment: () => SingleRelationship<
+    DeliveryLeadTimeCollection
+  >
   static define() {
     this.attributes(
       'name',

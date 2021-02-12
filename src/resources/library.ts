@@ -117,17 +117,38 @@ class ExtendLibrary extends library.Base {
     this.includeMetaInfo()
     return super.find(paramKey)
   }
+  static setCustomInterceptors(interceptors: InitConfig['interceptors']) {
+    library.customInterceptors = interceptors
+    return this
+  }
   static setInterceptors(interceptors: any, _klass: any = null) {
     const classThis = this
     const interceptReq = interceptors?.request
     const interceptResp = interceptors?.response
     const respHandlers = interceptResp?.handlers
-    interceptReq.use((config) => {
-      if (!_.isEmpty(config.params)) {
-        config.params = parserParams(config.params)
+    interceptReq.use(
+      (config) => {
+        if (!_.isEmpty(config.params)) {
+          config.params = parserParams(config.params)
+        }
+        if (
+          !_.isEmpty(library?.customInterceptors?.request) &&
+          _.has(library?.customInterceptors?.request, 'before')
+        ) {
+          library.customInterceptors.request.before(config)
+        }
+        return config
+      },
+      (error) => {
+        if (
+          !_.isEmpty(library?.customInterceptors?.request) &&
+          _.has(library?.customInterceptors?.request, 'error')
+        ) {
+          library.customInterceptors.request.error(error)
+        }
+        return Promise.reject(error)
       }
-      return config
-    })
+    )
     if (respHandlers?.length === 1) {
       interceptResp.handlers.shift()
       interceptResp.use(
@@ -146,26 +167,22 @@ class ExtendLibrary extends library.Base {
             headers: config.headers,
             collectionParent: classThis,
           }
+          if (
+            !_.isEmpty(library?.customInterceptors?.response) &&
+            _.has(library?.customInterceptors?.response, 'before')
+          ) {
+            library.customInterceptors.response.before(config)
+          }
           return config
         },
         (error: any) => {
-          // Do something with request error
-          return 408 === error.response.status || 'ECONNABORTED' === error.code
-            ? Promise.reject({
-                response: {
-                  data: {
-                    errors: [
-                      {
-                        code: 'timeout',
-                        detail: 'Timeout occurred while loading '.concat(
-                          error.config.url
-                        ),
-                      },
-                    ],
-                  },
-                },
-              })
-            : Promise.reject(error)
+          if (
+            !_.isEmpty(library?.customInterceptors?.response) &&
+            _.has(library?.customInterceptors?.response, 'error')
+          ) {
+            library.customInterceptors.response.error(error)
+          }
+          return Promise.reject(error)
         }
       )
     }

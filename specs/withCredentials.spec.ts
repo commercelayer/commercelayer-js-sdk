@@ -5,8 +5,11 @@ let blueBrandConfig = { accessToken: '', endpoint: '' }
 let limeBrandConfig = { accessToken: '', endpoint: '' }
 const { ENDPOINT, LIME_BRAND_ENDPOINT } = process.env
 beforeAll(async () => {
+  console.log('ENDPOINT', ENDPOINT)
   const { accessToken } = await getTokenBlueBrand()
-  const { accessToken: limeAccessToken } = await getTokenLimeBrand()
+  const { accessToken: limeAccessToken } = await getTokenLimeBrand(
+    'salesChannel'
+  )
   blueBrandConfig = {
     accessToken: accessToken,
     endpoint: ENDPOINT,
@@ -26,8 +29,8 @@ it('CRUD - Sync select with init', async () => {
   )
   expect(skuLime.id).toBe('KZmDzSKXbn')
 
-  const sku = await CLayer.Sku.find('wBeDdSgYQW')
-  expect(sku.id).toBe('wBeDdSgYQW')
+  const sku = await CLayer.Sku.find('wZeDdSamqn')
+  expect(sku.id).toBe('wZeDdSamqn')
 })
 
 it('Checking credentials', async () => {
@@ -44,9 +47,9 @@ it('Checking credentials', async () => {
 it('CRUD - Sync update', async () => {
   expect.assertions(2)
   const sku = await CLayer.Sku.withCredentials(blueBrandConfig).find(
-    'wBeDdSgYQW'
+    'wZeDdSamqn'
   )
-  expect(sku.id).toBe('wBeDdSgYQW')
+  expect(sku.id).toBe('wZeDdSamqn')
   const skuUpdate = await sku
     .withCredentials(blueBrandConfig)
     .update({ description: 'Unit test sync description' })
@@ -56,9 +59,9 @@ it('CRUD - Sync update', async () => {
 it('CRUD - Async update', () => {
   expect.assertions(2)
   return CLayer.Sku.withCredentials(blueBrandConfig)
-    .find('wBeDdSgYQW')
+    .find('wZeDdSamqn')
     .then((s) => {
-      expect(s.id).toBe('wBeDdSgYQW')
+      expect(s.id).toBe('wZeDdSamqn')
       return s.withCredentials(blueBrandConfig).update(
         {
           description: 'Unit test async description',
@@ -72,9 +75,9 @@ it('CRUD - Async update', () => {
 // it('CRUD - Async multi-connection select', () => {
 //   expect.assertions(2)
 //   CLayer.Sku.withCredentials(blueBrandConfig)
-//     .find('wBeDdSgYQW')
+//     .find('wZeDdSamqn')
 //     .then(s => {
-//       return expect(s.id).toBe('wBeDdSgYQW')
+//       return expect(s.id).toBe('wZeDdSamqn')
 //     })
 //   return CLayer.Sku.withCredentials(limeBrandConfig)
 //     .find('KZmDzSKXbn')
@@ -85,9 +88,9 @@ it('CRUD - Async update', () => {
 it('CRUD - Sync multi-connection select', async () => {
   expect.assertions(2)
   const blueSku = await CLayer.Sku.withCredentials(blueBrandConfig).find(
-    'wBeDdSgYQW'
+    'wZeDdSamqn'
   )
-  expect(blueSku.id).toBe('wBeDdSgYQW')
+  expect(blueSku.id).toBe('wZeDdSamqn')
   const limeSku = await CLayer.Sku.withCredentials(limeBrandConfig).find(
     'KZmDzSKXbn'
   )
@@ -96,9 +99,9 @@ it('CRUD - Sync multi-connection select', async () => {
 // it('CRUD - Async multi-connection update', () => {
 //   expect.assertions(4)
 //   CLayer.Sku.withCredentials(blueBrandConfig)
-//     .find('wBeDdSgYQW')
+//     .find('wZeDdSamqn')
 //     .then(s => {
-//       expect(s.id).toBe('wBeDdSgYQW')
+//       expect(s.id).toBe('wZeDdSamqn')
 //       s.withCredentials(blueBrandConfig)
 //         .update({
 //           description: 'Unit test async description with multi-connection'
@@ -134,9 +137,9 @@ it('CRUD - Sync multi-connection select', async () => {
 it('CRUD - Sync multi-connection update', async () => {
   expect.assertions(3)
   const blueSku = await CLayer.Sku.withCredentials(blueBrandConfig).find(
-    'wBeDdSgYQW'
+    'wZeDdSamqn'
   )
-  expect(blueSku.id).toBe('wBeDdSgYQW')
+  expect(blueSku.id).toBe('wZeDdSamqn')
   const updateBlue = await blueSku.withCredentials(blueBrandConfig).update({
     description: 'Unit test sync description with multi-connection',
   })
