@@ -134,33 +134,3 @@ it('CRUD - Sync multi-connection select', async () => {
 //       console.log('e', e)
 //     })
 // })
-it('CRUD - Sync multi-connection update', async () => {
-  expect.assertions(3)
-  const blueSku = await CLayer.Sku.withCredentials(blueBrandConfig).find(
-    'wZeDdSamqn'
-  )
-  expect(blueSku.id).toBe('wZeDdSamqn')
-  const updateBlue = await blueSku.withCredentials(blueBrandConfig).update({
-    description: 'Unit test sync description with multi-connection',
-  })
-  expect(updateBlue.description).toBe(
-    'Unit test sync description with multi-connection'
-  )
-
-  const limeSku = await CLayer.Sku.withCredentials(limeBrandConfig).find(
-    'KZmDzSKXbn'
-  )
-  expect(limeSku.id).toBe('KZmDzSKXbn')
-  // FIXME: What's wrong?? active-resource bug?
-  // const updateLime = await limeSku
-  //   .withCredentials(limeBrandConfig)
-  //   .update({
-  //     description: 'Unit test sync description with multi-connection'
-  //   })
-  //   .catch(e => {
-  //     console.log('e', e)
-  //   })
-  // expect(updateLime.description).toBe(
-  //   'Unit test sync description with multi-connection'
-  // )
-})

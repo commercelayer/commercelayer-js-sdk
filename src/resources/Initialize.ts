@@ -68,12 +68,12 @@ export interface InitConfig {
   endpoint: string
   interceptors?: {
     request?: {
-      before?: (config: RequestConfig) => void
-      error?: (error: ResponseError) => void
+      before?: (config: RequestConfig) => any
+      error?: (error: ResponseError) => any
     }
     response?: {
-      before?: (config: RequestConfig) => void
-      error?: (error: ResponseError) => void
+      before?: (config: RequestConfig) => any
+      error?: (error: ResponseError) => any
     }
   }
 }

@@ -135,7 +135,7 @@ class ExtendLibrary extends library.Base {
           !_.isEmpty(library?.customInterceptors?.request) &&
           _.has(library?.customInterceptors?.request, 'before')
         ) {
-          library.customInterceptors.request.before(config)
+          return library.customInterceptors.request.before(config)
         }
         return config
       },
@@ -144,7 +144,7 @@ class ExtendLibrary extends library.Base {
           !_.isEmpty(library?.customInterceptors?.request) &&
           _.has(library?.customInterceptors?.request, 'error')
         ) {
-          library.customInterceptors.request.error(error)
+          return library.customInterceptors.request.error(error)
         }
         return Promise.reject(error)
       }
@@ -171,7 +171,7 @@ class ExtendLibrary extends library.Base {
             !_.isEmpty(library?.customInterceptors?.response) &&
             _.has(library?.customInterceptors?.response, 'before')
           ) {
-            library.customInterceptors.response.before(config)
+            return library.customInterceptors.response.before(config)
           }
           return config
         },
