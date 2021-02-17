@@ -77,7 +77,7 @@ export interface Base {
 export interface BaseResource<T = any>
   extends Omit<Base, 'withCredentials' | 'setCustomInterceptors'> {
   (): BaseResource
-  all(): Promise<CollectionResponse<T>>
+  all(): Promise<CollectionResponse<T>> & SingleRelationship<Partial<T>>
   // where(): Collection | Collection[]
   assignQueryParams(queryParams: object): object
   assignResourceRelatedQueryParams(queryParams: object): object

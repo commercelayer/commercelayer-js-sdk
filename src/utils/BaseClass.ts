@@ -1,7 +1,11 @@
 // TODO remove ts-ignore comments
 import { InitConfig } from '#resources/Initialize'
 import library from '#resources/library'
-import { CollectionResponse, HeadersResponse } from '#typings/Library'
+import {
+  HeadersResponse,
+  MultiRelationship,
+  SingleRelationship,
+} from '#typings/Library'
 
 export type Meta = {
   pageCount?: number
@@ -14,7 +18,9 @@ class BaseClass extends library.Base {
   __collectionMeta: Meta = {}
   __headers: HeadersResponse | {} = {}
   includes: (...attribute: string[]) => this
-  all: () => Promise<CollectionResponse<this>>
+  all: () =>
+    | Promise<MultiRelationship<this>>
+    | Promise<SingleRelationship<this>>
   // errors: () => Errors<this>
   // update: (attrs: object, callback?: (response: this) => void) => this
   getMetaInfo() {

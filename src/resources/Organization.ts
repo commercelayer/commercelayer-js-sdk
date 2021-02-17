@@ -3,6 +3,7 @@ import BaseClass from '#utils/BaseClass'
 
 export class OrganizationCollection extends BaseClass {
   static className = 'Organization'
+  static queryName = 'organization'
   acceptanceDisabled: boolean
   accountDisabled: boolean
   contrastColor: string
@@ -20,6 +21,7 @@ export class OrganizationCollection extends BaseClass {
   referenceOrigin: string
   slug: string
   updatedAt: Date
+  id: string
   static define() {
     this.attributes(
       'acceptanceDisabled',

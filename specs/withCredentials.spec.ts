@@ -5,7 +5,6 @@ let blueBrandConfig = { accessToken: '', endpoint: '' }
 let limeBrandConfig = { accessToken: '', endpoint: '' }
 const { ENDPOINT, LIME_BRAND_ENDPOINT } = process.env
 beforeAll(async () => {
-  console.log('ENDPOINT', ENDPOINT)
   const { accessToken } = await getTokenBlueBrand()
   const { accessToken: limeAccessToken } = await getTokenLimeBrand(
     'salesChannel'
@@ -53,7 +52,7 @@ it('CRUD - Sync update', async () => {
   const skuUpdate = await sku
     .withCredentials(blueBrandConfig)
     .update({ description: 'Unit test sync description' })
-  expect(skuUpdate.description).toBe('Unit test sync description')
+  return expect(skuUpdate.description).toBe('Unit test sync description')
 })
 
 it('CRUD - Async update', () => {

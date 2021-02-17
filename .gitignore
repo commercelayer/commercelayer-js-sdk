@@ -7,3 +7,4 @@ specs/fixtures/*.json
 .rts*
 coverage
 .next
+.vercel

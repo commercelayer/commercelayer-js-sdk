@@ -180,7 +180,7 @@ class ExtendLibrary extends library.Base {
             !_.isEmpty(library?.customInterceptors?.response) &&
             _.has(library?.customInterceptors?.response, 'error')
           ) {
-            library.customInterceptors.response.error(error)
+            return library.customInterceptors.response.error(error)
           }
           return Promise.reject(error)
         }
