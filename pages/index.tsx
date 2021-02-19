@@ -7,17 +7,21 @@ const interceptors = {
   request: {
     before: (config) => {
       console.log('Before request', config)
+      return config
     },
     error: (err) => {
       console.log('Request error', err)
+      return err
     },
   },
   response: {
     before: (config) => {
       console.log('Before response', config)
+      return config
     },
     error: (err) => {
       console.log('Error request', err)
+      return err
     },
   },
 }
