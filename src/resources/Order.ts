@@ -136,6 +136,7 @@ export class OrderCollection extends BaseClass {
   loadShippingAddress: () => SingleRelationship<AddressCollection>
   billingAddress: () => SingleRelationship<AddressCollection>
   paymentMethod: () => SingleRelationship<PaymentMethodCollection>
+  loadPaymentMethod: () => SingleRelationship<PaymentMethodCollection>
   lineItems: () => MultiRelationship<LineItemCollection>
   availablePaymentMethods: () => MultiRelationship<PaymentMethodCollection>
   shipments: () => MultiRelationship<ShipmentCollection>
