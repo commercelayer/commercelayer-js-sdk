@@ -87,7 +87,7 @@ export interface BaseResource<T = any>
     read: any // TODO: Add collection type?
     readWrite: any // TODO: Add collection type?
   }
-  build(params?: object): Collection<T> | CollectionResponse<T>
+  build(params?: object): Collection<T> & BaseResource<T>
   create(attributes: object): Promise<T>
   each(iteratee: any): any
   fields(): Collection<T>
