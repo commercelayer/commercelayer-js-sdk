@@ -9,7 +9,6 @@ import { InitConfig } from './Initialize'
 import _ from 'lodash'
 import BaseClass from '#utils/BaseClass'
 import { cleanUrl, parserParams } from '#utils/helpers'
-import axios from 'axios'
 
 const subdomain = 'yourdomain'
 
