@@ -51,7 +51,9 @@ export interface Base {
       Authorization: string
     }
   }
-  __links: object
+  __links: {
+    related: string
+  }
   new (): Base
   attributes(...attribute: string[]): void
   hasOne(queryName: string, config: BaseConfig): void
@@ -91,7 +93,7 @@ export interface BaseResource<T = any>
   create(attributes: object): Promise<T>
   each(iteratee: any): any
   fields(): Collection<T>
-  find(primaryKey: string): Promise<T>
+  find(primaryKey: string, tuning?: boolean): Promise<T>
   findBy(conditions: object): Promise<T>
   first(): Promise<T>
   first(n: number): Promise<T[]>
