@@ -9,6 +9,7 @@ import { InitConfig } from './Initialize'
 import _ from 'lodash'
 import BaseClass from '#utils/BaseClass'
 import { cleanUrl, parserParams } from '#utils/helpers'
+import axios from 'axios'
 
 const subdomain = 'yourdomain'
 
@@ -113,8 +114,17 @@ class ExtendLibrary extends library.Base {
     this.setInterceptors(i, klass)
     return this
   }
-  static find(paramKey: string) {
+  static find(paramKey: string, tuning?: false) {
     this.includeMetaInfo()
+    if (tuning) {
+      const url = `${this.__links.related}/${paramKey}`
+      // @ts-ignore
+      return this.resourceLibrary.interface.axios.get(url).then((res) => {
+        const objReturn = { ...res.data.data, ...res.data.data.attributes }
+        delete objReturn.attributes
+        return objReturn
+      })
+    }
     return super.find(paramKey)
   }
   static setCustomInterceptors(interceptors: InitConfig['interceptors']) {
