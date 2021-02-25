@@ -9,6 +9,7 @@ import { InitConfig } from './Initialize'
 import _ from 'lodash'
 import BaseClass from '#utils/BaseClass'
 import { cleanUrl, parserParams } from '#utils/helpers'
+import axios from 'axios'
 
 const subdomain = 'yourdomain'
 
@@ -116,13 +117,19 @@ class ExtendLibrary extends library.Base {
   static find(paramKey: string, tuning?: false) {
     this.includeMetaInfo()
     if (tuning) {
-      const url = `${this.__links.related}/${paramKey}`
+      const url = !_.isEmpty(this.__links)
+        ? `${this.__links.related}/${paramKey}`
+        : `${this.resourceLibrary.baseUrl}/${this.queryName}/${paramKey}`
       // @ts-ignore
-      return this.resourceLibrary.interface.axios.get(url).then((res) => {
-        const objReturn = { ...res.data.data, ...res.data.data.attributes }
-        delete objReturn.attributes
-        return objReturn
-      })
+      return axios
+        .get(url, {
+          headers: this.resourceLibrary.headers,
+        })
+        .then((res) => {
+          const objReturn = { ...res.data.data, ...res.data.data.attributes }
+          delete objReturn.attributes
+          return objReturn
+        })
     }
     return super.find(paramKey)
   }
