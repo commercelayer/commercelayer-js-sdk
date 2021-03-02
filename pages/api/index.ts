@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import _ from 'lodash'
+import _ from 'underscore'
 import { getTokenBlueBrand } from '../../helpers/getToken'
 import { initCLayer, Order } from '../../src'
 

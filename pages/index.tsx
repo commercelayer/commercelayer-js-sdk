@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import _ from 'lodash'
+import _ from 'underscore'
 import { Sku } from '../src'
 import { getTokenBlueBrandWeb } from '../helpers/getToken'
 

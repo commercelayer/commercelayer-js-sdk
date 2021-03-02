@@ -6,7 +6,7 @@ import {
 } from 'active-resource'
 import Library, { GeneralObject } from '#typings/Library'
 import { InitConfig } from './Initialize'
-import _ from 'lodash'
+import _ from 'underscore'
 import BaseClass from '#utils/BaseClass'
 import { cleanUrl, parserParams } from '#utils/helpers'
 import axios from 'axios'

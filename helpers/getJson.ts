@@ -1,4 +1,4 @@
-import * as _ from 'lodash'
+import * as _ from 'underscore'
 const getJson = (collection: any): string => {
 	const arr: object[] = []
 	collection.each((s: any) => {

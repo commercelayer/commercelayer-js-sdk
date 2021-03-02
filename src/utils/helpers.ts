@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import _ from 'underscore'
 
 export const cleanUrl = (url: string) => {
   const lastSlash = url.lastIndexOf('/') + 1
