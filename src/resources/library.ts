@@ -6,10 +6,17 @@ import {
 } from 'active-resource'
 import Library, { GeneralObject } from '#typings/Library'
 import { InitConfig } from './Initialize'
-import _ from 'lodash'
+import _map from 'lodash/map'
+import isEmpty from 'lodash/isEmpty'
+import snakeCase from 'lodash/snakeCase'
+import isArray from 'lodash/isArray'
+import _has from 'lodash/has'
+import first from 'lodash/first'
+import compact from 'lodash/compact'
 import BaseClass from '#utils/BaseClass'
 import { cleanUrl, parserParams } from '#utils/helpers'
 import axios from 'axios'
+import { normalize } from '../utils/helpers'
 
 const subdomain = 'yourdomain'
 
@@ -32,31 +39,41 @@ class ExtendLibrary extends library.Base {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    return super.includes(...params)
+    const relation = super.includes(...params)
+    this.__queryParams = relation.__queryParams
+    return this
   }
   static select(...params: string[]) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    return super.select(...params)
+    const relation = super.select(...params)
+    this.__queryParams = relation.__queryParams
+    return this
   }
   static order(params: object) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    return super.order(params)
+    const relation = super.order(params)
+    this.__queryParams = relation.__queryParams
+    return this
   }
-  static page(value?: number) {
+  static page(value: number) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    return super.page(value)
+    const relation = super.page(value)
+    this.__queryParams = relation.__queryParams
+    return this
   }
-  static perPage(value?: number) {
+  static perPage(value: number) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    return super.perPage(value)
+    const relation = super.perPage(value)
+    this.__queryParams = relation.__queryParams
+    return this
   }
   static limit(value: any) {
     // @ts-ignore
@@ -76,11 +93,15 @@ class ExtendLibrary extends library.Base {
       q: { ...options },
     })
     this.includeMetaInfo(relation.interface().axios.interceptors)
-    return relation
+    this.__queryParams = relation.__queryParams
+    return this
   }
-  static all() {
+  static all(rawResponse?: false) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
+    if (rawResponse) {
+      return this.rawResponse()
+    }
     // @ts-ignore
     return super.all()
   }
@@ -114,22 +135,76 @@ class ExtendLibrary extends library.Base {
     this.setInterceptors(i, klass)
     return this
   }
-  static find(paramKey: string, tuning?: false) {
-    this.includeMetaInfo()
-    if (tuning) {
-      const url = !_.isEmpty(this.__links)
+  private static jsonapiQueryParams(v, k) {
+    if (k === 'fields') {
+      const fields = _map(v, (field, i) => {
+        const normalizedValues = field.map((field) => {
+          if (isArray(field)) {
+            return field.map((f) => snakeCase(f)).join(',')
+          }
+          return snakeCase(field)
+        })
+        return `${k}[${i}]=${normalizedValues.join(',')}`
+      })
+      return fields.join('&')
+    }
+    if (k === 'filter') {
+      const fields = _map(v, (field, i) => {
+        const filter = _map(field, (value, index) => {
+          const key = snakeCase(index)
+          const val = value
+          return `${k}[${i}][${key}]=${val}`
+        })
+        return filter.join('&')
+      })
+      return fields
+    }
+    if (k === 'include') {
+      const normalizedValues = v.map((field: string) => {
+        return field
+          .split('.')
+          .map((f) => snakeCase(f))
+          .join('.')
+      })
+      return `${k}=${normalizedValues.join(',')}`
+    }
+    if (k === 'sort') {
+      const fields = _map(v, (field, i) => {
+        const row = field.toLowerCase() === 'asc' ? '' : '-'
+        return `${row}${snakeCase(i)}`
+      })
+      return `${k}=${fields.join(',')}`
+    }
+    if (k !== '__root') {
+      const fields = _map(v, (field, i) => {
+        return `${k}[${i}]=${field}`
+      })
+      return fields
+    }
+  }
+  private static rawResponse(paramKey?: string) {
+    this.setInterceptors(axios.interceptors)
+    // @ts-ignore
+    const queries = compact(_map(this.queryParams(), this.jsonapiQueryParams))
+    let url = !isEmpty(this.__links)
+      ? paramKey
         ? `${this.__links.related}/${paramKey}`
-        : `${this.resourceLibrary.baseUrl}/${this.queryName}/${paramKey}`
-      // @ts-ignore
-      return axios
-        .get(url, {
-          headers: this.resourceLibrary.headers,
-        })
-        .then((res) => {
-          const objReturn = { ...res.data.data, ...res.data.data.attributes }
-          delete objReturn.attributes
-          return objReturn
-        })
+        : `${this.__links.related}`
+      : paramKey
+      ? `${this.resourceLibrary.baseUrl}/${this.queryName}/${paramKey}`
+      : `${this.resourceLibrary.baseUrl}/${this.queryName}`
+    if (!isEmpty(queries)) url = `${url}?${queries.join('&')}`
+    // @ts-ignore
+    return axios
+      .get(url, {
+        headers: this.resourceLibrary.headers,
+      })
+      .then((res) => normalize(res))
+  }
+  static find(paramKey: string, rawResponse?: false) {
+    this.includeMetaInfo()
+    if (rawResponse) {
+      return this.rawResponse(paramKey)
     }
     return super.find(paramKey)
   }
@@ -144,12 +219,12 @@ class ExtendLibrary extends library.Base {
     const respHandlers = interceptResp?.handlers
     interceptReq.use(
       (config) => {
-        if (!_.isEmpty(config.params)) {
+        if (!isEmpty(config.params)) {
           config.params = parserParams(config.params)
         }
         if (
-          !_.isEmpty(library?.customInterceptors?.request) &&
-          _.has(library?.customInterceptors?.request, 'before')
+          !isEmpty(library?.customInterceptors?.request) &&
+          _has(library?.customInterceptors?.request, 'before')
         ) {
           return library.customInterceptors.request.before(config)
         }
@@ -157,20 +232,20 @@ class ExtendLibrary extends library.Base {
       },
       (error) => {
         if (
-          !_.isEmpty(library?.customInterceptors?.request) &&
-          _.has(library?.customInterceptors?.request, 'error')
+          !isEmpty(library?.customInterceptors?.request) &&
+          _has(library?.customInterceptors?.request, 'error')
         ) {
           return library.customInterceptors.request.error(error)
         }
         return Promise.reject(error)
       }
     )
-    if (respHandlers?.length === 1) {
+    if (respHandlers?.length === 1 || isEmpty(respHandlers)) {
       interceptResp.handlers.shift()
       interceptResp.use(
         (config: any) => {
           if (!config['data']) return config
-          const meta = _.isArray(config.data.data)
+          const meta = isArray(config.data.data)
             ? config.data.meta
             : config.data.data.meta
           const metaCamelCase = library.interface.toCamelCase(meta)
@@ -184,8 +259,8 @@ class ExtendLibrary extends library.Base {
             collectionParent: classThis,
           }
           if (
-            !_.isEmpty(library?.customInterceptors?.response) &&
-            _.has(library?.customInterceptors?.response, 'before')
+            !isEmpty(library?.customInterceptors?.response) &&
+            _has(library?.customInterceptors?.response, 'before')
           ) {
             return library.customInterceptors.response.before(config)
           }
@@ -193,8 +268,8 @@ class ExtendLibrary extends library.Base {
         },
         (error: any) => {
           if (
-            !_.isEmpty(library?.customInterceptors?.response) &&
-            _.has(library?.customInterceptors?.response, 'error')
+            !isEmpty(library?.customInterceptors?.response) &&
+            _has(library?.customInterceptors?.response, 'error')
           ) {
             return library.customInterceptors.response.error(error)
           }
@@ -206,14 +281,14 @@ class ExtendLibrary extends library.Base {
 }
 
 const setMetaByRequest = <T extends BaseClass>(child: T) => {
-  _.map(library.customRequests, (req) => {
-    if (!_.isEmpty(req.headers)) {
+  _map(library.customRequests, (req) => {
+    if (!isEmpty(req.headers)) {
       child.setHeaders(req.headers)
     }
-    if (_.isArray(req.data)) {
+    if (isArray(req.data)) {
       // @ts-ignore
-      const childData = _.first(req.data.filter((v) => child.id === v.id))
-      if (!_.isEmpty(childData)) {
+      const childData: any = first(req.data.filter((v) => child.id === v.id))
+      if (!isEmpty(childData)) {
         const collectionMeta = library.interface.toCamelCase(req.meta)
         const meta = library.interface.toCamelCase(childData.meta)
         child.setMetaInfo(meta)
@@ -258,40 +333,40 @@ ExtendLibrary.afterRequest(function() {
 
 CollectionResponse.prototype.getMetaInfo = function() {
   const firstItem = this.first()
-  if (_.isEmpty(firstItem)) {
+  if (isEmpty(firstItem)) {
     return {}
   }
-  return _.has(firstItem, '__collectionMeta')
+  return _has(firstItem, '__collectionMeta')
     ? firstItem.__collectionMeta
     : firstItem.getMetaInfo()
 }
 
 CollectionResponse.prototype.getHeaders = function() {
   const firstItem = this.first()
-  if (_.isEmpty(firstItem)) {
+  if (isEmpty(firstItem)) {
     return {}
   }
-  return _.has(firstItem, '__headers')
+  return _has(firstItem, '__headers')
     ? firstItem.__headers
     : firstItem.getHeaders()
 }
 
 CollectionResponse.prototype.pageCount = function() {
   const firstItem = this.first()
-  if (_.isEmpty(firstItem)) {
+  if (isEmpty(firstItem)) {
     return 0
   }
-  return _.has(firstItem, '__collectionMeta.pageCount')
+  return _has(firstItem, '__collectionMeta.pageCount')
     ? firstItem.__collectionMeta.pageCount
     : this.first().pageCount()
 }
 
 CollectionResponse.prototype.recordCount = function() {
   const firstItem = this.first()
-  if (_.isEmpty(firstItem)) {
+  if (isEmpty(firstItem)) {
     return 0
   }
-  return _.has(firstItem, '__collectionMeta.recordCount')
+  return _has(firstItem, '__collectionMeta.recordCount')
     ? firstItem.__collectionMeta.recordCount
     : this.first().recordCount()
 }
