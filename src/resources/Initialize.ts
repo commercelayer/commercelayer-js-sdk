@@ -63,6 +63,10 @@ export interface ResponseError<T = any> extends Error {
   toJSON: () => object
 }
 
+export type Options = {
+  rawResponse?: boolean
+}
+
 export interface InitConfig {
   accessToken: string
   endpoint: string
@@ -76,6 +80,7 @@ export interface InitConfig {
       error?: (error: ResponseError) => any
     }
   }
+  options?: Options
 }
 
 export interface Init {
@@ -86,12 +91,16 @@ const init: Init = ({
   accessToken,
   endpoint,
   interceptors,
+  options,
 }: InitConfig): void => {
   library.baseUrl = `${endpoint}/api/`
   library.headers = {
     Authorization: `Bearer ${accessToken}`,
   }
   library.customInterceptors = interceptors
+  library.options = options || {
+    rawResponse: false,
+  }
 }
 
 export default init

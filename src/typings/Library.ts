@@ -1,4 +1,4 @@
-import { InitConfig } from '#resources/Initialize'
+import { InitConfig, Options } from '#resources/Initialize'
 export interface GeneralObject {
   [index: string]: string
 }
@@ -36,6 +36,30 @@ export interface HeadersResponse {
   'transfer-encoding': string
 }
 
+type JSONAPIResource = {
+  attributes: Record<string, any>
+  id: string
+  links: { self: string }
+  meta: {
+    mode: 'test' | 'live'
+  }
+  type: string
+}
+
+export interface JSONAPIResponse {
+  data: JSONAPIResource[] | JSONAPIResource
+  included?: JSONAPIResource[]
+  links?: {
+    first: string
+    last: string
+    next: string
+  }
+  meta?: {
+    page_count: number
+    record_count: number
+  }
+}
+
 export interface BaseConfig {
   className?: string
   polymorphic?: boolean
@@ -71,7 +95,7 @@ export interface Base {
   update(attrs: object, callback?: (res) => any): any
   destroy(): Promise<any>
   withCredentials({ accessToken, endpoint }: InitConfig): Base
-  find(primaryKey: string): Promise<any>
+  find(primaryKey: string, options?: Options): Promise<any>
   errors(): Errors<any>
   setCustomInterceptors(interceptors: InitConfig['interceptors']): Base
 }
@@ -80,8 +104,9 @@ export interface BaseResource<T = any>
   extends Omit<Base, 'withCredentials' | 'setCustomInterceptors'> {
   (): BaseResource
   all(
-    rawResponse?: boolean
-  ): Promise<CollectionResponse<T>> & SingleRelationship<Partial<T>>
+    options?: Options
+  ): Promise<CollectionResponse<T> & JSONAPIResponse> &
+    SingleRelationship<Partial<T>>
   // where(): Collection | Collection[]
   assignQueryParams(queryParams: object): object
   assignResourceRelatedQueryParams(queryParams: object): object
@@ -95,7 +120,7 @@ export interface BaseResource<T = any>
   create(attributes: object): Promise<T>
   each(iteratee: any): any
   fields(): Collection<T>
-  find(primaryKey: string, tuning?: boolean): Promise<T>
+  find(primaryKey: string, options?: Options): Promise<T & JSONAPIResponse>
   findBy(conditions: object): Promise<T>
   first(): Promise<T>
   first(n: number): Promise<T[]>
@@ -265,4 +290,5 @@ export default interface Library extends CreateResource {
   }
   Base: Base
   customInterceptors?: InitConfig['interceptors']
+  options?: Options
 }

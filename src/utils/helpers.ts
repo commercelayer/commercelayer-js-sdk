@@ -2,7 +2,6 @@ import _has from 'lodash/has'
 import isEmpty from 'lodash/isEmpty'
 import first from 'lodash/first'
 import findKey from 'lodash/findKey'
-import isArray from 'lodash/isArray'
 
 export const cleanUrl = (url: string) => {
   const lastSlash = url.lastIndexOf('/') + 1

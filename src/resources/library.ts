@@ -5,7 +5,7 @@ import {
   CollectionResponse,
 } from 'active-resource'
 import Library, { GeneralObject } from '#typings/Library'
-import { InitConfig } from './Initialize'
+import { InitConfig, Options } from './Initialize'
 import _map from 'lodash/map'
 import isEmpty from 'lodash/isEmpty'
 import snakeCase from 'lodash/snakeCase'
@@ -96,10 +96,10 @@ class ExtendLibrary extends library.Base {
     this.__queryParams = relation.__queryParams
     return this
   }
-  static all(rawResponse?: false) {
+  static all(options?: Options) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
-    if (rawResponse) {
+    if (options?.rawResponse || library?.options?.rawResponse) {
       return this.rawResponse()
     }
     // @ts-ignore
@@ -201,9 +201,9 @@ class ExtendLibrary extends library.Base {
       })
       .then((res) => normalize(res))
   }
-  static find(paramKey: string, rawResponse?: false) {
+  static find(paramKey: string, options?: Options) {
     this.includeMetaInfo()
-    if (rawResponse) {
+    if (options?.rawResponse || library?.options?.rawResponse) {
       return this.rawResponse(paramKey)
     }
     return super.find(paramKey)
