@@ -41,17 +41,6 @@ it('GET SKUs', async () => {
   return expect(skus).toHaveProperty('meta')
 })
 
-it('GET SKUs', async () => {
-  const skus = await Sku.withCredentials(blueBrandConfig).all({
-    rawResponse: true,
-  })
-  expect(skus).toHaveProperty('data')
-  expect(skus.data).toBeInstanceOf(Array)
-  expect(skus.data[0]).toHaveProperty('attributes')
-  expect(skus).toHaveProperty('links')
-  return expect(skus).toHaveProperty('meta')
-})
-
 it('GET SKUs with where and includes', async () => {
   const skus = await Sku.withCredentials(blueBrandConfig)
     .where({ codeIn: 'TSHIRTMMFFFFFF000000LXXX,TSHIRTMM000000E63E74XLXX' })
