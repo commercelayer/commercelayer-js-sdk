@@ -9,6 +9,7 @@ import { StockLocationCollection } from './StockLocation'
 import { AddressCollection } from './Address'
 import { ShipmentLineItemCollection } from './ShipmentLineItem'
 import { StockTransferCollection } from './StockTransfer'
+import { DeliveryLeadTimeCollection } from './DeliveryLeadTime'
 
 export class ShipmentCollection extends BaseClass {
   static className = 'Shipment'
@@ -40,6 +41,7 @@ export class ShipmentCollection extends BaseClass {
   shippingCategory: () => SingleRelationship<ShippingCategoryCollection>
   shippingMethod: () => SingleRelationship<ShippingMethodCollection>
   stockLocation: () => SingleRelationship<StockLocationCollection>
+  deliveryLeadTime: () => SingleRelationship<DeliveryLeadTimeCollection>
   stockTransfers: () => MultiRelationship<StockTransferCollection>
   static define() {
     this.attributes(

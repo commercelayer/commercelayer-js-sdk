@@ -140,6 +140,7 @@ export class OrderCollection extends BaseClass {
   lineItems: () => MultiRelationship<LineItemCollection>
   availablePaymentMethods: () => MultiRelationship<PaymentMethodCollection>
   shipments: () => MultiRelationship<ShipmentCollection>
+  loadShipments: () => MultiRelationship<ShipmentCollection>
   static define() {
     this.attributes(
       'number',

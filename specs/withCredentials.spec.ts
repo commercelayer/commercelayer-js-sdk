@@ -32,19 +32,6 @@ it('CRUD - Sync select with init', async () => {
   expect(sku.id).toBe('wZeDdSamqn')
 })
 
-it('CRUD - Sync select with init and tuning mode', async () => {
-  expect.assertions(2)
-  CLayer.init(blueBrandConfig)
-  // const skuLime = await CLayer.Sku.withCredentials(limeBrandConfig).find(
-  //   'KZmDzSKXbn',
-  //   true
-  // )
-  // expect(skuLime.id).toBe('KZmDzSKXbn')
-
-  const sku = await CLayer.Sku.find('wZeDdSamqn', true)
-  expect(sku.id).toBe('wZeDdSamqn')
-})
-
 it('Checking credentials', async () => {
   expect.assertions(3)
   const sku = CLayer.Sku.withCredentials(blueBrandConfig)
