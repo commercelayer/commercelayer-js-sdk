@@ -139,6 +139,7 @@ export class OrderCollection extends BaseClass {
   loadPaymentMethod: () => SingleRelationship<PaymentMethodCollection>
   lineItems: () => MultiRelationship<LineItemCollection>
   availablePaymentMethods: () => MultiRelationship<PaymentMethodCollection>
+  loadAvailablePaymentMethods: () => MultiRelationship<PaymentMethodCollection>
   shipments: () => MultiRelationship<ShipmentCollection>
   loadShipments: () => MultiRelationship<ShipmentCollection>
   static define() {
