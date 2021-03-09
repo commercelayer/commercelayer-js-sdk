@@ -53,7 +53,7 @@ it('METHOD --- select with includes and where', async () => {
     .where({
       paymentStatusIn: 'unpaid',
     })
-    .includes('lineItems.lineItemOptions')
+    .includes('lineItems')
     .select('number')
     .perPage(5)
     .page(1)
@@ -62,7 +62,7 @@ it('METHOD --- select with includes and where', async () => {
   expect(order.formattedDiscountAmount).toBeUndefined()
   // @ts-ignore
   expect(order.__queryParams.include).toEqual(
-    expect.arrayContaining(['lineItems.lineItemOptions'])
+    expect.arrayContaining(['lineItems'])
   )
   // @ts-ignore
   expect(order.__queryParams.fields.orders).toEqual(

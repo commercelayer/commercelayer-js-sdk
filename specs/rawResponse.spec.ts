@@ -81,8 +81,8 @@ it('Retrieve an SKU', async () => {
 
 it('Retrieve an SKU with select and includes', async () => {
   const sku = await Sku.withCredentials(blueBrandConfig)
-    .select('code', { prices: ['currencyCode', 'formattedAmount'] })
     .includes('prices')
+    .select('code', { prices: ['currencyCode', 'formattedAmount'] })
     .find('GZwpOSLVjW', {
       rawResponse: true,
     })

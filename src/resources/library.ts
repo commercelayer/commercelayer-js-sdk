@@ -17,6 +17,7 @@ import BaseClass from '#utils/BaseClass'
 import { cleanUrl, parserParams } from '#utils/helpers'
 import axios from 'axios'
 import { normalize } from '../utils/helpers'
+import { isObject } from 'lodash'
 
 const subdomain = 'yourdomain'
 
@@ -31,48 +32,76 @@ class ExtendLibrary extends library.Base {
   static endpoint = ''
   static singleRequest = false
   static meta = {}
+  static __queryParams: Record<string, any> = {}
   constructor() {
     super()
     return this
+  }
+  private static setQueryParamsRoot() {
+    // @ts-ignore
+    this.__queryParams.__root = this.queryName
+  }
+  private static cleanQueryParams() {
+    this.__queryParams = {}
+  }
+  static last(number?: number) {
+    // @ts-ignore
+    return super.last(number).then((res) => {
+      this.cleanQueryParams()
+      return res
+    })
+  }
+  static first(number?: number) {
+    // @ts-ignore
+    return super.first(number).then((res) => {
+      this.cleanQueryParams()
+      return res
+    })
   }
   static includes(...params: string[]) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    const relation = super.includes(...params)
-    this.__queryParams = relation.__queryParams
+    this.__queryParams.include = [...params]
+    this.setQueryParamsRoot()
     return this
   }
   static select(...params: string[]) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    const relation = super.select(...params)
-    this.__queryParams = relation.__queryParams
+    // const relation = super.select(...params)
+    this.__queryParams.fields = {
+      [`${this.queryName}`]: [...params],
+    }
+    this.setQueryParamsRoot()
     return this
   }
   static order(params: object) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    const relation = super.order(params)
-    this.__queryParams = relation.__queryParams
+    // const relation = super.order(params)
+    this.__queryParams.sort = {
+      ...params,
+    }
+    this.setQueryParamsRoot()
     return this
   }
   static page(value: number) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    const relation = super.page(value)
-    this.__queryParams = relation.__queryParams
+    this.__queryParams.page = { number: value }
+    this.setQueryParamsRoot()
     return this
   }
   static perPage(value: number) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
     // @ts-ignore
-    const relation = super.perPage(value)
-    this.__queryParams = relation.__queryParams
+    this.__queryParams.page = { size: value }
+    this.setQueryParamsRoot()
     return this
   }
   static limit(value: any) {
@@ -89,11 +118,15 @@ class ExtendLibrary extends library.Base {
   }
   static where(options: object): any {
     // @ts-ignore
-    const relation = super.where({
+    // const relation = super.where({
+    //   q: { ...options },
+    // })
+    // @ts-ignore
+    this.includeMetaInfo(this.interface().axios.interceptors)
+    this.__queryParams.filter = {
       q: { ...options },
-    })
-    this.includeMetaInfo(relation.interface().axios.interceptors)
-    this.__queryParams = relation.__queryParams
+    }
+    this.setQueryParamsRoot()
     return this
   }
   static all(options?: Options) {
@@ -103,7 +136,10 @@ class ExtendLibrary extends library.Base {
       return this.rawResponse()
     }
     // @ts-ignore
-    return super.all()
+    return super.all().then((res) => {
+      this.cleanQueryParams()
+      return res
+    })
   }
   static findBy(options: GeneralObject): any {
     const eqOptions: GeneralObject = {}
@@ -137,16 +173,25 @@ class ExtendLibrary extends library.Base {
   }
   private static jsonapiQueryParams(v, k) {
     if (k === 'fields') {
+      const includeFields = []
       const fields = _map(v, (field, i) => {
         const normalizedValues = field.map((field) => {
           if (isArray(field)) {
             return field.map((f) => snakeCase(f)).join(',')
           }
+          if (isObject(field)) {
+            return _map(field, (f: any, key) => {
+              if (isArray(f)) {
+                const values = f.map((f) => snakeCase(f))
+                includeFields.push(`${k}[${key}]=${values.join(',')}`)
+              }
+            })
+          }
           return snakeCase(field)
         })
         return `${k}[${i}]=${normalizedValues.join(',')}`
       })
-      return fields.join('&')
+      return fields.concat(includeFields).join('&')
     }
     if (k === 'filter') {
       const fields = _map(v, (field, i) => {
@@ -191,10 +236,9 @@ class ExtendLibrary extends library.Base {
         ? `${this.__links.related}/${paramKey}`
         : `${this.__links.related}`
       : paramKey
-      ? `${this.resourceLibrary.baseUrl}/${this.queryName}/${paramKey}`
-      : `${this.resourceLibrary.baseUrl}/${this.queryName}`
+      ? `${this.resourceLibrary.baseUrl}${this.queryName}/${paramKey}`
+      : `${this.resourceLibrary.baseUrl}${this.queryName}`
     if (!isEmpty(queries)) url = `${url}?${queries.join('&')}`
-    // @ts-ignore
     return axios
       .get(url, {
         headers: this.resourceLibrary.headers,
@@ -206,7 +250,10 @@ class ExtendLibrary extends library.Base {
     if (options?.rawResponse || library?.options?.rawResponse) {
       return this.rawResponse(paramKey)
     }
-    return super.find(paramKey)
+    return super.find(paramKey).then((res) => {
+      this.cleanQueryParams()
+      return res
+    })
   }
   static setCustomInterceptors(interceptors: InitConfig['interceptors']) {
     library.customInterceptors = interceptors
@@ -352,7 +399,7 @@ CollectionResponse.prototype.getHeaders = function() {
 }
 
 CollectionResponse.prototype.pageCount = function() {
-  const firstItem = this.first()
+  const firstItem: any = first(this.toArray())
   if (isEmpty(firstItem)) {
     return 0
   }
@@ -362,7 +409,7 @@ CollectionResponse.prototype.pageCount = function() {
 }
 
 CollectionResponse.prototype.recordCount = function() {
-  const firstItem = this.first()
+  const firstItem: any = first(this.toArray())
   if (isEmpty(firstItem)) {
     return 0
   }
