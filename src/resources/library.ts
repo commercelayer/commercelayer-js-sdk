@@ -37,72 +37,53 @@ class ExtendLibrary extends library.Base {
     super()
     return this
   }
-  private static setQueryParamsRoot() {
-    // @ts-ignore
-    this.__queryParams.__root = this.queryName
-  }
-  private static cleanQueryParams() {
-    this.__queryParams = {}
+  private static setCustomFunctions(relation: any) {
+    relation.all = this.all
+    relation.find = this.find
+    relation.findBy = this.findBy
+    relation.includeMetaInfo = this.includeMetaInfo
+    relation.first = this.first
+    relation.last = this.last
+    relation.setCustomFunctions = this.setCustomFunctions
+    relation.select = this.select
+    relation.perPage = this.perPage
+    relation.page = this.page
+    relation.where = this.where
+    relation.setInterceptors = this.setInterceptors
+    relation.rawResponse = this.rawResponse
+    relation.includeMetaInfo = this.includeMetaInfo
+    relation.includes = this.includes
+    relation.resourceLibrary = this.resourceLibrary
+    relation.jsonapiQueryParams = this.jsonapiQueryParams
+    return relation
   }
   static last(number?: number) {
     // @ts-ignore
-    return super.last(number).then((res) => {
-      this.cleanQueryParams()
-      return res
-    })
+    return this.setCustomFunctions(super.last(number))
   }
   static first(number?: number) {
     // @ts-ignore
-    return super.first(number).then((res) => {
-      this.cleanQueryParams()
-      return res
-    })
+    return this.setCustomFunctions(super.first(number))
   }
   static includes(...params: string[]) {
     // @ts-ignore
-    this.includeMetaInfo(this.interface().axios.interceptors)
-    // @ts-ignore
-    this.__queryParams.include = [...params]
-    this.setQueryParamsRoot()
-    return this
+    return this.setCustomFunctions(super.includes(...params))
   }
   static select(...params: string[]) {
     // @ts-ignore
-    this.includeMetaInfo(this.interface().axios.interceptors)
-    // @ts-ignore
-    // const relation = super.select(...params)
-    this.__queryParams.fields = {
-      [`${this.queryName}`]: [...params],
-    }
-    this.setQueryParamsRoot()
-    return this
+    return this.setCustomFunctions(super.select(...params))
   }
   static order(params: object) {
     // @ts-ignore
-    this.includeMetaInfo(this.interface().axios.interceptors)
-    // @ts-ignore
-    // const relation = super.order(params)
-    this.__queryParams.sort = {
-      ...params,
-    }
-    this.setQueryParamsRoot()
-    return this
+    return this.setCustomFunctions(super.order(params))
   }
   static page(value: number) {
     // @ts-ignore
-    this.includeMetaInfo(this.interface().axios.interceptors)
-    // @ts-ignore
-    this.__queryParams.page = { number: value }
-    this.setQueryParamsRoot()
-    return this
+    return this.setCustomFunctions(super.page(value))
   }
   static perPage(value: number) {
     // @ts-ignore
-    this.includeMetaInfo(this.interface().axios.interceptors)
-    // @ts-ignore
-    this.__queryParams.page = { size: value }
-    this.setQueryParamsRoot()
-    return this
+    return this.setCustomFunctions(super.perPage(value))
   }
   static limit(value: any) {
     // @ts-ignore
@@ -117,17 +98,11 @@ class ExtendLibrary extends library.Base {
     return super.offset(value)
   }
   static where(options: object): any {
-    // @ts-ignore
-    // const relation = super.where({
-    //   q: { ...options },
-    // })
-    // @ts-ignore
-    this.includeMetaInfo(this.interface().axios.interceptors)
-    this.__queryParams.filter = {
+    const params = {
       q: { ...options },
     }
-    this.setQueryParamsRoot()
-    return this
+    // @ts-ignore
+    return this.setCustomFunctions(super.where(params))
   }
   static all(options?: Options) {
     // @ts-ignore
@@ -136,16 +111,15 @@ class ExtendLibrary extends library.Base {
       return this.rawResponse()
     }
     // @ts-ignore
-    return super.all().then((res) => {
-      this.cleanQueryParams()
-      return res
-    })
+    return super.all()
   }
   static findBy(options: GeneralObject): any {
     const eqOptions: GeneralObject = {}
     Object.keys(options).map((v: string) => {
       eqOptions[`${v}_eq`] = options[v]
     })
+    // @ts-ignore
+    this.includeMetaInfo(this.interface().axios.interceptors)
     return this.where(eqOptions).first()
   }
   static withCredentials({ accessToken, endpoint }: InitConfig) {
@@ -161,13 +135,15 @@ class ExtendLibrary extends library.Base {
     this.resourceLibrary.headers = {
       Authorization: `Bearer ${accessToken}`,
     }
+    // @ts-ignore
+    this.resourceLibrary.endpoint = endpoint
     this.__links = { related: `${endpoint}/api/${this.queryName}` }
     this.singleRequest = true
     return this
   }
   static includeMetaInfo(interceptors: any = null, klass: any = this) {
     // @ts-ignore
-    const i = interceptors || this.resourceLibrary.interface.axios.interceptors
+    const i = interceptors || this.interface().axios.interceptors
     this.setInterceptors(i, klass)
     return this
   }
@@ -231,17 +207,21 @@ class ExtendLibrary extends library.Base {
     this.setInterceptors(axios.interceptors)
     // @ts-ignore
     const queries = compact(_map(this.queryParams(), this.jsonapiQueryParams))
-    let url = !isEmpty(this.__links)
-      ? paramKey
-        ? `${this.__links.related}/${paramKey}`
-        : `${this.__links.related}`
-      : paramKey
-      ? `${this.resourceLibrary.baseUrl}${this.queryName}/${paramKey}`
-      : `${this.resourceLibrary.baseUrl}${this.queryName}`
-    if (!isEmpty(queries)) url = `${url}?${queries.join('&')}`
+    const baseUrl = this?.resourceLibrary?.endpoint
+      ? this.resourceLibrary.endpoint
+      : // @ts-ignore
+        this.resourceLibrary?.baseUrl
+    const headers = this?.resourceLibrary
+      ? this.resourceLibrary.headers
+      : // @ts-ignore
+        this.base?.resourceLibrary?.headers
+    let url = paramKey
+      ? `${baseUrl.replace('/api/', '')}/api/${this.queryName}/${paramKey}`
+      : `${baseUrl.replace('/api/', '')}/api/${this.queryName}`
+    if (!isEmpty(queries)) url = `${url}?${encodeURI(queries.join('&'))}`
     return axios
       .get(url, {
-        headers: this.resourceLibrary.headers,
+        headers,
       })
       .then((res) => normalize(res))
   }
@@ -250,10 +230,7 @@ class ExtendLibrary extends library.Base {
     if (options?.rawResponse || library?.options?.rawResponse) {
       return this.rawResponse(paramKey)
     }
-    return super.find(paramKey).then((res) => {
-      this.cleanQueryParams()
-      return res
-    })
+    return super.find(paramKey)
   }
   static setCustomInterceptors(interceptors: InitConfig['interceptors']) {
     library.customInterceptors = interceptors

@@ -70,6 +70,7 @@ export interface BaseConfig {
 
 export interface Base {
   resourceLibrary: {
+    endpoint: string
     baseUrl: string
     headers: {
       Authorization: string

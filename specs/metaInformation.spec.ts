@@ -164,12 +164,12 @@ it('METHOD --- All with prev page', async () => {
   expect(sku.toArray()).toHaveLength(25)
   expect(meta).toHaveProperty('recordCount', 94)
   expect(meta).toHaveProperty('pageCount', 4)
-  // expect(prevPage).toBe(true)
+  expect(prevPage).toBe(true)
   if (prevPage) {
     const prevSkus = await sku.withCredentials(blueBrandConfig).prevPage()
     const prevMeta = prevSkus.getMetaInfo()
     expect(prevSkus.toArray()).toHaveLength(25)
-    expect(prevMeta).toHaveProperty('recordCount', totRecordCount)
+    expect(prevMeta).toHaveProperty('recordCount', 94)
     expect(prevMeta).toHaveProperty('pageCount', 4)
     expect(prevSkus.hasNextPage()).toBe(true)
     expect(prevSkus.hasPrevPage()).toBe(true)
@@ -361,22 +361,22 @@ it('METHOD --- Get order and update lineItems', async () => {
   expect(newLineItems.recordCount()).toBe(2)
 })
 
-// it('METHOD --- CRUD lineItem', async () => {
-//   expect.assertions(3)
-//   const order = await CLayer.Order.withCredentials(blueBrandConfig).find(
-//     'EwxzYheeKq'
-//   )
-//   const lineItem = await CLayer.LineItem.withCredentials(
-//     blueBrandConfig
-//   ).create({
-//     order,
-//     skuCode: 'BABYONBU000000E63E7412MX',
-//     quantity: 1,
-//   })
+it('METHOD --- CRUD lineItem', async () => {
+  expect.assertions(3)
+  const order = await CLayer.Order.withCredentials(blueBrandConfig).find(
+    'EwxzYheeKq'
+  )
+  const lineItem = await CLayer.LineItem.withCredentials(
+    blueBrandConfig
+  ).create({
+    order,
+    skuCode: 'BABYONBU000000E63E7412MX',
+    quantity: 1,
+  })
 
-//   expect(order.id).toBe('JwXQehvvyP')
-//   expect(order.getMetaInfo()).toHaveProperty('mode', 'test')
-//   expect(lineItem.getMetaInfo()).toHaveProperty('mode', 'test')
+  expect(order.id).toBe('EwxzYheeKq')
+  expect(order.getMetaInfo()).toHaveProperty('mode', 'test')
+  expect(lineItem.getMetaInfo()).toHaveProperty('mode', 'test')
 
-//   await lineItem.withCredentials(blueBrandConfig).destroy()
-// })
+  await lineItem.withCredentials(blueBrandConfig).destroy()
+})
