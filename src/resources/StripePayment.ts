@@ -6,13 +6,13 @@ import { SingleRelationship } from '#typings/Library'
 export class StripePaymentCollection extends BaseClass {
   static className = 'StripePayment'
   clientSecret: string
-  options: object
+  options: Record<string, any>
   id: string
   reference: string
   referenceOrigin: string
   createdAt: Date
   updatedAt: Date
-  metadata: object
+  metadata: Record<string, any>
   order: () => SingleRelationship<OrderCollection>
   static define() {
     this.attributes(
