@@ -132,6 +132,13 @@ export class OrderCollection extends BaseClass {
     | BraintreePaymentCollection
     | AdyenPaymentCollection
   >
+  loadPaymentSource: () => SingleRelationship<
+    | StripePaymentCollection
+    | WireTransferCollection
+    | PaypalPaymentCollection
+    | BraintreePaymentCollection
+    | AdyenPaymentCollection
+  >
   loadBillingAddress: () => SingleRelationship<AddressCollection>
   loadShippingAddress: () => SingleRelationship<AddressCollection>
   billingAddress: () => SingleRelationship<AddressCollection>
