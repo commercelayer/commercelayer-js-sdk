@@ -156,11 +156,19 @@ import AvalaraAccount, {
   AvalaraAccountCollection,
 } from '#resources/AvalaraAccount'
 import Organization, { OrganizationCollection } from '#resources/Organization'
+import Application, { ApplicationCollection } from '#resources/Application'
+import ExternalGateway, {
+  ExternalGatewayCollection,
+} from '#resources/ExternalGateway'
+import ParcelLineItem, {
+  ParcelLineItemCollection,
+} from '#resources/ParcelLineItem'
 
 export {
   AddressCollection,
   AdjustmentCollection,
   AdyenPaymentCollection,
+  ApplicationCollection,
   AttachableCollection,
   AttachmentCollection,
   AuthorizationCollection,
@@ -177,6 +185,7 @@ export {
   CustomerPaymentSourceCollection,
   CustomerSubscriptionCollection,
   DeliveryLeadTimeCollection,
+  ExternalGatewayCollection,
   ExternalPaymentCollection,
   ExternalPromotionCollection,
   ExternalTaxCalculatorCollection,
@@ -200,6 +209,7 @@ export {
   OrganizationCollection,
   PackageCollection,
   ParcelCollection,
+  ParcelLineItemCollection,
   PaymentGatewayCollection,
   PaymentMethodCollection,
   PaymentSourceCollection,
@@ -239,6 +249,7 @@ export interface CLayer {
   Address: BaseResource<AddressCollection>
   Adjustment: BaseResource<AdjustmentCollection>
   AdyenPayment: BaseResource<AdyenPaymentCollection>
+  Application: BaseResource<ApplicationCollection>
   Attachable: BaseResource<AttachableCollection>
   Attachment: BaseResource<AttachmentCollection>
   Authorization: BaseResource<AuthorizationCollection>
@@ -255,6 +266,7 @@ export interface CLayer {
   CustomerPaymentSource: BaseResource<CustomerPaymentSourceCollection>
   CustomerSubscription: BaseResource<CustomerSubscriptionCollection>
   DeliveryLeadTime: BaseResource<DeliveryLeadTimeCollection>
+  ExternalGateway: BaseResource<ExternalGatewayCollection>
   ExternalPayment: BaseResource<ExternalPaymentCollection>
   ExternalPromotion: BaseResource<ExternalPromotionCollection>
   ExternalTaxCalculator: BaseResource<ExternalTaxCalculatorCollection>
@@ -275,10 +287,11 @@ export interface CLayer {
   Market: BaseResource<MarketCollection>
   Merchant: BaseResource<MerchantCollection>
   Order: BaseResource<OrderCollection>
-  Organization: BaseResource<OrganizationCollection>
   OrderAmountPromotionRule: BaseResource<OrderAmountPromotionRuleCollection>
+  Organization: BaseResource<OrganizationCollection>
   Package: BaseResource<PackageCollection>
   Parcel: BaseResource<ParcelCollection>
+  ParcelLineItem: BaseResource<ParcelLineItemCollection>
   PaymentGateway: BaseResource<PaymentGatewayCollection>
   PaymentMethod: BaseResource<PaymentMethodCollection>
   PaymentSource: BaseResource<PaymentSourceCollection>
@@ -320,6 +333,7 @@ const CLayer: CLayer = {
   Address,
   Adjustment,
   AdyenPayment,
+  Application,
   Attachable,
   Attachment,
   Authorization,
@@ -336,6 +350,7 @@ const CLayer: CLayer = {
   CustomerPaymentSource,
   CustomerSubscription,
   DeliveryLeadTime,
+  ExternalGateway,
   ExternalPayment,
   ExternalPromotion,
   ExternalTaxCalculator,
@@ -360,6 +375,7 @@ const CLayer: CLayer = {
   Organization,
   Package,
   Parcel,
+  ParcelLineItem,
   PaymentGateway,
   PaymentMethod,
   PaymentSource,
@@ -402,6 +418,7 @@ export {
   Address,
   Adjustment,
   AdyenPayment,
+  Application,
   Attachable,
   Attachment,
   Authorization,
@@ -418,6 +435,7 @@ export {
   CustomerPaymentSource,
   CustomerSubscription,
   DeliveryLeadTime,
+  ExternalGateway,
   ExternalPayment,
   ExternalPromotion,
   ExternalTaxCalculator,
@@ -442,6 +460,7 @@ export {
   Organization,
   Package,
   Parcel,
+  ParcelLineItem,
   PaymentGateway,
   PaymentMethod,
   PaymentSource,
