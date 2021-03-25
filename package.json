@@ -95,7 +95,7 @@
     "react-dom": "^17.0.2",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-typescript-paths": "^1.2.2",
-    "rollup-plugin-typescript2": "^0.30.0",
+    "rollup-plugin-typescript2": "^0.27.3",
     "size-limit": "^4.10.1",
     "ts-jest": "^26.5.4",
     "ts-loader": "^8.0.18",
