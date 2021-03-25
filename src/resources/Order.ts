@@ -12,116 +12,132 @@ import { WireTransferCollection } from './WireTransfer'
 import { PaypalPaymentCollection } from './PaypalPayment'
 import { BraintreePaymentCollection } from './BraintreePayment'
 import { AdyenPaymentCollection } from './AdyenPayment'
+import { AuthorizationCollection } from './Authorization'
+import { CaptureCollection } from './Capture'
+import { VoidCollection } from './Void'
+import { RefundCollection } from './Refund'
+import { TransactionCollection } from './Transaction'
 
 export class OrderCollection extends BaseClass {
   static className = 'Order'
-  number: number
-  status: string
-  paymentStatus: string
-  paymentSourceId: string
-  paymentSourceType: string
-  fulfillmentStatus: string
-  guest: boolean
-  editable: boolean
-  placeable: boolean
-  customerEmail: string
-  customerPassword: string
-  languageCode: string
-  currencyCode: string
-  taxIncluded: boolean
-  taxRate: number
-  freightTaxable: boolean
-  countryCode: string
-  shippingCountryCodeLock: string
-  couponCode: string
-  subtotalAmountCents: number
-  subtotalAmountFloat: number
-  formattedSubtotalAmount: string
-  shippingAmountCents: number
-  shippingAmountFloat: number
-  formattedShippingAmount: string
-  paymentMethodAmountCents: number
-  paymentMethodAmountFloat: number
-  formattedPaymentMethodAmount: string
-  discountAmountCents: number
-  discountAmountFloat: number
-  formattedDiscountAmount: string
-  totalTaxAmountCents: number
-  totalTaxAmountFloat: number
-  formattedTotalTaxAmount: string
-  subtotalTaxAmountCents: number
-  subtotalTaxAmountFloat: number
-  formattedSubtotalTaxAmount: string
-  shippingTaxAmountCents: number
-  shippingTaxAmountFloat: number
-  formattedShippingTaxAmount: string
-  paymentMethodTaxAmountCents: number
-  paymentMethodTaxAmountFloat: number
-  formattedPaymentMethodTaxAmount: string
-  discountTaxAmountCents: number
-  discountTaxAmountFloat: number
-  formattedDiscountTaxAmount: string
-  totalAmountCents: number
-  totalAmountFloat: number
-  formattedTotalAmount: string
-  totalTaxableAmountCents: number
-  totalTaxableAmountFloat: number
-  formattedTotalTaxableAmount: string
-  subtotalTaxableAmountCents: number
-  subtotalTaxableAmountFloat: number
-  formattedSubtotalTaxableAmount: string
-  shippingTaxableAmountCents: number
-  shippingTaxableAmountFloat: number
-  formattedShippingTaxableAmount: string
-  paymentMethodTaxableAmountCents: number
-  paymentMethodTaxableAmountFloat: number
-  formattedPaymentMethodTaxableAmount: string
-  discountTaxableAmountCents: number
-  discountTaxableAmountFloat: number
-  formattedDiscountTaxableAmount: string
-  totalAmountWithTaxesCents: number
-  totalAmountWithTaxesFloat: number
-  formattedTotalAmountWithTaxes: string
-  feesAmountCents: number
-  feesAmountFloat: number
-  formattedFeesAmount: string
-  skusCount: string
-  lineItemOptionsCount: number
-  shipmentsCount: number
-  paymentSourceDetails: object
-  token: string
-  cartUrl: string
-  returnUrl: string
-  termsUrl: string
-  privacyUrl: string
-  checkoutUrl: string
-  _place: number
-  _cancel: number
   _approve: number
-  _capture: number
-  _refund: number
-  _updateTaxes: number
   _billingAddressCloneId: number
-  _shippingAddressCloneId: number
-  _customerPaymentSourceId: number
-  _shippingAddressSameAsBilling: number
   _billingAddressSameAsShipping: number
+  _cancel: number
+  _capture: number
+  _customerPaymentSourceId: number
+  _place: number
+  _refresh: number
+  _refund: number
+  _saveBillingAddressToCustomerAddressBook: number
   _savePaymentSourceToCustomerWallet: number
   _saveShippingAddressToCustomerAddressBook: number
-  _saveBillingAddressToCustomerAddressBook: number
-  _refresh: number
-  placedAt: Date
-  archivedAt: Date
+  _shippingAddressCloneId: number
+  _shippingAddressSameAsBilling: number
+  _updateTaxes: number
+  adjustmentAmountCents: number
+  adjustmentAmountFloat: number
+  adjustmentTaxAmountCents: number
+  adjustmentTaxAmountFloat: number
   approvedAt: Date
+  archivedAt: Date
   cancelledAt: Date
-  paymentUpdatedAt: Date
-  fulfillmentUpdatedAt: Date
-  id: string
+  cartUrl: string
+  checkoutUrl: string
+  countryCode: string
+  couponCode: string
   createdAt: Date
-  updatedAt: Date
+  currencyCode: string
+  customerEmail: string
+  customerPassword: string
+  discountAmountCents: number
+  discountAmountFloat: number
+  discountTaxAmountCents: number
+  discountTaxAmountFloat: number
+  discountTaxableAmountCents: number
+  discountTaxableAmountFloat: number
+  editable: boolean
+  feesAmountCents: number
+  feesAmountFloat: number
+  formattedAdjustmentAmount: string
+  formattedAdjustmentTaxAmount: number
+  formattedDiscountAmount: string
+  formattedDiscountTaxAmount: string
+  formattedDiscountTaxableAmount: string
+  formattedFeesAmount: string
+  formattedGiftCardAmount: string
+  formattedPaymentMethodAmount: string
+  formattedPaymentMethodTaxAmount: string
+  formattedPaymentMethodTaxableAmount: string
+  formattedShippingAmount: string
+  formattedShippingTaxAmount: string
+  formattedShippingTaxableAmount: string
+  formattedSubtotalAmount: string
+  formattedSubtotalTaxAmount: string
+  formattedSubtotalTaxableAmount: string
+  formattedTotalAmount: string
+  formattedTotalAmountWithTaxes: string
+  formattedTotalTaxAmount: string
+  formattedTotalTaxableAmount: string
+  freightTaxable: boolean
+  fulfillmentStatus: string
+  fulfillmentUpdatedAt: Date
+  giftCardAmountCents: number
+  giftCardAmountFloat: number
+  giftCardCode: string
+  giftCardOrCouponCode: string
+  guest: boolean
+  id: string
+  languageCode: string
+  lineItemOptionsCount: number
+  metadata: object
+  number: number
+  paymentMethodAmountCents: number
+  paymentMethodAmountFloat: number
+  paymentMethodTaxAmountCents: number
+  paymentMethodTaxAmountFloat: number
+  paymentMethodTaxableAmountCents: number
+  paymentMethodTaxableAmountFloat: number
+  paymentSourceDetails: object
+  paymentSourceId: string
+  paymentSourceType: string
+  paymentStatus: string
+  paymentUpdatedAt: Date
+  placeable: boolean
+  placedAt: Date
+  privacyUrl: string
   reference: string
   referenceOrigin: string
-  metadata: object
+  returnUrl: string
+  shipmentsCount: number
+  shippingAmountCents: number
+  shippingAmountFloat: number
+  shippingCountryCodeLock: string
+  shippingTaxAmountCents: number
+  shippingTaxAmountFloat: number
+  shippingTaxableAmountCents: number
+  shippingTaxableAmountFloat: number
+  skusCount: string
+  status: string
+  subtotalAmountCents: number
+  subtotalAmountFloat: number
+  subtotalTaxAmountCents: number
+  subtotalTaxAmountFloat: number
+  subtotalTaxableAmountCents: number
+  subtotalTaxableAmountFloat: number
+  taxIncluded: boolean
+  taxRate: number
+  termsUrl: string
+  token: string
+  totalAmountCents: number
+  totalAmountFloat: number
+  totalAmountWithTaxesCents: number
+  totalAmountWithTaxesFloat: number
+  totalTaxAmountCents: number
+  totalTaxAmountFloat: number
+  totalTaxableAmountCents: number
+  totalTaxableAmountFloat: number
+  updatedAt: Date
   market: () => SingleRelationship<MarketCollection>
   customer: () => SingleRelationship<CustomerCollection>
   shippingAddress: () => SingleRelationship<AddressCollection>
@@ -149,113 +165,138 @@ export class OrderCollection extends BaseClass {
   loadAvailablePaymentMethods: () => MultiRelationship<PaymentMethodCollection>
   shipments: () => MultiRelationship<ShipmentCollection>
   loadShipments: () => MultiRelationship<ShipmentCollection>
+  availableCustomerPaymentSources: () => MultiRelationship<ShipmentCollection>
+  loadAvailableCustomerPaymentSources: () => MultiRelationship<
+    ShipmentCollection
+  >
+  transactions: () => MultiRelationship<TransactionCollection>
+  loadTransactions: () => MultiRelationship<TransactionCollection>
+  authorizations: () => MultiRelationship<AuthorizationCollection>
+  loadaAuthorizations: () => MultiRelationship<AuthorizationCollection>
+  captures: () => MultiRelationship<CaptureCollection>
+  loadCaptures: () => MultiRelationship<CaptureCollection>
+  voids: () => MultiRelationship<VoidCollection>
+  loadVoids: () => MultiRelationship<VoidCollection>
+  refunds: () => MultiRelationship<RefundCollection>
+  loadRefunds: () => MultiRelationship<RefundCollection>
   static define() {
     this.attributes(
-      'number',
-      'status',
-      'paymentStatus',
-      'fulfillmentStatus',
-      'guest',
-      'editable',
-      'placeable',
-      'customerEmail',
-      'customerPassword',
-      'languageCode',
-      'currencyCode',
-      'taxIncluded',
-      'taxRate',
-      'freightTaxable',
-      'countryCode',
-      'shippingCountryCodeLock',
-      'couponCode',
-      'subtotalAmountCents',
-      'subtotalAmountFloat',
-      'formattedSubtotalAmount',
-      'shippingAmountCents',
-      'shippingAmountFloat',
-      'formattedShippingAmount',
-      'paymentMethodAmountCents',
-      'paymentMethodAmountFloat',
-      'formattedPaymentMethodAmount',
-      'discountAmountCents',
-      'discountAmountFloat',
-      'formattedDiscountAmount',
-      'totalTaxAmountCents',
-      'totalTaxAmountFloat',
-      'formattedTotalTaxAmount',
-      'subtotalTaxAmountCents',
-      'subtotalTaxAmountFloat',
-      'formattedSubtotalTaxAmount',
-      'shippingTaxAmountCents',
-      'shippingTaxAmountFloat',
-      'formattedShippingTaxAmount',
-      'paymentMethodTaxAmountCents',
-      'paymentMethodTaxAmountFloat',
-      'formattedPaymentMethodTaxAmount',
-      'discountTaxAmountCents',
-      'discountTaxAmountFloat',
-      'formattedDiscountTaxAmount',
-      'totalAmountCents',
-      'totalAmountFloat',
-      'formattedTotalAmount',
-      'totalTaxableAmountCents',
-      'totalTaxableAmountFloat',
-      'formattedTotalTaxableAmount',
-      'subtotalTaxableAmountCents',
-      'subtotalTaxableAmountFloat',
-      'formattedSubtotalTaxableAmount',
-      'shippingTaxableAmountCents',
-      'shippingTaxableAmountFloat',
-      'formattedShippingTaxableAmount',
-      'paymentMethodTaxableAmountCents',
-      'paymentMethodTaxableAmountFloat',
-      'formattedPaymentMethodTaxableAmount',
-      'discountTaxableAmountCents',
-      'discountTaxableAmountFloat',
-      'formattedDiscountTaxableAmount',
-      'totalAmountWithTaxesCents',
-      'totalAmountWithTaxesFloat',
-      'formattedTotalAmountWithTaxes',
-      'feesAmountCents',
-      'feesAmountFloat',
-      'formattedFeesAmount',
-      'skusCount',
-      'lineItemOptionsCount',
-      'shipmentsCount',
-      'paymentSourceDetails',
-      'token',
-      'cartUrl',
-      'returnUrl',
-      'termsUrl',
-      'privacyUrl',
-      'checkoutUrl',
-      '_place',
-      '_cancel',
       '_approve',
-      '_capture',
-      '_refund',
-      '_updateTaxes',
       '_billingAddressCloneId',
-      '_shippingAddressCloneId',
-      '_customerPaymentSourceId',
-      '_shippingAddressSameAsBilling',
       '_billingAddressSameAsShipping',
+      '_cancel',
+      '_capture',
+      '_customerPaymentSourceId',
+      '_place',
+      '_refresh',
+      '_refund',
+      '_saveBillingAddressToCustomerAddressBook',
       '_savePaymentSourceToCustomerWallet',
       '_saveShippingAddressToCustomerAddressBook',
-      '_saveBillingAddressToCustomerAddressBook',
-      '_refresh',
-      'placedAt',
+      '_shippingAddressCloneId',
+      '_shippingAddressSameAsBilling',
+      '_updateTaxes',
+      'adjustmentAmountCents',
+      'adjustmentAmountFloat',
+      'adjustmentTaxAmountCents',
+      'adjustmentTaxAmountFloat',
       'approvedAt',
-      'cancelledAt',
-      'paymentUpdatedAt',
-      'fulfillmentUpdatedAt',
-      'id',
       'archivedAt',
+      'cancelledAt',
+      'cartUrl',
+      'checkoutUrl',
+      'countryCode',
+      'couponCode',
       'createdAt',
-      'updatedAt',
+      'currencyCode',
+      'customerEmail',
+      'customerPassword',
+      'discountAmountCents',
+      'discountAmountFloat',
+      'discountTaxAmountCents',
+      'discountTaxAmountFloat',
+      'discountTaxableAmountCents',
+      'discountTaxableAmountFloat',
+      'editable',
+      'feesAmountCents',
+      'feesAmountFloat',
+      'formattedAdjustmentAmount',
+      'formattedAdjustmentTaxAmount',
+      'formattedDiscountAmount',
+      'formattedDiscountTaxAmount',
+      'formattedDiscountTaxableAmount',
+      'formattedFeesAmount',
+      'formattedGiftCardAmount',
+      'formattedPaymentMethodAmount',
+      'formattedPaymentMethodTaxAmount',
+      'formattedPaymentMethodTaxableAmount',
+      'formattedShippingAmount',
+      'formattedShippingTaxAmount',
+      'formattedShippingTaxableAmount',
+      'formattedSubtotalAmount',
+      'formattedSubtotalTaxAmount',
+      'formattedSubtotalTaxableAmount',
+      'formattedTotalAmount',
+      'formattedTotalAmountWithTaxes',
+      'formattedTotalTaxAmount',
+      'formattedTotalTaxableAmount',
+      'freightTaxable',
+      'fulfillmentStatus',
+      'fulfillmentUpdatedAt',
+      'giftCardAmountCents',
+      'giftCardAmountFloat',
+      'giftCardCode',
+      'giftCardOrCouponCode',
+      'guest',
+      'id',
+      'languageCode',
+      'lineItemOptionsCount',
+      'metadata',
+      'number',
+      'paymentMethodAmountCents',
+      'paymentMethodAmountFloat',
+      'paymentMethodTaxAmountCents',
+      'paymentMethodTaxAmountFloat',
+      'paymentMethodTaxableAmountCents',
+      'paymentMethodTaxableAmountFloat',
+      'paymentSourceDetails',
+      'paymentStatus',
+      'paymentUpdatedAt',
+      'placeable',
+      'placedAt',
+      'privacyUrl',
       'reference',
       'referenceOrigin',
-      'metadata'
+      'returnUrl',
+      'shipmentsCount',
+      'shippingAmountCents',
+      'shippingAmountFloat',
+      'shippingCountryCodeLock',
+      'shippingTaxAmountCents',
+      'shippingTaxAmountFloat',
+      'shippingTaxableAmountCents',
+      'shippingTaxableAmountFloat',
+      'skusCount',
+      'status',
+      'subtotalAmountCents',
+      'subtotalAmountFloat',
+      'subtotalTaxAmountCents',
+      'subtotalTaxAmountFloat',
+      'subtotalTaxableAmountCents',
+      'subtotalTaxableAmountFloat',
+      'taxIncluded',
+      'taxRate',
+      'termsUrl',
+      'token',
+      'totalAmountCents',
+      'totalAmountFloat',
+      'totalAmountWithTaxesCents',
+      'totalAmountWithTaxesFloat',
+      'totalTaxAmountCents',
+      'totalTaxAmountFloat',
+      'totalTaxableAmountCents',
+      'totalTaxableAmountFloat',
+      'updatedAt'
     )
 
     this.hasOne('market', { className: 'Market' }) // Required
@@ -266,6 +307,14 @@ export class OrderCollection extends BaseClass {
     this.hasMany('availablePaymentMethods', { className: 'PaymentMethod' })
     this.hasMany('lineItems', { className: 'LineItem' })
     this.hasMany('shipments', { className: 'Shipment' })
+    this.hasMany('transactions', { className: 'Transaction' })
+    this.hasMany('authorizations', { className: 'Authorization' })
+    this.hasMany('captures', { className: 'Capture' })
+    this.hasMany('voids', { className: 'Void' })
+    this.hasMany('refunds', { className: 'Refund' })
+    this.hasMany('availableCustomerPaymentSources', {
+      className: 'CustomerPaymentSource',
+    })
     this.belongsTo('paymentSource', { polymorphic: true })
   }
 }

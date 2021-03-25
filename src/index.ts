@@ -157,6 +157,7 @@ import AvalaraAccount, {
 } from '#resources/AvalaraAccount'
 import Organization, { OrganizationCollection } from '#resources/Organization'
 import Application, { ApplicationCollection } from '#resources/Application'
+import Transaction, { TransactionCollection } from './resources/Transaction'
 import ExternalGateway, {
   ExternalGatewayCollection,
 } from '#resources/ExternalGateway'
@@ -240,6 +241,7 @@ export {
   TaxCategoryCollection,
   TaxRuleCollection,
   TaxjarAccountCollection,
+  TransactionCollection,
   VoidCollection,
   WebhookCollection,
   WireTransferCollection,
@@ -324,6 +326,7 @@ export interface CLayer {
   TaxCategory: BaseResource<TaxCategoryCollection>
   TaxRule: BaseResource<TaxRuleCollection>
   TaxjarAccount: BaseResource<TaxjarAccountCollection>
+  Transaction: BaseResource<TransactionCollection>
   Void: BaseResource<VoidCollection>
   Webhook: BaseResource<WebhookCollection>
   WireTransfer: BaseResource<WireTransferCollection>
@@ -406,6 +409,7 @@ const CLayer: CLayer = {
   TaxCategory,
   TaxRule,
   TaxjarAccount,
+  Transaction,
   Void,
   Webhook,
   WireTransfer,
@@ -491,6 +495,7 @@ export {
   TaxCategory,
   TaxRule,
   TaxjarAccount,
+  Transaction,
   Void,
   Webhook,
   WireTransfer,
