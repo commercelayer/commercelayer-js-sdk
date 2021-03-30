@@ -39,6 +39,7 @@ class ExtendLibrary extends library.Base {
   }
   private static setCustomFunctions(relation: any) {
     relation.all = this.all
+    relation.order = this.order
     relation.find = this.find
     relation.findBy = this.findBy
     relation.includeMetaInfo = this.includeMetaInfo
