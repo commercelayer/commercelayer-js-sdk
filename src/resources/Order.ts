@@ -20,21 +20,21 @@ import { TransactionCollection } from './Transaction'
 
 export class OrderCollection extends BaseClass {
   static className = 'Order'
-  _approve: number
-  _billingAddressCloneId: number
-  _billingAddressSameAsShipping: number
-  _cancel: number
-  _capture: number
-  _customerPaymentSourceId: number
-  _place: number
-  _refresh: number
-  _refund: number
-  _saveBillingAddressToCustomerAddressBook: number
-  _savePaymentSourceToCustomerWallet: number
-  _saveShippingAddressToCustomerAddressBook: number
-  _shippingAddressCloneId: number
-  _shippingAddressSameAsBilling: number
-  _updateTaxes: number
+  _approve: boolean
+  _billingAddressCloneId: string
+  _billingAddressSameAsShipping: boolean
+  _cancel: boolean
+  _capture: boolean
+  _customerPaymentSourceId: string
+  _place: boolean
+  _refresh: boolean
+  _refund: boolean
+  _saveBillingAddressToCustomerAddressBook: boolean
+  _savePaymentSourceToCustomerWallet: boolean
+  _saveShippingAddressToCustomerAddressBook: boolean
+  _shippingAddressCloneId: string
+  _shippingAddressSameAsBilling: boolean
+  _updateTaxes: boolean
   adjustmentAmountCents: number
   adjustmentAmountFloat: number
   adjustmentTaxAmountCents: number

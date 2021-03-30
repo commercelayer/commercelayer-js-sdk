@@ -200,7 +200,7 @@ class ExtendLibrary extends library.Base {
       const fields = _map(v, (field, i) => {
         return `${k}[${i}]=${field}`
       })
-      return fields
+      return fields.join('&')
     }
   }
   private static rawResponse(paramKey?: string) {

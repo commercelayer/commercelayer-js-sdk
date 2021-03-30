@@ -115,3 +115,18 @@ it('GET SKUs pagination', async () => {
   }
   return expect(skus).toHaveProperty('data')
 })
+
+it('GET SKUs pagination and perPage', async () => {
+  const skus = await Sku.withCredentials(blueBrandConfig)
+    .page(1)
+    .perPage(3)
+    .all({
+      rawResponse: true,
+    })
+  expect(skus).toHaveProperty('meta')
+  expect(skus.meta).toHaveProperty('page_count')
+  expect(skus.meta).toHaveProperty('record_count')
+  // @ts-ignore
+  expect(skus.data.length).toBe(3)
+  return expect(skus).toHaveProperty('data')
+})
