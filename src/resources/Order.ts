@@ -17,6 +17,7 @@ import { CaptureCollection } from './Capture'
 import { VoidCollection } from './Void'
 import { RefundCollection } from './Refund'
 import { TransactionCollection } from './Transaction'
+import { CustomerPaymentSourceCollection } from '..'
 
 export class OrderCollection extends BaseClass {
   static className = 'Order'
@@ -165,9 +166,11 @@ export class OrderCollection extends BaseClass {
   loadAvailablePaymentMethods: () => MultiRelationship<PaymentMethodCollection>
   shipments: () => MultiRelationship<ShipmentCollection>
   loadShipments: () => MultiRelationship<ShipmentCollection>
-  availableCustomerPaymentSources: () => MultiRelationship<ShipmentCollection>
+  availableCustomerPaymentSources: () => MultiRelationship<
+    CustomerPaymentSourceCollection
+  >
   loadAvailableCustomerPaymentSources: () => MultiRelationship<
-    ShipmentCollection
+    CustomerPaymentSourceCollection
   >
   transactions: () => MultiRelationship<TransactionCollection>
   loadTransactions: () => MultiRelationship<TransactionCollection>
