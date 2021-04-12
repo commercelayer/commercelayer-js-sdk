@@ -3,8 +3,8 @@ import BaseClass from '#utils/BaseClass'
 import { MultiRelationship } from '#typings/Library'
 import { PaymentMethodCollection } from './PaymentMethod'
 
-export class ManuaGatewayCollection extends BaseClass {
-  static className = 'ManuaGateway'
+export class ManualGatewayCollection extends BaseClass {
+  static className = 'ManualGateway'
   createdAt: Date
   id: string
   metadata: object
@@ -31,8 +31,8 @@ export class ManuaGatewayCollection extends BaseClass {
   }
 }
 
-const ManuaGateway = library.createResource<ManuaGatewayCollection>(
-  ManuaGatewayCollection
+const ManualGateway = library.createResource<ManualGatewayCollection>(
+  ManualGatewayCollection
 )
 
-export default ManuaGateway
+export default ManualGateway

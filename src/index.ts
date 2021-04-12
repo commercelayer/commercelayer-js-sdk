@@ -164,10 +164,26 @@ import ExternalGateway, {
 import ParcelLineItem, {
   ParcelLineItemCollection,
 } from '#resources/ParcelLineItem'
-
+import AdyenGateway, { AdyenGatewayCollection } from '#resources/AdyenGateway'
+import BraintreeGateway, {
+  BraintreeGatewayCollection,
+} from '#resources/BraintreeGateway'
+import CarrierAccount, {
+  CarrierAccountCollection,
+} from '#resources/CarrierAccount'
+import ManualGateway, {
+  ManualGatewayCollection,
+} from '#resources/ManualGateway'
+import PaypalGateway, {
+  PaypalGatewayCollection,
+} from '#resources/PaypalGateway'
+import StripeGateway, {
+  StripeGatewayCollection,
+} from '#resources/StripeGateway'
 export {
   AddressCollection,
   AdjustmentCollection,
+  AdyenGatewayCollection,
   AdyenPaymentCollection,
   ApplicationCollection,
   AttachableCollection,
@@ -175,8 +191,10 @@ export {
   AuthorizationCollection,
   AvalaraAccountCollection,
   BillingInfoValidationRuleCollection,
+  BraintreeGatewayCollection,
   BraintreePaymentCollection,
   CaptureCollection,
+  CarrierAccountCollection,
   CouponCodesPromotionRuleCollection,
   CouponCollection,
   CustomerAddressCollection,
@@ -202,6 +220,7 @@ export {
   InventoryStockLocationCollection,
   LineItemCollection,
   LineItemOptionCollection,
+  ManualGatewayCollection,
   ManualTaxCalculatorCollection,
   MarketCollection,
   MerchantCollection,
@@ -250,6 +269,7 @@ export {
 export interface CLayer {
   Address: BaseResource<AddressCollection>
   Adjustment: BaseResource<AdjustmentCollection>
+  AdyenGateway: BaseResource<AdyenGatewayCollection>
   AdyenPayment: BaseResource<AdyenPaymentCollection>
   Application: BaseResource<ApplicationCollection>
   Attachable: BaseResource<AttachableCollection>
@@ -257,8 +277,10 @@ export interface CLayer {
   Authorization: BaseResource<AuthorizationCollection>
   AvalaraAccount: BaseResource<AvalaraAccountCollection>
   BillingInfoValidationRule: BaseResource<BillingInfoValidationRuleCollection>
+  BraintreeGateway: BaseResource<BraintreeGatewayCollection>
   BraintreePayment: BaseResource<BraintreePaymentCollection>
   Capture: BaseResource<CaptureCollection>
+  CarrierAccount: BaseResource<CarrierAccountCollection>
   Coupon: BaseResource<CouponCollection>
   CouponCodesPromotionRule: BaseResource<CouponCodesPromotionRuleCollection>
   Customer: BaseResource<CustomerCollection>
@@ -285,6 +307,7 @@ export interface CLayer {
   Item: BaseResource<ItemCollection>
   LineItem: BaseResource<LineItemCollection>
   LineItemOption: BaseResource<LineItemOptionCollection>
+  ManualGateway: BaseResource<ManualGatewayCollection>
   ManualTaxCalculator: BaseResource<ManualTaxCalculatorCollection>
   Market: BaseResource<MarketCollection>
   Merchant: BaseResource<MerchantCollection>
@@ -297,6 +320,7 @@ export interface CLayer {
   PaymentGateway: BaseResource<PaymentGatewayCollection>
   PaymentMethod: BaseResource<PaymentMethodCollection>
   PaymentSource: BaseResource<PaymentSourceCollection>
+  PaypalGateway: BaseResource<PaypalGatewayCollection>
   PaypalPayment: BaseResource<PaypalPaymentCollection>
   PercentageDiscountPromotion: BaseResource<
     PercentageDiscountPromotionCollection
@@ -322,6 +346,7 @@ export interface CLayer {
   StockLocation: BaseResource<StockLocationCollection>
   StockTransfer: BaseResource<StockTransferCollection>
   StripePayment: BaseResource<StripePaymentCollection>
+  StripeGateway: BaseResource<StripeGatewayCollection>
   TaxCalculator: BaseResource<TaxCalculatorCollection>
   TaxCategory: BaseResource<TaxCategoryCollection>
   TaxRule: BaseResource<TaxRuleCollection>
@@ -335,6 +360,7 @@ export interface CLayer {
 const CLayer: CLayer = {
   Address,
   Adjustment,
+  AdyenGateway,
   AdyenPayment,
   Application,
   Attachable,
@@ -342,8 +368,10 @@ const CLayer: CLayer = {
   Authorization,
   AvalaraAccount,
   BillingInfoValidationRule,
+  BraintreeGateway,
   BraintreePayment,
   Capture,
+  CarrierAccount,
   Coupon,
   CouponCodesPromotionRule,
   Customer,
@@ -370,6 +398,7 @@ const CLayer: CLayer = {
   Item,
   LineItem,
   LineItemOption,
+  ManualGateway,
   ManualTaxCalculator,
   Market,
   Merchant,
@@ -382,6 +411,7 @@ const CLayer: CLayer = {
   PaymentGateway,
   PaymentMethod,
   PaymentSource,
+  PaypalGateway,
   PaypalPayment,
   PercentageDiscountPromotion,
   Price,
@@ -404,6 +434,7 @@ const CLayer: CLayer = {
   StockItem,
   StockLocation,
   StockTransfer,
+  StripeGateway,
   StripePayment,
   TaxCalculator,
   TaxCategory,
@@ -421,6 +452,7 @@ const initCLayer = init
 export {
   Address,
   Adjustment,
+  AdyenGateway,
   AdyenPayment,
   Application,
   Attachable,
@@ -428,8 +460,10 @@ export {
   Authorization,
   AvalaraAccount,
   BillingInfoValidationRule,
+  BraintreeGateway,
   BraintreePayment,
   Capture,
+  CarrierAccount,
   Coupon,
   CouponCodesPromotionRule,
   Customer,
@@ -456,6 +490,7 @@ export {
   Item,
   LineItem,
   LineItemOption,
+  ManualGateway,
   ManualTaxCalculator,
   Market,
   Merchant,
@@ -468,6 +503,7 @@ export {
   PaymentGateway,
   PaymentMethod,
   PaymentSource,
+  PaypalGateway,
   PaypalPayment,
   PercentageDiscountPromotion,
   Price,
@@ -490,6 +526,7 @@ export {
   StockItem,
   StockLocation,
   StockTransfer,
+  StripeGateway,
   StripePayment,
   TaxCalculator,
   TaxCategory,
