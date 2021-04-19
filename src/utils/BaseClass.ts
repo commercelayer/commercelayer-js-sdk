@@ -71,7 +71,7 @@ class BaseClass extends library.Base {
   update(attributes: Record<string, any>, callback?: any, options?: Options) {
     if (
       options?.rawResponse === false ||
-      library?.options?.rawResponse === false
+      (!!library?.options?.rawResponse === false && !options?.rawResponse)
     ) {
       return super.update(attributes, callback)
     }

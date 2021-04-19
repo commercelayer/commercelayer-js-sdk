@@ -65,7 +65,7 @@ class ExtendLibrary extends library.Base {
   static create(attributes: Record<string, any>, options?: Options) {
     if (
       options?.rawResponse === false ||
-      !!library?.options?.rawResponse === false
+      (!!library?.options?.rawResponse === false && !options?.rawResponse)
     ) {
       // @ts-ignore
       return this.setCustomFunctions(super.create(attributes))
@@ -75,7 +75,7 @@ class ExtendLibrary extends library.Base {
   static last(number?: number, options?: Options) {
     if (
       options?.rawResponse === false ||
-      !!library?.options?.rawResponse === false
+      (!!library?.options?.rawResponse === false && !options?.rawResponse)
     ) {
       // @ts-ignore
       return this.setCustomFunctions(super.last(number))
@@ -85,7 +85,7 @@ class ExtendLibrary extends library.Base {
   static first(number?: number, options?: Options) {
     if (
       options?.rawResponse === false ||
-      !!library?.options?.rawResponse === false
+      (!!library?.options?.rawResponse === false && !options?.rawResponse)
     ) {
       // @ts-ignore
       return this.setCustomFunctions(super.first(number))
@@ -136,7 +136,7 @@ class ExtendLibrary extends library.Base {
     this.includeMetaInfo(this.interface().axios.interceptors)
     if (
       options?.rawResponse === false ||
-      !!library?.options?.rawResponse === false
+      (!!library?.options?.rawResponse === false && !options?.rawResponse)
     ) {
       // @ts-ignore
       return super.all()
@@ -283,7 +283,7 @@ class ExtendLibrary extends library.Base {
     this.includeMetaInfo()
     if (
       options?.rawResponse === false ||
-      !!library?.options?.rawResponse === false
+      (!!library?.options?.rawResponse === false && !options?.rawResponse)
     ) {
       return super.find(paramKey)
     }

@@ -86,7 +86,8 @@ export const dataConverter = (
   if (key) newData.data.id = key
   forEach(data, (value, key) => {
     if (!value?.klass) {
-      const k = snakeCase(key)
+      const special = key.startsWith('_', 0)
+      const k = special ? `_${snakeCase(key)}` : snakeCase(key)
       newData.data.attributes[k] = value
     } else {
       const type = snakeCase(value.klass().queryName)
