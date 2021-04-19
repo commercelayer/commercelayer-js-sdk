@@ -1,5 +1,5 @@
-import CLayer from '../src'
 import { getTokenBlueBrand } from '../helpers/getToken'
+import CLayer, { initCLayer } from '@commercelayer/js-sdk'
 
 let blueBrandConfig = { accessToken: '', endpoint: '' }
 const { ENDPOINT } = process.env
@@ -9,6 +9,12 @@ beforeAll(async () => {
     accessToken: accessToken,
     endpoint: ENDPOINT,
   }
+  initCLayer({
+    ...blueBrandConfig,
+    options: {
+      rawResponse: false,
+    },
+  })
   return null
 })
 

@@ -1,4 +1,4 @@
-import { initCLayer, Sku } from '@commercelayer/js-sdk'
+import { initCLayer, Market, Order, Sku } from '@commercelayer/js-sdk'
 import isArray from 'lodash/isArray'
 import { getTokenBlueBrand } from '../helpers/getToken'
 
@@ -56,6 +56,7 @@ it('GET SKUs with where and includes', async () => {
       expect(t).toBeTruthy()
     })
   }
+  return true
 })
 it('GET SKUs with select', async () => {
   const skus = await Sku.withCredentials(blueBrandConfig)
@@ -70,6 +71,7 @@ it('GET SKUs with select', async () => {
       expect(i.attributes.code).toBeDefined()
     })
   }
+  return true
 })
 it('Retrieve an SKU', async () => {
   const sku = await Sku.withCredentials(blueBrandConfig).find('GZwpOSLVjW', {
@@ -77,6 +79,7 @@ it('Retrieve an SKU', async () => {
   })
   expect(sku).toHaveProperty('data')
   if (!isArray(sku.data)) return expect(sku.data).toHaveProperty('attributes')
+  return true
 })
 
 it('Retrieve an SKU with select and includes', async () => {
@@ -94,6 +97,7 @@ it('Retrieve an SKU with select and includes', async () => {
       return expect(i.attributes).toHaveProperty('formatted_amount')
     })
   }
+  return true
 })
 
 it('GET SKUs pagination', async () => {
@@ -147,4 +151,57 @@ it('GET SKUs with order, select, page and perPage', async () => {
   expect(skus.data.length).toBe(3)
   expect(skus.data[0].attributes).toHaveProperty('code')
   return expect(skus).toHaveProperty('data')
+})
+
+it('Create, update and destroy an Order', async () => {
+  const reference = 'TEST_RAW_RESPONSE'
+  const referenceOrigin = 'ORIGIN_RAW_RESPONSE'
+  const referenceUpdated = 'TEST_RAW_RESPONSE_UPDATED'
+  const o = await Order.create({
+    reference,
+    referenceOrigin,
+    market: Market.build({ id: 'BoVmRhdAlE' }),
+  })
+  expect(o.data).toHaveProperty('id')
+  expect(o.data.attributes).toHaveProperty('reference')
+  expect(o.data.attributes).toHaveProperty('reference_origin')
+  expect(o.data.attributes.reference).toEqual(reference)
+  expect(o.data.attributes.reference_origin).toEqual(referenceOrigin)
+  const getOrder = await Order.find(o.data.id, { rawResponse: false })
+  const orderUpdated = await getOrder.update({
+    reference: referenceUpdated,
+  })
+  expect(orderUpdated.data.attributes).toHaveProperty('reference')
+  expect(orderUpdated.data.attributes.reference).toEqual(referenceUpdated)
+  return await getOrder.destroy()
+})
+
+it('GET first SKU', async () => {
+  const sku = await Sku.select('code', 'reference', 'referenceOrigin').first()
+  expect(sku.data).toHaveProperty('id')
+  return expect(sku.data.id).toEqual('GZwpOSLVjW')
+})
+
+it('GET first 2 SKUs', async () => {
+  const sku = await Sku.select('code', 'reference', 'referenceOrigin').first(2)
+  return expect(sku.data.length).toBe(2)
+})
+
+it('GET last SKU', async () => {
+  const sku = await Sku.select('code', 'reference', 'referenceOrigin').last()
+  expect(sku.data).toHaveProperty('id')
+  return expect(sku.data.id).toEqual('eWKjRSwazZ')
+})
+
+it('GET last 2 SKUs', async () => {
+  const sku = await Sku.select('code', 'reference', 'referenceOrigin').last(2)
+  return expect(sku.data.length).toBe(2)
+})
+
+it('GET SKU by FindBy Method', async () => {
+  const code = 'TSHIRTMM000000E63E74'
+  const sku = await Sku.select('code', 'reference', 'referenceOrigin').findBy({
+    referenceEq: code,
+  })
+  return expect(sku.data.attributes.reference).toEqual(code)
 })

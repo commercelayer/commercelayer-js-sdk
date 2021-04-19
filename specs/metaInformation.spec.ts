@@ -1,4 +1,4 @@
-import CLayer, { Order } from '@commercelayer/js-sdk'
+import CLayer, { initCLayer, Order } from '@commercelayer/js-sdk'
 import { getTokenBlueBrand } from '../helpers/getToken'
 import skus from '../helpers/testSkus'
 
@@ -12,6 +12,12 @@ beforeAll(async () => {
     accessToken: accessToken,
     endpoint: ENDPOINT,
   }
+  initCLayer({
+    ...blueBrandConfig,
+    options: {
+      rawResponse: false,
+    },
+  })
   return null
 })
 
