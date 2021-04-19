@@ -40,6 +40,7 @@ it('Checking credentials', async () => {
     `Bearer ${blueBrandConfig.accessToken}`
   )
   const skus = await sku.first(1)
+  // @ts-ignore
   expect(skus.length).toBe(1)
 })
 
