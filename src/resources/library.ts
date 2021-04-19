@@ -16,7 +16,7 @@ import compact from 'lodash/compact'
 import BaseClass from '#utils/BaseClass'
 import { cleanUrl, parserParams } from '#utils/helpers'
 import axios from 'axios'
-import { normalize } from '../utils/helpers'
+import { normalize, dataConverter } from '../utils/helpers'
 import { isObject } from 'lodash'
 
 const subdomain = 'yourdomain'
@@ -26,6 +26,8 @@ const library: Library = createResourceLibrary(
 )
 
 library['customRequests'] = {}
+
+type RawResponseMethodType = 'get' | 'post' | 'patch' | 'delete'
 
 class ExtendLibrary extends library.Base {
   static accessToken = ''
@@ -56,15 +58,39 @@ class ExtendLibrary extends library.Base {
     relation.includes = this.includes
     relation.resourceLibrary = this.resourceLibrary
     relation.jsonapiQueryParams = this.jsonapiQueryParams
+    relation.create = this.create
+    relation.update = this.update
     return relation
   }
-  static last(number?: number) {
-    // @ts-ignore
-    return this.setCustomFunctions(super.last(number))
+  static create(attributes: Record<string, any>, options?: Options) {
+    if (
+      options?.rawResponse === false ||
+      library?.options?.rawResponse === false
+    ) {
+      // @ts-ignore
+      return this.setCustomFunctions(super.create(attributes))
+    }
+    return this.rawResponse({ method: 'post', data: attributes })
   }
-  static first(number?: number) {
-    // @ts-ignore
-    return this.setCustomFunctions(super.first(number))
+  static last(number?: number, options?: Options) {
+    if (
+      options?.rawResponse === false ||
+      library?.options?.rawResponse === false
+    ) {
+      // @ts-ignore
+      return this.setCustomFunctions(super.last(number))
+    }
+    return this.rawResponse({ last: number || true })
+  }
+  static first(number?: number, options?: Options) {
+    if (
+      options?.rawResponse === false ||
+      library?.options?.rawResponse === false
+    ) {
+      // @ts-ignore
+      return this.setCustomFunctions(super.first(number))
+    }
+    return this.rawResponse({ first: number || true })
   }
   static includes(...params: string[]) {
     // @ts-ignore
@@ -108,11 +134,14 @@ class ExtendLibrary extends library.Base {
   static all(options?: Options) {
     // @ts-ignore
     this.includeMetaInfo(this.interface().axios.interceptors)
-    if (options?.rawResponse || library?.options?.rawResponse) {
-      return this.rawResponse()
+    if (
+      options?.rawResponse === false ||
+      library?.options?.rawResponse === false
+    ) {
+      // @ts-ignore
+      return super.all()
     }
-    // @ts-ignore
-    return super.all()
+    return this.rawResponse()
   }
   static findBy(options: GeneralObject): any {
     const eqOptions: GeneralObject = {}
@@ -204,7 +233,17 @@ class ExtendLibrary extends library.Base {
       return fields.join('&')
     }
   }
-  private static rawResponse(paramKey?: string) {
+  private static rawResponse(
+    params: {
+      paramKey?: string
+      method?: RawResponseMethodType
+      data?: Record<string, any>
+      callback?: (res: any) => any
+      first?: number | boolean
+      last?: number | boolean
+    } = {}
+  ) {
+    const { paramKey, method = 'get', data, callback, first, last } = params
     this.setInterceptors(axios.interceptors)
     // @ts-ignore
     const queries = compact(_map(this.queryParams(), this.jsonapiQueryParams))
@@ -220,18 +259,35 @@ class ExtendLibrary extends library.Base {
       ? `${baseUrl.replace('/api/', '')}/api/${this.queryName}/${paramKey}`
       : `${baseUrl.replace('/api/', '')}/api/${this.queryName}`
     if (!isEmpty(queries)) url = `${url}?${encodeURI(queries.join('&'))}`
-    return axios
-      .get(url, {
-        headers,
-      })
-      .then((res) => normalize(res))
+    const requestConfig = {
+      method,
+      url,
+      headers: {
+        ...headers,
+        'content-type': 'application/vnd.api+json',
+      },
+    }
+    if (!isEmpty(data)) {
+      requestConfig['data'] =
+        method !== 'patch'
+          ? dataConverter(data, this.queryName)
+          : dataConverter(data, this.queryName, paramKey)
+    }
+    return axios(requestConfig).then((res) => {
+      const response = normalize(res, { first, last })
+      if (callback) callback(response)
+      return response
+    })
   }
   static find(paramKey: string, options?: Options) {
     this.includeMetaInfo()
-    if (options?.rawResponse || library?.options?.rawResponse) {
-      return this.rawResponse(paramKey)
+    if (
+      options?.rawResponse === false ||
+      library?.options?.rawResponse === false
+    ) {
+      return super.find(paramKey)
     }
-    return super.find(paramKey)
+    return this.rawResponse({ paramKey })
   }
   static setCustomInterceptors(interceptors: InitConfig['interceptors']) {
     library.customInterceptors = interceptors

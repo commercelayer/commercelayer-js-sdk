@@ -1,5 +1,5 @@
 // import CLayer, { Order } from '../src'
-import CLayer from '../src'
+import CLayer, { initCLayer } from '../src'
 import { getTokenBlueBrand } from '../helpers/getToken'
 import skus from '../helpers/testSkus'
 
@@ -11,6 +11,12 @@ beforeAll(async () => {
     accessToken: accessToken,
     endpoint: ENDPOINT,
   }
+  initCLayer({
+    ...blueBrandConfig,
+    options: {
+      rawResponse: false,
+    },
+  })
   return null
 })
 

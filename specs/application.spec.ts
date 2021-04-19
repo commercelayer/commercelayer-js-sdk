@@ -1,4 +1,4 @@
-import { Application } from '@commercelayer/js-sdk'
+import { Application, initCLayer } from '@commercelayer/js-sdk'
 import { getTokenBlueBrand } from '../helpers/getToken'
 
 let blueBrandConfig = { accessToken: '', endpoint: '' }
@@ -11,6 +11,12 @@ beforeAll(async () => {
     accessToken: accessToken,
     endpoint: ENDPOINT,
   }
+  initCLayer({
+    ...blueBrandConfig,
+    options: {
+      rawResponse: false,
+    },
+  })
   return null
 })
 

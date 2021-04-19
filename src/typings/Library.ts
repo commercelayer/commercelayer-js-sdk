@@ -47,7 +47,7 @@ type JSONAPIResource = {
 }
 
 export interface JSONAPIResponse {
-  data: JSONAPIResource[] | JSONAPIResource
+  data: JSONAPIResource[] & JSONAPIResource
   included?: JSONAPIResource[]
   links?: {
     first: string
@@ -58,6 +58,16 @@ export interface JSONAPIResponse {
     page_count: number
     record_count: number
   }
+}
+
+export interface JSONAPIRequest {
+  data: Omit<JSONAPIResource, 'id' | 'links' | 'meta'> &
+    Partial<Pick<JSONAPIResource, 'id'>> & {
+      relationships?: Record<
+        string,
+        { data: Omit<JSONAPIResource, 'links' | 'meta' | 'attributes'> }
+      >
+    }
 }
 
 export interface BaseConfig {
@@ -118,18 +128,22 @@ export interface BaseResource<T = any>
     readWrite: any // TODO: Add collection type?
   }
   build(params?: object): Collection<T> & BaseResource<T>
-  create(attributes: object): Promise<T>
+  create(attributes: object): Promise<T & JSONAPIResponse>
   each(iteratee: any): any
   fields(): Collection<T>
   find(primaryKey: string, options?: Options): Promise<T & JSONAPIResponse>
-  findBy(conditions: object): Promise<T>
-  first(): Promise<T>
-  first(n: number): Promise<T[]>
+  findBy(conditions: object): Promise<Partial<T & JSONAPIResponse>>
+  first(
+    n?: number,
+    options?: Options
+  ): Promise<Partial<T & CollectionResponse<T> & JSONAPIResponse>>
   includes(...attribute: string[]): BaseResource<T>
   isA(klass: BaseResource<T>): boolean
   klass(): BaseResource<T>
-  last(): Promise<T>
-  last(n: number): Promise<T[]>
+  last(
+    n?: number,
+    options?: Options
+  ): Promise<Partial<T & CollectionResponse<T> & JSONAPIResponse>>
   limit(n?: number): BaseResource<T> // TODO interface Relation
   links(): {
     related: string

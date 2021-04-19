@@ -1,5 +1,5 @@
 // TODO remove ts-ignore comments
-import { InitConfig } from '#resources/Initialize'
+import { InitConfig, Options } from '#resources/Initialize'
 import library from '#resources/library'
 import {
   HeadersResponse,
@@ -17,6 +17,11 @@ class BaseClass extends library.Base {
   __meta: Meta = {}
   __collectionMeta: Meta = {}
   __headers: HeadersResponse | {} = {}
+  id: string
+  constructor() {
+    super()
+    return this
+  }
   includes: (...attribute: string[]) => this
   all: () =>
     | Promise<MultiRelationship<this>>
@@ -62,6 +67,21 @@ class BaseClass extends library.Base {
     this.constructor.includeMetaInfo(interceptors)
     // @ts-ignore
     return super.association(name)
+  }
+  update(attributes: Record<string, any>, callback?: any, options?: Options) {
+    if (
+      options?.rawResponse === false ||
+      library?.options?.rawResponse === false
+    ) {
+      return super.update(attributes, callback)
+    }
+    // @ts-ignore
+    return this.constructor.rawResponse({
+      data: attributes,
+      method: 'patch',
+      paramKey: this.id,
+      callback,
+    })
   }
   withCredentials({ accessToken, endpoint }: InitConfig) {
     // @ts-ignore
