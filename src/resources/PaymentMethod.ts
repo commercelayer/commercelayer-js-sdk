@@ -2,6 +2,7 @@ import library from './library'
 import BaseClass from '#utils/BaseClass'
 import { MarketCollection } from './Market'
 import { SingleRelationship } from '#typings/Library'
+import { PaymentGatewayCollection } from './PaymentGateway'
 
 export class PaymentMethodCollection extends BaseClass {
   static className = 'PaymentMethod'
@@ -18,7 +19,9 @@ export class PaymentMethodCollection extends BaseClass {
   referenceOrigin: string
   metadata: object
   market: () => SingleRelationship<MarketCollection>
-  paymentMethod: () => SingleRelationship<PaymentMethodCollection>
+  loadMarket: () => SingleRelationship<MarketCollection>
+  paymentGateway: () => SingleRelationship<PaymentGatewayCollection>
+  loadPaymentGateway: () => SingleRelationship<PaymentGatewayCollection>
   static define() {
     this.attributes(
       'paymentSourceType',

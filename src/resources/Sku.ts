@@ -6,6 +6,7 @@ import { SkuOptionCollection } from './SkuOption'
 import { DeliveryLeadTimeCollection } from './DeliveryLeadTime'
 import { StockItemCollection } from './StockItem'
 import { ShippingCategoryCollection } from './ShippingCategory'
+import { AttachableCollection } from './Attachable'
 
 export interface InventoryCollection {
   available: boolean
@@ -36,50 +37,61 @@ export interface InventoryCollection {
 export class SkuCollection extends BaseClass {
   static className = 'Sku'
   code: string
-  name: string
-  description: string
-  imageUrl: string
-  tagNames: string
-  piecesPerPack: number
-  weight: number
-  unitOfWeight: string
-  inventory: InventoryCollection
-  id: string
   createdAt: Date
-  updatedAt: Date
+  description: string
+  doNotShip: string
+  doNotTrack: string
+  hsTariffNumber: string
+  id: string
+  imageUrl: string
+  inventory: InventoryCollection
+  metadata: object
+  name: string
+  piecesPerPack: number
   reference: string
   referenceOrigin: string
-  metadata: object
+  unitOfWeight: string
+  updatedAt: Date
+  weight: number
   shippingCategory: () => SingleRelationship<ShippingCategoryCollection>
+  loadShippingCategory: () => SingleRelationship<ShippingCategoryCollection>
   prices: () => MultiRelationship<PriceCollection>
+  loadPrices: () => MultiRelationship<PriceCollection>
   stockItems: () => MultiRelationship<StockItemCollection>
+  loadStockItems: () => MultiRelationship<StockItemCollection>
   deliveryLeadTimes: () => MultiRelationship<DeliveryLeadTimeCollection>
+  loadDeliveryLeadTimes: () => MultiRelationship<DeliveryLeadTimeCollection>
   skuOptions: () => MultiRelationship<SkuOptionCollection>
+  loadSkuOptions: () => MultiRelationship<SkuOptionCollection>
+  attachments: () => MultiRelationship<AttachableCollection>
+  loadAttachments: () => MultiRelationship<AttachableCollection>
   static define() {
     this.attributes(
       'code',
-      'name',
-      'description',
-      'imageUrl',
-      'tagNames',
-      'piecesPerPack',
-      'weight',
-      'unitOfWeight',
-      'inventory',
-      'id',
       'createdAt',
-      'updatedAt',
+      'description',
+      'doNotShip',
+      'doNotTrack',
+      'hsTariffNumber',
+      'id',
+      'imageUrl',
+      'inventory',
+      'metadata',
+      'name',
+      'piecesPerPack',
       'reference',
       'referenceOrigin',
-      'metadata'
+      'unitOfWeight',
+      'updatedAt',
+      'weight'
     )
     this.hasOne('shippingCategory', { className: 'ShippingCategory' })
     this.hasMany('prices', { className: 'Price' })
     this.hasMany('stockItems', { className: 'StockItem' })
     this.hasMany('deliveryLeadTimes', { className: 'DeliveryLeadTime' })
     this.hasMany('skuOptions', { className: 'SkuOption' })
-    this.hasMany('availablePromotions', {
-      className: 'Promotion',
+    this.hasMany('attachments', {
+      className: 'Attachment',
     })
   }
 }
