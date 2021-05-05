@@ -71,8 +71,6 @@ import Geocoder, { GeocoderCollection } from '#resources/Geocoder'
 import PaymentSource, {
   PaymentSourceCollection,
 } from '#resources/PaymentSource'
-import Item, { ItemCollection } from '#resources/Item'
-import Attachable, { AttachableCollection } from '#resources/Attachable'
 import GiftCard, { GiftCardCollection } from '#resources/GiftCard'
 import GiftCardRecipient, {
   GiftCardRecipientCollection,
@@ -165,6 +163,12 @@ import ParcelLineItem, {
   ParcelLineItemCollection,
 } from '#resources/ParcelLineItem'
 import AdyenGateway, { AdyenGatewayCollection } from '#resources/AdyenGateway'
+import CheckoutComGateway, {
+  CheckoutComGatewayCollection,
+} from './resources/CheckoutComGateway'
+import CheckoutComPayment, {
+  CheckoutComPaymentCollection,
+} from './resources/CheckoutComPayment'
 import BraintreeGateway, {
   BraintreeGatewayCollection,
 } from '#resources/BraintreeGateway'
@@ -186,7 +190,6 @@ export {
   AdyenGatewayCollection,
   AdyenPaymentCollection,
   ApplicationCollection,
-  AttachableCollection,
   AttachmentCollection,
   AuthorizationCollection,
   AvalaraAccountCollection,
@@ -195,6 +198,8 @@ export {
   BraintreePaymentCollection,
   CaptureCollection,
   CarrierAccountCollection,
+  CheckoutComGatewayCollection,
+  CheckoutComPaymentCollection,
   CouponCodesPromotionRuleCollection,
   CouponCollection,
   CustomerAddressCollection,
@@ -272,7 +277,6 @@ export interface CLayer {
   AdyenGateway: BaseResource<AdyenGatewayCollection>
   AdyenPayment: BaseResource<AdyenPaymentCollection>
   Application: BaseResource<ApplicationCollection>
-  Attachable: BaseResource<AttachableCollection>
   Attachment: BaseResource<AttachmentCollection>
   Authorization: BaseResource<AuthorizationCollection>
   AvalaraAccount: BaseResource<AvalaraAccountCollection>
@@ -281,6 +285,8 @@ export interface CLayer {
   BraintreePayment: BaseResource<BraintreePaymentCollection>
   Capture: BaseResource<CaptureCollection>
   CarrierAccount: BaseResource<CarrierAccountCollection>
+  CheckoutComGateway: BaseResource<CheckoutComGatewayCollection>
+  CheckoutComPayment: BaseResource<CheckoutComPaymentCollection>
   Coupon: BaseResource<CouponCollection>
   CouponCodesPromotionRule: BaseResource<CouponCodesPromotionRuleCollection>
   Customer: BaseResource<CustomerCollection>
@@ -304,7 +310,6 @@ export interface CLayer {
   InventoryModel: BaseResource<InventoryModelCollection>
   InventoryReturnLocation: BaseResource<InventoryReturnLocationCollection>
   InventoryStockLocation: BaseResource<InventoryStockLocationCollection>
-  Item: BaseResource<ItemCollection>
   LineItem: BaseResource<LineItemCollection>
   LineItemOption: BaseResource<LineItemOptionCollection>
   ManualGateway: BaseResource<ManualGatewayCollection>
@@ -363,7 +368,6 @@ const CLayer: CLayer = {
   AdyenGateway,
   AdyenPayment,
   Application,
-  Attachable,
   Attachment,
   Authorization,
   AvalaraAccount,
@@ -372,6 +376,8 @@ const CLayer: CLayer = {
   BraintreePayment,
   Capture,
   CarrierAccount,
+  CheckoutComGateway,
+  CheckoutComPayment,
   Coupon,
   CouponCodesPromotionRule,
   Customer,
@@ -395,7 +401,6 @@ const CLayer: CLayer = {
   InventoryModel,
   InventoryReturnLocation,
   InventoryStockLocation,
-  Item,
   LineItem,
   LineItemOption,
   ManualGateway,
@@ -455,7 +460,6 @@ export {
   AdyenGateway,
   AdyenPayment,
   Application,
-  Attachable,
   Attachment,
   Authorization,
   AvalaraAccount,
@@ -464,6 +468,8 @@ export {
   BraintreePayment,
   Capture,
   CarrierAccount,
+  CheckoutComGateway,
+  CheckoutComPayment,
   Coupon,
   CouponCodesPromotionRule,
   Customer,
@@ -487,7 +493,6 @@ export {
   InventoryModel,
   InventoryReturnLocation,
   InventoryStockLocation,
-  Item,
   LineItem,
   LineItemOption,
   ManualGateway,
