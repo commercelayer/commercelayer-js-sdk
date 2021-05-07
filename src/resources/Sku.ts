@@ -6,7 +6,7 @@ import { SkuOptionCollection } from './SkuOption'
 import { DeliveryLeadTimeCollection } from './DeliveryLeadTime'
 import { StockItemCollection } from './StockItem'
 import { ShippingCategoryCollection } from './ShippingCategory'
-import { AttachableCollection } from './Attachable'
+import { AttachmentCollection } from './Attachment'
 
 export interface InventoryCollection {
   available: boolean
@@ -63,8 +63,8 @@ export class SkuCollection extends BaseClass {
   loadDeliveryLeadTimes: () => MultiRelationship<DeliveryLeadTimeCollection>
   skuOptions: () => MultiRelationship<SkuOptionCollection>
   loadSkuOptions: () => MultiRelationship<SkuOptionCollection>
-  attachments: () => MultiRelationship<AttachableCollection>
-  loadAttachments: () => MultiRelationship<AttachableCollection>
+  attachments: () => MultiRelationship<AttachmentCollection>
+  loadAttachments: () => MultiRelationship<AttachmentCollection>
   static define() {
     this.attributes(
       'code',

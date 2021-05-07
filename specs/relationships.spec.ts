@@ -48,7 +48,7 @@ it('SKU --- multi relationship --- prices', async () => {
 it('SKU --- multi relationships with includes --- prices', async () => {
   expect.assertions(4)
   const sku = await CLayer.Sku.withCredentials(blueBrandConfig)
-    .includes('prices,stockItems')
+    .includes('prices', 'stockItems')
     .findBy({
       code: 'BABYONBU000000E63E7412MX',
     })

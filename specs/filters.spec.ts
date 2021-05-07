@@ -20,7 +20,7 @@ beforeAll(async () => {
 
 it('METHOD --- select', async () => {
   expect.assertions(4)
-  const sku = await CLayer.Sku.select('name,code').findBy({
+  const sku = await CLayer.Sku.select('name', 'code').findBy({
     code: 'BABYONBU000000E63E7412MX',
   })
   expect(sku.code).not.toBeUndefined()
@@ -28,14 +28,14 @@ it('METHOD --- select', async () => {
   expect(sku.description).toBeUndefined()
   // @ts-ignore
   expect(sku.__queryParams.fields.skus).toEqual(
-    expect.arrayContaining(['name,code'])
+    expect.arrayContaining(['name', 'code'])
   )
 })
 
 it('METHOD --- select with includes', async () => {
   expect.assertions(5)
   const sku = await CLayer.Sku.includes('prices')
-    .select('name,code')
+    .select('name', 'code')
     .findBy({
       code: 'BABYONBU000000E63E7412MX',
     })
@@ -46,7 +46,7 @@ it('METHOD --- select with includes', async () => {
   expect(sku.__queryParams.include).toEqual(expect.arrayContaining(['prices']))
   // @ts-ignore
   expect(sku.__queryParams.fields.skus).toEqual(
-    expect.arrayContaining(['name,code'])
+    expect.arrayContaining(['name', 'code'])
   )
 })
 
