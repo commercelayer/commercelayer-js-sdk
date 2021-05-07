@@ -3,7 +3,7 @@ import {
   createResourceLibrary,
   // @ts-ignore
   CollectionResponse,
-} from 'active-resource'
+} from '@commercelayer/active-resource'
 import Library, { GeneralObject } from '#typings/Library'
 import { InitConfig, Options } from './Initialize'
 import _map from 'lodash/map'

@@ -1,4 +1,4 @@
-import CLayer from '../src'
+import CLayer, { Sku } from '../src'
 import { getTokenBlueBrand, getTokenLimeBrand } from '../helpers/getToken'
 
 let blueBrandConfig = { accessToken: '', endpoint: '' }
@@ -46,9 +46,7 @@ it('Checking credentials', async () => {
 
 it('CRUD - Sync update', async () => {
   expect.assertions(2)
-  const sku = await CLayer.Sku.withCredentials(blueBrandConfig).find(
-    'wZeDdSamqn'
-  )
+  const sku = await Sku.withCredentials(blueBrandConfig).find('wZeDdSamqn')
   expect(sku.id).toBe('wZeDdSamqn')
   const skuUpdate = await sku
     .withCredentials(blueBrandConfig)
