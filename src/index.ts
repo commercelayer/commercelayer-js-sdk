@@ -67,7 +67,6 @@ import StockLocation, {
 import Webhook, { WebhookCollection } from '#resources/Webhook'
 import WireTransfer, { WireTransferCollection } from '#resources/WireTransfer'
 import init, { Init } from '#resources/Initialize'
-import Geocoder, { GeocoderCollection } from '#resources/Geocoder'
 import PaymentSource, {
   PaymentSourceCollection,
 } from '#resources/PaymentSource'
@@ -215,7 +214,6 @@ export {
   ExternalTaxCalculatorCollection,
   FixedAmountPromotionCollection,
   FreeShippingPromotionCollection,
-  GeocoderCollection,
   GiftCardCollection,
   GiftCardRecipientCollection,
   ImportCollection,
@@ -302,7 +300,6 @@ export interface CLayer {
   ExternalTaxCalculator: BaseResource<ExternalTaxCalculatorCollection>
   FixedAmountPromotion: BaseResource<FixedAmountPromotionCollection>
   FreeShippingPromotion: BaseResource<FreeShippingPromotionCollection>
-  Geocoder: BaseResource<GeocoderCollection>
   GiftCard: BaseResource<GiftCardCollection>
   GiftCardRecipient: BaseResource<GiftCardRecipientCollection>
   Import: BaseResource<ImportCollection>
@@ -393,7 +390,6 @@ const CLayer: CLayer = {
   ExternalTaxCalculator,
   FixedAmountPromotion,
   FreeShippingPromotion,
-  Geocoder,
   GiftCard,
   GiftCardRecipient,
   Import,
@@ -485,7 +481,6 @@ export {
   ExternalTaxCalculator,
   FixedAmountPromotion,
   FreeShippingPromotion,
-  Geocoder,
   GiftCard,
   GiftCardRecipient,
   Import,
