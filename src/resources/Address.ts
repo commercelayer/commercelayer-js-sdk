@@ -1,5 +1,6 @@
 import library from './library'
 import BaseClass from '#utils/BaseClass'
+import { GeocoderCollection } from './Geocoder'
 
 export class AddressCollection extends BaseClass {
   static className = 'Address'
@@ -14,6 +15,7 @@ export class AddressCollection extends BaseClass {
   firstName: string
   fullAddress: string
   fullName: string
+  geocoder: () => Promise<GeocoderCollection>
   id: string
   isGeocoded: boolean
   isLocalized: boolean
@@ -68,7 +70,7 @@ export class AddressCollection extends BaseClass {
       'metadata'
     )
 
-    this.hasOne('geocoder', { polymorphic: true })
+    this.hasOne('geocoder', { className: 'Geocoder' })
   }
 }
 
