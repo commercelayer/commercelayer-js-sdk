@@ -338,6 +338,45 @@ Check our API reference for more information about the [errors](https://docs.com
 
 ---
 
+## Web performance
+
+Our SDK is based on the ORM style, and you could get some performance issues if it's not used appropriately. To avoid that, we have introduced the `rawResponse` mode that allows you to get a native JSON response from our API.
+
+### How to set the `rawResponse` globally
+
+You can activate it, setting `rawResponse` as `true` in the `init` function inside `options` attribute, as follows:
+
+> When `rawResponse` is activated globally, you can't access to ORM resource methods
+
+```
+import CLayer from '@commercelayer/js-sdk'
+
+CLayer.init({
+  accessToken: 'your-access-token',
+  endpoint: 'https://yourdomain.commercelayer.io',
+  options: {
+    rawResponse: true
+  }
+})
+```
+
+### How to set the `rawResponse` for a single request
+
+Now every SDK get method has a options params which can set the `rawResponse` (checking typescript types), as follows:
+
+```
+const sku = await Sku.find('xYZkjABcde', { rawResponse: true }) // fetches the SKU by ID
+```
+
+To update a single resource you must call a build function and then call update function as follows:
+
+```
+const sku = Sku.build({ id: 'xYZkjABcde'})
+await sku.update({ reference: 'reference-1'}, null, { rawResponse: true })
+```
+
+---
+
 ### License
 
 This repository is published under the [MIT](LICENSE) license.
