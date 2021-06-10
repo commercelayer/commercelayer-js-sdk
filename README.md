@@ -285,7 +285,17 @@ Check our API reference for more information on how to [update an SKU](https://d
 
 Check our API reference for more information on how to [delete an SKU](https://docs.commercelayer.io/api/resources/skus/delete_sku).
 
-# Overriding credentials
+# Advanced features
+
+Upon its basic usage, Commerce Layer JS SDK offers some specific functionalities you can leverage to handle when dealing with errors, performance, and more. The most useful are listed here below (more to come):
+
+- [Overriding credentials](#overriding-credentials)
+- [Handling validation errors](#handling-validation-errors)
+- [Avoiding web application performance issues](#avoiding-web-application-performance-issues)
+  - [How to set the raw response globally](#how-to-set-the-raw-response-globally)
+  - [How to set the raw response for a single request](#how-to-set-the-raw-response-for-a-single-request)
+
+## Overriding credentials
 
 If needed, Commerce Layer JS SDK lets you set the configuration at a request level. To do that, just use the `withCredentials()` method and authenticate the API call with the desired credentials:
 
@@ -296,7 +306,7 @@ If needed, Commerce Layer JS SDK lets you set the configuration at a request lev
   }).all()
 ```
 
-# Handling validation errors
+## Handling validation errors
 
 Commerce Layer API returns specific errors (with extra information) on each attribute of a single resource. You can inspect them to properly handle validation errors (if any). To do that, use the `errors()` method:
 
@@ -336,17 +346,13 @@ Commerce Layer API returns specific errors (with extra information) on each attr
 
 Check our API reference for more information about the [errors](https://docs.commercelayer.io/api/handling-errors) returned by the API.
 
----
+## Avoiding web application performance issues
 
-## Web performance
+Commerce Layer JS SDK is based on the [ORM](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping) technique and returns *collections* of resources. If not managed appropriately, you could get some performance and memory issues. To avoid that, you can use it in the *raw-response mode*. This way, you'll get native JSON objects with all their attributes as the response from our API.
 
-Our SDK is based on the ORM style, and you could get some performance issues if it's not used appropriately. To avoid that, we have introduced the `rawResponse` mode that allows you to get a native JSON response from our API.
+### How to set the raw response globally
 
-### How to set the `rawResponse` globally
-
-You can activate it, setting `rawResponse` as `true` in the `init` function inside `options` attribute, as follows:
-
-> When `rawResponse` is activated globally, you can't access to ORM resource methods
+The raw-response mode can be easily activated globally by setting the `rawResponse` key to `true` in the `options` attribute of the `init` function, as follows:
 
 ```
 import CLayer from '@commercelayer/js-sdk'
@@ -360,19 +366,35 @@ CLayer.init({
 })
 ```
 
-### How to set the `rawResponse` for a single request
+> If the raw-response mode is activated globally, you cannot access the ORM resource methods.
 
-Now every SDK get method has a options params which can set the `rawResponse` (checking typescript types), as follows:
+### How to set the raw response for a single request
+
+Alternatively, the raw response option can be managed at a single request level.
+
+#### Create
+
+In case of `POST` request methods you can direclty set the `rawResponse` key to `true`, as follows:
+
+```
+const newSku = await Sku.create(attributes, { rawResponse: true }) // creates a new SKU
+```
+
+#### Retrieve
+
+In case of `GET` request methods you can direclty set the `rawResponse` key to `true`, as follows:
 
 ```
 const sku = await Sku.find('xYZkjABcde', { rawResponse: true }) // fetches the SKU by ID
 ```
 
-To update a single resource you must call a build function and then call update function as follows:
+#### Update
+
+In case of `PATCH` request methods, first you need to call the `build` function and then set the `rawResponse` key to `true` on the `update`, as follows:
 
 ```
-const sku = Sku.build({ id: 'xYZkjABcde'})
-await sku.update({ reference: 'reference-1'}, null, { rawResponse: true })
+const sku = Sku.build({ id: 'xYZkjABcde'}) // creates the related collection
+await sku.update({ reference: 'REF-1'}, null, { rawResponse: true }) // updates the SKU reference
 ```
 
 ---
