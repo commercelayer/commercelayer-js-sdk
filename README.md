@@ -292,8 +292,6 @@ Upon its basic usage, Commerce Layer JS SDK offers some specific functionalities
 - [Overriding credentials](#overriding-credentials)
 - [Handling validation errors](#handling-validation-errors)
 - [Avoiding web application performance issues](#avoiding-web-application-performance-issues)
-  - [How to set the raw response globally](#how-to-set-the-raw-response-globally)
-  - [How to set the raw response for a single request](#how-to-set-the-raw-response-for-a-single-request)
 
 ## Overriding credentials
 
@@ -374,7 +372,7 @@ Alternatively, the raw response option can be managed at a single request level.
 
 #### Create
 
-In case of `POST` request methods you can direclty set the `rawResponse` key to `true`, as follows:
+In case of `POST` request methods you can directly set the `rawResponse` key to `true`, as follows:
 
 ```
 const newSku = await Sku.create(attributes, { rawResponse: true }) // creates a new SKU
@@ -382,7 +380,7 @@ const newSku = await Sku.create(attributes, { rawResponse: true }) // creates a 
 
 #### Retrieve
 
-In case of `GET` request methods you can direclty set the `rawResponse` key to `true`, as follows:
+In case of `GET` request methods you can directly set the `rawResponse` key to `true`, as follows:
 
 ```
 const sku = await Sku.find('xYZkjABcde', { rawResponse: true }) // fetches the SKU by ID
