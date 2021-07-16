@@ -21,6 +21,8 @@ import { CustomerPaymentSourceCollection } from '..'
 
 export class OrderCollection extends BaseClass {
   static className = 'Order'
+  _archive: boolean
+  _unarchive: boolean
   _approve: boolean
   _billingAddressCloneId: string
   _billingAddressSameAsShipping: boolean
@@ -184,6 +186,8 @@ export class OrderCollection extends BaseClass {
   loadRefunds: () => MultiRelationship<RefundCollection>
   static define() {
     this.attributes(
+      '_archive',
+      '_unarchive',
       '_approve',
       '_billingAddressCloneId',
       '_billingAddressSameAsShipping',
