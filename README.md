@@ -2,6 +2,8 @@
 
 A JavaScript Library wrapper that makes it quick and easy to interact with the [Commerce Layer API](https://docs.commercelayer.io/api/).
 
+> A brand new Commerce Layer SDK is going to be officially released. It's currently in beta version. Feel free to [try it]((https://github.com/commercelayer/commercelayer-sdk)).
+
 ### What is Commerce Layer?
 
 [Commerce Layer](https://commercelayer.io/) is a headless platform that lets you easily build enterprise-grade ecommerce into any website, by using the language, CMS, and tools you already master and love.
@@ -30,7 +32,7 @@ yarn add @commercelayer/js-sdk
 
 All requests to Commerce Layer API must be authenticated with an [OAuth2](https://oauth.net/2/) bearer token. Hence, before starting to use this SDK you need to get a valid access token. Check [our documentation](https://docs.commercelayer.io/api/authentication) for more information about the available authorization flows.
 
-> Feel free to use [Commerce Layer JS Auth](https://github.com/commercelayer/commercelayer-js-auth), a JavaScript library that helps you wrap our authentication API.
+> You can leverage [Commerce Layer JS Auth](https://github.com/commercelayer/commercelayer-js-auth), a JavaScript library that helps you wrap our authentication API.
 
 ## Import
 
