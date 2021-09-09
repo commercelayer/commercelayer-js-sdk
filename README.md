@@ -2,7 +2,7 @@
 
 A JavaScript Library wrapper that makes it quick and easy to interact with the [Commerce Layer API](https://docs.commercelayer.io/api/).
 
-> A brand new Commerce Layer SDK is going to be officially released. It's currently in beta version. Feel free to [try it](https://github.com/commercelayer/commercelayer-sdk).
+> **This SDK is deprecated**. A brand new [Commerce Layer SDK](https://github.com/commercelayer/commercelayer-sdk) has been officially released and we strongly recommend you to use that instead.
 
 ### What is Commerce Layer?
 
